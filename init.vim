@@ -4,6 +4,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'pangloss/vim-javascript'
 	Plug 'dikiaap/minimalist'
 	Plug 'https://github.com/dense-analysis/ale'
+  	Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
 
 call plug#end()
 
