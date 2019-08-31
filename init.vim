@@ -5,7 +5,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'dikiaap/minimalist'
 	Plug 'https://github.com/dense-analysis/ale'
   	Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
-
+	Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
 
