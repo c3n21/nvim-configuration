@@ -1,5 +1,5 @@
 call plug#begin('~/.local/share/nvim/plugged')
-
+	Plug 'shawncplus/phpcomplete.vim'
 	Plug 'https://github.com/alvan/vim-closetag'
 	Plug 'mxw/vim-jsx'
 	Plug 'pangloss/vim-javascript'
@@ -90,3 +90,8 @@ nnoremap <NL> i<CR><ESC>
 	" Add > at current position without closing the current tag, default is ''
 	"
 	let g:closetag_close_shortcut = '<leader>>'
+
+	"nnoremap <C-Tab> :tabprevious<CR>
+	"nnoremap <C-S-Tab> :tabnext<CR>
+	"nnoremap <silent> <C-S-h> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
+	"nnoremap <silent> <C-S-l> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>

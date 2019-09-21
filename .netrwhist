@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/home/c3n21/Documents/Symfony/HelloWorld/config'
+let g:netrw_dirhist_5='/home/c3n21/Documents/Symfony/HelloWorld'
+let g:netrw_dirhist_4='/home/c3n21/Documents/Symfony/HelloWorld/public'
+let g:netrw_dirhist_3='/home/c3n21/Documents/Symfony/HelloWorld'
+let g:netrw_dirhist_2='/home/c3n21/Documents/Symfony/HelloWorld/src'
+let g:netrw_dirhist_1='/home/c3n21/Documents/Symfony/HelloWorld'
+let g:netrw_dirhist_0='/home/c3n21/Documents/Symfony/HelloWorld/var'
+let g:netrw_dirhist_9='/home/c3n21/Documents/Symfony/HelloWorld'
+let g:netrw_dirhist_8='/home/c3n21/Documents/Symfony/HelloWorld/src'
+let g:netrw_dirhist_7='/home/c3n21/Documents/Symfony/HelloWorld/src/Controller'
