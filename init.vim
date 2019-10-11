@@ -8,7 +8,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   	Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'https://github.com/Valloric/MatchTagAlways'
-	
+	Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 
 " Set this. Airline will handle the rest.
