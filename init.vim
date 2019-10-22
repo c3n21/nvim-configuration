@@ -9,6 +9,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'https://github.com/Valloric/MatchTagAlways'
 	Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+	Plug 'scrooloose/nerdtree'
 call plug#end()
 
 " Set this. Airline will handle the rest.
@@ -47,7 +48,7 @@ nnoremap <NL> i<CR><ESC>
 		\ 'javascript.jsx' : 1,
 		\}
 
-"vim-closetag Options
+	"vim-closetag Options
 
 
 	" filenames like *.xml, *.html, *.xhtml, ...
@@ -95,3 +96,5 @@ nnoremap <NL> i<CR><ESC>
 	"nnoremap <C-S-Tab> :tabnext<CR>
 	"nnoremap <silent> <C-S-h> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 	"nnoremap <silent> <C-S-l> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
+	set tabstop=4 shiftwidth=4 expandtab
+    autocmd vimenter * NERDTree
