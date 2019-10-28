@@ -232,3 +232,8 @@ nnoremap <NL> i<CR><ESC>
     nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
     " Resume latest coc list
     nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+
+    "Exec at start
+    
+    retab
