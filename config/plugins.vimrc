@@ -12,17 +12,24 @@ call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'https://github.com/Valloric/MatchTagAlways'
 "	Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 	Plug 'scrooloose/nerdtree'
-    Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
+    Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'},
+"Fuzzy search
+
+    Plug '/usr/bin/fzf',
+    Plug 'junegunn/fzf.vim'
 call plug#end()
 
 """""""""""""""""""""""
 "Plugins configuration"
 """""""""""""""""""""""
 "MatchTagAlways
-"source ~/.config/nvim/config/plugins.conf.d/match_tag_always.vimrc
+source ~/.config/nvim/config/plugins.conf.d/match_tag_always.vimrc
 
 "vim-closetag
-"source ~/.config/nvim/config/plugins.conf.d/vim-closetag.vimrc
+source ~/.config/nvim/config/plugins.conf.d/vim-closetag.vimrc
 
 "NeoClide
 source ~/.config/nvim/config/plugins.conf.d/neoclide.vimrc
+
+"junegunn/fzf.vim
+source ~/.config/nvim/config/plugins.conf.d/fzf.vimrc
