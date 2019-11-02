@@ -7,6 +7,11 @@
             "initializationOptions": {
                 "storagePath": "/tmp/intelephense"
             }
+        },
+        "golang": {
+            "command": "gopls",
+            "rootPatterns": ["go.mod"],
+            "filetypes": ["go"]
         }
     }
 }
