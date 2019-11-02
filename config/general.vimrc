@@ -3,7 +3,7 @@ let g:airline#extensions#ale#enabled = 1
 
 set nocompatible            " disable compatibility to old-time vi
 set showmatch               " show matching brackets.
-set ignorecase              " case insensitive matching
+"set ignorecase              " case insensitive matching
 set mouse=v                 " middle-click paste with mouse
 set hlsearch                " highlight search results
 set tabstop=4               " number of columns occupied by a tab character

@@ -14,8 +14,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'scrooloose/nerdtree'
     Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'},
 "Fuzzy search
-
-    Plug '/usr/bin/fzf',
+    Plug '/usr/bin/fzf'
     Plug 'junegunn/fzf.vim'
 call plug#end()
 
