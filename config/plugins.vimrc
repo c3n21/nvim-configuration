@@ -26,7 +26,7 @@ source ~/.config/nvim/config/plugins.conf.d/match_tag_always.vimrc
 source ~/.config/nvim/config/plugins.conf.d/vim-closetag.vimrc
 
 "NeoClide
-source ~/.config/nvim/config/plugins.conf.d/neoclide.vimrc
+source ~/.config/nvim/config/plugins.conf.d/neoclide-cocvim.vimrc
 
 "junegunn/fzf.vim
 source ~/.config/nvim/config/plugins.conf.d/fzf.vimrc
