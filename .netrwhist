@@ -1,8 +1,4 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/home/zhifan/Documenti/Progetti/coupon/src'
-let g:netrw_dirhist_2='/home/zhifan/Documenti/Progetti/coupon/src/Controller'
-let g:netrw_dirhist_3='/home/zhifan/Documenti/Progetti/coupon/src'
-let g:netrw_dirhist_4='/home/zhifan/Documenti/Progetti/coupon/src/EventSubscribers'
-let g:netrw_dirhist_5='/home/zhifan/Documenti/Progetti/coupon/src'
-let g:netrw_dirhist_6='/home/zhifan/Documenti/Progetti/coupon/src/Entity'
+let g:netrw_dirhistcnt =2
+let g:netrw_dirhist_2='/home/c3n21/.config/nvim/config'
+let g:netrw_dirhist_1='/home/c3n21/.config/nvim/config/plugins.conf.d'

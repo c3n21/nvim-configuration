@@ -18,3 +18,11 @@ syntax on                   " syntax highlighting
 set background=dark
 set termguicolors
 let g:quantum_italics=1
+
+autocmd FileType json syntax match Comment +\/\/.\+$+
+autocmd vimenter * NERDTree
+
+"dikiaap/minimalist colorscheme
+set t_Co=256
+syntax on
+colorscheme minimalist

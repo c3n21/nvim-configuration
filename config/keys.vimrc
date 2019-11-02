@@ -8,6 +8,5 @@ nnoremap <NL> i<CR><ESC>
 "nnoremap <silent> <C-S-h> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 "nnoremap <silent> <C-S-l> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
 set tabstop=4 shiftwidth=4 expandtab
-autocmd vimenter * NERDTree
 set encoding=utf-8
 set fileencoding=utf-8
