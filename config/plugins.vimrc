@@ -6,7 +6,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 "Color scheme
     Plug 'dikiaap/minimalist'
 "	Plug 'https://github.com/dense-analysis/ale'
-"  	Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
+  	"Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'https://github.com/Valloric/MatchTagAlways'
 	Plug 'scrooloose/nerdtree'
