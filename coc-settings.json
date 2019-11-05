@@ -1,10 +1,4 @@
 {
-    "eslint.autoFix": false,
-    "eslint.packageManager": "npm",
-    "eslint.filetypes": [
-        "javascript",
-        "javascriptreact"
-    ],
     "languageserver": {
         "intelephense": {
             "command": "intelephense",
@@ -19,5 +13,6 @@
             "rootPatterns": ["go.mod"],
             "filetypes": ["go"]
         }
-    }
+    },
+    "eslint.filetypes": ["javascript", "typescript", "typescriptreact", "javascriptreact", "typescript.tsx"]
 }
