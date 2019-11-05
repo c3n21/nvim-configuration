@@ -1,4 +1,10 @@
 {
+    "eslint.autoFix": false,
+    "eslint.packageManager": "npm",
+    "eslint.filetypes": [
+        "javascript",
+        "javascriptreact"
+    ],
     "languageserver": {
         "intelephense": {
             "command": "intelephense",
