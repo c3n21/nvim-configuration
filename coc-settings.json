@@ -1,4 +1,6 @@
 {
+    "tsserver.log": "verbose",     
+    "tsserver.trace.server": "verbose",
     "languageserver": {
         "intelephense": {
             "command": "intelephense",

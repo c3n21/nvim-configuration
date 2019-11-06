@@ -1,6 +1,6 @@
 call plug#begin('~/.local/share/nvim/plugged')
 	Plug 'https://github.com/alvan/vim-closetag'
-"	Plug 'mxw/vim-jsx'
+	Plug 'MaxMEllon/vim-jsx-pretty'
 "	Plug 'pangloss/vim-javascript'
 "
 "Color scheme
