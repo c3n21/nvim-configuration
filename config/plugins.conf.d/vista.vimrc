@@ -3,6 +3,7 @@ function! NearestMethodOrFunction() abort
 endfunction
 
 let g:vista#executives = ['coc', 'ctags']
+
 let g:vista#finders = ['fzf']
 "let g:vista#renderer#ctags = 'default'
 
@@ -23,7 +24,8 @@ set statusline+=%{NearestMethodOrFunction()}
 " you can add the following line to your vimrc 
 autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
-nmap <F8> :Vista coc<CR>
+"nmap <F8> :Vista coc<CR>
+nmap <F8> :Vista!!<CR>
 nmap <F5> :Vista finder<CR>
 
 " How each level is indented and what to prepend.
@@ -54,7 +56,7 @@ let g:vista_default_executive = 'coc'
 " To enable fzf's preview window set g:vista_fzf_preview.
 " The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
 " For example:
-let g:vista_fzf_preview = ['right:50%']
+let g:vista_fzf_preview = ['right:30%']
 
 "" Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
 let g:vista#renderer#enable_icon = 1
