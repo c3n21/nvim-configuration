@@ -5,6 +5,7 @@ endfunction
 let g:vista#executives = ['coc', 'ctags']
 
 let g:vista#finders = ['fzf']
+
 "let g:vista#renderer#ctags = 'default'
 
 let g:vista#renderer#default#vlnum_offset = 3

@@ -31,3 +31,6 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 set t_Co=256
 syntax on
 colorscheme minimalist
+
+set list
+set listchars=tab:>-
