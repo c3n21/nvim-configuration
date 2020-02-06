@@ -10,3 +10,7 @@ nnoremap <NL> i<CR><ESC>
 
 "Create new file if not exist using gf
 map <leader>gf :e <cfile><cr>
+
+"Pasting always the last element copied element
+nnoremap <leader>p p
+nnoremap p "0p
