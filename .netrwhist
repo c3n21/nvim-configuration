@@ -1,4 +1,12 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =2
-let g:netrw_dirhist_2='/home/c3n21/.config/nvim/config'
-let g:netrw_dirhist_1='/home/c3n21/.config/nvim/config/plugins.conf.d'
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/Users/zhifan/.config/nvim'
+let g:netrw_dirhist_2='/Users/zhifan/Documents/Projects/svn-tinoleggio/projects/partners/recordgo/trunk'
+let g:netrw_dirhist_1='/Users/zhifan/Documents/Projects/svn-tinoleggio/projects/partners/recordgo/trunk/bin'
+let g:netrw_dirhist_0='/Users/zhifan/Documents/Projects/svn-tinoleggio/projects/partners/recordgo/trunk'
+let g:netrw_dirhist_9='/Users/zhifan'
+let g:netrw_dirhist_8='/Users'
+let g:netrw_dirhist_7='/Users/zhifan'
+let g:netrw_dirhist_6='/Users/zhifan/.config'
+let g:netrw_dirhist_5='/Users/zhifan/.config/nvim'
+let g:netrw_dirhist_4='/Users/zhifan/.config/nvim/.git'

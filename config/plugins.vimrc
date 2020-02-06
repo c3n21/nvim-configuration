@@ -6,7 +6,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   "Color scheme
   Plug 'dikiaap/minimalist'
   Plug 'https://github.com/Valloric/MatchTagAlways'
-  Plug 'scrooloose/nerdtree'
+ "" Plug 'scrooloose/nerdtree'
   Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'},
 
   "Fuzzy search
@@ -31,13 +31,13 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   "Tabs management
   Plug 'bagrat/vim-buffet'
+  "vifm"
+  Plug 'vifm/vifm.vim'
 call plug#end()
 
 """""""""""""""""""""""
 "Plugins configuration"
 """""""""""""""""""""""
-"TagBar
-"source ~/.config/nvim/config/plugins.conf.d/tagbar.vimrc
 
 "MatchTagAlways
 source ~/.config/nvim/config/plugins.conf.d/match_tag_always.vimrc
@@ -52,7 +52,7 @@ source ~/.config/nvim/config/plugins.conf.d/neoclide-cocvim.vimrc
 source ~/.config/nvim/config/plugins.conf.d/fzf.vimrc
 
 "nerdtree
-source ~/.config/nvim/config/plugins.conf.d/nerdtree.vimrc
+"source ~/.config/nvim/config/plugins.conf.d/nerdtree.vimrc
 
 "vista
 source ~/.config/nvim/config/plugins.conf.d/vista.vimrc
@@ -65,3 +65,6 @@ source ~/.config/nvim/config/plugins.conf.d/vim-signify.vimrc
 
 "vim-buffet
 source ~/.config/nvim/config/plugins.conf.d/vim-buffet.vimrc
+
+"vifm
+source ~/.config/nvim/config/plugins.conf.d/vifm.vimrc
