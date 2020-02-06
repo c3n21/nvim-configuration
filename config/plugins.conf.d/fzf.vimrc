@@ -9,6 +9,16 @@
 " --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 " --color: Search color options
 let $FZF_DEFAULT_OPTS = '--layout=reverse'
+" Required:
+" - width [float range [0 ~ 1]]
+" - height [float range [0 ~ 1]]
+"
+" Optional:
+" - xoffset [float default 0.0 range [0 ~ 1]]
+" - yoffset [float default 0.0 range [0 ~ 1]]
+" - highlight [string default 'Comment']: Highlight group for border
+" - border [string default 'rounded']: Border style ('rounded' | 'sharp' | 'horizontal')
+"let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
 let g:fzf_layout = { 'window': 'call OpenFloatingWin()' }
 
@@ -38,4 +48,3 @@ function! OpenFloatingWin()
          \ norelativenumber
          \ signcolumn=no
 endfunction
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
