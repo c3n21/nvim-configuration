@@ -14,5 +14,21 @@
             "filetypes": ["go"]
         }
     },
+    "suggest.timeout": 2000,
+    "suggest.completionItemKindLabels": {
+      "variable": "",
+      "method": "", 
+      "field": "", 
+      "interface": "", 
+      "property": " ", 
+      "default": "", 
+      "enum": "", 
+      "function": "", 
+      "constant": "", 
+      "struct": "", 
+      "module": "", 
+      "typeParameter": "", 
+      "class": ""
+    },
     "eslint.filetypes": ["javascript", "typescript", "typescriptreact", "javascriptreact", "typescript.tsx"]
 }
