@@ -16,6 +16,8 @@ map <leader>gf :e <cfile><cr>
 "nnoremap <leader>p p
 "nnoremap p "0p
 
+vnoremap <C-S-c> "+y
+
 """"""""""""""
 "Split panels
 """"""""""""""
