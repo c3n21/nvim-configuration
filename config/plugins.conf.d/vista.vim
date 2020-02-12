@@ -22,7 +22,7 @@ set statusline+=%{NearestMethodOrFunction()}
 " By default vista.vim never run if you don't call it explicitly.
 "
 " If you want to show the nearest function in your statusline automatically,
-" you can add the following line to your vimrc 
+" you can add the following line to your vim 
 autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
 "nmap <F8> :Vista coc<CR>

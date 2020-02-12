@@ -35,3 +35,31 @@ let g:airline#extensions#tabline#enabled = 1
 
 set list
 set listchars=tab:>-
+
+"""""""""""""""""""""""
+"Plugins configuration"
+"""""""""""""""""""""""
+
+"MatchTagAlways
+source ~/.config/nvim/config/plugins.conf.d/match_tag_always.vim
+
+"vim-closetag
+source ~/.config/nvim/config/plugins.conf.d/vim-closetag.vim
+
+"cocvim
+source ~/.config/nvim/config/plugins.conf.d/neoclide-cocvim.vim
+
+"junegunn/fzf.vim
+source ~/.config/nvim/config/plugins.conf.d/fzf.vim
+
+"vista
+source ~/.config/nvim/config/plugins.conf.d/vista.vim
+
+"eleline
+source ~/.config/nvim/config/plugins.conf.d/eleline.vim
+
+"vim-signify
+source ~/.config/nvim/config/plugins.conf.d/vim-signify.vim
+
+"vim-buffet
+source ~/.config/nvim/config/plugins.conf.d/vim-buffet.vim
