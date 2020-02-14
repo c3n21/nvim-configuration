@@ -16,6 +16,14 @@ map <leader>gf :e <cfile><cr>
 "nnoremap <leader>p p
 "nnoremap p "0p
 
+"""""""""""""""""""""
+"Buffer manipulation
+"""""""""""""""""""""
+nmap <C-c> :BD <cr>
+
+""""""""""""""""""""""""
+"Registers manipulation
+""""""""""""""""""""""""
 vnoremap <C-S-c> "+y
 
 """"""""""""""
@@ -32,5 +40,5 @@ nmap <C-h> <C-w>h
 map <F2> :CocCommand explorer 
       \ --width 30
       \ --sources=buffer+,file+
-      \ --file-columns=git:selection:clip:diagnosticError:indent:icon:filename;fullpath;size;modified;readonly
+      \ --file-columns=git:selection:clip:diagnosticError:indent:filename;modified;readonly
       \<cr>

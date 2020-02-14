@@ -33,4 +33,5 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'bagrat/vim-buffet'
   "vifm"
   Plug 'vifm/vifm.vim'
+  Plug 'qpkorr/vim-bufkill'
 call plug#end()
