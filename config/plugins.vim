@@ -32,7 +32,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   "Tabs management
   Plug 'bagrat/vim-buffet'
-  "vifm"
-  Plug 'vifm/vifm.vim'
+  
+  "Buffer management
   Plug 'qpkorr/vim-bufkill'
 call plug#end()
