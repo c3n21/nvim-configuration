@@ -5,7 +5,7 @@ set showmatch               " show matching brackets.
 "set ignorecase              " case insensitive matching
 set mouse=v                 " middle-click paste with mouse
 set hlsearch                " highlight search results
-set tabstop=2 
+set tabstop=4 
 set softtabstop=0 
 set expandtab 
 set shiftwidth=2 
@@ -63,3 +63,6 @@ source ~/.config/nvim/config/plugins.conf.d/vim-signify.vim
 
 "vim-buffet
 source ~/.config/nvim/config/plugins.conf.d/vim-buffet.vim
+
+"nnn
+source ~/.config/nvim/config/plugins.conf.d/nnn.vim

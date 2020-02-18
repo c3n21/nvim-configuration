@@ -42,3 +42,10 @@ map <F2> :CocCommand explorer
       \ --sources=buffer+,file+
       \ --file-columns=git:selection:clip:diagnosticError:indent:filename;modified;readonly
       \<cr>
+
+"""""
+"nnn
+"""""
+" Start nnn in the current file's directory
+nnoremap <F2> :NnnPicker '%:p:h'<CR>
+

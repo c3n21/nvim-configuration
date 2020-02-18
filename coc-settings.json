@@ -21,12 +21,12 @@
       "ignoredRootPaths": ["~"]
     },
     
-    "golang": {
-      "command": "gopls",
-      "args": ["serve", "-debug", "0.0.0.0:8484", "-rpc.trace"],
-      "rootPatterns": ["go.mod"],
-      "filetypes": ["go"]
-    },
+//    "golang": {
+//      "command": "gopls",
+//      "args": ["serve", "-debug", "0.0.0.0:8484", "-rpc.trace"],
+//      "rootPatterns": ["go.mod"],
+//      "filetypes": ["go"]
+//    },
    "ccls": {
         "command": "ccls",
         "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
