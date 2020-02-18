@@ -20,13 +20,6 @@
       "filetypes": ["sh"],
       "ignoredRootPaths": ["~"]
     },
-    
-//    "golang": {
-//      "command": "gopls",
-//      "args": ["serve", "-debug", "0.0.0.0:8484", "-rpc.trace"],
-//      "rootPatterns": ["go.mod"],
-//      "filetypes": ["go"]
-//    },
    "ccls": {
         "command": "ccls",
         "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
@@ -54,62 +47,5 @@
     "typeParameter": "", 
     "class": ""
   },
-  "coc.preferences.extensionUpdateCheck": "daily",
-  "explorer.keyMappings": {
-      "k": "nodePrev",
-      "j": "nodeNext",
-
-      "*": "toggleSelection",
-      "<tab>": "actionMenu",
-
-      "h": "collapse",
-      "l": "expand",
-      "J": ["toggleSelection", "normal:j"],
-      "K": ["toggleSelection", "normal:k"],
-      "gl": "expandRecursive",
-      "gh": "collapseRecursive",
-      "o": "expandOrCollapse",
-      "<cr>": "open",
-      "e": "open",
-      "E": "openInVsplit",
-      "t": "openInTab",
-      "<bs>": "gotoParent",
-
-      "y": "copyFilepath",
-      "Y": "copyFilename",
-      "c": "copyFile",
-      "x": "cutFile",
-      "p": "pasteFile",
-      "d": "delete",
-      "D": "deleteForever",
-
-      "a": "addFile",
-      "A": "addDirectory",
-      "r": "rename",
-
-      ".": "toggleHidden",
-      "R": "refresh",
-
-      "?": "help",
-      "q": "quit",
-      "X": "systemExecute",
-      "gd": "listDrive",
-
-      "f": "search",
-      "F": "searchRecursive",
-
-      "gf": "gotoSource:file",
-      "gb": "gotoSource:buffer",
-
-      "[[": "sourcePrev",
-      "]]": "sourceNext",
-
-      "[d": "diagnosticPrev",
-      "]d": "diagnosticNext",
-
-      "[c": "gitPrev",
-      "]c": "gitNext",
-      "<<": "gitStage",
-      ">>": "gitUnstage"
-    }
+  "coc.preferences.extensionUpdateCheck": "daily"
 }

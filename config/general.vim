@@ -5,17 +5,17 @@ set showmatch               " show matching brackets.
 "set ignorecase              " case insensitive matching
 set mouse=v                 " middle-click paste with mouse
 set hlsearch                " highlight search results
-set tabstop=4 
+set tabstop=8 
 set softtabstop=0 
 set expandtab 
-set shiftwidth=2 
+set shiftwidth=8 
 set smarttab
 set autoindent              " indent a new line the same amount as the line just typed
 set number                  " add line numbers
 set wildmode=longest,list   " get bash-like tab completions
 filetype plugin indent on   " allows auto-indenting depending on file type
 syntax on                   " syntax highlighting
-
+  
 set encoding=utf-8
 set fileencoding=utf-8
 
