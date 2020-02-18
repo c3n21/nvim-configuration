@@ -10,7 +10,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'},
 
   "Fuzzy search
-  Plug 'junegunn/fzf', { 'do': './install --bin' }
+  "Plug 'junegunn/fzf', { 'do': './install --bin' }
+  Plug '/usr/bin/fzf'
   Plug 'junegunn/fzf.vim'
   
   "Session management with tmux
@@ -31,7 +32,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   "Tabs management
   Plug 'bagrat/vim-buffet'
-
+  
+  "Buffer management
   Plug 'qpkorr/vim-bufkill'
   
   "File manager"
