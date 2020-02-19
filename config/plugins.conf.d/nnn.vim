@@ -27,6 +27,6 @@ endfunction
 let g:nnn#layout = 'call ' . string(function('<SID>layout')) . '()'
 
 let g:nnn#action = {
-      \ '<c-t>': 'tab split',
+      \ '<c-t>': 'edit',
       \ '<c-x>': 'split',
       \ '<c-v>': 'vsplit' }
