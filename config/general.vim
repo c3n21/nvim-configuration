@@ -5,12 +5,14 @@ set showmatch               " show matching brackets.
 "set ignorecase              " case insensitive matching
 set mouse=v                 " middle-click paste with mouse
 set hlsearch                " highlight search results
-set tabstop=8 
+
+set tabstop=4 
 set softtabstop=0 
 set expandtab 
-set shiftwidth=8 
+set shiftwidth=4 
 set smarttab
 set autoindent              " indent a new line the same amount as the line just typed
+
 set number                  " add line numbers
 set wildmode=longest,list   " get bash-like tab completions
 filetype plugin indent on   " allows auto-indenting depending on file type
@@ -30,9 +32,6 @@ syntax on
 colorscheme minimalist
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-
-set list
-set listchars=tab:>-
 
 """""""""""""""""""""""
 "Plugins configuration"
@@ -60,7 +59,13 @@ source ~/.config/nvim/config/plugins.conf.d/eleline.vim
 source ~/.config/nvim/config/plugins.conf.d/vim-signify.vim
 
 "vim-buffet
-source ~/.config/nvim/config/plugins.conf.d/vim-buffet.vim
+"source ~/.config/nvim/config/plugins.conf.d/vim-buffet.vim
 
 "nnn
-source ~/.config/nvim/config/plugins.conf.d/nnn.vim
+"source ~/.config/nvim/config/plugins.conf.d/nnn.vim
+
+"coc-explorer
+source ~/.config/nvim/config/plugins.conf.d/coc-explorer.vim
+
+"vim-wintabs
+source ~/.config/nvim/config/plugins.conf.d/vim-wintabs.vim

@@ -37,15 +37,14 @@ nmap <C-h> <C-w>h
 """""""""""""""
 "Coc explorer
 """""""""""""""
-map <F2> :CocCommand explorer 
-      \ --width 30
-      \ --sources=buffer+,file+
-      \ --file-columns=git:selection:clip:diagnosticError:indent:filename;modified;readonly
-      \<cr>
+" Use preset argument to open it
+nmap <leader>ed :CocCommand explorer<CR>
+
+" List all presets
+nmap <leader>el :CocList explPresets
 
 """""
 "nnn
 """""
 " Start nnn in the current file's directory
-nnoremap <F2> :NnnPicker '%:p:h'<CR>
-
+"nnoremap <F2> :NnnPicker '%:p:h'<CR>

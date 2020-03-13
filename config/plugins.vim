@@ -1,41 +1,44 @@
 call plug#begin('~/.local/share/nvim/plugged')
-  "closetag for html
-  Plug 'https://github.com/alvan/vim-closetag'
-  Plug 'MaxMEllon/vim-jsx-pretty'
-  
-  "Color scheme
-  Plug 'dikiaap/minimalist'
-  Plug 'https://github.com/Valloric/MatchTagAlways'
- "" Plug 'scrooloose/nerdtree'
-  Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'},
+"closetag for html
+Plug 'https://github.com/alvan/vim-closetag'
+Plug 'MaxMEllon/vim-jsx-pretty'
 
-  "Fuzzy search
-  "Plug 'junegunn/fzf', { 'do': './install --bin' }
-  Plug '/usr/bin/fzf'
-  Plug 'junegunn/fzf.vim'
-  
-  "Session management with tmux
-  Plug 'tpope/vim-obsession'
-  Plug 'tpope/vim-surround'
+"Color scheme
+Plug 'dikiaap/minimalist'
+Plug 'https://github.com/Valloric/MatchTagAlways'
+"" Plug 'scrooloose/nerdtree'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'},
 
-  "TagBar
-  Plug 'liuchengxu/vista.vim'
+"Fuzzy search
+"Plug 'junegunn/fzf', { 'do': './install --bin' }
+Plug '/usr/bin/fzf'
+Plug 'junegunn/fzf.vim'
 
-  "Status line
-  Plug 'liuchengxu/eleline.vim'
+"Session management with tmux
+Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-surround'
 
-  "Show diffs
-  Plug 'mhinz/vim-signify'
+"TagBar
+Plug 'liuchengxu/vista.vim'
 
-  "Beautify
-  Plug 'ryanoasis/vim-devicons'
+"Status line
+Plug 'liuchengxu/eleline.vim'
 
-  "Tabs management
-  Plug 'bagrat/vim-buffet'
-  
-  "Buffer management
-  Plug 'qpkorr/vim-bufkill'
-  
-  "File manager"
-  Plug 'mcchrish/nnn.vim'
+"Show diffs
+Plug 'mhinz/vim-signify'
+
+"Beautify
+Plug 'ryanoasis/vim-devicons'
+
+"Tabs management
+"Plug 'bagrat/vim-buffet'
+Plug 'zefei/vim-wintabs'
+Plug 'zefei/vim-wintabs-powerline'
+
+
+"Buffer management
+Plug 'qpkorr/vim-bufkill'
+
+"File manager"
+""  Plug 'mcchrish/nnn.vim'
 call plug#end()
