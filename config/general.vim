@@ -1,5 +1,4 @@
 " Set this. Airline will handle the rest.
-
 set nocompatible            " disable compatibility to old-time vi
 set showmatch               " show matching brackets.
 "set ignorecase              " case insensitive matching
@@ -61,11 +60,11 @@ source ~/.config/nvim/config/plugins.conf.d/vim-signify.vim
 "vim-buffet
 "source ~/.config/nvim/config/plugins.conf.d/vim-buffet.vim
 
-"nnn
-"source ~/.config/nvim/config/plugins.conf.d/nnn.vim
-
 "coc-explorer
 source ~/.config/nvim/config/plugins.conf.d/coc-explorer.vim
 
 "vim-wintabs
 source ~/.config/nvim/config/plugins.conf.d/vim-wintabs.vim
+
+"ultisnips
+source ~/.config/nvim/config/plugins.conf.d/ultisnips.vim

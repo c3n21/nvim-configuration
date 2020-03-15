@@ -1,11 +1,11 @@
 call plug#begin('~/.local/share/nvim/plugged')
 "closetag for html
-Plug 'https://github.com/alvan/vim-closetag'
+Plug 'alvan/vim-closetag'
 Plug 'MaxMEllon/vim-jsx-pretty'
 
 "Color scheme
 Plug 'dikiaap/minimalist'
-Plug 'https://github.com/Valloric/MatchTagAlways'
+Plug 'Valloric/MatchTagAlways'
 "" Plug 'scrooloose/nerdtree'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'},
 
@@ -31,14 +31,13 @@ Plug 'mhinz/vim-signify'
 Plug 'ryanoasis/vim-devicons'
 
 "Tabs management
-"Plug 'bagrat/vim-buffet'
 Plug 'zefei/vim-wintabs'
 Plug 'zefei/vim-wintabs-powerline'
 
+"UltiSnips
+Plug 'SirVer/ultisnips'
 
 "Buffer management
 Plug 'qpkorr/vim-bufkill'
 
-"File manager"
-""  Plug 'mcchrish/nnn.vim'
 call plug#end()
