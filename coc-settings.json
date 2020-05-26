@@ -29,6 +29,11 @@
                     "directory": ".ccls-cache"
                 }
             }
+        },
+        "groovy": {
+            "command": "java",
+            "args" : ["-jar", "/usr/share/java/groovy-language-server/groovy-language-server-all.jar"],
+            "filetypes": ["groovy", "Jenkinsfile"]
         }
     },
     "suggest.timeout": 5000,
@@ -49,7 +54,7 @@
     },
     "coc.preferences.extensionUpdateCheck": "daily", 
     "explorer.keyMappings": {
-        "i": "unmap", 
+        "i": "false", 
 
         "k": "nodePrev",
         "j": "nodeNext",

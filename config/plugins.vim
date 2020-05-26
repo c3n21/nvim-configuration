@@ -40,4 +40,7 @@ Plug 'SirVer/ultisnips'
 "Buffer management
 Plug 'qpkorr/vim-bufkill'
 
+"nginx syntax highlight
+Plug 'chr4/nginx.vim'
+
 call plug#end()

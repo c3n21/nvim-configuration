@@ -57,9 +57,6 @@ source ~/.config/nvim/config/plugins.conf.d/eleline.vim
 "vim-signify
 source ~/.config/nvim/config/plugins.conf.d/vim-signify.vim
 
-"vim-buffet
-"source ~/.config/nvim/config/plugins.conf.d/vim-buffet.vim
-
 "coc-explorer
 source ~/.config/nvim/config/plugins.conf.d/coc-explorer.vim
 

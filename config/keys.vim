@@ -43,8 +43,5 @@ nmap <leader>ed :CocCommand explorer<CR>
 " List all presets
 nmap <leader>el :CocList explPresets
 
-"""""
-"nnn
-"""""
-" Start nnn in the current file's directory
-"nnoremap <F2> :NnnPicker '%:p:h'<CR>
+"Format JSON
+nmap =j :%!python -m json.tool<CR>
