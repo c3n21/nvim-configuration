@@ -7,7 +7,7 @@ Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'dikiaap/minimalist'
 Plug 'Valloric/MatchTagAlways'
 "" Plug 'scrooloose/nerdtree'
-Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'},
+Plug 'neoclide/coc.nvim', {'branch': 'release'},
 
 "Fuzzy search
 "Plug 'junegunn/fzf', { 'do': './install --bin' }
