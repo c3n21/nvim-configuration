@@ -19,17 +19,7 @@
             "args": ["start"],
             "filetypes": ["sh"],
             "ignoredRootPaths": ["~"]
-        },
-        "ccls": {
-            "command": "ccls",
-            "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
-            "rootPatterns": [".ccls-root", "compile_commands.json"],
-            "initializationOptions": {
-                "cache": {
-                    "directory": ".ccls-cache"
-                }
-            }
-        },
+        }, 
         "groovy": {
             "command": "java",
             "args" : ["-jar", "/usr/share/java/groovy-language-server/groovy-language-server-all.jar"],
@@ -116,6 +106,7 @@
                     "]c": "gitNext",
                     "<<": "gitStage",
                     ">>": "gitUnstage"
-    }
+    },
+    "clangd.path": "/home/c3n21/.config/coc/extensions/coc-clangd-data/install/10.0.0/clangd_10.0.0/bin/clangd"
 
 }
