@@ -18,9 +18,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-surround'
 
-"TagBar
-Plug 'liuchengxu/vista.vim'
-
 "Status line
 Plug 'liuchengxu/eleline.vim'
 
