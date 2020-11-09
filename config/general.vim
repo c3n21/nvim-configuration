@@ -32,6 +32,18 @@ colorscheme minimalist
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
+"Persistent undo
+if has('persistent_undo')
+    " define a path to store persistent undo files.
+    let target_path = expand('~/.local/share/nvim/undo')    " create the directory and any parent directories
+    " if the location does not exist.
+    if !isdirectory(target_path)
+        call system('mkdir -p ' . target_path)
+    endif    " point Vim to the defined undo directory.
+    let &undodir = target_path    " finally, enable undo persistence.
+    set undofile
+endif
+
 """""""""""""""""""""""
 "Plugins configuration"
 """""""""""""""""""""""
@@ -52,7 +64,7 @@ source ~/.config/nvim/config/plugins.conf.d/fzf.vim
 source ~/.config/nvim/config/plugins.conf.d/eleline.vim
 
 "vim-signify
-source ~/.config/nvim/config/plugins.conf.d/vim-signify.vim
+"source ~/.config/nvim/config/plugins.conf.d/vim-signify.vim
 
 "coc-explorer
 source ~/.config/nvim/config/plugins.conf.d/coc-explorer.vim

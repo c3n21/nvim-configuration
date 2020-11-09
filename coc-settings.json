@@ -43,7 +43,7 @@
         "class": ""
     },
     "coc.preferences.extensionUpdateCheck": "daily", 
-    "explorer.keyMappings": {
+    "explorer.keyMappings.global": {
         "i": "false", 
 
         "k": "nodePrev",

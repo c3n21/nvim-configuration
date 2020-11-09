@@ -21,7 +21,7 @@ Plug 'tpope/vim-surround'
 Plug 'liuchengxu/eleline.vim'
 
 "Show diffs
-Plug 'mhinz/vim-signify'
+"Plug 'mhinz/vim-signify'
 
 "Beautify
 Plug 'ryanoasis/vim-devicons'
