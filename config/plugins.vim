@@ -20,9 +20,6 @@ Plug 'tpope/vim-surround'
 "Status line
 Plug 'liuchengxu/eleline.vim'
 
-"Show diffs
-"Plug 'mhinz/vim-signify'
-
 "Beautify
 Plug 'ryanoasis/vim-devicons'
 
