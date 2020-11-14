@@ -59,7 +59,7 @@ source ~/.config/nvim/config/plugins.conf.d/match_tag_always.vim
 source ~/.config/nvim/config/plugins.conf.d/vim-closetag.vim
 
 "cocvim
-source ~/.config/nvim/config/plugins.conf.d/neoclide-cocvim.vim
+source ~/.config/nvim/config/plugins.conf.d/cocvim.vim
 
 "junegunn/fzf.vim
 source ~/.config/nvim/config/plugins.conf.d/fzf.vim
