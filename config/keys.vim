@@ -13,8 +13,8 @@ map <leader>gf :e <cfile><cr>
 "map <C-O> :Vifm <cr>
 "map <C-O> :leftabove vertical 40Vifm <cr>
 "Pasting always the last element copied element
-"nnoremap <leader>p p
-"nnoremap p "0p
+nnoremap <leader>p p
+nnoremap p "0p
 
 """""""""""""""""""""
 "Buffer manipulation

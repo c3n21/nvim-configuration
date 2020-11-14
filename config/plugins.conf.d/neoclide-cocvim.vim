@@ -42,10 +42,6 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Or use `complete_info` if your vim support it, like:
 " inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -87,6 +83,14 @@ nmap <space>a  <Plug>(coc-codeaction-selected)
 
 " Remap for do codeAction of current line
 nmap <space>ac  <Plug>(coc-codeaction)
+""""""""""""""""""""""""""""""
+"  [diagnostics and errors]  "
+""""""""""""""""""""""""""""""
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
 " Fix autofix problem of current line
 nmap <space>qf  <Plug>(coc-fix-current)
 

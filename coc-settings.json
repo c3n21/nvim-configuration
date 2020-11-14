@@ -107,6 +107,6 @@
                     "<<": "gitStage",
                     ">>": "gitUnstage"
     },
-    "clangd.path": "/home/c3n21/.config/coc/extensions/coc-clangd-data/install/10.0.0/clangd_10.0.0/bin/clangd"
+    "clangd.path": "/home/nezuko/.config/coc/extensions/coc-clangd-data/install/11.0.0/clangd_11.0.0/bin/clangd"
 
 }

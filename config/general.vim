@@ -5,6 +5,8 @@ set showmatch               " show matching brackets.
 set mouse=v                 " middle-click paste with mouse
 set hlsearch                " highlight search results
 
+set incsearch
+set pastetoggle=<F3>
 set autoread                "reaload buffer on change
 
 set tabstop=4 
