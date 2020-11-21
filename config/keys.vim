@@ -41,14 +41,6 @@ nmap <C-k> <C-w>k
 nmap <C-j> <C-w>j
 nmap <C-h> <C-w>h
 
-"""""""""""""""
-"Coc explorer
-"""""""""""""""
-" Use preset argument to open it
-nmap <leader>ed :CocCommand explorer<CR>
-
-" List all presets
-nmap <leader>el :CocList explPresets
 
 "Format JSON
 nmap =j :%!python -m json.tool<CR>

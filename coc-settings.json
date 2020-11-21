@@ -26,7 +26,7 @@
             "filetypes": ["groovy", "Jenkinsfile"]
         }
     },
-    "suggest.timeout": 5000,
+    "suggest.timeout": 2000,
     "suggest.completionItemKindLabels": {
         "variable": "",
         "method": "", 
@@ -107,6 +107,8 @@
                     "<<": "gitStage",
                     ">>": "gitUnstage"
     },
-    "clangd.path": "/home/nezuko/.config/coc/extensions/coc-clangd-data/install/11.0.0/clangd_11.0.0/bin/clangd"
-
+    "clangd.path": "/home/nezuko/.config/coc/extensions/coc-clangd-data/install/11.0.0/clangd_11.0.0/bin/clangd",
+    "clangd.semanticHighlighting": true,
+    "clangd.checkUpdates": true
+    
 }

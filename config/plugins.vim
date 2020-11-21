@@ -36,4 +36,5 @@ Plug 'qpkorr/vim-bufkill'
 "nginx syntax highlight
 Plug 'chr4/nginx.vim'
 
+Plug 'jackguo380/vim-lsp-cxx-highlight'
 call plug#end()
