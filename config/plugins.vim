@@ -10,7 +10,7 @@ Plug 'Valloric/MatchTagAlways'
 Plug 'neoclide/coc.nvim', {'branch': 'release'},
 
 "Fuzzy search
-Plug '/usr/bin/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 "Session management with tmux
@@ -24,17 +24,18 @@ Plug 'liuchengxu/eleline.vim'
 Plug 'ryanoasis/vim-devicons'
 
 "Tabs management
-Plug 'zefei/vim-wintabs'
-Plug 'zefei/vim-wintabs-powerline'
+"Plug 'zefei/vim-wintabs'
+"Plug 'zefei/vim-wintabs-powerline'
 
 "UltiSnips
 Plug 'SirVer/ultisnips'
 
 "Buffer management
-Plug 'qpkorr/vim-bufkill'
+"Plug 'qpkorr/vim-bufkill'
 
 "nginx syntax highlight
 Plug 'chr4/nginx.vim'
 
 Plug 'jackguo380/vim-lsp-cxx-highlight'
+
 call plug#end()
