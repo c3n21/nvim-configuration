@@ -103,5 +103,3 @@ let g:fzf_colors =
 "   'previous-history' instead of 'down' and 'up'.
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
-nnoremap <leader>ff :Files<CR>
-nnoremap <leader>fe :Find<CR>

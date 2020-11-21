@@ -15,6 +15,7 @@ map <leader>gf :e <cfile><cr>
 "Pasting always the last element copied element
 "nnoremap <leader>p p
 "nnoremap p "0p
+
 """"""""""""""""""""
 " Lines manipulation
 """"""""""""""""""""
@@ -22,11 +23,6 @@ xnoremap <M-K> :m-2 <CR>gv=gv
 xnoremap <M-J> :m'>+<CR>gv=gv
 nnoremap <M-J> :<C-u>m+<CR>==
 nnoremap <M-K> :<C-u>m-2<CR>==
-
-"""""""""""""""""""""
-"Buffer manipulation
-"""""""""""""""""""""
-nmap <C-c> :BD <cr>
 
 """"""""""""""""""""""""
 "Registers manipulation
@@ -41,6 +37,11 @@ nmap <C-k> <C-w>k
 nmap <C-j> <C-w>j
 nmap <C-h> <C-w>h
 
+"""""""""""""
+" fzf mappings
+""""""""""""""
+nnoremap <leader>ff :Files<CR>
+nnoremap <leader>fw :Find<CR>
 
 "Format JSON
 nmap =j :%!python -m json.tool<CR>

@@ -1,4 +1,4 @@
-source ~/.config/nvim/config/plugins.vim
-source ~/.config/nvim/config/general.vim
-source ~/.config/nvim/config/keys.vim
-source ~/.config/nvim/config/commands.vim
+execute 'source config/plugins.vim'
+execute 'source config/general.vim'
+execute 'source config/keys.vim'
+execute 'source config/commands.vim'
