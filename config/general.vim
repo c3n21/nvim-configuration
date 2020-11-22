@@ -4,6 +4,8 @@ set showmatch               " show matching brackets.
 "set ignorecase              " case insensitive matching
 set mouse=v                 " middle-click paste with mouse
 set hlsearch                " highlight search results
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 
 set incsearch
 set pastetoggle=<F3>
@@ -68,7 +70,7 @@ source ~/.config/nvim/config/plugins.conf.d/fzf.vim
 source ~/.config/nvim/config/plugins.conf.d/eleline.vim
 
 "vim-wintabs
-"source ~/.config/nvim/config/plugins.conf.d/vim-wintabs.vim
+source ~/.config/nvim/config/plugins.conf.d/vim-wintabs.vim
 
 "ultisnips
 source ~/.config/nvim/config/plugins.conf.d/ultisnips.vim

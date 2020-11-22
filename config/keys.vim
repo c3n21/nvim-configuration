@@ -44,4 +44,4 @@ nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fw :Find<CR>
 
 "Format JSON
-nmap =j :%!python -m json.tool<CR>
+"nmap =j :%!python3 -m json.tool<CR>

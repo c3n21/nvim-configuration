@@ -24,8 +24,13 @@ Plug 'liuchengxu/eleline.vim'
 Plug 'ryanoasis/vim-devicons'
 
 "Tabs management
-"Plug 'zefei/vim-wintabs'
-"Plug 'zefei/vim-wintabs-powerline'
+Plug 'zefei/vim-wintabs'
+Plug 'zefei/vim-wintabs-powerline'
+
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter-refactor'
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'romgrk/nvim-treesitter-context'
 
 "UltiSnips
 Plug 'SirVer/ultisnips'
