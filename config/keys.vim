@@ -43,5 +43,9 @@ nmap <C-h> <C-w>h
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fw :Find<CR>
 
+""""""""""""""""""""
+" Buffers management
+""""""""""""""""""""
+
 "Format JSON
 "nmap =j :%!python3 -m json.tool<CR>

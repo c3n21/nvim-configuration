@@ -6,6 +6,7 @@ set mouse=v                 " middle-click paste with mouse
 set hlsearch                " highlight search results
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
+set pyx=3
 
 set incsearch
 set pastetoggle=<F3>
