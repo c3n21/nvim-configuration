@@ -31,8 +31,6 @@ set background=dark
 set termguicolors
 let g:quantum_italics=1
 
-autocmd FileType json syntax match Comment +\/\/.\+$+
-
 set t_Co=256
 syntax on
 colorscheme minimalist
@@ -54,12 +52,6 @@ endif
 """""""""""""""""""""""
 "Plugins configuration"
 """""""""""""""""""""""
-
-"MatchTagAlways
-source ~/.config/nvim/config/plugins.conf.d/match_tag_always.vim
-
-"vim-closetag
-source ~/.config/nvim/config/plugins.conf.d/vim-closetag.vim
 
 "cocvim
 source ~/.config/nvim/config/plugins.conf.d/coc.vim
