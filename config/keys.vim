@@ -2,6 +2,7 @@
 
 let g:mapleader = ' '
 nnoremap <NL> i<CR><ESC>
+nnoremap <leader>s :%s/\<<C-r><C-w>\>/
 
 "nnoremap <C-Tab> :tabprevious<CR>
 "nnoremap <C-S-Tab> :tabnext<CR>
@@ -42,10 +43,3 @@ nmap <C-h> <C-w>h
 """"""""""""""
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fw :Find<CR>
-
-""""""""""""""""""""
-" Buffers management
-""""""""""""""""""""
-
-"Format JSON
-"nmap =j :%!python3 -m json.tool<CR>
