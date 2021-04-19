@@ -28,6 +28,12 @@ Plug 'nvim-treesitter/nvim-treesitter-refactor'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'romgrk/nvim-treesitter-context'
 
+Plug 'tjdevries/astronauta.nvim'
+
+"Install telescope
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 "UltiSnips
 "Plug 'SirVer/ultisnips'
 
