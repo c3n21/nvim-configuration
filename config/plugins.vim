@@ -33,4 +33,6 @@ Plug 'romgrk/nvim-treesitter-context'
 
 Plug 'sheerun/vim-polyglot'
 
+Plug 'junegunn/goyo.vim'
+
 call plug#end()

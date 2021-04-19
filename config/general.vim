@@ -1,7 +1,6 @@
 " Set this. Airline will handle the rest.
 set nocompatible            " disable compatibility to old-time vi
 set showmatch               " show matching brackets.
-"set ignorecase              " case insensitive matching
 set mouse=v                 " middle-click paste with mouse
 set hlsearch                " highlight search results
 set foldmethod=expr
@@ -12,11 +11,18 @@ set incsearch
 set pastetoggle=<F3>
 set autoread                "reaload buffer on change
 
+set exrc
+set hidden
+set nowrap
+set scrolloff=8
+set signcolumn=yes
+set colorcolumn=80
+set rnu
+
 set tabstop=4 
 set softtabstop=0 
 set expandtab 
 set shiftwidth=4 
-set smarttab
 set autoindent              " indent a new line the same amount as the line just typed
 
 set number                  " add line numbers
@@ -67,3 +73,7 @@ source ~/.config/nvim/config/plugins.conf.d/vim-wintabs.vim
 
 "ultisnips
 source ~/.config/nvim/config/plugins.conf.d/ultisnips.vim
+
+augroup INIT
+    autocmd!
+augroup end

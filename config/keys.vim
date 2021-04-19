@@ -16,6 +16,11 @@ map <leader>gf :e <cfile><cr>
 "Pasting always the last element copied element
 "nnoremap <leader>p p
 "nnoremap p "0p
+""""""""""""""""""""
+" coc-prettier     "
+""""""""""""""""""""
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 
 """"""""""""""""""""
 " Lines manipulation
