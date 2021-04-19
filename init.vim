@@ -2,8 +2,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 "Color scheme
 Plug 'dikiaap/minimalist'
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'},
-
 "Fuzzy search
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
