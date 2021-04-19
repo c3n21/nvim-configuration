@@ -60,20 +60,20 @@ endif
 """""""""""""""""""""""
 
 "cocvim
-source ~/.config/nvim/config/plugins.conf.d/coc.vim
+"source ~/.config/nvim/config/plugins.conf.d/coc.vim
 
 "junegunn/fzf.vim
-source ~/.config/nvim/config/plugins.conf.d/fzf.vim
+"source ~/.config/nvim/config/plugins.conf.d/fzf.vim
 
 "eleline
-source ~/.config/nvim/config/plugins.conf.d/eleline.vim
+"source ~/.config/nvim/config/plugins.conf.d/eleline.vim
 
 "vim-wintabs
-source ~/.config/nvim/config/plugins.conf.d/vim-wintabs.vim
+"source ~/.config/nvim/config/plugins.conf.d/vim-wintabs.vim
 
 "ultisnips
-source ~/.config/nvim/config/plugins.conf.d/ultisnips.vim
+"source ~/.config/nvim/config/plugins.conf.d/ultisnips.vim
 
-augroup INIT
-    autocmd!
-augroup end
+"augroup INIT
+"    autocmd!
+"augroup end
