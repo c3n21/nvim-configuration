@@ -5,14 +5,14 @@
 -- Only if your version of Neovim doesn't have https://github.com/neovim/neovim/pull/12632 merged
 -- vim._update_package_paths()
 
-return require('packer').startup(function()
+return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
     use 'dikiaap/minimalist'
 
     use 'neovim/nvim-lspconfig'
-    use 'nvim-lua/completion-nvim'
+    use 'hrsh7th/nvim-compe'
 
     use 'tpope/vim-obsession'
     use 'tpope/vim-surround'
