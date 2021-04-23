@@ -12,7 +12,10 @@ return require('packer').startup(function(use)
     use 'dikiaap/minimalist'
 
     use 'neovim/nvim-lspconfig'
-    use 'hrsh7th/nvim-compe'
+    use {
+        'hrsh7th/nvim-compe',
+        requires = { {'hrsh7th/vim-vsnip'} }
+    }
 
     use 'tpope/vim-obsession'
     use 'tpope/vim-surround'

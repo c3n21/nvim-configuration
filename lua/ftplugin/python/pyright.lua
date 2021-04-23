@@ -10,7 +10,6 @@ return function()
     }
 
     require'lspconfig'.pyright.setup{
-        on_attach = require('completion').on_attach ,
         default_config = {
             root_dir = function(filename)
                 return util.root_pattern(unpack(root_files))(filename) or
