@@ -20,6 +20,7 @@ return function()
     print("sumneko_root_path: ", sumneko_root_path .. "/main.lua")
     -- ./bin/Linux/lua-language-server -E ./main.lua
     require'lspconfig'.sumneko_lua.setup {
+        on_attach = require('completion').on_attach,
         cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
         settings = {
             Lua = {
