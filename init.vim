@@ -19,10 +19,6 @@ Plug 'liuchengxu/eleline.vim'
 "Beautify
 Plug 'ryanoasis/vim-devicons'
 
-"Tabs management
-Plug 'zefei/vim-wintabs'
-Plug 'zefei/vim-wintabs-powerline'
-
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  
 Plug 'nvim-treesitter/nvim-treesitter-refactor'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
@@ -39,5 +35,9 @@ Plug 'nvim-telescope/telescope.nvim'
 "Plug 'SirVer/ultisnips'
 
 Plug 'sheerun/vim-polyglot'
+
+"LSP diagnostics
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'folke/lsp-trouble.nvim'
 
 call plug#end()
