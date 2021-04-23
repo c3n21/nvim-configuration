@@ -12,7 +12,7 @@ return require('packer').startup(function()
     use 'dikiaap/minimalist'
 
     use 'neovim/nvim-lspconfig'
-    -- use 'nvim-lua/completion-nvim'
+    use 'nvim-lua/completion-nvim'
 
     use 'tpope/vim-obsession'
     use 'tpope/vim-surround'
@@ -34,11 +34,10 @@ return require('packer').startup(function()
 
     use 'tjdevries/astronauta.nvim'
 
-    -- Install telescope
-    use 'fannheyward/telescope-coc.nvim'
-    use 'nvim-lua/popup.nvim'
-    use 'nvim-lua/plenary.nvim'
-    use 'nvim-telescope/telescope.nvim'
+    use {
+        'nvim-telescope/telescope.nvim',
+        requires = { {'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'} , {'fannheyward/telescope-coc.nvim'} }
+    }
     -- UltiSnips
     -- use 'SirVer/ultisnips'
 
