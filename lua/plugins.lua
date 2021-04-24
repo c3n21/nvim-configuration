@@ -35,9 +35,7 @@ return require('packer').startup(function(use)
 
     use {
         'nvim-treesitter/nvim-treesitter',
-        config = function()
-            require('plugin/nvim-treesitter/nvim-treesitter')
-        end,
+        config = [[require('plugin/nvim-treesitter/nvim-treesitter')]],
         
     }
 
@@ -59,6 +57,7 @@ return require('packer').startup(function(use)
 
     use {
         'nvim-telescope/telescope.nvim',
+        config = [[require('plugin.telescope.telescope')]],
         requires = { {'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'} , {'fannheyward/telescope-coc.nvim'} }
     }
     -- UltiSnips
