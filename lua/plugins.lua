@@ -13,6 +13,7 @@ return require('packer').startup(function(use)
 
     use {
         'neovim/nvim-lspconfig',
+        disable = false,
         config = [[require('plugin.nvim-lspconfig.nvim-lspconfig')]]
     }
 
@@ -30,13 +31,9 @@ return require('packer').startup(function(use)
 
     -- use 'liuchengxu/eleline.vim'
 
-    -- Beautify
-    use 'ryanoasis/vim-devicons'
-
     use {
         'nvim-treesitter/nvim-treesitter',
         config = [[require('plugin/nvim-treesitter/nvim-treesitter')]],
-        
     }
 
     use {
@@ -64,9 +61,4 @@ return require('packer').startup(function(use)
     -- use 'SirVer/ultisnips'
 
     use 'sheerun/vim-polyglot'
-
-    -- LSP diagnostics
-    use 'kyazdani42/nvim-web-devicons'
-    use 'folke/lsp-trouble.nvim'
-
 end)
