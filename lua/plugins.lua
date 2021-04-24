@@ -12,10 +12,16 @@ return require('packer').startup(function(use)
     use 'dikiaap/minimalist'
 
     use {
+        'neovim/nvim-lspconfig',
+        config = [[require('plugin.nvim-lspconfig.nvim-lspconfig')]]
+    }
+
+    use {
         'hrsh7th/nvim-compe',
+        disable = false,
+        config = [[require('plugin.nvim-compe.nvim-compe')]],
         requires = {
             {'hrsh7th/vim-vsnip'},
-            {'neovim/nvim-lspconfig'}
         }
     }
 
@@ -28,6 +34,14 @@ return require('packer').startup(function(use)
     use 'ryanoasis/vim-devicons'
 
     use {
+        'nvim-treesitter/nvim-treesitter',
+        config = function()
+            require('plugin/nvim-treesitter/nvim-treesitter')
+        end,
+        
+    }
+
+    use {
         'nvim-treesitter/nvim-treesitter-refactor',
         requires = { {'nvim-treesitter/nvim-treesitter'} }
     }
@@ -38,7 +52,10 @@ return require('packer').startup(function(use)
 
     use 'romgrk/nvim-treesitter-context'
 
-    use 'tjdevries/astronauta.nvim'
+    use {
+        'tjdevries/astronauta.nvim',
+        disable = true
+    }
 
     use {
         'nvim-telescope/telescope.nvim',

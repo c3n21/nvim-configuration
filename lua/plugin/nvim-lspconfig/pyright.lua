@@ -1,14 +1,15 @@
 local util = require 'lspconfig/util'
+local pyright = require'lspconfig'.pyright
 local root_files = {
     'setup.py',
     'pyproject.toml',
     'setup.cfg',
     'requirements.txt',
     '.git',
-    'bufdir'
+    bufdir,
 }
 
-require'lspconfig'.pyright.setup{
+pyright.setup{
     --        on_attach = require('completion').on_attach ,
     default_config = {
         root_dir = function(filename)
@@ -16,5 +17,5 @@ require'lspconfig'.pyright.setup{
                 util.path.dirname(filename)
         end;
     };
-
 }
+
