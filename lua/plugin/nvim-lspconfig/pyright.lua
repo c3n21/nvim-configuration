@@ -10,7 +10,6 @@ local root_files = {
 }
 
 pyright.setup{
-    --        on_attach = require('completion').on_attach ,
     default_config = {
         root_dir = function(filename)
             return util.root_pattern(unpack(root_files))(filename) or
@@ -18,4 +17,3 @@ pyright.setup{
         end;
     };
 }
-
