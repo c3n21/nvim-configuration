@@ -56,7 +56,7 @@ lspconfig.util.default_config = vim.tbl_extend(
   }
 )
 
-require('plugin.nvim-lspconfig.pyright')
-require('plugin.nvim-lspconfig.sumneko_lua')
-require('plugin.nvim-lspconfig.tsserver')
-require('plugin.nvim-lspconfig.jdtls')
+require('config.nvim-lspconfig.pyright')
+require('config.nvim-lspconfig.sumneko_lua')
+require('config.nvim-lspconfig.tsserver')
+require('config.nvim-lspconfig.jdtls')

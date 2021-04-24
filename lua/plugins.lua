@@ -14,13 +14,13 @@ return require('packer').startup(function(use)
     use {
         'neovim/nvim-lspconfig',
         disable = false,
-        config = [[require('plugin.nvim-lspconfig.nvim-lspconfig')]]
+        config = [[require('config.nvim-lspconfig.nvim-lspconfig')]]
     }
 
     use {
         'hrsh7th/nvim-compe',
         disable = false,
-        config = [[require('plugin.nvim-compe.nvim-compe')]],
+        config = [[require('config.nvim-compe.nvim-compe')]],
         requires = {
             {'hrsh7th/vim-vsnip'},
         }
@@ -33,7 +33,7 @@ return require('packer').startup(function(use)
 
     use {
         'nvim-treesitter/nvim-treesitter',
-        config = [[require('plugin/nvim-treesitter/nvim-treesitter')]],
+        config = [[require('config/nvim-treesitter/nvim-treesitter')]],
     }
 
     use {
@@ -54,7 +54,7 @@ return require('packer').startup(function(use)
 
     use {
         'nvim-telescope/telescope.nvim',
-        config = [[require('plugin.telescope.telescope')]],
+        config = [[require('config.telescope.telescope')]],
         requires = { {'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'} , {'fannheyward/telescope-coc.nvim'} }
     }
     -- UltiSnips
