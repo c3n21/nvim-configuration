@@ -11,10 +11,12 @@ return require('packer').startup(function(use)
 
     use 'dikiaap/minimalist'
 
-    use 'neovim/nvim-lspconfig'
     use {
         'hrsh7th/nvim-compe',
-        requires = { {'hrsh7th/vim-vsnip'} }
+        requires = {
+            {'hrsh7th/vim-vsnip'},
+            {'neovim/nvim-lspconfig'}
+        }
     }
 
     use 'tpope/vim-obsession'
@@ -33,6 +35,7 @@ return require('packer').startup(function(use)
        'nvim-treesitter/nvim-treesitter-textobjects',
         requires = { {'nvim-treesitter/nvim-treesitter'} }
     }
+
     use 'romgrk/nvim-treesitter-context'
 
     use 'tjdevries/astronauta.nvim'

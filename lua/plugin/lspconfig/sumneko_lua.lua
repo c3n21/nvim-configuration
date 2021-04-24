@@ -21,6 +21,7 @@ return function()
     -- ./bin/Linux/lua-language-server -E ./main.lua
     require'lspconfig'.sumneko_lua.setup {
         cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
+        filetypes = {'lua', 'vim'};
         settings = {
             Lua = {
                 runtime = {
