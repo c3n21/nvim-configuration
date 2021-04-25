@@ -12,6 +12,12 @@ return require('packer').startup(function(use)
     use 'dikiaap/minimalist'
 
     use {
+        'mfussenegger/nvim-jdtls',
+        disable = true,
+        config = [[require('config.nvim-jdtls.nvim-jdtls')]]
+    }
+
+    use {
         'neovim/nvim-lspconfig',
         disable = false,
         config = [[require('config.nvim-lspconfig.nvim-lspconfig')]]
