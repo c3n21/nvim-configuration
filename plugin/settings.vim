@@ -11,6 +11,6 @@ if has('persistent_undo')
 endif
 
 syntax on
-colorscheme minimalist
+colorscheme gruvbox
 "let g:airline_powerline_fonts = 1
 "let g:airline#extensions#tabline#enabled = 1
