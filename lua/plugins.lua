@@ -9,12 +9,25 @@ return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
-    use 'dikiaap/minimalist'
+    use {
+        'dikiaap/minimalist',
+        disable = true
+    }
+
+    use {
+        'morhetz/gruvbox'
+    }
 
     use {
         'mfussenegger/nvim-jdtls',
         disable = true,
         config = [[require('config.nvim-jdtls.nvim-jdtls')]]
+    }
+
+    use {
+        'glepnir/lspsaga.nvim',
+        disable = true,
+        config = [[require('config.lspsaga.lspsaga')]]
     }
 
     use {
