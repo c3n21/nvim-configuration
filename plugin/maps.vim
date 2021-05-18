@@ -26,5 +26,5 @@ vnoremap <C-c> "+y
 """""""""""""
 " fzf mappings
 """"""""""""""
-nnoremap <leader>ff :Files<CR>
-nnoremap <leader>fw :Find<CR>
+"nnoremap <leader>ff :Files<CR>
+"nnoremap <leader>fw :Find<CR>

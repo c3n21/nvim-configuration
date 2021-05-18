@@ -10,6 +10,11 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     use {
+        'ThePrimeagen/git-worktree.nvim',
+        config = [[require('config.git-worktree.settings')]]
+    }
+
+    use {
         'dikiaap/minimalist',
         disable = true
     }
