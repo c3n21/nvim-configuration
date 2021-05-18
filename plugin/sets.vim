@@ -13,7 +13,7 @@ set autoread                "reaload buffer on change
 
 set exrc
 set hidden
-set nowrap
+"set nowrap
 set scrolloff=8
 set signcolumn=yes
 set colorcolumn=80
