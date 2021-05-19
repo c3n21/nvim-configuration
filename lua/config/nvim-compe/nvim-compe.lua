@@ -31,10 +31,6 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
     }
 }
 
-require'lspconfig'.rust_analyzer.setup {
-    capabilities = capabilities,
-}
-
 local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
@@ -71,6 +67,8 @@ _G.s_tab_complete = function()
         return t "<S-Tab>"
     end
 end
+
+vim.o.completeopt = "menuone,noselect"
 
 vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})

@@ -10,6 +10,11 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     use {
+        'windwp/nvim-autopairs',
+        config = [[require('config.nvim-autopairs.settings')]]
+    }
+
+    use {
         'ThePrimeagen/git-worktree.nvim',
         config = [[require('config.git-worktree.settings')]]
     }

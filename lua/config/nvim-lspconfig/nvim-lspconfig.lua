@@ -57,6 +57,6 @@ lspconfig.util.default_config = vim.tbl_extend(
 )
 local servers = {"pyright", "sumneko_lua", "tsserver", "jdtls"}
 
-for k, v in pairs(servers) do
+for _, v in pairs(servers) do
     require('config.nvim-lspconfig.' .. v)
 end
