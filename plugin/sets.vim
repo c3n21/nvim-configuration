@@ -11,7 +11,6 @@ set incsearch
 set pastetoggle=<F3>
 set autoread                "reaload buffer on change
 
-set exrc
 set hidden
 "set nowrap
 set scrolloff=8

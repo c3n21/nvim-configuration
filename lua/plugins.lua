@@ -4,8 +4,10 @@
 -- vim.cmd [[packadd packer.nvim]]
 -- Only if your version of Neovim doesn't have https://github.com/neovim/neovim/pull/12632 merged
 -- vim._update_package_paths()
+local packer = require('packer')
 
-return require('packer').startup(function(use)
+return packer.startup({
+    function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
@@ -84,10 +86,10 @@ return require('packer').startup(function(use)
     use {
         'nvim-telescope/telescope.nvim',
         config = [[require('config.telescope.telescope')]],
-        requires = { {'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'} , {'fannheyward/telescope-coc.nvim'} }
+        requires = { {'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'} }
     }
     -- UltiSnips
     -- use 'SirVer/ultisnips'
 
     use 'sheerun/vim-polyglot'
-end)
+end, config = {snapshot = 'prova'} })
