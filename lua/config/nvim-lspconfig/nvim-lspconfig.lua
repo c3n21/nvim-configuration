@@ -1,4 +1,5 @@
 local lspconfig = require'lspconfig'
+--local completion = require('completion') or nil
 
 function on_attach(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -55,8 +56,18 @@ lspconfig.util.default_config = vim.tbl_extend(
       on_attach=on_attach
   }
 )
-local servers = {"pyright", "sumneko_lua", "tsserver", "jdtls"}
+--local servers = {"pyright", "sumneko_lua", "tsserver", "jdtls", "fsautocomplete"}
+--local servers = {"pyright", "sumneko_lua", "tsserver", "fsautocomplete", "java-language-server"}
+local servers = {"pyright", "sumneko_lua", "tsserver", "fsautocomplete"}
 
 for _, v in pairs(servers) do
-    require('config.nvim-lspconfig.' .. v)
+--    if completion ~= nil then
+--        local ls =require('config.nvim-lspconfig.' .. v)
+--        ls.setup{on_attach=completion.on_attach}
+--    else
+--        local ls = require('config.nvim-lspconfig.' .. v)
+--        print(vim.inspect(ls))
+--    end
+
+    local ls = require('config.nvim-lspconfig.' .. v)
 end

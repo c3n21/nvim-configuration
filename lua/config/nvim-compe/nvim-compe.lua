@@ -14,11 +14,12 @@ require'compe'.setup {
 
     source = {
         path = true;
-        buffer = true;
+        buffer = false;
         calc = true;
         nvim_lsp = true;
         nvim_lua = true;
-        vsnip = true;
+        nvim_treesitter = true;
+        vsnip = false;
     };
 }
 local capabilities = vim.lsp.protocol.make_client_capabilities()

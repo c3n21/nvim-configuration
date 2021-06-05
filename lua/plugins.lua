@@ -9,7 +9,20 @@ local packer = require('packer')
 return packer.startup({
     function(use)
     -- Packer can manage itself
-    use 'wbthomason/packer.nvim'
+    --use 'wbthomason/packer.nvim'
+    use {
+        'c3n21/packer.nvim',
+        branch = 'snapshot',
+    }
+
+    use {
+        'jbyuki/one-small-step-for-vimkind',
+        config = [[require('config.nvim-dap.one-small-step-for-vimkind')]]
+    }
+
+    use {
+        'mfussenegger/nvim-dap'
+    }
 
     use {
         'windwp/nvim-autopairs',
@@ -32,8 +45,8 @@ return packer.startup({
 
     use {
         'mfussenegger/nvim-jdtls',
-        disable = true,
-        config = [[require('config.nvim-jdtls.nvim-jdtls')]]
+        disable = false,
+        --config = [[require('config.nvim-jdtls.nvim-jdtls')]]
     }
 
     use {
@@ -49,6 +62,11 @@ return packer.startup({
     }
 
     use {
+        'nvim-lua/completion-nvim',
+        disable = true
+    }
+
+    use {
         'hrsh7th/nvim-compe',
         disable = false,
         config = [[require('config.nvim-compe.nvim-compe')]],
@@ -57,8 +75,13 @@ return packer.startup({
         }
     }
 
-    use 'tpope/vim-obsession'
-    use 'tpope/vim-surround'
+    use {
+        'tpope/vim-obsession'
+    }
+
+    use {
+        'tpope/vim-surround'
+    }
 
     -- use 'liuchengxu/eleline.vim'
 
@@ -71,12 +94,18 @@ return packer.startup({
         'nvim-treesitter/nvim-treesitter-refactor',
         requires = { {'nvim-treesitter/nvim-treesitter'} }
     }
+
     use {
        'nvim-treesitter/nvim-treesitter-textobjects',
         requires = { {'nvim-treesitter/nvim-treesitter'} }
     }
 
     use 'romgrk/nvim-treesitter-context'
+
+    use {
+        'glacambre/firenvim',
+        run = function() vim.fn['firenvim#install'](0) end
+    }
 
     use {
         'tjdevries/astronauta.nvim',
@@ -88,8 +117,9 @@ return packer.startup({
         config = [[require('config.telescope.telescope')]],
         requires = { {'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'} }
     }
+
     -- UltiSnips
     -- use 'SirVer/ultisnips'
 
     use 'sheerun/vim-polyglot'
-end, config = {snapshot = 'prova'} })
+end, config = {snapshot = ''} })

@@ -1,2 +1,5 @@
-local nvim_lsp = require('lspconfig')
-nvim_lsp.tsserver.setup{}
+local lspconfig = require('lspconfig')
+local tsserver = lspconfig.tsserver
+tsserver.setup{}
+
+return tsserver

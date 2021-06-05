@@ -1,3 +1,5 @@
+local lspconfig = require('lspconfig')
+local sumneko_lua = lspconfig.sumneko_lua
 local system_name
 if vim.fn.has("mac") == 1 then
     system_name = "macOS"
@@ -16,7 +18,7 @@ local sumneko_root_path = '/home/nezuko/Downloads/github/lua-language-server'
 local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
 
 -- ./bin/Linux/lua-language-server -E ./main.lua
-require'lspconfig'.sumneko_lua.setup {
+sumneko_lua.setup {
     cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
     filetypes = {'lua', 'vim'};
     settings = {
@@ -45,3 +47,5 @@ require'lspconfig'.sumneko_lua.setup {
         },
     },
 }
+
+return sumneko_lua
