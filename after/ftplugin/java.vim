@@ -25,4 +25,3 @@ vnoremap crm <Esc><Cmd>lua require('jdtls').extract_method(true)<CR>
 nnoremap <leader>df <Cmd>lua require'jdtls'.test_class()<CR>
 nnoremap <leader>dn <Cmd>lua require'jdtls'.test_nearest_method()<CR>
 
-lua require('config.nvim-jdtls.nvim-jdtls')

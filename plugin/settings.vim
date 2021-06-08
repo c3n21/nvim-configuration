@@ -26,3 +26,8 @@ syntax on
 "let g:airline_powerline_fonts = 1
 "let g:airline#extensions#tabline#enabled = 1
 lua require('vim.lsp.diagnostic')._define_default_signs_and_highlights()
+
+augroup lsp
+    au!
+    au FileType java lua require('jdtls').start_or_attach({cmd = {'nvim-jdtls.sh'}})
+augroup end
