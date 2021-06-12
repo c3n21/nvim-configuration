@@ -16,6 +16,11 @@ return packer.startup({
     }
 
     use {
+        'neoclide/coc.nvim',
+        branch = 'release',
+    }
+
+    use {
         'jbyuki/one-small-step-for-vimkind',
         config = [[require('config.nvim-dap.one-small-step-for-vimkind')]]
     }
