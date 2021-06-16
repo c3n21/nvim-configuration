@@ -22,16 +22,8 @@ return packer.startup({
 
     use {
         'jbyuki/one-small-step-for-vimkind',
+        disable = false,
         config = [[require('config.nvim-dap.one-small-step-for-vimkind')]]
-    }
-
-    use {
-        'mfussenegger/nvim-dap'
-    }
-
-    use {
-        'windwp/nvim-autopairs',
-        config = [[require('config.nvim-autopairs.settings')]]
     }
 
     use {
@@ -48,9 +40,22 @@ return packer.startup({
         'morhetz/gruvbox'
     }
 
+    --nvim-LSP
+
+    use {
+        'mfussenegger/nvim-dap',
+        disable = false,
+    }
+
+    use {
+        'windwp/nvim-autopairs',
+        disable = true,
+        config = [[require('config.nvim-autopairs.settings')]]
+    }
+
     use {
         'mfussenegger/nvim-jdtls',
-        disable = false,
+        disable = true,
         --config = [[require('config.nvim-jdtls.nvim-jdtls')]]
     }
 
@@ -62,7 +67,7 @@ return packer.startup({
 
     use {
         'neovim/nvim-lspconfig',
-        disable = false,
+        disable = true,
         config = [[require('config.nvim-lspconfig.nvim-lspconfig')]]
     }
 
@@ -73,7 +78,7 @@ return packer.startup({
 
     use {
         'hrsh7th/nvim-compe',
-        disable = false,
+        disable = true,
         config = [[require('config.nvim-compe.nvim-compe')]],
         requires = {
             {'hrsh7th/vim-vsnip'},

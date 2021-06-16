@@ -36,4 +36,4 @@ set termguicolors
 let g:quantum_italics=1
 
 set t_Co=256
-set autochdir
+"set autochdir
