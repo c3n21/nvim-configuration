@@ -1,5 +1,15 @@
 {
+    "Lua": {
+        "workspace.library": {
+            "/usr/share/nvim/runtime/lua": true,
+            "/usr/share/nvim/runtime/lua/vim": true,
+            "/usr/share/nvim/runtime/lua/vim/lsp": true
+        },
+        "diagnostics": {
+            "globals": ["vim"]
+        },
     "languageserver": {
+        },
         "intelephense": {
             "command": "intelephense",
             "args": ["--stdio"],
@@ -109,5 +119,6 @@
     },
     "clangd.path": "/home/nezuko/.config/coc/extensions/coc-clangd-data/install/11.0.0/clangd_11.0.0/bin/clangd",
     "clangd.semanticHighlighting": true,
-    "clangd.checkUpdates": true
+    "clangd.checkUpdates": true,
+    "coc.preferences.extensionUpdateCheck": "never"
 }

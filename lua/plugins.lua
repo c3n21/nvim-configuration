@@ -22,7 +22,7 @@ return packer.startup({
 
     use {
         'jbyuki/one-small-step-for-vimkind',
-        disable = false,
+        disable = true,
         config = [[require('config.nvim-dap.one-small-step-for-vimkind')]]
     }
 
@@ -131,5 +131,13 @@ return packer.startup({
     -- UltiSnips
     -- use 'SirVer/ultisnips'
 
-    use 'sheerun/vim-polyglot'
+    use {
+        'sheerun/vim-polyglot',
+--        ft = {'fsharp'},
+        disable = false
+    }
+
+    use {
+        'tpope/vim-fugitive'
+    }
 end, config = {snapshot = ''} })

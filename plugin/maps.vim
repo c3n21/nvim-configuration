@@ -23,8 +23,11 @@ nnoremap <M-K> :<C-u>m-2<CR>==
 """"""""""""""""""""""""
 vnoremap <C-c> "+y
 
-"""""""""""""
-" fzf mappings
-""""""""""""""
-"nnoremap <leader>ff :Files<CR>
-"nnoremap <leader>fw :Find<CR>
+" Undo break points
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap [ [<c-g>u
+inoremap ] ]<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
+
