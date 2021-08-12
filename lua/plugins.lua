@@ -140,4 +140,4 @@ return packer.startup({
     use {
         'tpope/vim-fugitive'
     }
-end, config = {snapshot = ''} })
+end, config = {snapshot = nil} })
