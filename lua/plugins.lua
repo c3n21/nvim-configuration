@@ -23,12 +23,12 @@ return packer.startup({
     use {
         'jbyuki/one-small-step-for-vimkind',
         disable = true,
-        config = [[require('config.nvim-dap.one-small-step-for-vimkind')]]
+        config = [[require('config.nvim-dap')]]
     }
 
     use {
         'ThePrimeagen/git-worktree.nvim',
-        config = [[require('config.git-worktree.settings')]]
+        config = [[require('config.git-worktree')]]
     }
 
     use {
@@ -50,7 +50,7 @@ return packer.startup({
     use {
         'windwp/nvim-autopairs',
         disable = true,
-        config = [[require('config.nvim-autopairs.settings')]]
+        config = [[require('config.nvim-autopairs')]]
     }
 
     use {
@@ -62,13 +62,13 @@ return packer.startup({
     use {
         'glepnir/lspsaga.nvim',
         disable = true,
-        config = [[require('config.lspsaga.lspsaga')]]
+        config = [[require('config.lspsaga')]]
     }
 
     use {
         'neovim/nvim-lspconfig',
         disable = true,
-        config = [[require('config.nvim-lspconfig.nvim-lspconfig')]]
+        config = [[require('config.nvim-lspconfig')]]
     }
 
     use {
@@ -79,7 +79,7 @@ return packer.startup({
     use {
         'hrsh7th/nvim-compe',
         disable = true,
-        config = [[require('config.nvim-compe.nvim-compe')]],
+        config = [[require('config.nvim-compe')]],
         requires = {
             {'hrsh7th/vim-vsnip'},
         }
@@ -97,7 +97,7 @@ return packer.startup({
 
     use {
         'nvim-treesitter/nvim-treesitter',
-        config = [[require('config/nvim-treesitter/nvim-treesitter')]],
+        config = [[require('config.nvim-treesitter')]],
     }
 
     use {
@@ -124,7 +124,7 @@ return packer.startup({
 
     use {
         'nvim-telescope/telescope.nvim',
-        config = [[require('config.telescope.telescope')]],
+        config = [[require('config.telescope')]],
         requires = { {'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'} }
     }
 
