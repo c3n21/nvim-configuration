@@ -12,7 +12,9 @@ if vim.fn.has("persistent_undo") then
         vim.notify("Creating undo directory")
         vim.fn.mkdir(target_path, "p")
     end
+    vim.o.undodir = target_path
 end
 
+vim.o.undofile = true
 vim.opt.secure = true -- Disable autocmd etc for project local vimrc files.
 vim.opt.exrc = true -- Allow project local vimrc files example .nvimrc see :h exrc
