@@ -1,1 +1,1 @@
-require("plugins")
+local packer = require("plugins")
