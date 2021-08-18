@@ -140,4 +140,10 @@ return packer.startup({
     use {
         'tpope/vim-fugitive'
     }
+
+    use {
+        'akinsho/nvim-bufferline.lua',
+        config = [[require('config.nvim-bufferline')]]
+    }
 end, config = {snapshot = nil} })
+

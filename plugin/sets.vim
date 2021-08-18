@@ -3,8 +3,6 @@ set nocompatible            " disable compatibility to old-time vi
 set showmatch               " show matching brackets.
 set mouse=v                 " middle-click paste with mouse
 set hlsearch                " highlight search results
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
 set pyx=3
 
 set incsearch
@@ -37,3 +35,4 @@ let g:quantum_italics=1
 
 set t_Co=256
 "set autochdir
+let g:netrw_liststyle=3

@@ -42,3 +42,5 @@ nnoremap <expr> j (v:count > 5? "m'" . v:count : "") . 'j'
 
 " Delete buffer
 nnoremap <C-q> :bd<cr>
+
+nnoremap <leader>fb :30Lexplore<cr>

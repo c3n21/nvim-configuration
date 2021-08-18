@@ -8,4 +8,4 @@ nnoremap <leader>gn <cmd>lua require('telescope').extensions.git_worktree.create
 nnoremap <leader>gc <cmd>lua require'telescope.builtin'.git_commits{}<cr>
 nnoremap <leader>gb <cmd>lua require'telescope.builtin'.git_bcommits{}<cr>
 nnoremap <leader>l <cmd>lua require'telescope.builtin'.treesitter{}<cr>
-nnoremap <leader>fb <cmd>lua require'telescope.builtin'.file_browser{}<cr>
+"nnoremap <leader>fb <cmd>lua require'telescope.builtin'.file_browser{}<cr>
