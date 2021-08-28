@@ -6,6 +6,19 @@
 -- vim._update_package_paths()
 local packer = require('packer')
 
+local coc_extensions = {
+    {"fannheyward/coc-markdownlint"},
+    {"fannheyward/coc-pyright"},
+    {"neoclide/coc-git"},
+    {"neoclide/coc-html"},
+    {"neoclide/coc-json"},
+    {"neoclide/coc-lists"},
+    {"neoclide/coc-pairs"},
+    {"neoclide/coc-prettier"},
+    {"neoclide/coc-tsserver"},
+    {"xiyaowong/coc-sumneko-lua"},
+}
+
 return packer.startup({
     function(use)
     -- Packer can manage itself
@@ -18,6 +31,7 @@ return packer.startup({
     use {
         'neoclide/coc.nvim',
         branch = 'release',
+        requires = coc_extensions
     }
 
     use {

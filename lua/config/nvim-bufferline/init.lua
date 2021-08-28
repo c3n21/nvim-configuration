@@ -2,8 +2,8 @@ vim.opt.termguicolors = true
 require('bufferline').setup {
   options = {
     numbers = "buffer_id", --"none" | "ordinal" | "buffer_id" | "both",
-    number_style = "superscript", --"superscript" | "" | { "none", "subscript" }, -- buffer_id at index 1, ordinal at index 2
-    mappings = true, --true | false,
+    --number_style = "superscript", --"superscript" | "" | { "none", "subscript" }, -- buffer_id at index 1, ordinal at index 2
+    --mappings = true, --true | false, [deprecated]
     close_command = "bdelete! %d",       -- can be a string | function, see "Mouse actions"
     right_mouse_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
     left_mouse_command = "buffer %d",    -- can be a string | function, see "Mouse actions"
