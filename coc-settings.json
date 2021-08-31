@@ -1,13 +1,15 @@
 {
-    "Lua": {
-        "workspace.library": {
-            "/usr/share/nvim/runtime/lua": true,
-            "/usr/share/nvim/runtime/lua/vim": true,
-            "/usr/share/nvim/runtime/lua/vim/lsp": true
-        },
-        "diagnostics": {
-            "globals": ["vim"]
-        },
+    "python.formatting.autopep8Path": "/home/nezuko/.local/bin/autopep8",
+    "sumneko-lua.enableNvimLuaDev": true,
+//    "Lua": {
+//        "workspace.library": {
+//            "/usr/share/nvim/runtime/lua": true,
+//            "/usr/share/nvim/runtime/lua/vim": true,
+//            "/usr/share/nvim/runtime/lua/vim/lsp": true
+//        },
+//        "diagnostics": {
+//            "globals": ["vim"]
+//        },
     "languageserver": {
         },
         "intelephense": {

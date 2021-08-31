@@ -1,15 +1,3 @@
-"Persistent undo
-if has('persistent_undo')
-    " define a path to store persistent undo files.
-    let target_path = expand('~/.local/share/nvim/undo')    " create the directory and any parent directories
-    " if the location does not exist.
-    if !isdirectory(target_path)
-        call system('mkdir -p ' . target_path)
-    endif    " point Vim to the defined undo directory.
-    let &undodir = target_path    " finally, enable undo persistence.
-    set undofile
-endif
-
 colorscheme gruvbox
 
 let g:gruvbox_contrast_dark = 'hard'
@@ -23,9 +11,14 @@ let g:gruvbox_invert_selection='0'
 set background=dark
 
 syntax on
-"let g:airline_powerline_fonts = 1
-"let g:airline#extensions#tabline#enabled = 1
-"lua require('vim.lsp.diagnostic')._define_default_signs_and_highlights()
 
 highlight Normal guibg=none
-highlight NonText guibg=none
+"listchars color smh
+highlight NonText ctermfg=12 gui=bold guifg=Grey guibg=none
+
+set pastetoggle=<F3>
+
+filetype plugin indent on   " allows auto-indenting depending on file type
+
+let g:netrw_liststyle=3
+"highlight GruvboxBg2 ctermfg=239 guifg=#504945

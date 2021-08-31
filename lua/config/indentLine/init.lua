@@ -1,0 +1,6 @@
+--vim.g.indentLine_setColors = 0
+--vim.g.indentLine_defaultGroup = 'SpecialKey'
+--vim.g.indentLine_char = 'c'
+--vim.g.indentLine_char_list = { '▏'}
+--vim.g.indentLine_concealcursor = 'inc'
+--vim.g.indentLine_conceallevel = 2

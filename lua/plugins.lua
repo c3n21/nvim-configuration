@@ -10,151 +10,164 @@ vim.g.coc_global_extensions = {
     'coc-json',
     'coc-git',
     'coc-pyright',
-    'coc-prettier',
     'coc-sumneko-lua',
     'coc-pairs'
 }
 
 return packer.startup({
     function(use)
-    -- Packer can manage itself
-    --use 'wbthomason/packer.nvim'
-    use {
-        'c3n21/packer.nvim',
-        branch = 'snapshot',
-    }
-
-    use {
-        'neoclide/coc.nvim',
-        branch = 'release',
-        disable = false,
-        --requires = coc_extensions
-    }
-
-    use {
-        'jbyuki/one-small-step-for-vimkind',
-        disable = true,
-        config = [[require('config.nvim-dap')]]
-    }
-
-    use {
-        'ThePrimeagen/git-worktree.nvim',
-        config = [[require('config.git-worktree')]]
-    }
-
-    use {
-        'dikiaap/minimalist',
-        disable = true
-    }
-
-    use {
-        'morhetz/gruvbox'
-    }
-
-    --nvim-LSP
-
-    use {
-        'mfussenegger/nvim-dap',
-        disable = false,
-    }
-
-    use {
-        'windwp/nvim-autopairs',
-        disable = true,
-        config = [[require('config.nvim-autopairs')]]
-    }
-
-    use {
-        'mfussenegger/nvim-jdtls',
-        disable = true,
-        --config = [[require('config.nvim-jdtls.nvim-jdtls')]]
-    }
-
-    use {
-        'glepnir/lspsaga.nvim',
-        disable = true,
-        config = [[require('config.lspsaga')]]
-    }
-
-    use {
-        'neovim/nvim-lspconfig',
-        disable = true,
-        config = [[require('config.nvim-lspconfig')]]
-    }
-
-    use {
-        'nvim-lua/completion-nvim',
-        disable = true
-    }
-
-    use {
-        'hrsh7th/nvim-compe',
-        disable = true,
-        config = [[require('config.nvim-compe')]],
-        requires = {
-            {'hrsh7th/vim-vsnip'},
+        -- Packer can manage itself
+        --use 'wbthomason/packer.nvim'
+        use {
+            'c3n21/packer.nvim',
+            branch = 'snapshot',
         }
-    }
 
-    use {
-        'tpope/vim-obsession'
-    }
+        use {
+            'neoclide/coc.nvim',
+            branch = 'release',
+            disable = false,
+            --requires = coc_extensions
+        }
 
-    use {
-        'tpope/vim-surround'
-    }
+        use {
+            'jbyuki/one-small-step-for-vimkind',
+            disable = true,
+            config = [[require('config.nvim-dap')]]
+        }
 
-    -- use 'liuchengxu/eleline.vim'
+        use {
+            'ThePrimeagen/git-worktree.nvim',
+            config = [[require('config.git-worktree')]]
+        }
 
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        config = [[require('config.nvim-treesitter')]],
-    }
+        use {
+            'dikiaap/minimalist',
+            disable = true
+        }
 
-    use {
-        'nvim-treesitter/nvim-treesitter-refactor',
-        requires = { {'nvim-treesitter/nvim-treesitter'} }
-    }
+        use {
+            'morhetz/gruvbox',
+            disable = false
+        }
+---------------------------------------------
+--          nvim-LSP
+---------------------------------------------
+        use {
+            'mfussenegger/nvim-dap',
+            disable = false,
+        }
 
-    use {
-       'nvim-treesitter/nvim-treesitter-textobjects',
-        requires = { {'nvim-treesitter/nvim-treesitter'} }
-    }
+        use {
+            'windwp/nvim-autopairs',
+            disable = true,
+            config = [[require('config.nvim-autopairs')]]
+        }
 
-    use 'romgrk/nvim-treesitter-context'
+        use {
+            'mfussenegger/nvim-jdtls',
+            disable = true,
+            --config = [[require('config.nvim-jdtls.nvim-jdtls')]]
+        }
 
-    use {
-        'glacambre/firenvim',
-        run = function() vim.fn['firenvim#install'](0) end
-    }
+        use {
+            'glepnir/lspsaga.nvim',
+            disable = true,
+            config = [[require('config.lspsaga')]]
+        }
 
-    use {
-        'tjdevries/astronauta.nvim',
-        disable = true
-    }
+        use {
+            'neovim/nvim-lspconfig',
+            disable = true,
+            config = [[require('config.nvim-lspconfig')]]
+        }
 
-    use {
-        'nvim-telescope/telescope.nvim',
-        config = [[require('config.telescope')]],
-        requires = { {'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'} }
-    }
+        use {
+            'nvim-lua/completion-nvim',
+            disable = true
+        }
 
-    -- UltiSnips
-    -- use 'SirVer/ultisnips'
+        use {
+            'hrsh7th/nvim-compe',
+            disable = true,
+            config = [[require('config.nvim-compe')]],
+            requires = {
+                {'hrsh7th/vim-vsnip'},
+            }
+        }
 
-    use {
-        'sheerun/vim-polyglot',
---        ft = {'fsharp'},
-        disable = false
-    }
+        use {
+            'tpope/vim-obsession'
+        }
 
-    use {
-        'tpope/vim-fugitive'
-    }
+        use {
+            'tpope/vim-surround'
+        }
 
-    use {
-        'akinsho/nvim-bufferline.lua',
-        config = [[require('config.nvim-bufferline')]]
-    }
-end, config = {snapshot = nil} })
+        -- use 'liuchengxu/eleline.vim'
+
+        use {
+            'nvim-treesitter/nvim-treesitter',
+            config = [[require('config.nvim-treesitter')]],
+        }
+
+        use {
+            'nvim-treesitter/nvim-treesitter-refactor',
+            requires = { {'nvim-treesitter/nvim-treesitter'} }
+        }
+
+        use {
+            'nvim-treesitter/nvim-treesitter-textobjects',
+            requires = { {'nvim-treesitter/nvim-treesitter'} }
+        }
+
+        use 'romgrk/nvim-treesitter-context'
+
+        use {
+            'glacambre/firenvim',
+            run = function() vim.fn['firenvim#install'](0) end
+        }
+
+        use {
+            'tjdevries/astronauta.nvim',
+            disable = true
+        }
+
+        use {
+            'nvim-telescope/telescope.nvim',
+            config = [[require('config.telescope')]],
+            requires = { {'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'} }
+        }
+
+        -- UltiSnips
+        -- use 'SirVer/ultisnips'
+
+        use {
+            'sheerun/vim-polyglot',
+            --        ft = {'fsharp'},
+            disable = false
+        }
+
+        use {
+            'tpope/vim-fugitive'
+        }
+
+        use {
+            'akinsho/nvim-bufferline.lua',
+            config = [[require('config.nvim-bufferline')]]
+        }
+
+        use {
+            'mbbill/undotree',
+            config = [[require('config.undotree')]]
+        }
+
+        use {
+            'tpope/vim-sleuth'
+        }
+
+        use {
+            'tpope/vim-repeat'
+        }
+    end, config = {snapshot = nil} })
 
