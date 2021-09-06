@@ -1,1 +1,1 @@
-local packer = require("plugins")
+local packer = require("plugin")

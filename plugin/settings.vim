@@ -14,7 +14,8 @@ syntax on
 
 highlight Normal guibg=none
 "listchars color smh
-highlight NonText ctermfg=12 gui=bold guifg=Grey guibg=none
+"highlight NonText ctermfg=12 gui=bold guifg=Grey guibg=none
+highlight NonText ctermfg=12 gui=bold guibg=none
 
 set pastetoggle=<F3>
 

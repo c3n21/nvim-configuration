@@ -9,9 +9,12 @@ local packer = require('packer')
 vim.g.coc_global_extensions = {
     'coc-json',
     'coc-git',
+    'coc-pairs',
     'coc-pyright',
     'coc-sumneko-lua',
-    'coc-pairs'
+    'coc-clangd',
+
+    'coc-explorer'
 }
 
 return packer.startup({
@@ -50,9 +53,11 @@ return packer.startup({
             'morhetz/gruvbox',
             disable = false
         }
----------------------------------------------
---          nvim-LSP
----------------------------------------------
+
+----------------------------
+--      nvim-lsp
+----------------------------
+
         use {
             'mfussenegger/nvim-dap',
             disable = false,
@@ -158,6 +163,11 @@ return packer.startup({
         }
 
         use {
+            'Yggdroot/indentLine',
+            config = [[require('config.indentLine')]],
+        }
+
+        use {
             'mbbill/undotree',
             config = [[require('config.undotree')]]
         }
@@ -168,6 +178,12 @@ return packer.startup({
 
         use {
             'tpope/vim-repeat'
+        }
+
+        use {
+            'tpope/vim-markdown',
+            config = [[require('config.vim-markdown')]],
+            disable = true
         }
     end, config = {snapshot = nil} })
 
