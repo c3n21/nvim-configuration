@@ -180,6 +180,9 @@ return packer.startup({
             'tpope/vim-repeat'
         }
 
+-------------------------
+-- Markdown for NeoVim --
+-------------------------
         use {
             'tpope/vim-markdown',
             config = [[require('config.vim-markdown')]],
