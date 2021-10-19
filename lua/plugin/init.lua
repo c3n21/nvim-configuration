@@ -29,7 +29,7 @@ return packer.startup({
         use {
             'neoclide/coc.nvim',
             branch = 'release',
-            disable = false,
+            disable = true,
             --requires = coc_extensions
         }
 
@@ -57,6 +57,17 @@ return packer.startup({
 ----------------------------
 --      nvim-lsp
 ----------------------------
+        use {
+            'ms-jpq/coq_nvim',
+            branch = 'coq',
+            disable = false
+        }
+
+        use {
+            'ms-jpq/coq.artifacts',
+            branch = 'artifacts',
+            disable = false
+        }
 
         use {
             'mfussenegger/nvim-dap',
@@ -65,7 +76,7 @@ return packer.startup({
 
         use {
             'windwp/nvim-autopairs',
-            disable = true,
+            disable = false,
             config = [[require('config.nvim-autopairs')]]
         }
 
@@ -83,7 +94,7 @@ return packer.startup({
 
         use {
             'neovim/nvim-lspconfig',
-            disable = true,
+            disable = false,
             config = [[require('config.nvim-lspconfig')]]
         }
 

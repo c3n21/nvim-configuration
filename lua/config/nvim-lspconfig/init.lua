@@ -1,4 +1,5 @@
 local lspconfig = require'lspconfig'
+local coq = require "coq" 
 --local completion = require('completion') or nil
 
 function on_attach(client, bufnr)
@@ -49,13 +50,14 @@ function on_attach(client, bufnr)
     end
 end
 
-lspconfig.util.default_config = vim.tbl_extend(
-  "force",
-  lspconfig.util.default_config,
-  {
-      on_attach=on_attach
-  }
-)
+--lspconfig.util.default_config = vim.tbl_extend(
+--  "force",
+--  lspconfig.util.default_config,
+--  {
+--      on_attach=on_attach
+--  }
+--)
+
 --local servers = {"pyright", "sumneko_lua", "tsserver", "jdtls", "fsautocomplete"}
 --local servers = {"pyright", "sumneko_lua", "tsserver", "fsautocomplete", "java-language-server"}
 local servers = {"pyright", "sumneko_lua", "tsserver", "fsautocomplete"}
