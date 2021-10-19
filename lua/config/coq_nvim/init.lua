@@ -1,4 +1,4 @@
-vim.g.coq_nvim.settings = { ["keymap.recommended"] = true }
+vim.g.coq_settings = { ["keymap.recommended"] = true }
 
 vim.api.nvim_set_keymap('i','<Esc>',
 	[[pumvisible() ? "\<C-e><Esc>" : "\<Esc>"]],

@@ -60,6 +60,7 @@ return packer.startup({
         use {
             'ms-jpq/coq_nvim',
             branch = 'coq',
+            config = [[require('config.coq_nvim')]],
             disable = false
         }
 
@@ -67,6 +68,13 @@ return packer.startup({
             'ms-jpq/coq.artifacts',
             branch = 'artifacts',
             disable = false
+        }
+
+        use {
+            'ms-jpq/chadtree',
+            config = [[require('config.chadtree')]],
+            branch = 'chad',
+            run = 'python3 -m chadtree deps'
         }
 
         use {
