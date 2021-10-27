@@ -13,7 +13,6 @@ vim.g.coc_global_extensions = {
     'coc-pyright',
     'coc-sumneko-lua',
     'coc-clangd',
-
     'coc-explorer'
 }
 
@@ -90,8 +89,9 @@ return packer.startup({
 
         use {
             'mfussenegger/nvim-jdtls',
-            disable = true,
-            --config = [[require('config.nvim-jdtls.nvim-jdtls')]]
+            disable = false,
+            config = [[require('config.nvim-jdtls')]],
+            ft = "java"
         }
 
         use {
@@ -137,7 +137,7 @@ return packer.startup({
 
         use {
             'nvim-treesitter/nvim-treesitter-refactor',
-            requires = { {'nvim-treesitter/nvim-treesitter'} }
+            config = [[require('config.nvim-treesitter-refactor')]]
         }
 
         use {

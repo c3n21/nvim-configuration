@@ -14,12 +14,15 @@ syntax on
 
 highlight Normal guibg=none
 "listchars color smh
-"highlight NonText ctermfg=12 gui=bold guifg=Grey guibg=none
-highlight NonText ctermfg=12 gui=bold guibg=none
+highlight NonText ctermfg=12 gui=bold guifg=#313136 guibg=none
+"highlight NonText ctermfg=12 gui=bold guibg=none
 
 set pastetoggle=<F3>
 
 filetype plugin indent on   " allows auto-indenting depending on file type
 
-let g:netrw_liststyle=3
+"let g:netrw_liststyle=3
 "highlight GruvboxBg2 ctermfg=239 guifg=#504945
+
+"autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+"autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()

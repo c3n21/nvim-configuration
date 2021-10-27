@@ -8,13 +8,14 @@
 --    },
 --    root_dir = require('jdtls.setup').find_root({'gradle.build', 'pom.xml', '.git'})
 --})
-
---require('jdtls').start_or_attach({{
---            cmd = {
---                'nvim-jdtls.sh',
---                os.getenv('HOME') .. '/workspace/' .. vim.fn.fnamemodify(vim.fn.getcwd(),':p:h:t')},
---        root_dir = require('jdtls.setup').find_root({'gradle.build', 'pom.xml'})}
---    })
+--
+local coq = require "coq" -- add this
+require('jdtls').start_or_attach(coq.lsp_ensure_capabilities({
+            cmd = {
+                '/usr/bin/jdtls',
+                os.getenv('HOME') .. '/workspace/' .. vim.fn.fnamemodify(vim.fn.getcwd(),':p:h:t')},
+        root_dir = require('jdtls.setup').find_root({'gradle.build', 'pom.xml'})
+    }))
 --return require('jdtls').start_or_attach({
 --    cmd = {
 --        'nvim-jdtls.sh'--,
