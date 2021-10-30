@@ -199,13 +199,14 @@ return packer.startup({
             'tpope/vim-repeat'
         }
 
+        use {
+            'KabbAmine/zeavim.vim',
+            disable = false
+        }
+
 -------------------------
 -- Markdown for NeoVim --
 -------------------------
-        use {
-            'tpope/vim-markdown',
-            config = [[require('config.vim-markdown')]],
-            disable = true
-        }
+        use {'ellisonleao/glow.nvim'}
     end, config = {snapshot = nil} })
 

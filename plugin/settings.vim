@@ -9,7 +9,6 @@ endif
 
 let g:gruvbox_invert_selection='0'
 set background=dark
-
 syntax on
 
 highlight Normal guibg=none
@@ -26,3 +25,7 @@ filetype plugin indent on   " allows auto-indenting depending on file type
 
 "autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
 "autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()
+"
+autocmd InsertEnter  *.{markdown,md} set conceallevel=0
+autocmd InsertLeave  *.{markdown,md} set conceallevel=2
+
