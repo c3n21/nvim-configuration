@@ -6,11 +6,12 @@ ts_setup.setup {
     highlight = {
         enable = true,              -- false will disable the whole extension
         --disable = { "c", "rust" },  -- list of language that will be disabled
-        use_languagetree = false, -- Use this to enable language injection (this is very unstable)
-        custom_captures = {
-            -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
-            ["*.bar"] = "lua",
-        },
+        use_languagetree = true, -- Use this to enable language injection (this is very unstable)
+        --custom_captures = {
+        --    -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
+        --    ["*.bar"] = "lua",
+        --},
+        additional_vim_regex_highlighting = false,
     },
 
     indent = {
