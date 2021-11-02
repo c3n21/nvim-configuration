@@ -29,3 +29,8 @@ filetype plugin indent on   " allows auto-indenting depending on file type
 autocmd InsertEnter  *.{markdown,md} set conceallevel=0
 autocmd InsertLeave  *.{markdown,md} set conceallevel=2
 
+set softtabstop=4
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set smarttab

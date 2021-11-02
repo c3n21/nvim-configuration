@@ -149,7 +149,8 @@ return packer.startup({
 
         use {
             'glacambre/firenvim',
-            run = function() vim.fn['firenvim#install'](0) end
+            run = function() vim.fn['firenvim#install'](0) end,
+            disable = true
         }
 
         use {
@@ -192,7 +193,8 @@ return packer.startup({
         }
 
         use {
-            'tpope/vim-sleuth'
+            'tpope/vim-sleuth',
+            disable = true
         }
 
         use {
@@ -208,5 +210,25 @@ return packer.startup({
 -- Markdown for NeoVim --
 -------------------------
         use {'ellisonleao/glow.nvim'}
+
+        use {
+            'lewis6991/gitsigns.nvim',
+            requires = {
+                'nvim-lua/plenary.nvim'
+            },
+            config = function()
+                require("gitsigns").setup {
+                    signcolumn = true,
+                    current_line_blame = true,
+                    current_line_blame_opts = {
+                        virt_text = true,
+                        virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+                        delay = 500,
+                    }
+                }
+            end
+            -- tag = 'release' -- To use the latest release
+        }
+
     end, config = {snapshot = nil} })
 

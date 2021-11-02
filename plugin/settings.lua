@@ -74,15 +74,15 @@ vim.opt.diffopt = vim.opt.diffopt
 
 vim.o.clipboard="unnamedplus"
 
-vim.opt.list = true -- invisible chars
-vim.opt.listchars = {
-  eol = nil,
-  tab = '  │',
---  tab = '| ',
-  extends = '›', -- Alternatives: … »
-  precedes = '‹', -- Alternatives: … «
-  trail = nil,--'•', -- BULLET (U+2022, UTF-8: E2 80 A2)
-}
+--vim.opt.list = true -- invisible chars
+--vim.opt.listchars = {
+--  eol = nil,
+--  tab = '  │',
+----  tab = '| ',
+--  extends = '›', -- Alternatives: … »
+--  precedes = '‹', -- Alternatives: … «
+--  trail = nil,--'•', -- BULLET (U+2022, UTF-8: E2 80 A2)
+--}
 
 vim.opt.autoindent = true --indent a new line the same amount as the line just typed
 -----------------------------
