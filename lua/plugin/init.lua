@@ -225,10 +225,65 @@ return packer.startup({
             end
         }
 
+        -- Navigation
+
+        use {
+            "ThePrimeagen/harpoon",
+            config = function ()
+                require("harpoon").setup({
+                    global_settings = {
+                        save_on_toggle = false,
+                        save_on_change = true,
+                        enter_on_sendcmd = false,
+                    },
+                    project = {}
+                })
+
+                vim.api.nvim_set_keymap(
+                    'n','<leader>af',
+                    '<cmd> lua require("harpoon.mark").add_file() <CR>',
+                    { noremap = true, silent = true }
+                )
+
+                vim.api.nvim_set_keymap(
+                    'n','<leader>m',
+                    '<cmd> lua require("harpoon.ui").toggle_quick_menu() <CR>',
+                    { noremap = true, silent = true }
+                )
+
+                vim.api.nvim_set_keymap(
+                    'n','<leader>t',
+                    '<cmd> lua require("harpoon.term").gotoTerminal(1) <CR>',
+                    { noremap = true, silent = true }
+                )
+
+            end
+        }
+
 -------------------------
 -- Markdown for NeoVim --
 -------------------------
-        use {'ellisonleao/glow.nvim'}
+
+        use {
+            'ellisonleao/glow.nvim',
+            disable = true
+        }
+
+        use {
+            'vimwiki/vimwiki',
+            disable = false,
+            config = function ()
+                vim.g.vimwiki_list = {
+                    {
+                        ["path"] = "~/Downloads/github/cryptography.git/main/notes/",
+                        ["syntax"] = "markdown",
+                        ["ext"] = ".md"
+                    }
+                }
+
+                vim.g.vimwiki_markdown_link_ext = 1
+            end
+        }
 
         use {
             'lewis6991/gitsigns.nvim',
@@ -249,5 +304,15 @@ return packer.startup({
             -- tag = 'release' -- To use the latest release
         }
 
-    end, config = {snapshot = nil} })
+-- Utils
+    use {
+        'sychen52/smart-term-esc.nvim',
+        config = function ()
+                require('smart-term-esc').setup{
+                    key='<Esc>',
+                    except={'nvim', 'fzf'}
+                }
+                 end
+    }
 
+    end, config = {snapshot = nil} })
