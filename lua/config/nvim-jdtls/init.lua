@@ -1,26 +1,12 @@
--- find_root looks for parent directories relative to the current buffer containing one of the given arguments.
--- find_root looks for parent directories relative to the current buffer containing one of the given arguments.
-
---require('jdtls').start_or_attach({
---    cmd = {
---        'nvim-jdtls.sh',
-----        vim.fn.getenv('WORKSPACE') .. vim.fn.fnamemodify(vim.fn.getcwd(),':p:h:t')
---    },
---    root_dir = require('jdtls.setup').find_root({'gradle.build', 'pom.xml', '.git'})
---})
---
 local coq = require "coq" -- add this
-require('jdtls').start_or_attach(coq.lsp_ensure_capabilities({
-            cmd = {
-                '/usr/bin/jdtls',
-                os.getenv('HOME') .. '/workspace/' .. vim.fn.fnamemodify(vim.fn.getcwd(),':p:h:t')},
-        root_dir = require('jdtls.setup').find_root({'gradle.build', 'pom.xml'})
-    }))
---return require('jdtls').start_or_attach({
---    cmd = {
---        'nvim-jdtls.sh'--,
-----        vim.fn.getenv("WORKSPACE") .. "/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
---
---    },
---    root_dir = require('jdtls.setup').find_root({'gradle.build', 'pom.xml', '.git'})
---})
+local jdtls = require("jdtls")
+
+local config = coq.lsp_ensure_capabilities({
+        cmd = {
+            '/usr/bin/jdtls',
+            os.getenv('HOME') .. '/workspace/' .. vim.fn.fnamemodify(vim.fn.getcwd(),':p:h:t')
+        },
+        root_dir = jdtls.setup.find_root({'gradle.build', 'pom.xml', ".git"})
+    })
+
+jdtls.start_or_attach(config)

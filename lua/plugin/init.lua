@@ -19,11 +19,11 @@ vim.g.coc_global_extensions = {
 return packer.startup({
     function(use)
         -- Packer can manage itself
-        --use 'wbthomason/packer.nvim'
-        use {
-            'c3n21/packer.nvim',
-            branch = 'snapshot',
-        }
+        use 'wbthomason/packer.nvim'
+--        use {
+--            'c3n21/packer.nvim',
+--            branch = 'snapshot',
+--        }
 
         use {
             'neoclide/coc.nvim',
@@ -90,8 +90,8 @@ return packer.startup({
         use {
             'mfussenegger/nvim-jdtls',
             disable = false,
-            config = [[require('config.nvim-jdtls')]],
-            ft = "java"
+--            config = [[require('config.nvim-jdtls')]],
+--            ft = "java"
         }
 
         use {
