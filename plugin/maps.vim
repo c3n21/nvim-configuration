@@ -5,7 +5,7 @@ nnoremap <NL> i<CR><ESC>
 nnoremap <leader>s :%s/\<<C-r><C-w>\>/
 
 "Create new file if not exist using gf
-map <leader>gf :e <cfile><cr>
+"map <leader>gf :e <cfile><cr>
 "Pasting always the last element copied element
 "nnoremap <leader>p p
 "nnoremap p "0p
@@ -42,5 +42,3 @@ nnoremap <expr> j (v:count > 5? "m'" . v:count : "") . 'j'
 
 " Delete buffer
 nnoremap <C-q> :bd<cr>
-
-nnoremap <leader>fb :30Lexplore<cr>

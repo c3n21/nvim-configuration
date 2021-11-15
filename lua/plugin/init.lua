@@ -168,12 +168,6 @@ return packer.startup({
         -- use 'SirVer/ultisnips'
 
         use {
-            'sheerun/vim-polyglot',
-            --        ft = {'fsharp'},
-            disable = false
-        }
-
-        use {
             'tpope/vim-fugitive'
         }
 
