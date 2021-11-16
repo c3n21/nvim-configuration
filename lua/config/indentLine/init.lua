@@ -17,3 +17,5 @@ vim.g.indentLine_color_gui = '#313136'
 vim.g.indentLine_char_list = { '│'}
 --vim.g.indentLine_concealcursor = 'inc'
 --vim.g.indentLine_conceallevel = 2
+--
+vim.g.indentLine_fileTypeExclude = {"markdown", "md"}
