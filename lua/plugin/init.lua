@@ -380,6 +380,11 @@ return packer.startup({
                         ["path"] = "~/Downloads/github/cryptography.git/main/notes/",
                         ["syntax"] = "markdown",
                         ["ext"] = ".md"
+                    },
+                    {
+                        ["path"] = "~/Downloads/github/reti_di_calcolatori/appunti/",
+                        ["syntax"] = "markdown",
+                        ["ext"] = ".md"
                     }
                 }
 
