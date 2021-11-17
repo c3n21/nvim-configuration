@@ -90,8 +90,9 @@ return packer.startup({
         use {
             'mfussenegger/nvim-jdtls',
             disable = false,
---            config = [[require('config.nvim-jdtls')]],
---            ft = "java"
+            config = [[require('config.nvim-jdtls')]],
+            ft = "java",
+            module = {"nvim-jdtls", "jdtls"}
         }
 
         use {
