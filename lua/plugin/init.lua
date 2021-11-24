@@ -189,7 +189,7 @@ return packer.startup({
 
         use {
             'tpope/vim-sleuth',
-            disable = true
+            disable = false
         }
 
         use {
