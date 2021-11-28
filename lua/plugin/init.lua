@@ -4,7 +4,8 @@
 -- vim.cmd [[packadd packer.nvim]]
 -- Only if your version of Neovim doesn't have https://github.com/neovim/neovim/pull/12632 merged
 -- vim._update_package_paths()
-local packer = require('packer')
+local packer     = require('packer')
+local log_level  = 'trace' --'warn'
 
 vim.g.coc_global_extensions = {
     'coc-json',
@@ -19,11 +20,11 @@ vim.g.coc_global_extensions = {
 return packer.startup({
     function(use)
         -- Packer can manage itself
-        use 'wbthomason/packer.nvim'
---        use {
---            'c3n21/packer.nvim',
---            branch = 'snapshot',
---        }
+        -- use 'wbthomason/packer.nvim'
+       use {
+           'c3n21/packer.nvim',
+           branch = 'snapshot',
+       }
 
         use {
             'neoclide/coc.nvim',
@@ -423,4 +424,9 @@ return packer.startup({
             end
         }
 
-end, config = {snapshot = nil} })
+end,
+config = {
+        snapshot = nil,
+        log = { log_level = log_level }
+    }
+})
