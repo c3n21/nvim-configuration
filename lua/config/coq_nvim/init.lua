@@ -1,8 +1,19 @@
 vim.g.coq_settings = {
 	["keymap.recommended"] = true,
+	clients = {
+		tmux = {
+			enabled = false
+		},
+		tags = {
+			enabled = false
+		},
+		buffers = {
+			enabled = false
+		}
+
+	}
 	--	["keymap.eval_snips"] = '<leader>j'
 }
-
 
 -- : vim.api.nvim_set_keymap('i','<Esc>',
 -- : 	[[<cmd> 'pumvisible() ? <C-e><Esc> : <Esc>']],
