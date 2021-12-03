@@ -18,8 +18,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
     fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
     print("packer.nvim installed")
 
-    -- workaround for the first run
-    vim.o.runtimepath = vim.o.runtimepath .. "," .. install_path
+    vim.cmd([[packadd packer.nvim]])
     packer = require('packer')
     packer.startup(config)
     packer.sync()
