@@ -1,10 +1,3 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
-
--- Only required if you have packer configured as `opt`
--- vim.cmd [[packadd packer.nvim]]
--- Only if your version of Neovim doesn't have https://github.com/neovim/neovim/pull/12632 merged
--- vim._update_package_paths()
-local packer     = require('packer')
 local log_level  = 'trace' --'warn'
 
 vim.g.coc_global_extensions = {
@@ -17,7 +10,7 @@ vim.g.coc_global_extensions = {
     'coc-explorer'
 }
 
-return packer.startup({
+return {
     function(use)
         -- Packer can manage itself
         -- use 'wbthomason/packer.nvim'
@@ -26,12 +19,6 @@ return packer.startup({
            branch = 'snapshot',
        }
 
-        use {
-            'neoclide/coc.nvim',
-            branch = 'release',
-            disable = true,
-            --requires = coc_extensions
-        }
 
         use {
             'jbyuki/one-small-step-for-vimkind',
@@ -45,23 +32,54 @@ return packer.startup({
         }
 
         use {
-            'dikiaap/minimalist',
-            disable = true
+            'morhetz/gruvbox',
+            disable = false
+        }
+
+
+----------------------------
+--      completion
+----------------------------
+
+        use {
+            'neoclide/coc.nvim',
+            branch = 'release',
+            disable = true,
+            --requires = coc_extensions
         }
 
         use {
-            'morhetz/gruvbox',
-            disable = false
+            'ms-jpq/coq_nvim',
+            branch = 'coq',
+            config = [[require('config.coq_nvim')]],
+            disable = false,
+        }
+
+        use {
+            'hrsh7th/nvim-cmp',
+            disable = false,
+            config = [[require('config.nvim-cmp')]],
+            requires = {
+                {'hrsh7th/vim-vsnip'},
+                {'hrsh7th/cmp-nvim-lsp'}
+            }
         }
 
 ----------------------------
 --      nvim-lsp
 ----------------------------
+
         use {
-            'ms-jpq/coq_nvim',
-            branch = 'coq',
-            config = [[require('config.coq_nvim')]],
-            disable = false
+            'tjdevries/nlua.nvim',
+            disable = true,
+            config = function()
+--                local coq = require 'coq'
+--                require('nlua.lsp.nvim').setup(
+--                    coq.lsp_ensure_capabilities(
+--                        {require('lspconfig')}
+--                ))
+--
+            end
         }
 
         use {
@@ -113,14 +131,6 @@ return packer.startup({
             disable = true
         }
 
-        use {
-            'hrsh7th/nvim-compe',
-            disable = true,
-            config = [[require('config.nvim-compe')]],
-            requires = {
-                {'hrsh7th/vim-vsnip'},
-            }
-        }
 
         use {
             'tpope/vim-obsession'
@@ -130,8 +140,6 @@ return packer.startup({
             'tpope/vim-surround'
         }
 
-        -- use 'liuchengxu/eleline.vim'
-
         use {
             'nvim-treesitter/nvim-treesitter',
             config = [[require('config.nvim-treesitter')]],
@@ -139,25 +147,34 @@ return packer.startup({
 
         use {
             'nvim-treesitter/nvim-treesitter-refactor',
-            config = [[require('config.nvim-treesitter-refactor')]]
+            after = 'nvim-treesitter',
+            config = [[require('config.nvim-treesitter-refactor')]],
+            require = {
+                'nvim-treesitter/nvim-treesitter',
+                config = [[require('config.nvim-treesitter')]],
+            }
         }
 
         use {
             'nvim-treesitter/nvim-treesitter-textobjects',
-            requires = { {'nvim-treesitter/nvim-treesitter'} }
-        }
-
-        use 'romgrk/nvim-treesitter-context'
-
-        use {
-            'glacambre/firenvim',
-            run = function() vim.fn['firenvim#install'](0) end,
-            disable = true
+            after = 'nvim-treesitter',
+            requires = {
+                {
+                    'nvim-treesitter/nvim-treesitter',
+                    config = [[require('config.nvim-treesitter')]],
+                }
+            }
         }
 
         use {
-            'tjdevries/astronauta.nvim',
-            disable = true
+            'romgrk/nvim-treesitter-context',
+            after = 'nvim-treesitter',
+            requires = {
+                {
+                    'nvim-treesitter/nvim-treesitter',
+                    config = [[require('config.nvim-treesitter')]],
+                }
+            }
         }
 
         use {
@@ -165,9 +182,6 @@ return packer.startup({
             config = [[require('config.telescope')]],
             requires = { {'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'} }
         }
-
-        -- UltiSnips
-        -- use 'SirVer/ultisnips'
 
         use {
             'tpope/vim-fugitive'
@@ -225,6 +239,7 @@ return packer.startup({
 
         use {
             "ThePrimeagen/harpoon",
+            disable = true,
             config = function ()
                 require("harpoon").setup({
                     global_settings = {
@@ -277,8 +292,9 @@ return packer.startup({
         use {
             'iamcco/markdown-preview.nvim',
             disable = false,
---            run = 'cd app && yarn install',
-            run = vim.fn['mkdp#util#install'](),
+            run = function ()
+                vim.fn['mkdp#util#install']()
+            end,
             config = function ()
                 -- set to 1, nvim will open the preview window after entering the markdown buffer
                 -- default: 0
@@ -429,4 +445,4 @@ config = {
         snapshot = nil,
         log = { log_level = log_level }
     }
-})
+}
