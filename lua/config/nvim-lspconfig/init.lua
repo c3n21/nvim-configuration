@@ -86,7 +86,13 @@ end
 
 --local servers = {"pyright", "sumneko_lua", "tsserver", "jdtls", "fsautocomplete"}
 --local servers = {"pyright", "sumneko_lua", "tsserver", "fsautocomplete", "java-language-server"}
-local servers = {"pyright", "sumneko_lua", "tsserver", "fsautocomplete", "clangd"}
+local servers = {
+    "pyright",
+    -- "sumneko_lua",
+    "tsserver",
+    "fsautocomplete",
+    "clangd"
+}
 
 for _, v in pairs(servers) do
     --    if completion ~= nil then

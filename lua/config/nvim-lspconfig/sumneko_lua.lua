@@ -1,7 +1,8 @@
 local lspconfig = require('lspconfig')
 local coq = require "coq" -- add this
 local sumneko_lua = lspconfig.sumneko_lua
-local system_name
+local system_name = ""
+vim.inspect()
 if vim.fn.has("mac") == 1 then
     system_name = "macOS"
 elseif vim.fn.has("unix") == 1 then
@@ -9,19 +10,41 @@ elseif vim.fn.has("unix") == 1 then
 elseif vim.fn.has('win32') == 1 then
     system_name = "Windows"
 else
-    print("Unsupported system for sumneko")
+    system_name = "unknown"
 end
-
--- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
--- local sumneko_root_path = vim.fn.stdpath('cache')..'/lspconfig/sumneko_lua/lua-language-server'
--- local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
---local sumneko_root_path = '/home/nezuko/Downloads/github/lua-language-server'
---local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
 
 local sumneko_root_path = "/usr/lib/lua-language-server"
 local sumneko_binary = "/bin/lua-language-server"
+local path = vim.tbl_extend('keep',
+    vim.split(package.path, ';'),
+    {
+        "lua/?.lua",
+        "lua/?/init.lua"
+    },
+        -- vim.fn.expand('$VIMRUNTIME/lua/?.lua'),
+        -- vim.fn.expand('$VIMRUNTIME/lua/vim/?.lua'), }
+    vim.fn.expand('$VIMRUNTIME/lua/**/*.lua', false, true)
+)
 
--- ./bin/Linux/lua-language-server -E ./main.lua
+-- local library = vim.tbl_extend("keep", {
+--     vim.fn.expand('$VIMRUNTIME/lua'),
+--     vim.fn.expand('$VIMRUNTIME/lua/vim/lsp'),
+--     -- [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+--     -- [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+-- }, vim.api.nvim_get_runtime_file("", true))
+-- local library = vim.tbl_map(function (lib)
+--     return {[lib] = true}
+-- end, vim.api.nvim_list_runtime_paths())
+local library = {
+    [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+    [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+}
+
+for _, runtime_path in pairs(vim.api.nvim_list_runtime_paths()) do
+    library[runtime_path] = true
+end
+
+print(vim.inspect(library))
 sumneko_lua.setup(
     coq.lsp_ensure_capabilities({
         cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
@@ -32,7 +55,8 @@ sumneko_lua.setup(
                     -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
                     version = 'LuaJIT',
                     -- Setup your lua path
-                    path = vim.split(package.path, ';'),
+                    -- path = path,
+                    path = path
                 },
                 diagnostics = {
                     -- Get the language server to recognize the `vim` global
@@ -40,10 +64,8 @@ sumneko_lua.setup(
                 },
                 workspace = {
                     -- Make the server aware of Neovim runtime files
-                    library = {
-                        [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-                        [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-                    },
+                    library = library,
+                    -- library = vim.api.nvim_get_runtime_file("", true),
                 },
                 -- Do not send telemetry data containing a randomized but unique identifier
                 telemetry = {
@@ -53,5 +75,4 @@ sumneko_lua.setup(
         },
     })
 )
-
 return sumneko_lua
