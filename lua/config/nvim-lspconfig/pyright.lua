@@ -1,6 +1,4 @@
-local pyright = require'lspconfig'.pyright
-local coq = require('coq')
+local system_config = require("config")
+local current = system_config.completion.current
 
-pyright.setup(coq.lsp_ensure_capabilities({}))
-
-return pyright
+return system_config.completion[current]({})

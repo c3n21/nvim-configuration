@@ -1,5 +1,4 @@
-local lspconfig = require('lspconfig')
-local tsserver = lspconfig.tsserver
-tsserver.setup{}
+local system_config = require("config")
+local current = system_config.completion.current
 
-return tsserver
+return system_config.completion[current]({})

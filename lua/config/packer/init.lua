@@ -52,6 +52,7 @@ return {
             'ms-jpq/coq_nvim',
             branch = 'coq',
             config = [[require('config.coq_nvim')]],
+            opt = true,
             disable = false,
         }
 
@@ -68,20 +69,6 @@ return {
 ----------------------------
 --      nvim-lsp
 ----------------------------
-
-        use {
-            'tjdevries/nlua.nvim',
-            disable = true,
-            config = function()
---                local coq = require 'coq'
---                require('nlua.lsp.nvim').setup(
---                    coq.lsp_ensure_capabilities(
---                        {require('lspconfig')}
---                ))
---
-            end
-        }
-
         use {
             'ms-jpq/coq.artifacts',
             branch = 'artifacts',
@@ -115,7 +102,6 @@ return {
                     autocmd!
                     autocmd FileType java lua require'jdtls'.start_or_attach(require('config.nvim-jdtls'))
                 augroup end]]
-                print("ceo")
             end,
             ft = "java"
         }
@@ -129,7 +115,20 @@ return {
         use {
             'neovim/nvim-lspconfig',
             disable = false,
-            config = [[require('config.nvim-lspconfig')]]
+            config = function ()
+                local language_servers = {
+                    "pyright",
+                    "tsserver",
+                    -- "fsautocomplete",
+                    "clangd"
+                }
+                local lspconfig = require("lspconfig")
+
+                for _, language_server in pairs(language_servers) do
+                    local ls_config = require(string.format("config.nvim-lspconfig.%s", language_server))
+                    lspconfig[language_server].setup(ls_config)
+                end
+            end
         }
 
         use {
@@ -139,11 +138,6 @@ return {
                 local luadev = require('config.lua-dev')
                 require'lspconfig'.sumneko_lua.setup(luadev)
             end,
-        }
-
-        use {
-            'nvim-lua/completion-nvim',
-            disable = true
         }
 
         use {
@@ -202,7 +196,7 @@ return {
         }
 
         use {
-            'akinsho/nvim-bufferline.lua',
+            'akinsho/bufferline.nvim',
             config = [[require('config.nvim-bufferline')]]
         }
 

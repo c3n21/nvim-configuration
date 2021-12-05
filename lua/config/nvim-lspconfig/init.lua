@@ -86,22 +86,4 @@ end
 
 --local servers = {"pyright", "sumneko_lua", "tsserver", "jdtls", "fsautocomplete"}
 --local servers = {"pyright", "sumneko_lua", "tsserver", "fsautocomplete", "java-language-server"}
-local servers = {
-    "pyright",
-    -- "sumneko_lua",
-    "tsserver",
-    "fsautocomplete",
-    "clangd"
-}
 
-for _, v in pairs(servers) do
-    --    if completion ~= nil then
-    --        local ls =require('config.nvim-lspconfig.' .. v)
-    --        ls.setup{on_attach=completion.on_attach}
-    --    else
-    --        local ls = require('config.nvim-lspconfig.' .. v)
-    --        print(vim.inspect(ls))
-    --    end
-
-    local ls = require('config.nvim-lspconfig.' .. v)
-end

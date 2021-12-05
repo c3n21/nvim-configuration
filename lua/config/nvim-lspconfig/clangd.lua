@@ -1,2 +1,3 @@
-local coq = require('coq')
-return require'lspconfig'.clangd.setup(coq.lsp_ensure_capabilities({}))
+local system_config = require("config")
+local current = system_config.completion.current
+return system_config.completion[current]({})
