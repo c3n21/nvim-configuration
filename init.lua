@@ -1,4 +1,9 @@
-require("setup") -- setup packer and plugins
+require("setup") -- download packer
+
+local system_config = require('config')
+local packer_config = require('config.packer')
+local packer = require('packer')
+packer.startup(packer_config)
 
 -- Set colorscheme
 vim.g.colors_name = 'gruvbox'

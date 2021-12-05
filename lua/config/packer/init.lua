@@ -127,10 +127,15 @@ return {
         }
 
         use {
+            'folke/lua-dev.nvim',
+            disable = false,
+            config = [[require('config.lua-dev')]]
+        }
+
+        use {
             'nvim-lua/completion-nvim',
             disable = true
         }
-
 
         use {
             'tpope/vim-obsession'
@@ -430,6 +435,14 @@ return {
         }
 
         -- Utils
+        use {
+            'akinsho/toggleterm.nvim',
+            setup = function ()
+                vim.o.hidden = false
+            end,
+            config = [[require'config/toggleterm']]
+        }
+
         use {
             'sychen52/smart-term-esc.nvim',
             config = function ()
