@@ -109,9 +109,15 @@ return {
         use {
             'mfussenegger/nvim-jdtls',
             disable = false,
-            config = [[require('config.nvim-jdtls')]],
-            ft = "java",
-            module = {"nvim-jdtls", "jdtls"}
+            config = function ()
+                vim.cmd [[
+                augroup jdtls_lsp
+                    autocmd!
+                    autocmd FileType java lua require'jdtls'.start_or_attach(require('config.nvim-jdtls'))
+                augroup end]]
+                print("ceo")
+            end,
+            ft = "java"
         }
 
         use {
@@ -129,7 +135,10 @@ return {
         use {
             'folke/lua-dev.nvim',
             disable = false,
-            config = [[require('config.lua-dev')]]
+            config = function ()
+                local luadev = require('config.lua-dev')
+                require'lspconfig'.sumneko_lua.setup(luadev)
+            end,
         }
 
         use {

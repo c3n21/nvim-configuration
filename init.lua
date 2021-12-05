@@ -1,5 +1,4 @@
 require("setup") -- download packer
-
 local system_config = require('config')
 local packer_config = require('config.packer')
 local packer = require('packer')
