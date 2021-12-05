@@ -19,7 +19,6 @@ return {
            branch = 'snapshot',
        }
 
-
         use {
             'jbyuki/one-small-step-for-vimkind',
             disable = true,
@@ -28,6 +27,7 @@ return {
 
         use {
             'ThePrimeagen/git-worktree.nvim',
+            disable = true,
             config = [[require('config.git-worktree')]]
         }
 
@@ -187,6 +187,7 @@ return {
 
         use {
             'nvim-telescope/telescope.nvim',
+            disable = true,
             config = [[require('config.telescope')]],
             requires = { {'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'} }
         }
@@ -282,20 +283,6 @@ return {
         -------------------------
         -- Markdown for NeoVim --
         -------------------------
-
-        use {
-            'ellisonleao/glow.nvim',
-            disable = true
-        }
-
-        use {
-            'skanehira/preview-markdown.vim',
-            disable = true,
-            config = function()
-                vim.g.preview_markdown_parser = "glow"
-                vim.g.preview_markdown_auto_update = 1
-            end
-        }
 
         use {
             'iamcco/markdown-preview.nvim',

@@ -1,6 +1,5 @@
 "Mapping"
 
-let g:mapleader = ' '
 nnoremap <NL> i<CR><ESC>
 nnoremap <leader>s :%s/\<<C-r><C-w>\>/
 
