@@ -24,3 +24,11 @@ vim.api.nvim_set_keymap('n', '<leader>d', '<cmd>lua vim.lsp.diagnostic.show_line
 vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
 vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 vim.api.nvim_set_keymap('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+
+local maps = require("settings.map")
+
+local mode, mapping =  unpack(maps.buffer.select)
+vim.api.nvim_set_keymap(mode, mapping, ":BufferLinePick<CR>", opts)
+
+mode, mapping =  unpack(maps.buffer.close)
+vim.api.nvim_set_keymap(mode, mapping, ":BufferLinePickClose<CR>", opts)

@@ -202,8 +202,8 @@ return {
         }
 
         use {
-            'Yggdroot/indentLine',
-            config = [[require('config.indentLine')]],
+            'lukas-reineke/indent-blankline.nvim',
+            config = [[require('config.indent-blankline')]]
         }
 
         use {
@@ -403,6 +403,10 @@ return {
 
                 vim.g.vimwiki_markdown_link_ext = 1
             end
+        }
+
+        use {
+            'nvim-lua/plenary.nvim'
         }
 
         use {

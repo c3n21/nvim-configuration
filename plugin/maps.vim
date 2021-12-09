@@ -38,6 +38,3 @@ nnoremap J mzJ`z
 " Jumplist mutations
 nnoremap <expr> k (v:count > 5? "m'" . v:count : "") . 'k'
 nnoremap <expr> j (v:count > 5? "m'" . v:count : "") . 'j'
-
-" Delete buffer
-nnoremap <C-q> :bd<cr>
