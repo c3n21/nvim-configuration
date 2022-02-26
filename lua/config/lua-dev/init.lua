@@ -1,13 +1,13 @@
 local system_config = require('config')
 local current = system_config.completion.current
 
-
 local sumneko_root_path = "/usr/lib/lua-language-server"
 local sumneko_binary = "/bin/lua-language-server"
 
 
 local lspconfig = {
-    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
+    -- cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
+    cmd = {"lua-language-server"};
     settings = {
         Lua = {
             runtime = {
@@ -34,7 +34,7 @@ local config = {
     library = {
         vimruntime = true, -- runtime path
         types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
-        plugins = true, -- installed opt or start plugins in packpath
+        plugins = {"plenary.nvim"}, -- installed opt or start plugins in packpath
         -- you can also specify the list of plugins to make available as a workspace library
         -- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
     },

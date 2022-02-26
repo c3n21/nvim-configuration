@@ -1,3 +1,5 @@
+vim.o.path = vim.o.path .. "**"
+
 vim.g.mapleader = " "
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -20,15 +22,25 @@ vim.api.nvim_set_keymap('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition(
 vim.api.nvim_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
 vim.api.nvim_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 vim.api.nvim_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-vim.api.nvim_set_keymap('n', '<leader>d', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
 vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 vim.api.nvim_set_keymap('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 
+vim.api.nvim_set_keymap('n', '<leader>cq', ':cclose <CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>co', ':copen <CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>cn', ':cnext <CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>cN', ':cprevious <CR>', opts)
+
+vim.api.nvim_set_keymap('n', '<leader>Cn', ':cnext <CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>CN', ':cprevious <CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>Co', ':lopen <CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>Cq', ':lclose <CR>', opts)
+
 local maps = require("settings.map")
 
-local mode, mapping =  unpack(maps.buffer.select)
+local mode, mapping =  unpack(maps.buffer.n.select)
 vim.api.nvim_set_keymap(mode, mapping, ":BufferLinePick<CR>", opts)
 
-mode, mapping =  unpack(maps.buffer.close)
+mode, mapping =  unpack(maps.buffer.n.close)
 vim.api.nvim_set_keymap(mode, mapping, ":BufferLinePickClose<CR>", opts)

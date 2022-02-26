@@ -1,10 +1,12 @@
 return {
     buffer = {
-        select = {
-            "n", "<leader>b"
-        },
-        close = {
-            "n", "<C-q>"
+        n = {
+            select = {
+                "n", "<leader>b"
+            },
+            close = {
+                "n", "<C-q>"
+            }
         }
     }
 }
