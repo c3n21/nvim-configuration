@@ -106,7 +106,6 @@ return {
     ---@param force boolean @ if true it will set the keymap even if it's already set.
     ---@param all boolean @ if true it will set the default keymap on every keymap, if it's not already set. Useful if used with `force` to forcefully set all the keymaps
     set_defaults = function (force, all)
-        print("start")
         force = force or false
         all = all or false
 
@@ -119,7 +118,6 @@ return {
                 --     return
                 -- end
 
-                print("Setting " .. map.lhs)
                 map:set_default(force)
             end, lhs2maps)
         end
