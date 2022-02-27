@@ -1,4 +1,5 @@
 local system_config = {
+    log_level = vim.log.levels.WARN,
     CONFIG_AVAILABLE_COMPLETION = {"nvim-cmp", "coq_nvim"},
     completion = {
         current = "nvim-cmp",
