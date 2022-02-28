@@ -201,7 +201,6 @@ local config =
         {
             'nvim-telescope/telescope.nvim',
             disable = false,
-            config = [[require('config.telescope')]],
             requires = { {'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'} }
         },
 
@@ -211,7 +210,7 @@ local config =
 
         {
             'akinsho/bufferline.nvim',
-            config = [[require('config.nvim-bufferline')]]
+            disable = true
         },
 
         {
@@ -238,8 +237,13 @@ local config =
             disable = false
         },
 
+        { --- https://github.com/JoosepAlviste/nvim-ts-context-commentstring#integrations
+            "numToStr/Comment.nvim",
+        },
+
         {
             "terrortylor/nvim-comment",
+            disable = true,
             config = function ()
                 require('nvim_comment').setup({
                     -- Linters prefer comment and line to have a space in between markers
@@ -460,7 +464,7 @@ local config =
                 setup = function ()
                     vim.o.hidden = false
                 end,
-                config = [[require'config.toggleterm']]
+                disable = true
             },
 
             {

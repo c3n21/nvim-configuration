@@ -1,5 +1,5 @@
 local function reset()
-    local ns = {"packer", "config", "config.packer_nvim", "settings", "settings.map"}
+    local ns = {"packer", "config", "config.packer_nvim", "settings", "settings.map", "utils"}
     for _, n in ipairs(ns) do
         package.loaded[n] = nil
     end

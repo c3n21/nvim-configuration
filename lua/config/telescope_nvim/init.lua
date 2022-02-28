@@ -43,3 +43,5 @@ require('telescope').setup{
   }
 }
 
+local system_config = require('config')
+system_config.mappings.buffer.list:set(require('telescope.builtin').buffers, { noremap=true, silent=true }, true)
