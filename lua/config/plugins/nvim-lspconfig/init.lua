@@ -8,6 +8,6 @@ local language_servers = {
 }
 
 for _, language_server in pairs(language_servers) do
-    local ls_config = require(string.format("config.nvim-lspconfig.%s", language_server))
+    local ls_config = require(string.format("config.plugins.nvim-lspconfig.%s", language_server))
     lspconfig[language_server].setup(ls_config)
 end

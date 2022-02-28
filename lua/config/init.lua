@@ -3,6 +3,9 @@ local create_map = require('utils').create_map
 local opts = { noremap=true, silent=true }
 
 local system_config = {
+    plugins = {
+        path = vim.fn.stdpath("config"),
+    },
     log_level = vim.log.levels.WARN,
     CONFIG_AVAILABLE_COMPLETION = {"nvim-cmp", "coq_nvim"},
     completion = {
