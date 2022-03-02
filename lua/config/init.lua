@@ -26,7 +26,7 @@ local system_config = {
     mappings = {
         buffer = {
             list = create_map("n", "<leader>b", {cmd = ":buffers<CR>", opts = opts}),
-            close = create_map("n", "<C-q>")
+            close = create_map("n", "<C-q>", {cmd = ":bd<CR>", opts = opts})
         },
         lsp_buf = {
             declaration = create_map("n", "gD", { cmd = vim.lsp.buf.declaration, opts = opts}),
@@ -45,8 +45,8 @@ local system_config = {
             set_loclist = create_map("n", "<leader>q", { cmd = vim.lsp.diagnostic.set_loclist, opts = opts } )
         },
         quickfix = {
-            close = create_map("n", "<leader>cq"),
-            open = create_map("n", "<leader>co"),
+            close = create_map("n", "<leader>cq", { cmd = ":close<CR>", opts = opts}),
+            open = create_map("n", "<leader>co", { cmd = ":copen<CR>", opts = opts}),
         }
 
     }
