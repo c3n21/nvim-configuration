@@ -36,7 +36,8 @@ local system_config = {
             signature_help = create_map("n", "<C-k>", { cmd = vim.lsp.buf.signature_help, opts = opts}),
             type_definition = create_map("n", "<leader>D", { cmd = vim.lsp.buf.type_definition, opts = opts}),
             rename = create_map("n", "<leader>rn", { cmd = vim.lsp.buf.rename, opts = opts }),
-            code_action = create_map("n", "<leader>ca", { cmd = vim.lsp.buf.code_action, opts = opts }),
+            -- code_action = create_map("n", "<leader>ca", { cmd = vim.lsp.buf.code_action, opts = opts }),
+            code_action = create_map("n", "<leader>ca", { cmd = ":Telescope lsp_code_actions<CR>", opts = opts }),
         },
         lsp_diagnostic = {
             open_float = create_map("n", "<leader>d", { cmd = vim.diagnostic.open_float, opts = opts }),
