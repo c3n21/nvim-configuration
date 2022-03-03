@@ -7,7 +7,8 @@ local language_servers = {
     "tsserver",
     -- "fsautocomplete",
     "clangd",
-    "rnix"
+    "rnix",
+    -- "efm"
 }
 
 for _, language_server in pairs(language_servers) do

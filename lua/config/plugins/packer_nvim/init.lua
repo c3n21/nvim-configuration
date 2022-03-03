@@ -54,6 +54,10 @@ local config =
         },
 
         {
+            'jose-elias-alvarez/null-ls.nvim'
+        },
+
+        {
             'jbyuki/one-small-step-for-vimkind',
             disable = true,
             
