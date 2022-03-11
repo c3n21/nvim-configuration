@@ -16,3 +16,5 @@ require('settings')
 vim.g.colors_name = 'gruvbox'
 vim.g.gruvbox_contrast_dark = 'hard'
 vim.g.gruvbox_invert_selection='0'
+
+vim.cmd([[au ColorScheme * hi Normal ctermbg=none guibg=none]])

@@ -12,9 +12,6 @@ set background=dark
 
 syntax on
 
-highlight Normal guibg=none
-highlight NonText ctermfg=12 gui=bold guifg=#313136 guibg=none
-
 set pastetoggle=<F3>
 
 filetype plugin indent on   " allows auto-indenting depending on file type
