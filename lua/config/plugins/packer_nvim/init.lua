@@ -260,9 +260,10 @@ local config =
         {
             'iamcco/markdown-preview.nvim',
             disable = false,
-            run = function ()
-                vim.fn['mkdp#util#install']()
-            end,
+            run = "cd app && yarn install"
+            -- run = function ()
+            --     vim.fn['mkdp#util#install']()
+            -- end,
         },
 
         -----------------
