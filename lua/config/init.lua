@@ -1,5 +1,22 @@
 local opts = { noremap=true, silent=true }
 
+local undo_breakpoints = (function ()
+    local breakpoints = {",", ".", "[", "]", "!", "?"}
+    local mappings = {}
+    for _, breakpoint in ipairs(breakpoints) do
+        mappings[#mappings+1] = {
+            [breakpoint] = {
+                [breakpoint .. "<c-g>u"] = {
+                    modes = "i",
+                    opts = opts
+                }
+            }
+        }
+    end
+
+    return mappings
+end)()
+
 local system_config = {
     plugins = {
         path = vim.fn.stdpath("config"),
@@ -22,6 +39,42 @@ local system_config = {
         end
     },
     mappings = {
+        --[[
+        -- Lines manipulation
+        --]]
+        ["<M-K>"] = {
+            [":m-2 <CR>gv=gv"] = {
+                modes = {"x"},
+                opts = opts
+            },
+            [":<C-u>m-2<CR>=="] = {
+                modes = {"n"},
+                opts = opts
+            }
+        },
+        ["<M-J>"] = {
+            [":m'>+<CR>gv=gv"] = {
+                modes = {"x"},
+                opts = opts
+            },
+            [":<C-u>m+<CR>=="] = {
+                modes = {"n"},
+                opts = opts
+            },
+        },
+        --[[
+        -- Registers manipulation
+        --]]
+        ["<C-c>"] = {
+            ['"+y'] = {
+                modes = {"v"},
+                opts = opts
+            }
+        },
+        --[[
+        -- Undo break points
+        --]]
+        -- unpack(undo_breakpoints),
         ["<leader>b"] = {
             -- [":buffers<CR>"] = {
             --     modes = {"n"},
@@ -126,6 +179,11 @@ local system_config = {
         }
     }
 }
+
+---[[
+-- Adding undo breakpoints mappings
+--]]
+system_config.mappings = vim.tbl_extend("keep", system_config.mappings, unpack(undo_breakpoints))
 
 system_config.completion.__index = function (_, key)
     return function (config)
