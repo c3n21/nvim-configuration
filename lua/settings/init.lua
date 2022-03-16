@@ -44,5 +44,9 @@ local opts = { noremap=true, silent=true }
 -- mode, mapping =  unpack(maps.buffer.n.close)
 -- vim.api.nvim_set_keymap(mode, mapping, ":BufferLinePickClose<CR>", opts)
 --
-local map = require('settings.map')
-map.set_defaults()
+local maps = require('config').mappings
+for lhs, map in pairs(maps) do
+    for rhs, map_opts in pairs(map) do
+        vim.keymap.set(map_opts.modes, lhs, rhs, map_opts.opts)
+    end
+end

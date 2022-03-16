@@ -1,4 +1,3 @@
-local maps = require('config').mappings
 local lhs2maps = {}
 for _, ops in pairs(maps) do
     for _, map in pairs(ops) do

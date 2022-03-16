@@ -1,5 +1,3 @@
-local create_map = require('utils').create_map
-
 local opts = { noremap=true, silent=true }
 
 local system_config = {
@@ -24,36 +22,112 @@ local system_config = {
         end
     },
     mappings = {
-        buffer = {
-            list = create_map("n", "<leader>b", {cmd = ":buffers<CR>", opts = opts}),
-            close = create_map("n", "<C-q>", {cmd = ":bd<CR>", opts = opts})
+        ["<leader>b"] = {
+            -- [":buffers<CR>"] = {
+            --     modes = {"n"},
+            --     opts = opts
+            -- }
+            [require('telescope.builtin').buffers] = {
+                modes = {"n"},
+                opts = opts
+            }
         },
-        lsp_buf = {
-            declaration = create_map("n", "gD", { cmd = vim.lsp.buf.declaration, opts = opts}),
-            definition = create_map("n", "gd", { cmd = vim.lsp.buf.definition, opts = opts}),
-            hover = create_map("n", "K", { cmd = vim.lsp.buf.hover, opts = opts}),
-            implementation = create_map("n", "gi", { cmd = vim.lsp.buf.implementation, opts = opts }),
-            signature_help = create_map("n", "<C-k>", { cmd = vim.lsp.buf.signature_help, opts = opts}),
-            type_definition = create_map("n", "<leader>D", { cmd = vim.lsp.buf.type_definition, opts = opts}),
-            rename = create_map("n", "<leader>rn", { cmd = vim.lsp.buf.rename, opts = opts }),
-            -- code_action = create_map("n", "<leader>ca", { cmd = vim.lsp.buf.code_action, opts = opts }),
-            code_action = create_map("n", "<leader>ca", { cmd = ":Telescope lsp_code_actions<CR>", opts = opts }),
+        ["<C-q>"] = {
+            [":bd<CR>"] = {
+                modes = {"n"},
+                opts = opts
+            }
         },
-        lsp_diagnostic = {
-            open_float = create_map("n", "<leader>d", { cmd = vim.diagnostic.open_float, opts = opts }),
-            goto_prev = create_map("n", "[d", { cmd = vim.lsp.diagnostic.goto_prev, opts = opts }),
-            goto_next = create_map("n", "]d", { cmd = vim.lsp.diagnostic.goto_next, opts = opts }),
-            set_loclist = create_map("n", "<leader>q", { cmd = vim.lsp.diagnostic.set_loclist, opts = opts } )
+        ["gD"] = {
+            [vim.lsp.buf.declaration] = {
+                modes = {"n"},
+                opts = opts
+            }
         },
-        quickfix = {
-            close = create_map("n", "<leader>cq", { cmd = ":close<CR>", opts = opts}),
-            open = create_map("n", "<leader>co", { cmd = ":copen<CR>", opts = opts}),
-        }
+        ["gd"] = {
+            [vim.lsp.buf.definition] = {
+                modes = {"n"},
+                opts = opts
+            }
+        },
+        ["K"] = {
+            [vim.lsp.buf.hover] = {
+                modes = {"n"},
+                opts = opts
+            }
+        },
+        ["gi"] = {
+            [vim.lsp.buf.implementation] = {
+                modes = {"n"},
+                opts = opts
+            }
+        },
+        ["<C-k>"] = {
+            [vim.lsp.buf.signature_help] = {
+                modes = {"n"},
+                opts = opts
+            }
+        },
+        ["<leader>D"] = {
+            [vim.lsp.buf.type_definition] = {
+                modes = {"n"},
+                opts = opts
+            }
+        },
+        ["<leader>rn"] = {
+            [vim.lsp.buf.rename] = {
+                modes = {"n"},
+                opts = opts
+            }
+        },
+        -- code_action = create_map("n", "<leader>ca", { cmd = vim.lsp.buf.code_action, opts = opts }),
 
+        ["<leader>ca"] = {
+            [":Telescope lsp_code_actions<CR>"] = {
+                modes = {"n"},
+                opts = opts
+            }
+        },
+        ["<leader>d"] = {
+            [vim.diagnostic.open_float] = {
+                modes = {"n"},
+                opts = opts
+            }
+        },
+        ["[d"] = {
+            [vim.lsp.diagnostic.goto_prev] = {
+                modes = {"n"},
+                opts = opts
+            }
+        },
+        ["]d"] = {
+            [vim.lsp.diagnostic.goto_next] = {
+                modes = {"n"},
+                opts = opts
+            }
+        },
+        ["<leader>q"] = {
+            [vim.lsp.diagnostic.set_loclist] = {
+                modes = {"n"},
+                opts = opts
+            }
+        },
+        ["<leader>cq"] = {
+            [":close<CR>"] = {
+                modes = {"n"},
+                opts = opts
+            }
+        },
+        ["<leader>co"] = {
+            [":copen<CR>"] = {
+                modes = {"n"},
+                opts = opts
+            }
+        }
     }
 }
 
-system_config.completion.__index = function (self, key)
+system_config.completion.__index = function (_, key)
     return function (config)
         print(string.format("Completion framework '%s' not available", key))
         return config

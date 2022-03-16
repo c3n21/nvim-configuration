@@ -42,6 +42,3 @@ require('telescope').setup{
     buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
   }
 }
-
-local system_config = require('config')
-system_config.mappings.buffer.list:set(require('telescope.builtin').buffers, { noremap=true, silent=true }, true)
