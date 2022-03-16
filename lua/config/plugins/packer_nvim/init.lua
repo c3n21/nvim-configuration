@@ -297,11 +297,6 @@ local config =
             'akinsho/toggleterm.nvim',
             disable = false
         },
-
-        {
-            'sychen52/smart-term-esc.nvim',
-            disable = true,
-        }
     },
 
     config = {
