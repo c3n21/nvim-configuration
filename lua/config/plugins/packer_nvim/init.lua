@@ -268,17 +268,6 @@ local config =
         -----------------
         -- Note Taking --
         -----------------
-
-        {
-            'oberblastmeister/neuron.nvim',
-            disable = true,
-            requires = {
-                'nvim-lua/plenary.nvim',
-                'nvim-lua/popup.nvim',
-                'nvim-telescope/telescope.nvim'
-            },
-        },
-
         {
             'vimwiki/vimwiki',
             disable = false,
@@ -296,6 +285,14 @@ local config =
         },
 
         -- Utils
+        {
+            "folke/twilight.nvim",
+        },
+
+        {
+            "folke/zen-mode.nvim"
+        },
+
         {
             'akinsho/toggleterm.nvim',
             disable = false
