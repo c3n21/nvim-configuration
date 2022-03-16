@@ -70,8 +70,7 @@ local config =
         },
 
         {
-            'morhetz/gruvbox',
-            disable = false
+            "rebelot/kanagawa.nvim"
         },
 
         -------------------------
@@ -299,7 +298,7 @@ local config =
         -- Utils
         {
             'akinsho/toggleterm.nvim',
-            disable = true
+            disable = false
         },
 
         {

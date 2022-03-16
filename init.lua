@@ -12,9 +12,6 @@ local packer = require('packer')
 packer.startup(packer_config)
 
 require('settings')
--- Set colorscheme
-vim.g.colors_name = 'gruvbox'
-vim.g.gruvbox_contrast_dark = 'hard'
-vim.g.gruvbox_invert_selection='0'
 
-vim.cmd([[au ColorScheme * hi Normal ctermbg=none guibg=none]])
+require('config.plugins.kanagawa_nvim')
+vim.cmd("colorscheme kanagawa")
