@@ -5,9 +5,9 @@ local current = system_config.completion.current
 local language_servers = {
     "pyright",
     "tsserver",
-    -- "fsautocomplete",
     "clangd",
-    "rnix",
+    -- "fsautocomplete",
+    -- "rnix",
     -- "efm"
 }
 
