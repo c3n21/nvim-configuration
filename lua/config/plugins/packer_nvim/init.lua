@@ -286,6 +286,9 @@ local config =
 
         -- Utils
         {
+            "nikvdp/neomux"
+        },
+        {
             "folke/twilight.nvim",
         },
 
