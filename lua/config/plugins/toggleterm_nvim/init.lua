@@ -1,4 +1,4 @@
-vim.o.hidden = false
+vim.o.hidden = true
 require("toggleterm").setup({
   -- size can be a number or function which is passed the current terminal
   size = 20, --| function(term)
@@ -17,7 +17,8 @@ require("toggleterm").setup({
   insert_mappings = true, -- whether or not the open mapping applies in insert mode
   persist_size = true,
   direction = 'float', -- | 'horizontal' | 'tab' | 'float',
-  close_on_exit = true, -- close the terminal window when the process exits
+  -- close_on_exit = true, -- close the terminal window when the process exits
+  close_on_exit = false, -- close the terminal window when the process exits
   shell = vim.o.shell, -- change the default shell
   -- This field is only relevant if direction is set to 'float'
   float_opts = {
@@ -26,7 +27,7 @@ require("toggleterm").setup({
     -- the 'curved' border is a custom border type
     -- not natively supported but implemented in this plugin.
     border = 'shadow', -- | 'double' | 'shadow' | 'curved' | ... other options supported by win open
-    width = 1000,
+    width = 800,
     height = 500,
     winblend = 3,
     highlights = {
