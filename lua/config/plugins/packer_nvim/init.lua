@@ -60,13 +60,12 @@ local config =
         {
             'jbyuki/one-small-step-for-vimkind',
             disable = true,
-            
         },
 
         {
             'ThePrimeagen/git-worktree.nvim',
             disable = true,
-            
+
         },
 
         {
@@ -94,7 +93,6 @@ local config =
             'hrsh7th/nvim-cmp',
             disable = false,
             requires = {
-                {'hrsh7th/vim-vsnip'},
                 {'hrsh7th/cmp-nvim-lsp'}
             }
         },
@@ -104,7 +102,7 @@ local config =
         ----------------------------
         {
             'scalameta/nvim-metals',
-            
+
             requires = { "nvim-lua/plenary.nvim" }
         },
 
@@ -116,7 +114,6 @@ local config =
 
         {
             'ms-jpq/chadtree',
-            
             branch = 'chad',
             run = 'python3 -m chadtree deps'
         },
@@ -129,7 +126,6 @@ local config =
         {
             'windwp/nvim-autopairs',
             disable = false,
-            
         },
 
         {
@@ -141,7 +137,6 @@ local config =
         {
             'glepnir/lspsaga.nvim',
             disable = true,
-            
         },
 
         {
@@ -164,7 +159,6 @@ local config =
 
         {
             'nvim-treesitter/nvim-treesitter',
-            
         },
 
         {
@@ -172,7 +166,6 @@ local config =
             after = 'nvim-treesitter',
             require = {
                 'nvim-treesitter/nvim-treesitter',
-                
             }
         },
 
@@ -182,7 +175,6 @@ local config =
             requires = {
                 {
                     'nvim-treesitter/nvim-treesitter',
-                    
                 }
             },
             disable = true
@@ -194,7 +186,6 @@ local config =
             requires = {
                 {
                     'nvim-treesitter/nvim-treesitter',
-                    
                 }
             }
         },
@@ -288,6 +279,11 @@ local config =
         {
             "nikvdp/neomux"
         },
+        {
+            "L3MON4D3/LuaSnip",
+            requires = { 'saadparwaiz1/cmp_luasnip' }
+        },
+
         {
             "folke/twilight.nvim",
         },

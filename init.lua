@@ -10,7 +10,6 @@ local system_config = require('config')
 local packer_config = require('config.plugins.packer_nvim')
 local packer = require('packer')
 packer.startup(packer_config)
-
 require('settings')
 
 require('config.plugins.kanagawa_nvim')
