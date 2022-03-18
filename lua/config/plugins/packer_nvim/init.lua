@@ -251,9 +251,6 @@ local config =
             'iamcco/markdown-preview.nvim',
             disable = false,
             run = "cd app && yarn install"
-            -- run = function ()
-            --     vim.fn['mkdp#util#install']()
-            -- end,
         },
 
         -----------------
@@ -277,8 +274,10 @@ local config =
 
         -- Utils
         {
-            "nikvdp/neomux"
+            "nikvdp/neomux",
+            disable = true
         },
+
         {
             "L3MON4D3/LuaSnip",
             requires = { 'saadparwaiz1/cmp_luasnip' }
