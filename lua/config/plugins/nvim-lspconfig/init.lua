@@ -6,6 +6,7 @@ local language_servers = {
     "pyright",
     "tsserver",
     "clangd",
+    "dartls"
     -- "fsautocomplete",
     -- "rnix",
     -- "efm"
