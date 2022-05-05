@@ -136,7 +136,7 @@ local system_config = {
         -- code_action = create_map("n", "<leader>ca", { cmd = vim.lsp.buf.code_action, opts = opts }),
 
         ["<leader>ca"] = {
-            [":Telescope lsp_code_actions<CR>"] = {
+            [vim.lsp.buf.code_action] = {
                 modes = {"n"},
                 opts = opts
             }

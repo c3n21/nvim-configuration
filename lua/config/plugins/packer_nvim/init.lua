@@ -193,7 +193,7 @@ local config =
         {
             'nvim-telescope/telescope.nvim',
             disable = false,
-            requires = { {'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'} }
+            requires = { {'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}, {'nvim-telescope/telescope-ui-select.nvim'}}
         },
 
         {
