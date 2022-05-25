@@ -15,7 +15,7 @@ ts_setup.setup {
     },
 
     indent = {
-        enable = false
+        enable = true
     },
 
     incremental_selection = {

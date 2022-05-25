@@ -16,5 +16,5 @@
 vim.cmd [[
 augroup jdtls_lsp
 autocmd!
-autocmd FileType java lua require'jdtls'.start_or_attach(require('config.nvim-jdtls'))
+autocmd FileType java lua require'jdtls'.start_or_attach(require('config.plugins.nvim-jdtls.config'))
 augroup end]]
