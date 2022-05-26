@@ -8,6 +8,7 @@ local language_servers = {
     "clangd",
     "dartls",
     "ocamllsp",
+    "intelephense"
     --    "sumneko_lua"
     -- "fsautocomplete",
     -- "rnix",
