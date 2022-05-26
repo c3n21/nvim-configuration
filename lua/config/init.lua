@@ -21,6 +21,18 @@ local system_config = {
     plugins = {
         path = vim.fn.stdpath("config"),
     },
+    enable_lsp = {
+        "pyright",
+        "tsserver",
+        "clangd",
+        "dartls",
+        "ocamllsp",
+        "intelephense"
+        -- "sumneko_lua" using lua-dev
+        -- "fsautocomplete",
+        -- "rnix",
+        -- "efm"
+    },
     log_level = vim.log.levels.WARN,
     CONFIG_AVAILABLE_COMPLETION = {"nvim-cmp", "coq_nvim"},
     completion = {
@@ -148,19 +160,19 @@ local system_config = {
             }
         },
         ["[d"] = {
-            [vim.lsp.diagnostic.goto_prev] = {
+            [vim.diagnostic.goto_prev] = {
                 modes = {"n"},
                 opts = opts
             }
         },
         ["]d"] = {
-            [vim.lsp.diagnostic.goto_next] = {
+            [vim.diagnostic.goto_next] = {
                 modes = {"n"},
                 opts = opts
             }
         },
         ["<leader>q"] = {
-            [vim.lsp.diagnostic.set_loclist] = {
+            [vim.diagnostic.setloclist] = {
                 modes = {"n"},
                 opts = opts
             }

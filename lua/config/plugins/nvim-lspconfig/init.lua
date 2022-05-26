@@ -2,18 +2,7 @@ local lspconfig = require'lspconfig'
 local system_config = require("config")
 local current = system_config.completion.current
 
-local language_servers = {
-    "pyright",
-    "tsserver",
-    "clangd",
-    "dartls",
-    "ocamllsp",
-    "intelephense"
-    --    "sumneko_lua"
-    -- "fsautocomplete",
-    -- "rnix",
-    -- "efm"
-}
+local language_servers = system_config.enable_lsp
 
 for _, language_server in pairs(language_servers) do
     local ls_config = require(string.format("config.plugins.nvim-lspconfig.%s", language_server))
