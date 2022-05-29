@@ -36,8 +36,7 @@ local function generate_config(plugin_name)
     return [[require('config.plugins.]].. sane_plugin_name .. [[')]]
 end
 
-local config =
-{
+local config = {
     {
         -- Packer can manage itself
         {
@@ -105,6 +104,7 @@ local config =
 
         {
             'ms-jpq/chadtree',
+            disable = true,
             branch = 'chad',
             run = 'python3 -m chadtree deps'
         },
@@ -184,7 +184,12 @@ local config =
         {
             'nvim-telescope/telescope.nvim',
             disable = false,
-            requires = { {'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}, {'nvim-telescope/telescope-ui-select.nvim'}}
+            requires = {
+                {'nvim-telescope/telescope-file-browser.nvim'},
+                {'nvim-lua/popup.nvim'},
+                {'nvim-lua/plenary.nvim'},
+                {'nvim-telescope/telescope-ui-select.nvim'}
+            }
         },
 
         {
@@ -218,7 +223,8 @@ local config =
             disable = false
         },
 
-        { --- https://github.com/JoosepAlviste/nvim-ts-context-commentstring#integrations
+        {
+            --- https://github.com/JoosepAlviste/nvim-ts-context-commentstring#integrations
             "numToStr/Comment.nvim",
         },
 
@@ -287,9 +293,10 @@ local config =
             disable = false
         },
 
-        { 'anuvyklack/pretty-fold.nvim',
+        {
+            'anuvyklack/pretty-fold.nvim',
             requires = 'anuvyklack/nvim-keymap-amend',-- only for preview
-        }
+        },
     },
 
     config = {

@@ -1,9 +1,24 @@
-require('telescope').setup{
+local telescope = require'telescope'
+
+telescope.setup{
   extensions = {
+    file_browser = {
+      theme = "ivy",
+      -- disables netrw and use telescope-file-browser in its place
+      hijack_netrw = true,
+      -- mappings = {
+      --   ["i"] = {
+      --     -- your custom insert mode mappings
+      --   },
+      --   ["n"] = {
+      --     -- your custom normal mode mappings
+      --   },
+      -- },
+    },
     ["ui-select"] = {
       require("telescope.themes").get_dropdown {
         -- even more opts
-      }
+      },
 
       -- pseudo code / specification for writing custom displays, like the one
       -- for "codeactions"
@@ -33,8 +48,8 @@ require('telescope').setup{
     prompt_prefix = "> ",
     selection_caret = "> ",
     entry_prefix = "  ",
-    initial_mode = "insert",
-    selection_strategy = "reset",
+    initial_mode = "normal",
+    selection_strategy = "closest",
     sorting_strategy = "descending",
     layout_strategy = "horizontal",
     layout_config = {
@@ -52,7 +67,6 @@ require('telescope').setup{
     border = {},
     borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
     color_devicons = true,
-    use_less = true,
     path_display = {},
     set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
     file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
@@ -64,4 +78,8 @@ require('telescope').setup{
   }
 }
 
-require("telescope").load_extension("ui-select")
+local extensions = {"ui-select", "file_browser"}
+
+for _, value in ipairs(extensions) do
+  telescope.load_extension(value)
+end
