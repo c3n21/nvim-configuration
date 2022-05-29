@@ -9,6 +9,7 @@ vim.g.coc_global_extensions = {
     'coc-clangd',
     'coc-explorer'
 }
+
 local function sanitize(plugin_name)
     local result = vim.split(plugin_name, "/", {
         plain = true,
@@ -295,6 +296,10 @@ local config =
             'akinsho/toggleterm.nvim',
             disable = false
         },
+
+        { 'anuvyklack/pretty-fold.nvim',
+            requires = 'anuvyklack/nvim-keymap-amend',-- only for preview
+        }
     },
 
     config = {

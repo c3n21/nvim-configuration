@@ -42,11 +42,17 @@ vim.opt.fillchars = {
 -----------------------------------------------------------------------------//
 -- Folds {{{1
 -----------------------------------------------------------------------------//
---vim.opt.foldtext = 'v:lua.as.folds()'
+vim.opt.foldtext = 'v:lua.as.folds()'
 vim.opt.foldopen = vim.opt.foldopen + 'search'
 vim.opt.foldlevelstart = 6
-vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.opt.foldmethod = 'expr'
+-- vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.wo.foldmethod = "expr"
+vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+-- vim.wo.foldtext =
+--     [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) ]]
+-- vim.wo.fillchars = "fold:\\"
+vim.wo.foldnestmax = 3
+vim.wo.foldminlines = 1
 
 -----------------------------------------------------------------------------//
 -- Format Options {{{1
@@ -68,7 +74,7 @@ vim.opt.formatoptions = {
 }
 
 -----------------------------------------------------------------------------//
--- Diff {{{1
+-- Diff {{{
 -----------------------------------------------------------------------------//
 -- Use in vertical diff mode, blank lines to keep sides aligned, Ignore whitespace changes
 vim.opt.diffopt = vim.opt.diffopt
