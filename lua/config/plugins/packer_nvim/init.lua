@@ -1,15 +1,5 @@
 local log_level  = 'trace' --'warn'
 
-vim.g.coc_global_extensions = {
-    'coc-json',
-    'coc-git',
-    'coc-pairs',
-    'coc-pyright',
-    'coc-sumneko-lua',
-    'coc-clangd',
-    'coc-explorer'
-}
-
 local function sanitize(plugin_name)
     local result = vim.split(plugin_name, "/", {
         plain = true,

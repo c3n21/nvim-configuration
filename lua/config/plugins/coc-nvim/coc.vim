@@ -1,3 +1,13 @@
+"vim.g.coc_global_extensions = {
+"    'coc-json',
+"    'coc-git',
+"    'coc-pairs',
+"    'coc-pyright',
+"    'coc-sumneko-lua',
+"    'coc-clangd',
+"    'coc-explorer'
+"}
+
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
 let mapleader = " "

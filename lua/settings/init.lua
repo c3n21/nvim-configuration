@@ -164,9 +164,44 @@ vim.opt.expandtab = true
 -- mode, mapping =  unpack(maps.buffer.n.close)
 -- vim.api.nvim_set_keymap(mode, mapping, ":BufferLinePickClose<CR>", opts)
 --
-local maps = require('config').mappings
-for lhs, map in pairs(maps) do
-    for rhs, map_opts in pairs(map) do
-        vim.keymap.set(map_opts.modes, lhs, rhs, map_opts.opts)
+
+local _config = {
+    mappings = {},
+    plugins = {},
+    enable_lsp = {},
+    log_level = vim.log.levels.WARN,
+    completion = {
+        current = ""
+    },
+
+}
+
+local function apply()
+    local maps = _config.mappings
+    for lhs, map in pairs(maps) do
+        for rhs, map_opts in pairs(map) do
+            vim.keymap.set(map_opts.modes, lhs, rhs, map_opts.opts)
+        end
     end
 end
+
+return {
+    ['setup'] = function (config)
+        setmetatable(config.completion, {
+            __index = function (_, key)
+                return function (ls_config)
+                    print(string.format("Completion framework '%s' not available", key))
+                    return ls_config
+                end
+            end
+
+        })
+
+        _config = config
+        apply()
+    end,
+
+    ['get_config'] = function ()
+        return _config
+    end
+}

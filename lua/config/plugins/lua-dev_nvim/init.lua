@@ -1,4 +1,4 @@
-local system_config = require('config')
+local system_config = require('settings').get_config()
 local current = system_config.completion.current
 
 local sumneko_root_path = "/usr/lib/lua-language-server"

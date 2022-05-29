@@ -1,5 +1,5 @@
 local lspconfig = require'lspconfig'
-local system_config = require("config")
+local system_config = require("settings").get_config()
 local current = system_config.completion.current
 
 local language_servers = system_config.enable_lsp
