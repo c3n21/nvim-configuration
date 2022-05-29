@@ -27,7 +27,8 @@ local system_config = {
         "clangd",
         "dartls",
         "ocamllsp",
-        "intelephense"
+        "intelephense",
+        "rust_analyzer"
         -- "sumneko_lua" using lua-dev
         -- "fsautocomplete",
         -- "rnix",
