@@ -105,6 +105,7 @@ local config =
 
         {
             'ms-jpq/chadtree',
+            disable = true,
             branch = 'chad',
             run = 'python3 -m chadtree deps'
         },
@@ -184,7 +185,12 @@ local config =
         {
             'nvim-telescope/telescope.nvim',
             disable = false,
-            requires = { {'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}, {'nvim-telescope/telescope-ui-select.nvim'}}
+            requires = {
+                {'nvim-telescope/telescope-file-browser.nvim'},
+                {'nvim-lua/popup.nvim'},
+                {'nvim-lua/plenary.nvim'},
+                {'nvim-telescope/telescope-ui-select.nvim'}
+            }
         },
 
         {

@@ -55,9 +55,6 @@ local undo_breakpoints = (function ()
 end)()
 
 local settings_config = {
-    plugins = {
-        path = vim.fn.stdpath("config"),
-    },
     enable_lsp = {
         "pyright",
         "tsserver",
@@ -230,6 +227,16 @@ local settings_config = {
                 modes = {"n"},
                 opts = {expr = true}
             }
+        },
+        ['<leader>e'] = {
+            [':Telescope file_browser<CR>'] = {
+                modes = {"n"},
+                opts = { noremap = true, silent = true }
+            }
+            -- ['<cmd>CHADopen<cr>'] = {
+            --     modes = {"n"},
+            --     opts = { noremap = true, silent = true }
+            -- }
         },
         ["[c"] = {
             [function ()
