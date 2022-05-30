@@ -241,7 +241,7 @@ local settings_config = {
         ["[c"] = {
             [function ()
                 if vim.wo.diff then return '[c' end
-                    vim.schedule(function() require("gitsigns").prev_hunk() end)
+                vim.schedule(function() require("gitsigns").prev_hunk() end)
                 return '<Ignore>'
             end] = {
                 modes = {"n"},
