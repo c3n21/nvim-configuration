@@ -44,7 +44,7 @@ vim.opt.fillchars = {
 -----------------------------------------------------------------------------//
 vim.opt.foldtext = 'v:lua.as.folds()'
 vim.opt.foldopen = vim.opt.foldopen + 'search'
-vim.opt.foldlevelstart = 6
+vim.opt.foldlevelstart = 0
 -- vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.wo.foldmethod = "expr"
 vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
