@@ -271,6 +271,9 @@ local config = {
 
         -- Utils
         {
+            "Shatur/neovim-cmake"
+        },
+        {
             "nikvdp/neomux",
             disable = true
         },
