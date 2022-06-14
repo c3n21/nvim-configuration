@@ -53,15 +53,17 @@ cmp.setup({
       end
     end, { "i", "s" }),
   },
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    -- { name = 'vsnip' }, -- For vsnip users.
-    { name = 'luasnip' }, -- For luasnip users.
-    -- { name = 'ultisnips' }, -- For ultisnips users.
-    -- { name = 'snippy' }, -- For snippy users.
-  }, {
+  sources = cmp.config.sources(
+    {
+      { name = 'neorg' },
+      { name = 'nvim_lsp' },
+      -- { name = 'vsnip' }, -- For vsnip users.
+      { name = 'luasnip' }, -- For luasnip users.
+      -- { name = 'ultisnips' }, -- For ultisnips users.
+      -- { name = 'snippy' }, -- For snippy users.
       { name = 'buffer' },
-    }),
+    }
+  ),
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).

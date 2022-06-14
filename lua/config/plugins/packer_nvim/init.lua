@@ -254,6 +254,11 @@ local config = {
         -- Note Taking --
         -----------------
         {
+            "nvim-neorg/neorg",
+            disable = false,
+            requires = "nvim-lua/plenary.nvim"
+        },
+        {
             'vimwiki/vimwiki',
             disable = false,
         },
