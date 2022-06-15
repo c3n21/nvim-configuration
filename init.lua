@@ -25,6 +25,11 @@ local function start()
         print("packer.nvim installed")
 
         vim.cmd([[packadd packer.nvim]])
+
+        install_path = fn.stdpath('data')..'/site/pack/packer/start/plenary.nvim'
+
+        fn.system({'git', 'clone', '--depth', '1', 'https://github.com/nvim-lua/plenary.nvim', install_path})
+        vim.cmd([[packadd plenary.nvim]])
     end
 end
 

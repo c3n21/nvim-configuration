@@ -19,11 +19,11 @@ local function generate_config(plugin_name)
     local sane_plugin_name = sanitize(plugin_name)
 
     local plugin_path = path:new(
-    vim.fn.stdpath("config"),
-    "lua",
-    "config",
-    "plugins",
-    sane_plugin_name
+        vim.fn.stdpath("config"),
+        "lua",
+        "config",
+        "plugins",
+        sane_plugin_name
     )
 
     local plugin_init = plugin_path:joinpath("init.lua")
