@@ -1,3 +1,5 @@
+local fmt = string.format
+
 local function reset()
 	local ns = { "packer", "config", "config.plugins.packer_nvim", "settings", "settings.map", "utils" }
 	for _, n in ipairs(ns) do
@@ -9,7 +11,6 @@ local function start()
     local fn = vim.fn
     local utils = require('utils')
     local printf = utils.printf
-    local fmt = string.format
 
     local install_path = ""
     printf("Detected OS: '%s'", jit.os)
@@ -36,10 +37,19 @@ end
 reset()
 start()
 
-local opts          = { noremap=true, silent=true }
-local packer_config = require("config.plugins.packer_nvim")
-local packer        = require("packer")
+local success
+local packer
+local packer_config
 
+local opts            = { noremap=true, silent=true }
+success, packer_config = pcall(require, "config.plugins.packer_nvim")
+
+if not success then
+    vim.notify(fmt('Error loading packer\'s config: %s', vim.inspect(success)), vim.log.levels.WARN)
+    packer_config = {}
+end
+
+success, packer = pcall(require,"packer")
 packer.startup(packer_config)
 
 local undo_breakpoints = (function ()
@@ -261,8 +271,12 @@ local settings_config = {
 --]]
 settings_config.mappings = vim.tbl_extend("keep", settings_config.mappings, unpack(undo_breakpoints))
 
-local settings = require("settings")
-settings.setup(settings_config)
+local settings
 
-require("config.plugins.kanagawa_nvim")
-vim.cmd("colorscheme kanagawa")
+success, settings = pcall(require, 'settings')
+
+if(not success) then
+    vim.notify(fmt('Error loading settings: %s', vim.inspect(success)), vim.log.levels.WARN)
+else
+    settings.setup(settings_config)
+end
