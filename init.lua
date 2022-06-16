@@ -1,10 +1,10 @@
 local fmt = string.format
 
 local function reset()
-	local ns = { "packer", "config", "config.plugins.packer_nvim", "settings", "settings.map", "utils" }
-	for _, n in ipairs(ns) do
-		package.loaded[n] = nil
-	end
+    local ns = { "packer", "config", "config.plugins.packer_nvim", "settings", "settings.map", "utils" }
+    for _, n in ipairs(ns) do
+        package.loaded[n] = nil
+    end
 end
 
 local function start()
@@ -50,7 +50,12 @@ if not success then
 end
 
 success, packer = pcall(require,"packer")
-packer.startup(packer_config)
+
+if not success then
+    vim.notify(fmt('Error loading packer: %s', vim.inspect(success)), vim.log.levels.WARN)
+else
+    packer.startup(packer_config)
+end
 
 local undo_breakpoints = (function ()
     local breakpoints = {",", ".", "[", "]", "!", "?"}
@@ -236,12 +241,12 @@ local settings_config = {
         ["]c"] = {
             [function ()
                 if vim.wo.diff then return ']c' end
-                    vim.schedule(function() require("gitsigns").next_hunk() end)
+                vim.schedule(function() require("gitsigns").next_hunk() end)
                 return '<Ignore>'
             end] = {
-                modes = {"n"},
-                opts = {expr = true}
-            }
+                    modes = {"n"},
+                    opts = {expr = true}
+                }
         },
         ['<leader>e'] = {
             [':Telescope file_browser<CR>'] = {
@@ -259,9 +264,9 @@ local settings_config = {
                 vim.schedule(function() require("gitsigns").prev_hunk() end)
                 return '<Ignore>'
             end] = {
-                modes = {"n"},
-                opts = {expr = true}
-            }
+                    modes = {"n"},
+                    opts = {expr = true}
+                }
         }
     }
 }
