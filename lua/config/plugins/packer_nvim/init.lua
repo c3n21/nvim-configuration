@@ -302,6 +302,7 @@ local config = {
 
     config = {
         snapshot = nil,
+        snapshot_path = vim.fn.stdpath('config') .. '/lua/snapshots',
         log = { log_level = log_level },
     },
 }
