@@ -67,7 +67,7 @@ vim.g.mkdp_preview_options = {
     ['sequence_diagrams'] = {},
     ['flowchart_diagrams'] = {},
     ['content_editable'] = 0,
-    ['disable_filename'] = 0
+    ['disable_filename'] = 0,
 }
 
 -- use a custom markdown style must be absolute path
@@ -87,4 +87,4 @@ vim.g.mkdp_page_title = '「${name}」'
 
 -- recognized filetypes
 -- these filetypes will have MarkdownPreview... commands
-vim.g.mkdp_filetypes = {'markdown', 'vimwiki'}
+vim.g.mkdp_filetypes = { 'markdown', 'vimwiki' }

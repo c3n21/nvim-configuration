@@ -6,7 +6,7 @@ local utils = {}
 ---@param s string
 ---@vararg any
 utils.printf = function(s, ...)
-    local args = {...}
+    local args = { ... }
     print(fmt(s, unpack(args)))
 end
 

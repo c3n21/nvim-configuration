@@ -1,11 +1,11 @@
 return {
-    init_options = {documentFormatting = true},
+    init_options = { documentFormatting = true },
     settings = {
-        rootMarkers = {".git/"},
+        rootMarkers = { '.git/' },
         languages = {
             lua = {
-                {formatCommand = "lua-format -i", formatStdin = true}
-            }
-        }
-    }
+                { formatCommand = 'lua-format -i', formatStdin = true },
+            },
+        },
+    },
 }

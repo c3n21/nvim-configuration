@@ -1,4 +1,4 @@
-local saga = require 'lspsaga'
+local saga = require('lspsaga')
 
 -- add your config value here
 -- default value

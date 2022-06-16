@@ -1,20 +1,20 @@
 local neorg = require('neorg')
 
-neorg.setup {
+neorg.setup({
     load = {
-        ["core.defaults"] = {}, -- Load all the defaults
-        ["core.norg.completion"] = {
+        ['core.defaults'] = {}, -- Load all the defaults
+        ['core.norg.completion'] = {
             config = {
                 -- Note that this table is optional and doesn't need to be provided
                 -- Configuration here
-                engine = 'nvim-cmp'
-            }
+                engine = 'nvim-cmp',
+            },
         },
-        ["core.norg.concealer"] = {
+        ['core.norg.concealer'] = {
             config = {
-                icon_preset = "diamond",
+                icon_preset = 'diamond',
                 -- markup_preset = "dimmed",
-            }
+            },
         }, -- Allows the use of icons
         -- ["core.keybinds"] = {
         --     config = {
@@ -25,15 +25,15 @@ neorg.setup {
         --         end,
         --     },
         -- },
-        ["core.norg.dirman"] = { -- Manage Neorg directories
+        ['core.norg.dirman'] = { -- Manage Neorg directories
             config = {
                 workspaces = {
-                    work = "~/Documents/Notes",
+                    work = '~/Documents/Notes',
                 },
 
                 autochdir = false,
-                default_workspace = "work",
-            }
+                default_workspace = 'work',
+            },
         },
         -- ["core.integrations.treesitter"] = {
         --     config = {
@@ -54,22 +54,22 @@ neorg.setup {
         --         zen_mode = "truezen",
         --     },
         -- },
-        ["core.norg.journal"] = {},
-        ["core.export"] = {},
+        ['core.norg.journal'] = {},
+        ['core.export'] = {},
         -- ["core.upgrade"] = {},
-        ["core.export.markdown"] = {
+        ['core.export.markdown'] = {
             config = {
-                extensions = "all",
-            }
+                extensions = 'all',
+            },
         },
     },
 
     -- Set custom logger settings
     logger = {
-        level = "warn"
+        level = 'warn',
     },
-}
+})
 
 neorg.modules.load_module('core.norg.completion', nil, {
-    engine = 'nvim-cmp'
+    engine = 'nvim-cmp',
 })

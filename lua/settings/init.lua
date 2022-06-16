@@ -1,26 +1,24 @@
-vim.o.path = vim.o.path .. "**"
+vim.o.path = vim.o.path .. '**'
 
-vim.g.mapleader = " "
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = false,
-        underline = true,
-        signs = true,
-    }
-)
+vim.g.mapleader = ' '
+vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = false,
+    underline = true,
+    signs = true,
+})
 -- Grep rg
 -- Use faster grep alternatives if possible
-if vim.fn.executable 'rg' then
+if vim.fn.executable('rg') then
     vim.o.grepprg = [[rg --glob "!.git" --no-heading --vimgrep --follow $*]]
     vim.opt.grepformat = vim.opt.grepformat ^ { '%f:%l:%c:%m' }
 end
 
-if vim.fn.has("persistent_undo") then
+if vim.fn.has('persistent_undo') then
     -- create the directory and any parent directories
-    local target_path = vim.fn.expand("~/.local/share/nvim/undo")
+    local target_path = vim.fn.expand('~/.local/share/nvim/undo')
     if vim.fn.isdirectory(target_path) < 1 then
-        vim.notify("Creating undo directory")
-        vim.fn.mkdir(target_path, "p")
+        vim.notify('Creating undo directory')
+        vim.fn.mkdir(target_path, 'p')
     end
     vim.o.undodir = target_path
 end
@@ -46,8 +44,8 @@ vim.opt.foldtext = 'v:lua.as.folds()'
 vim.opt.foldopen = vim.opt.foldopen + 'search'
 vim.opt.foldlevelstart = 0
 -- vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.wo.foldmethod = "expr"
-vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+vim.wo.foldmethod = 'expr'
+vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 -- vim.wo.foldtext =
 --     [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) ]]
 -- vim.wo.fillchars = "fold:\\"
@@ -88,7 +86,7 @@ vim.opt.diffopt = vim.opt.diffopt
         'indent-heuristic',
     }
 
-vim.o.clipboard="unnamedplus"
+vim.o.clipboard = 'unnamedplus'
 
 --vim.opt.list = true -- invisible chars
 --vim.opt.listchars = {
@@ -107,27 +105,26 @@ vim.opt.autoindent = true --indent a new line the same amount as the line just t
 vim.opt.number = true -- add line numbers
 vim.opt.relativenumber = true -- enable relative numbers
 
-vim.opt.wildmode = {"longest,list"} -- completion
+vim.opt.wildmode = { 'longest,list' } -- completion
 
-vim.opt.encoding = "utf-8"
-vim.opt.fileencoding = "utf-8"
+vim.opt.encoding = 'utf-8'
+vim.opt.fileencoding = 'utf-8'
 
 vim.termguicolors = true
 
 vim.opt.showmatch = true
-vim.opt.mouse = "v"
+vim.opt.mouse = 'v'
 vim.opt.hlsearch = true
 vim.opt.pyx = 3
 vim.opt.autoread = true
 vim.opt.hidden = true
 vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
-vim.opt.colorcolumn = "80"
+vim.opt.signcolumn = 'yes'
+vim.opt.colorcolumn = '80'
 vim.incsearch = true
 
-
-vim.opt.tabstop=4 -- number of spaces for each tab
-vim.opt.shiftwidth=4 -- number of space used for indenting using >> or <<
+vim.opt.tabstop = 4 -- number of spaces for each tab
+vim.opt.shiftwidth = 4 -- number of space used for indenting using >> or <<
 vim.opt.expandtab = true
 
 -- vim.api.nvim_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
@@ -171,9 +168,8 @@ local _config = {
     enable_lsp = {},
     log_level = vim.log.levels.WARN,
     completion = {
-        current = ""
+        current = '',
     },
-
 }
 
 local function apply()
@@ -186,22 +182,21 @@ local function apply()
 end
 
 return {
-    ['setup'] = function (config)
+    ['setup'] = function(config)
         setmetatable(config.completion, {
-            __index = function (_, key)
-                return function (ls_config)
+            __index = function(_, key)
+                return function(ls_config)
                     print(string.format("Completion framework '%s' not available", key))
                     return ls_config
                 end
-            end
-
+            end,
         })
 
         _config = config
         apply()
     end,
 
-    ['get_config'] = function ()
+    ['get_config'] = function()
         return _config
-    end
+    end,
 }

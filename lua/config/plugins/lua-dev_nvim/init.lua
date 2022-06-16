@@ -1,13 +1,12 @@
 local system_config = require('settings').get_config()
 local current = system_config.completion.current
 
-local sumneko_root_path = "/usr/lib/lua-language-server"
-local sumneko_binary = "/bin/lua-language-server"
-
+local sumneko_root_path = '/usr/lib/lua-language-server'
+local sumneko_binary = '/bin/lua-language-server'
 
 local lspconfig = {
     -- cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
-    cmd = {"lua-language-server"};
+    cmd = { 'lua-language-server' },
     settings = {
         Lua = {
             runtime = {
@@ -18,7 +17,7 @@ local lspconfig = {
                 -- Get the language server to recognize the `vim` global
             },
             workspace = {
-                maxPreload = 5000
+                maxPreload = 5000,
             },
             -- Do not send telemetry data containing a randomized but unique identifier
             telemetry = {
@@ -39,8 +38,8 @@ local config = {
         -- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
     },
     -- pass any additional options that will be merged in the final lsp config
-    lspconfig = lspconfig
+    lspconfig = lspconfig,
 }
 
-local luadev = require("lua-dev").setup(config)
-require'lspconfig'.sumneko_lua.setup(luadev)
+local luadev = require('lua-dev').setup(config)
+require('lspconfig').sumneko_lua.setup(luadev)
