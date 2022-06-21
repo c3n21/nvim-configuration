@@ -48,7 +48,7 @@ local config = {
 
         {
             'ThePrimeagen/git-worktree.nvim',
-            disable = true,
+            disable = false,
         },
 
         {
