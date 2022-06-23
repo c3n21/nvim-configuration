@@ -102,9 +102,16 @@ local config = {
             run = 'python3 -m chadtree deps',
         },
 
+        -- DAP --
+
         {
             'mfussenegger/nvim-dap',
             disable = false,
+        },
+
+        {
+            'rcarriga/nvim-dap-ui',
+            disable = false
         },
 
         {

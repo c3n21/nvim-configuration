@@ -165,6 +165,7 @@ vim.opt.expandtab = true
 local _config = {
     mappings = {},
     plugins = {},
+    enable_dap = {},
     enable_lsp = {},
     log_level = vim.log.levels.WARN,
     completion = {

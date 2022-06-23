@@ -75,6 +75,9 @@ local undo_breakpoints = (function()
 end)()
 
 local settings_config = {
+    enable_dap = {
+        'php'
+    },
     enable_lsp = {
         'pyright',
         'tsserver',
