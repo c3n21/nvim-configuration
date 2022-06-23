@@ -21,9 +21,9 @@ local function start()
     end
 
     if fn.empty(fn.glob(install_path)) > 0 then
-        printf("packer.nvim not installed: installing in '%s'", install_path)
+        vim.notify(fmt("packer.nvim not installed: installing in '%s'", install_path), vim.log.levels.INFO)
         fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
-        print('packer.nvim installed')
+        vim.notify("packer.nvim installed", vim.log.levels.INFO)
 
         vim.cmd([[packadd packer.nvim]])
 
