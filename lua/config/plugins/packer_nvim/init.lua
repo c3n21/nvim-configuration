@@ -111,7 +111,7 @@ local config = {
 
         {
             'rcarriga/nvim-dap-ui',
-            disable = false
+            disable = false,
         },
 
         {

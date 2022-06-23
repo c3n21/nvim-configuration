@@ -1,5 +1,5 @@
 local settings = require('settings')
-local dap      = require('dap')
+local dap = require('dap')
 local _config = settings.get_config()
 
 for _, language in ipairs(_config.enable_dap) do

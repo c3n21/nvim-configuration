@@ -23,7 +23,7 @@ local function start()
     if fn.empty(fn.glob(install_path)) > 0 then
         vim.notify(fmt("packer.nvim not installed: installing in '%s'", install_path), vim.log.levels.INFO)
         fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
-        vim.notify("packer.nvim installed", vim.log.levels.INFO)
+        vim.notify('packer.nvim installed', vim.log.levels.INFO)
 
         vim.cmd([[packadd packer.nvim]])
 
@@ -76,7 +76,7 @@ end)()
 
 local settings_config = {
     enable_dap = {
-        'php'
+        'php',
     },
     enable_lsp = {
         'pyright',
@@ -275,6 +275,76 @@ local settings_config = {
                     require('gitsigns').prev_hunk()
                 end)
                 return '<Ignore>'
+            end] = {
+                modes = { 'n' },
+                opts = { expr = true },
+            },
+        },
+        -- DAP
+
+        ['<F5>'] = {
+            [function()
+                vim.schedule(require('dap').continue)
+            end] = {
+                modes = { 'n' },
+                opts = { expr = true },
+            },
+        },
+        ['<F10>'] = {
+            [require('dap').step_over] = {
+                modes = { 'n' },
+                opts = { expr = true },
+            },
+        },
+        ['<F11>'] = {
+            [require('dap').step_into] = {
+                modes = { 'n' },
+                opts = { expr = true },
+            },
+        },
+        ['<F12>'] = {
+            [require('dap').step_out] = {
+                modes = { 'n' },
+                opts = { expr = true },
+            },
+        },
+        ['<F1>'] = {
+            [require('dap').toggle_breakpoint] = {
+                modes = { 'n' },
+                opts = { expr = true },
+            },
+        },
+        ['<F2>'] = {
+            [function()
+                require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))
+            end] = {
+                modes = { 'n' },
+                opts = { expr = true },
+            },
+        },
+        ['<F3>'] = {
+            [function()
+                require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))
+            end] = {
+                modes = { 'n' },
+                opts = { expr = true },
+            },
+        },
+        ['<F4>'] = {
+            [require('dap').repl.open] = {
+                modes = { 'n' },
+                opts = { expr = true },
+            },
+        },
+        ['<F6>'] = {
+            [require('dap').run_last] = {
+                modes = { 'n' },
+                opts = { expr = true },
+            },
+        },
+        ['<F7>'] = {
+            [function()
+                vim.schedule(require('dapui').toggle)
             end] = {
                 modes = { 'n' },
                 opts = { expr = true },
