@@ -350,6 +350,25 @@ local settings_config = {
                 opts = { expr = true },
             },
         },
+        ['<leader>tn'] = {
+            [':tabnew<CR>'] = {
+                modes = { 'n' },
+
+                opts = { noremap = true, silent = true },
+            }
+        },
+        [']t'] = {
+            [':tabnext<CR>'] = {
+                modes = { 'n' },
+                opts = { noremap = true, silent = true },
+            }
+        },
+        ['[t'] = {
+            [':tabprevious<CR>'] = {
+                modes = { 'n' },
+                opts = { noremap = true, silent = true },
+            }
+        },
     },
 }
 
