@@ -355,19 +355,19 @@ local settings_config = {
                 modes = { 'n' },
 
                 opts = { noremap = true, silent = true },
-            }
+            },
         },
         [']t'] = {
             [':tabnext<CR>'] = {
                 modes = { 'n' },
                 opts = { noremap = true, silent = true },
-            }
+            },
         },
         ['[t'] = {
             [':tabprevious<CR>'] = {
                 modes = { 'n' },
                 opts = { noremap = true, silent = true },
-            }
+            },
         },
     },
 }

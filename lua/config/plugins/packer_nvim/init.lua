@@ -73,6 +73,11 @@ local config = {
         },
 
         {
+            'hrsh7th/cmp-nvim-lsp-signature-help',
+            disable = false,
+        },
+
+        {
             'hrsh7th/nvim-cmp',
             disable = false,
             requires = {
@@ -116,6 +121,11 @@ local config = {
 
         {
             'windwp/nvim-autopairs',
+            disable = false,
+        },
+
+        {
+            'windwp/nvim-ts-autotag',
             disable = false,
         },
 
