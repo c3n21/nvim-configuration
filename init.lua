@@ -357,6 +357,12 @@ local settings_config = {
                 opts = { noremap = true, silent = true },
             },
         },
+        ['<leader>fd'] = {
+            [':Telescope fd<CR>'] = {
+                modes = { 'n' },
+                opts = { noremap = true, silent = true },
+            },
+        },
         [']t'] = {
             [':tabnext<CR>'] = {
                 modes = { 'n' },
