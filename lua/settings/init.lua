@@ -187,7 +187,7 @@ return {
         setmetatable(config.completion, {
             __index = function(_, key)
                 return function(ls_config)
-                    print(string.format("Completion framework '%s' not available", key))
+                    vim.notify(string.format("Completion framework '%s' not available", key), vim.log.levels.WARN)
                     return ls_config
                 end
             end,

@@ -6,8 +6,6 @@ local home = os.getenv('HOME')
 local _configuration = home .. '/.local/share/java/jdtls/config_linux'
 
 local _data = home .. '/.local/jdtls/' .. project_name
--- print(_configuration)
--- print(_data)
 
 local config = {
     -- The command that starts the language server

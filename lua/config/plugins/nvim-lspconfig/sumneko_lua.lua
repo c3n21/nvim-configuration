@@ -2,7 +2,6 @@ local lspconfig = require('lspconfig')
 local coq = require('coq') -- add this
 local sumneko_lua = lspconfig.sumneko_lua
 local system_name = ''
-vim.inspect()
 if vim.fn.has('mac') == 1 then
     system_name = 'macOS'
 elseif vim.fn.has('unix') == 1 then
@@ -45,7 +44,6 @@ for _, runtime_path in pairs(vim.api.nvim_list_runtime_paths()) do
     library[runtime_path] = true
 end
 
-print(vim.inspect(library))
 sumneko_lua.setup(coq.lsp_ensure_capabilities({
     cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
     filetypes = { 'lua', 'vim' },
