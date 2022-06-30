@@ -1,4 +1,5 @@
 local fmt = string.format
+local luasnip = require('luasnip')
 
 local function reset()
     local ns = { 'packer', 'config', 'config.plugins.packer_nvim', 'settings', 'settings.map', 'utils' }
@@ -180,7 +181,7 @@ local settings_config = {
                 opts = opts,
             },
         },
-        ['<C-k>'] = {
+        ['H'] = {
             [vim.lsp.buf.signature_help] = {
                 modes = { 'n' },
                 opts = opts,
@@ -375,6 +376,43 @@ local settings_config = {
                 opts = { noremap = true, silent = true },
             },
         },
+        ['<leader><leader>s'] = {
+            ['<cmd> source ~/.config/nvim/lua/config/plugins/LuaSnip/init.lua <CR>'] = {
+                modes = { 'n' },
+                opts = { noremap = true, silent = true },
+            },
+        },
+        ['<c-l>'] = {
+            [function()
+                if luasnip.choice_active() then
+                    luasnip.change_choice(1)
+                end
+            end] = {
+                modes = { 'n', 's' },
+                opts = { noremap = true, silent = true },
+            },
+        },
+        ['<c-j>'] = {
+            [function()
+                if luasnip.jumpable(-1) then
+                    luasnip.jump(-1)
+                end
+            end] = {
+                modes = { 'i', 's' },
+                opts = { noremap = true, silent = true },
+            },
+        },
+        ['<c-k>'] = {
+            [function()
+                if luasnip.expand_or_jumpable() then
+                    luasnip.expand_or_jump()
+                end
+            end] = {
+
+                modes = { 'i', 's' },
+                opts = { noremap = true, silent = true },
+            },
+        },
     },
 }
 
@@ -386,7 +424,6 @@ settings_config.mappings = vim.tbl_extend('keep', settings_config.mappings, unpa
 local settings
 
 success, settings = pcall(require, 'settings')
-
 if not success then
     vim.notify(fmt('Error loading settings: %s', vim.inspect(success)), vim.log.levels.WARN)
 else

@@ -295,6 +295,7 @@ local config = {
 
         {
             'L3MON4D3/LuaSnip',
+            disable = false,
             requires = { 'saadparwaiz1/cmp_luasnip' },
         },
 
