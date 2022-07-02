@@ -242,6 +242,10 @@ local config = {
             'terrortylor/nvim-comment',
             disable = true,
         },
+        {
+            'anuvyklack/hydra.nvim',
+            requires = 'anuvyklack/keymap-layer.nvim', -- needed only for pink hydras
+        },
 
         -- Navigation
 
