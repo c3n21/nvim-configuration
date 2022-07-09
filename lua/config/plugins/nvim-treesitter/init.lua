@@ -1,6 +1,11 @@
 local ts_setup = require('nvim-treesitter.configs')
 
 ts_setup.setup({
+    -- for Comment.nvim (https://github.com/JoosepAlviste/nvim-ts-context-commentstring#integrations)
+    context_commentstring = {
+        enable = true,
+        enable_autocmd = false,
+    },
     ensure_installed = { 'c', 'bash', 'html', 'javascript', 'lua', 'python' }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
 
     highlight = {

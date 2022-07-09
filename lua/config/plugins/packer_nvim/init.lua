@@ -236,6 +236,7 @@ local config = {
         {
             --- https://github.com/JoosepAlviste/nvim-ts-context-commentstring#integrations
             'numToStr/Comment.nvim',
+            requires = 'JoosepAlviste/nvim-ts-context-commentstring',
         },
 
         {
