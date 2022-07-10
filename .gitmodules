@@ -1,0 +1,3 @@
+[submodule "lua/config/plugins/LuaSnip/friendly-snippets"]
+	path = lua/config/plugins/LuaSnip/friendly-snippets
+	url = https://github.com/rafamadriz/friendly-snippets

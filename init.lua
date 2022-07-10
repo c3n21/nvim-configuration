@@ -387,7 +387,7 @@ local settings_config = {
                     luasnip.change_choice(1)
                 end
             end] = {
-                modes = { 'n', 's' },
+                modes = { 'i', 's' },
                 opts = { noremap = true, silent = true },
             },
         },
