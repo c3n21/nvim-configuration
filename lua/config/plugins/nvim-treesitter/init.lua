@@ -1,6 +1,11 @@
 local ts_setup = require('nvim-treesitter.configs')
 
 ts_setup.setup({
+    query_linter = {
+        enable = true,
+        use_virtual_text = true,
+        lint_events = { 'BufWrite', 'CursorHold', 'InsertLeave' },
+    },
     playground = {
         enable = true,
         disable = {},
@@ -24,7 +29,7 @@ ts_setup.setup({
         enable = true,
         enable_autocmd = false,
     },
-    ensure_installed = { 'c', 'bash', 'html', 'javascript', 'lua', 'python' }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    ensure_installed = { 'c', 'bash', 'html', 'javascript', 'lua', 'python', 'php' }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
 
     highlight = {
         enable = true, -- false will disable the whole extension
