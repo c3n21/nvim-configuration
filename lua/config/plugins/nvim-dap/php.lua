@@ -6,19 +6,23 @@ return {
     },
     configurations = {
         {
-            name = 'run current script',
+            name = 'Run current script VSCode',
+            type = 'php',
+            request = 'launch',
+            port = 9003,
+            hostname = '0.0.0.0',
+            pathMappings = {
+                ['/var/www/html'] = '${workspaceFolder}',
+            },
+        },
+        {
+            name = 'Run current script (Native)',
             type = 'php',
             request = 'launch',
             port = 9003,
             cwd = '${fileDirname}',
             program = '${file}',
             runtimeExecutable = 'php',
-        },
-        {
-            type = 'php',
-            request = 'launch',
-            name = 'Listen for Xdebug',
-            port = 9003,
         },
     },
 }
