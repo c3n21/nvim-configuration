@@ -412,6 +412,12 @@ local settings_config = {
                 opts = { noremap = true, silent = true },
             },
         },
+        ['<leader><leader>f'] = {
+            [vim.lsp.buf.format] = {
+                modes = { 'n' },
+                opts = { noremap = true, silent = true },
+            },
+        },
     },
 }
 
