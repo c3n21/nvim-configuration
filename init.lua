@@ -202,7 +202,7 @@ local settings_config = {
 
         ['<leader>ca'] = {
             [vim.lsp.buf.code_action] = {
-                modes = { 'n' },
+                modes = { 'n', 'v'},
                 opts = opts,
             },
         },

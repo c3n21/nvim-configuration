@@ -47,15 +47,5 @@ local config = {
 }
 
 local pretty_fold = require('pretty-fold')
-local pretty_fold_preview = require('pretty-fold.preview')
--- local keymap_amend = require('keymap-amend')
--- local mapping = require('pretty-fold.preview').mapping
 
 pretty_fold.setup(config)
-pretty_fold_preview.setup(config)
-
--- keymap_amend('n', 'h',  mapping.show_close_preview_open_fold)
--- keymap_amend('n', 'l',  mapping.close_preview_open_fold)
--- keymap_amend('n', 'zo', mapping.close_preview)
--- keymap_amend('n', 'zO', mapping.close_preview)
--- keymap_amend('n', 'zc', mapping.close_preview_without_defer)

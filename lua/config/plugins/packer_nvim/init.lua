@@ -42,6 +42,10 @@ local config = {
         },
 
         {
+            'ThePrimeagen/refactoring.nvim',
+        },
+
+        {
             'jbyuki/one-small-step-for-vimkind',
             disable = true,
         },
@@ -82,6 +86,7 @@ local config = {
             disable = false,
             requires = {
                 { 'hrsh7th/cmp-nvim-lsp' },
+                { 'hrsh7th/cmp-cmdline' }
             },
         },
 
@@ -175,6 +180,10 @@ local config = {
         },
 
         {
+            'anuvyklack/fold-preview.nvim',
+        },
+
+        {
             'nvim-treesitter/nvim-treesitter-textobjects',
             after = 'nvim-treesitter',
             requires = {
@@ -247,6 +256,7 @@ local config = {
             'terrortylor/nvim-comment',
             disable = true,
         },
+
         {
             'anuvyklack/hydra.nvim',
             requires = 'anuvyklack/keymap-layer.nvim', -- needed only for pink hydras
