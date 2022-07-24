@@ -78,7 +78,10 @@ telescope.setup({
     },
 })
 
-local extensions = { 'ui-select', 'file_browser' }
+local extensions = {
+    'ui-select',
+    -- 'file_browser'
+}
 
 for _, value in ipairs(extensions) do
     telescope.load_extension(value)

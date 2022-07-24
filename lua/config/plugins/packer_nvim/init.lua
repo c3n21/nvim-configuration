@@ -86,7 +86,7 @@ local config = {
             disable = false,
             requires = {
                 { 'hrsh7th/cmp-nvim-lsp' },
-                { 'hrsh7th/cmp-cmdline' }
+                { 'hrsh7th/cmp-cmdline' },
             },
         },
 
@@ -107,7 +107,7 @@ local config = {
 
         {
             'ms-jpq/chadtree',
-            disable = true,
+            disable = false,
             branch = 'chad',
             run = 'python3 -m chadtree deps',
         },
@@ -208,7 +208,7 @@ local config = {
             'nvim-telescope/telescope.nvim',
             disable = false,
             requires = {
-                { 'nvim-telescope/telescope-file-browser.nvim' },
+                -- { 'nvim-telescope/telescope-file-browser.nvim' },
                 { 'nvim-lua/popup.nvim' },
                 { 'nvim-lua/plenary.nvim' },
                 { 'nvim-telescope/telescope-ui-select.nvim' },

@@ -257,7 +257,8 @@ local settings_config = {
             },
         },
         ['<leader>e'] = {
-            [':Telescope file_browser<CR>'] = {
+            ['<cmd>CHADopen<cr>'] = {
+            -- [':Telescope file_browser<CR>'] = {
                 modes = { 'n' },
                 opts = { noremap = true, silent = true },
             },
