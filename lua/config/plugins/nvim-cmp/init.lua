@@ -10,6 +10,34 @@ end
 --   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 -- end
 
+-- local cmp_kinds = {
+--     Text = '  ',
+--     Method = '  ',
+--     Function = '  ',
+--     Constructor = '  ',
+--     Field = '  ',
+--     Variable = '  ',
+--     Class = '  ',
+--     Interface = '  ',
+--     Module = '  ',
+--     Property = '  ',
+--     Unit = '  ',
+--     Value = '  ',
+--     Enum = '  ',
+--     Keyword = '  ',
+--     Snippet = '  ',
+--     Color = '  ',
+--     File = '  ',
+--     Reference = '  ',
+--     Folder = '  ',
+--     EnumMember = '  ',
+--     Constant = '  ',
+--     Struct = '  ',
+--     Event = '  ',
+--     Operator = '  ',
+--     TypeParameter = '  ',
+-- }
+
 cmp.setup({
     snippet = {
         -- REQUIRED - you must specify a snippet engine
@@ -19,6 +47,16 @@ cmp.setup({
             -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
             -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
         end,
+    },
+    -- formatting = {
+    --     format = function(_, vim_item)
+    --         vim_item.kind = (cmp_kinds[vim_item.kind] or '') .. vim_item.kind
+    --         return vim_item
+    --     end,
+    -- },
+    window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
     },
     mapping = {
         ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
@@ -86,6 +124,5 @@ cmp.setup.cmdline(':', {
     sources = cmp.config.sources({
         { name = 'path' },
         { name = 'cmdline' },
-    }
-    ),
+    }),
 })
