@@ -202,7 +202,11 @@ local settings_config = {
 
         ['<leader>ca'] = {
             [vim.lsp.buf.code_action] = {
-                modes = { 'n', 'v'},
+                modes = { 'n' },
+                opts = opts,
+            },
+            [vim.lsp.buf.range_code_action] = {
+                modes = { 'v' },
                 opts = opts,
             },
         },
@@ -230,8 +234,32 @@ local settings_config = {
                 opts = opts,
             },
         },
+        ['<leader>lq'] = {
+            [':lclose<CR>'] = {
+                modes = { 'n' },
+                opts = opts,
+            },
+        },
+        ['<leader>lo'] = {
+            [':lopen<CR>'] = {
+                modes = { 'n' },
+                opts = opts,
+            },
+        },
+        [']l'] = {
+            [':lnext<CR>'] = {
+                modes = { 'n' },
+                opts = opts,
+            },
+        },
+        ['[l'] = {
+            [':lprev<CR>'] = {
+                modes = { 'n' },
+                opts = opts,
+            },
+        },
         ['<leader>cq'] = {
-            [':close<CR>'] = {
+            [':cclose<CR>'] = {
                 modes = { 'n' },
                 opts = opts,
             },
@@ -243,10 +271,22 @@ local settings_config = {
             },
         },
         [']c'] = {
+            [':cnext <CR>'] = {
+                modes = { 'n' },
+                opts = opts,
+            },
+        },
+        ['[c'] = {
+            [':cprevious <CR>'] = {
+                modes = { 'n' },
+                opts = opts,
+            },
+        },
+        [']g'] = {
             [function()
-                if vim.wo.diff then
-                    return ']c'
-                end
+                -- if vim.wo.diff then
+                --     return ']c'
+                -- end
                 vim.schedule(function()
                     require('gitsigns').next_hunk()
                 end)
@@ -256,22 +296,11 @@ local settings_config = {
                 opts = { expr = true },
             },
         },
-        ['<leader>e'] = {
-            ['<cmd>CHADopen<cr>'] = {
-            -- [':Telescope file_browser<CR>'] = {
-                modes = { 'n' },
-                opts = { noremap = true, silent = true },
-            },
-            -- ['<cmd>CHADopen<cr>'] = {
-            --     modes = {"n"},
-            --     opts = { noremap = true, silent = true }
-            -- }
-        },
-        ['[c'] = {
+        ['[g'] = {
             [function()
-                if vim.wo.diff then
-                    return '[c'
-                end
+                -- if vim.wo.diff then
+                --     return '[c'
+                -- end
                 vim.schedule(function()
                     require('gitsigns').prev_hunk()
                 end)
@@ -280,6 +309,17 @@ local settings_config = {
                 modes = { 'n' },
                 opts = { expr = true },
             },
+        },
+        ['<leader>e'] = {
+            ['<cmd>CHADopen<cr>'] = {
+                -- [':Telescope file_browser<CR>'] = {
+                modes = { 'n' },
+                opts = { noremap = true, silent = true },
+            },
+            -- ['<cmd>CHADopen<cr>'] = {
+            --     modes = {"n"},
+            --     opts = { noremap = true, silent = true }
+            -- }
         },
         -- DAP
 
