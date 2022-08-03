@@ -3,8 +3,8 @@ local luasnip = require('luasnip')
 
 local function reset()
     local ns = { 'packer', 'config', 'config.plugins.packer_nvim', 'settings', 'settings.map', 'utils' }
-    for _, n in ipairs(ns) do
-        package.loaded[n] = nil
+    for _, name in pairs(ns) do
+        package.loaded[name] = nil
     end
 end
 
@@ -258,35 +258,35 @@ local settings_config = {
                 opts = opts,
             },
         },
-        ['<leader>cq'] = {
+        ['<leader>qq'] = {
             [':cclose<CR>'] = {
                 modes = { 'n' },
                 opts = opts,
             },
         },
-        ['<leader>co'] = {
+        ['<leader>qo'] = {
             [':copen<CR>'] = {
                 modes = { 'n' },
                 opts = opts,
             },
         },
-        [']c'] = {
+        [']q'] = {
             [':cnext <CR>'] = {
                 modes = { 'n' },
                 opts = opts,
             },
         },
-        ['[c'] = {
+        ['[q'] = {
             [':cprevious <CR>'] = {
                 modes = { 'n' },
                 opts = opts,
             },
         },
-        [']g'] = {
+        [']c'] = {
             [function()
-                -- if vim.wo.diff then
-                --     return ']c'
-                -- end
+                if vim.wo.diff then
+                    return ']c'
+                end
                 vim.schedule(function()
                     require('gitsigns').next_hunk()
                 end)
@@ -296,11 +296,11 @@ local settings_config = {
                 opts = { expr = true },
             },
         },
-        ['[g'] = {
+        ['[c'] = {
             [function()
-                -- if vim.wo.diff then
-                --     return '[c'
-                -- end
+                if vim.wo.diff then
+                    return '[c'
+                end
                 vim.schedule(function()
                     require('gitsigns').prev_hunk()
                 end)
