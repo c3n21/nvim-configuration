@@ -289,7 +289,7 @@ local config = {
         },
         {
             'vimwiki/vimwiki',
-            disable = false,
+            disable = true,
         },
 
         {
@@ -328,7 +328,7 @@ local config = {
 
         {
             'akinsho/toggleterm.nvim',
-            disable = false,
+            disable = true,
         },
 
         {
