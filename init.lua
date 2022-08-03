@@ -151,7 +151,10 @@ local settings_config = {
             --     modes = {"n"},
             --     opts = opts
             -- }
-            [require('telescope.builtin').buffers] = {
+            [function ()
+                -- require('telescope.builtin').buffers({ only_cwd = vim.fn.haslocaldir() == 1 })
+                require('telescope.builtin').buffers({ only_cwd = true })
+            end] = {
                 modes = { 'n' },
                 opts = opts,
             },
@@ -455,6 +458,12 @@ local settings_config = {
         },
         ['<leader><leader>f'] = {
             [vim.lsp.buf.format] = {
+                modes = { 'n' },
+                opts = { noremap = true, silent = true },
+            },
+        },
+        ['<leader><leader>i'] = {
+            [':luafile ' .. os.getenv('MYVIMRC') .. '<CR>'] = {
                 modes = { 'n' },
                 opts = { noremap = true, silent = true },
             },
