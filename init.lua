@@ -144,7 +144,7 @@ local settings_config = {
                 opts = opts,
             },
         },
-        ['<leader>bq>'] = {
+        ['<leader>bq'] = {
             [':bd<CR>'] = {
                 modes = { 'n' },
                 opts = opts,
@@ -188,11 +188,7 @@ local settings_config = {
         },
         ['<leader>ca'] = {
             [vim.lsp.buf.code_action] = {
-                modes = { 'n' },
-                opts = opts,
-            },
-            [vim.lsp.buf.code_action] = {
-                modes = { 'v' },
+                modes = { 'n', 'v' },
                 opts = opts,
             },
         },
@@ -402,12 +398,6 @@ local settings_config = {
                 opts = { noremap = true, silent = true },
             },
         },
-        ['<leader><leader>s'] = {
-            ['<cmd> source ~/.config/nvim/lua/config/plugins/LuaSnip/init.lua <CR>'] = {
-                modes = { 'n' },
-                opts = { noremap = true, silent = true },
-            },
-        },
         ['<c-l>'] = {
             [function()
                 if luasnip.choice_active() then
@@ -439,6 +429,12 @@ local settings_config = {
                 opts = { noremap = true, silent = true },
             },
         },
+        ['<leader><leader>s'] = {
+            ['<cmd> source ~/.config/nvim/lua/config/plugins/LuaSnip/init.lua <CR>'] = {
+                modes = { 'n' },
+                opts = { noremap = true, silent = true },
+            },
+        },
         ['<leader><leader>f'] = {
             [vim.lsp.buf.format] = {
                 modes = { 'n' },
@@ -466,4 +462,9 @@ if not success then
     vim.notify(fmt('Error loading settings: %s', vim.inspect(success)), vim.log.levels.WARN)
 else
     settings.setup(settings_config)
+end
+
+success, settings = pcall(require, 'packer_compiled')
+if not success then
+    vim.notify(fmt('Error loading packer_compiled: %s', vim.inspect(success)), vim.log.levels.WARN)
 end

@@ -150,6 +150,10 @@ local config = {
             'neovim/nvim-lspconfig',
             disable = false,
         },
+        {
+            'ahmedkhalf/project.nvim',
+            disable = false
+        },
 
         {
             'folke/lua-dev.nvim',
@@ -218,6 +222,10 @@ local config = {
 
         {
             'tpope/vim-fugitive',
+        },
+
+        {
+            'sindrets/diffview.nvim',
         },
 
         {
@@ -343,6 +351,7 @@ local config = {
         snapshot_path = vim.fn.stdpath('config') .. '/lua/snapshots',
         log = { log_level = log_level },
         compile_path = util.join_paths(vim.fn.stdpath('config'), 'lua', 'packer_compiled.lua'),
+        auto_reload_compiled = true
     },
 }
 
