@@ -1,4 +1,5 @@
 local log_level = 'trace' --'warn'
+local util = require('packer.util')
 
 local function sanitize(plugin_name)
     local result = vim.split(plugin_name, '/', {
@@ -341,11 +342,12 @@ local config = {
         snapshot = nil,
         snapshot_path = vim.fn.stdpath('config') .. '/lua/snapshots',
         log = { log_level = log_level },
+        compile_path = util.join_paths(vim.fn.stdpath('config'), 'lua', 'packer_compiled.lua'),
     },
 }
 
 for _, plugin in pairs(config[1]) do
-    if not plugin.config and (not plugin.myopts or plugin.myopts and not plugin.myopts.ignore) then
+    if not plugin.config then
         plugin.config = generate_config(plugin[1])
     end
 end

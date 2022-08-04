@@ -10,11 +10,9 @@ end
 
 local function start()
     local fn = vim.fn
-    local utils = require('utils')
-    local printf = utils.printf
 
     local install_path = ''
-    printf("Detected OS: '%s'", jit.os)
+    vim.notify(fmt("Detected OS: '%s'", jit.os), vim.log.levels.INFO)
     if jit.os == 'Linux' then
         install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
     else
@@ -37,6 +35,8 @@ end
 
 reset()
 start()
+
+vim.env.GIT_EDITOR = 'nvr -cc split --remote-wait'
 
 local success
 local packer
@@ -111,7 +111,7 @@ local settings_config = {
     },
     mappings = {
         --[[
-        -- Lines manipulation
+        Lines manipulation
         --]]
         ['<M-K>'] = {
             [':m-2 <CR>gv=gv'] = {
@@ -134,32 +134,17 @@ local settings_config = {
             },
         },
         --[[
-        -- Registers manipulation
+        Undo break points
         --]]
-        ['<C-c>'] = {
-            ['"+y'] = {
-                modes = { 'v' },
-                opts = opts,
-            },
-        },
-        --[[
-        -- Undo break points
-        --]]
-        -- unpack(undo_breakpoints),
-        ['<leader>b'] = {
-            -- [":buffers<CR>"] = {
-            --     modes = {"n"},
-            --     opts = opts
-            -- }
-            [function ()
-                -- require('telescope.builtin').buffers({ only_cwd = vim.fn.haslocaldir() == 1 })
-                require('telescope.builtin').buffers({ only_cwd = true })
+        ['<leader>bo'] = {
+            [function()
+                require('telescope.builtin').buffers({ only_cwd = vim.fn.haslocaldir() == 1 })
             end] = {
                 modes = { 'n' },
                 opts = opts,
             },
         },
-        ['<C-q>'] = {
+        ['<leader>bq>'] = {
             [':bd<CR>'] = {
                 modes = { 'n' },
                 opts = opts,
@@ -201,14 +186,12 @@ local settings_config = {
                 opts = opts,
             },
         },
-        -- code_action = create_map("n", "<leader>ca", { cmd = vim.lsp.buf.code_action, opts = opts }),
-
         ['<leader>ca'] = {
             [vim.lsp.buf.code_action] = {
                 modes = { 'n' },
                 opts = opts,
             },
-            [vim.lsp.buf.range_code_action] = {
+            [vim.lsp.buf.code_action] = {
                 modes = { 'v' },
                 opts = opts,
             },
@@ -319,39 +302,10 @@ local settings_config = {
                 modes = { 'n' },
                 opts = { noremap = true, silent = true },
             },
-            -- ['<cmd>CHADopen<cr>'] = {
-            --     modes = {"n"},
-            --     opts = { noremap = true, silent = true }
-            -- }
         },
-        -- DAP
-
-        ['<F5>'] = {
-            [function()
-                vim.schedule(require('dap').continue)
-            end] = {
-                modes = { 'n' },
-                opts = { expr = true },
-            },
-        },
-        ['<F10>'] = {
-            [require('dap').step_over] = {
-                modes = { 'n' },
-                opts = { expr = true },
-            },
-        },
-        ['<F11>'] = {
-            [require('dap').step_into] = {
-                modes = { 'n' },
-                opts = { expr = true },
-            },
-        },
-        ['<F12>'] = {
-            [require('dap').step_out] = {
-                modes = { 'n' },
-                opts = { expr = true },
-            },
-        },
+        --[[ 
+        DAP
+       --]]
         ['<F1>'] = {
             [require('dap').toggle_breakpoint] = {
                 modes = { 'n' },
@@ -380,6 +334,14 @@ local settings_config = {
                 opts = { expr = true },
             },
         },
+        ['<F5>'] = {
+            [function()
+                vim.schedule(require('dap').continue)
+            end] = {
+                modes = { 'n' },
+                opts = { expr = true },
+            },
+        },
         ['<F6>'] = {
             [require('dap').run_last] = {
                 modes = { 'n' },
@@ -394,16 +356,31 @@ local settings_config = {
                 opts = { expr = true },
             },
         },
-        ['<leader>tn'] = {
-            [':tabnew<CR>'] = {
+        ['<F10>'] = {
+            [require('dap').step_over] = {
                 modes = { 'n' },
-
-                opts = { noremap = true, silent = true },
+                opts = { expr = true },
             },
         },
-        ['<leader>fd'] = {
-            [':Telescope fd<CR>'] = {
+        ['<F11>'] = {
+            [require('dap').step_into] = {
                 modes = { 'n' },
+                opts = { expr = true },
+            },
+        },
+        ['<F12>'] = {
+            [require('dap').step_out] = {
+                modes = { 'n' },
+                opts = { expr = true },
+            },
+        },
+        --[[
+        TABS
+        --]]
+        ['<leader>tn'] = {
+            [':tabe %<CR>'] = {
+                modes = { 'n' },
+
                 opts = { noremap = true, silent = true },
             },
         },
@@ -415,6 +392,12 @@ local settings_config = {
         },
         ['[t'] = {
             [':tabprevious<CR>'] = {
+                modes = { 'n' },
+                opts = { noremap = true, silent = true },
+            },
+        },
+        ['<leader>fd'] = {
+            [':Telescope fd<CR>'] = {
                 modes = { 'n' },
                 opts = { noremap = true, silent = true },
             },
