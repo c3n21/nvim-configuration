@@ -431,9 +431,9 @@ local settings_config = {
         },
         ['<leader>w'] = {
             [':HopWord<cr>'] = {
-                modes = {'n'},
+                modes = { 'n' },
                 opts = { noremap = true, silent = true },
-            }
+            },
         },
         ['<leader><leader>s'] = {
             ['<cmd> source ~/.config/nvim/lua/config/plugins/LuaSnip/init.lua <CR>'] = {
@@ -456,9 +456,9 @@ local settings_config = {
     },
 }
 
----[[
+-- [[
 -- Adding undo breakpoints mappings
---]]
+-- ]]
 settings_config.mappings = vim.tbl_extend('keep', settings_config.mappings, unpack(undo_breakpoints))
 
 local settings
