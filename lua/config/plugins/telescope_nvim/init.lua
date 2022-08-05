@@ -80,6 +80,7 @@ telescope.setup({
 
 local extensions = {
     'ui-select',
+    'projects'
     -- 'file_browser'
 }
 

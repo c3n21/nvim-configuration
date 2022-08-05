@@ -98,7 +98,7 @@ local settings_config = {
         current = 'nvim-cmp',
         ['nvim-cmp'] = function(config)
             local capabilities =
-                require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+            require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
             config['capabilities'] = capabilities
             return config
         end,
@@ -428,6 +428,12 @@ local settings_config = {
                 modes = { 'i', 's' },
                 opts = { noremap = true, silent = true },
             },
+        },
+        ['<leader>w'] = {
+            [':HopWord<cr>'] = {
+                modes = {'n'},
+                opts = { noremap = true, silent = true },
+            }
         },
         ['<leader><leader>s'] = {
             ['<cmd> source ~/.config/nvim/lua/config/plugins/LuaSnip/init.lua <CR>'] = {

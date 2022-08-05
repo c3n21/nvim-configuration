@@ -74,7 +74,7 @@ local config = {
             'ms-jpq/coq_nvim',
             branch = 'coq',
             opt = true,
-            disable = false,
+            disable = true,
         },
 
         {
@@ -96,7 +96,6 @@ local config = {
         ----------------------------
         {
             'scalameta/nvim-metals',
-
             requires = { 'nvim-lua/plenary.nvim' },
         },
 
@@ -152,7 +151,7 @@ local config = {
         },
         {
             'ahmedkhalf/project.nvim',
-            disable = false
+            disable = false,
         },
 
         {
@@ -344,6 +343,9 @@ local config = {
             'anuvyklack/pretty-fold.nvim',
             requires = 'anuvyklack/nvim-keymap-amend', -- only for preview
         },
+        {
+            'phaazon/hop.nvim',
+        },
     },
 
     config = {
@@ -351,7 +353,7 @@ local config = {
         snapshot_path = vim.fn.stdpath('config') .. '/lua/snapshots',
         log = { log_level = log_level },
         compile_path = util.join_paths(vim.fn.stdpath('config'), 'lua', 'packer_compiled.lua'),
-        auto_reload_compiled = true
+        auto_reload_compiled = true,
     },
 }
 

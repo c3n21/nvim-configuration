@@ -62,7 +62,7 @@ return {
                 }}
 
             }}
-        ]],
+        ]]   ,
             {
                 i(1, 'Class description'),
                 i(2, 'Classname'),
@@ -113,6 +113,28 @@ return {
                     return fields
                 end, { 4 }),
             }
+        )
+    ),
+    s(
+        {
+            trig = 'addmethod',
+        },
+        fmt(
+            [[
+        Cacca
+            ]],
+            {}
+        )
+    ),
+    s(
+        {
+            trig = 'addfield',
+        },
+        fmt(
+            [[
+        Cacca
+            ]],
+            {}
         )
     ),
 },
