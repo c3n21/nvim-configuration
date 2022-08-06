@@ -100,6 +100,10 @@ local config = {
         },
 
         {
+            'simrat39/rust-tools.nvim',
+        },
+
+        {
             'ms-jpq/coq.artifacts',
             branch = 'artifacts',
             disable = false,
