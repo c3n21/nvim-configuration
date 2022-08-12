@@ -78,6 +78,12 @@ local config = {
         },
 
         {
+            'ms-jpq/coq.artifacts',
+            branch = 'artifacts',
+            disable = true,
+        },
+
+        {
             'hrsh7th/cmp-nvim-lsp-signature-help',
             disable = false,
         },
@@ -101,12 +107,6 @@ local config = {
 
         {
             'simrat39/rust-tools.nvim',
-        },
-
-        {
-            'ms-jpq/coq.artifacts',
-            branch = 'artifacts',
-            disable = false,
         },
 
         {

@@ -86,6 +86,7 @@ local settings_config = {
         'dartls',
         'ocamllsp',
         'intelephense',
+        'tailwindcss'
         -- 'rust_analyzer',
         -- "sumneko_lua" using lua-dev
         -- "fsautocomplete",
