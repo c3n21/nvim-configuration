@@ -2,7 +2,7 @@ local fmt = string.format
 local luasnip = require('luasnip')
 
 local function reset()
-    local ns = { 'packer', 'config', 'config.plugins.packer_nvim', 'settings', 'settings.map', 'utils' }
+    local ns = { 'packer', 'config', 'config.plugins.packer_nvim', 'settings', 'settings.map' }
     for _, name in pairs(ns) do
         package.loaded[name] = nil
     end
@@ -86,7 +86,7 @@ local settings_config = {
         'dartls',
         'ocamllsp',
         'intelephense',
-        'tailwindcss'
+        'tailwindcss',
         -- 'rust_analyzer',
         -- "sumneko_lua" using lua-dev
         -- "fsautocomplete",
