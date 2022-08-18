@@ -95,21 +95,7 @@ local settings_config = {
     },
     log_level = vim.log.levels.WARN,
     CONFIG_AVAILABLE_COMPLETION = { 'nvim-cmp', 'coq_nvim' },
-    completion = {
-        current = 'nvim-cmp',
-        ['nvim-cmp'] = function(config)
-            local capabilities =
-            require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-            config['capabilities'] = capabilities
-            return config
-        end,
-
-        ['coq_nvim'] = function(config)
-            local coq = require('coq')
-            coq.lsp_ensure_capabilities(config)
-            return config
-        end,
-    },
+    completion = 'nvim-cmp',
     mappings = {
         --[[
         Lines manipulation
