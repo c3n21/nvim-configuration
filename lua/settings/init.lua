@@ -149,7 +149,7 @@ local _config = {
     enable_dap = {},
     enable_lsp = {},
     log_level = vim.log.levels.WARN,
-    completion = 'nvim-cmp'
+    completion = 'nvim-cmp',
 }
 
 local function apply()
@@ -161,20 +161,25 @@ local function apply()
     end
 end
 
+local _setup_completion = nil
+
 return {
     ['setup'] = function(config)
-        _config = nil
-        setmetatable(config.completion, {
-            __index = function(_, key)
-                return function(ls_config)
-                    vim.notify(string.format("Completion framework '%s' not available", key), vim.log.levels.WARN)
-                    return ls_config
-                end
-            end,
-        })
+        local fmt = string.format
+        local completion_framework = fmt('settings.%s', config.completion)
+        local success, setup_completion = pcall(require, completion_framework)
 
+        if not success then
+            vim.notify(string.format("Completion framework '%s' not available", config.completion), vim.log.levels.WARN)
+        end
+
+        _setup_completion = setup_completion
         _config = config
         apply()
+    end,
+
+    ['completion'] = function(ls_config)
+        return _setup_completion(ls_config)
     end,
 
     ['get_config'] = function()

@@ -1,5 +1,4 @@
-local system_config = require('settings').get_config()
-local current = system_config.completion.current
+local completion = require('settings').completion
 
 local sumneko_root_path = '/usr/lib/lua-language-server'
 local sumneko_binary = '/bin/lua-language-server'
@@ -27,7 +26,7 @@ local lspconfig = {
     },
 }
 
-lspconfig = system_config.completion[current](lspconfig)
+lspconfig = completion(lspconfig)
 
 local config = {
     library = {

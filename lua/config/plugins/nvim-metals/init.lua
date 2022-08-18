@@ -1,7 +1,7 @@
 local metals_config = require('metals').bare_config()
-local system_config = require('settings').get_config()
-local current = system_config.completion.current
-system_config = system_config.completion[current](metals_config)
+local completion = require('settings').completion
+
+metals_config = completion(metals_config)
 
 metals_config.settings = {
     showImplicitArguments = true,
