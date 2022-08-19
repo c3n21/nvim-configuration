@@ -1,35 +1,6 @@
 local log_level = 'trace' --'warn'
-local util = require('packer.util')
-
-local function sanitize(plugin_name)
-    local result = vim.split(plugin_name, '/', {
-        plain = true,
-        trimempty = true,
-    })
-
-    local sanitized_name = result[#result]
-
-    sanitized_name = vim.fn.substitute(sanitized_name, '\\.', '_', 'g')
-
-    return sanitized_name
-end
-
-local function generate_config(plugin_name)
-    local path = require('plenary.path')
-
-    local sane_plugin_name = sanitize(plugin_name)
-
-    local plugin_path = path:new(vim.fn.stdpath('config'), 'lua', 'config', 'plugins', sane_plugin_name)
-
-    local plugin_init = plugin_path:joinpath('init.lua')
-
-    if vim.fn.filereadable(tostring(plugin_init)) == 0 then
-        vim.fn.mkdir(tostring(plugin_path), 'p')
-        vim.fn.writefile({}, tostring(plugin_init))
-    end
-
-    return [[require('config.plugins.]] .. sane_plugin_name .. [[')]]
-end
+local packer_util = require('packer.util')
+local utils = require('utils')
 
 local config = {
     {
@@ -101,40 +72,7 @@ local config = {
         --      nvim-lsp
         ----------------------------
         {
-            'scalameta/nvim-metals',
-            requires = { 'nvim-lua/plenary.nvim' },
-        },
-
-        {
-            'simrat39/rust-tools.nvim',
-        },
-
-        {
-            'ms-jpq/chadtree',
-            disable = false,
-            branch = 'chad',
-            run = 'python3 -m chadtree deps',
-        },
-
-        -- DAP --
-
-        {
-            'mfussenegger/nvim-dap',
-            disable = false,
-        },
-
-        {
-            'rcarriga/nvim-dap-ui',
-            disable = false,
-        },
-
-        {
-            'windwp/nvim-autopairs',
-            disable = false,
-        },
-
-        {
-            'windwp/nvim-ts-autotag',
+            'neovim/nvim-lspconfig',
             disable = false,
         },
 
@@ -150,18 +88,60 @@ local config = {
         },
 
         {
-            'neovim/nvim-lspconfig',
-            disable = false,
+            'scalameta/nvim-metals',
+            requires = { 'nvim-lua/plenary.nvim' },
         },
+
         {
-            'ahmedkhalf/project.nvim',
-            disable = false,
+            'simrat39/rust-tools.nvim',
         },
 
         {
             'folke/lua-dev.nvim',
             disable = false,
         },
+
+        ---------
+        -- DAP --
+        ---------
+        {
+            'mfussenegger/nvim-dap',
+            disable = false,
+        },
+
+        {
+            'rcarriga/nvim-dap-ui',
+            disable = false,
+        },
+
+        ------------------
+        -- Pair plugins --
+        ------------------
+        {
+            'windwp/nvim-autopairs',
+            disable = false,
+        },
+
+        {
+            'windwp/nvim-ts-autotag',
+            disable = false,
+        },
+
+        --------------
+        -- Projects --
+        --------------
+        {
+            'ms-jpq/chadtree',
+            disable = false,
+            branch = 'chad',
+            run = 'python3 -m chadtree deps',
+        },
+
+        {
+            'ahmedkhalf/project.nvim',
+            disable = false,
+        },
+
 
         {
             'tpope/vim-obsession',
@@ -356,14 +336,14 @@ local config = {
         snapshot = nil,
         snapshot_path = vim.fn.stdpath('config') .. '/lua/snapshots',
         log = { log_level = log_level },
-        compile_path = util.join_paths(vim.fn.stdpath('config'), 'lua', 'packer_compiled.lua'),
+        compile_path = packer_util.join_paths(vim.fn.stdpath('config'), 'lua', 'packer_compiled.lua'),
         auto_reload_compiled = true,
     },
 }
 
 for _, plugin in pairs(config[1]) do
     if not plugin.config then
-        plugin.config = generate_config(plugin[1])
+        plugin.config = utils.plugins.generate_config(plugin[1])
     end
 end
 
