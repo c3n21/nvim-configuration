@@ -94,7 +94,6 @@ local settings_config = {
         -- "efm"
     },
     log_level = vim.log.levels.WARN,
-    CONFIG_AVAILABLE_COMPLETION = { 'nvim-cmp', 'coq_nvim' },
     completion = 'nvim-cmp',
     mappings = {
         --[[
