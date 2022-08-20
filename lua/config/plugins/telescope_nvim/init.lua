@@ -36,6 +36,16 @@ telescope.setup({
         },
     },
     defaults = {
+        mappings = {
+            i = {
+                ['<C-Down>'] = require('telescope.actions').cycle_history_next,
+                ['<C-Up>'] = require('telescope.actions').cycle_history_prev,
+            },
+        },
+        history = {
+            path = vim.fn.stdpath('data') .. '/databases/telescope_history.sqlite3',
+            limit = 100,
+        },
         vimgrep_arguments = {
             'rg',
             '--color=never',
@@ -80,7 +90,8 @@ telescope.setup({
 
 local extensions = {
     'ui-select',
-    'projects'
+    'projects',
+    'smart_history',
     -- 'file_browser'
 }
 

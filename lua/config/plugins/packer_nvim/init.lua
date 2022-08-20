@@ -7,6 +7,7 @@ local config = {
         -- Packer can manage itself
         {
             'wbthomason/packer.nvim',
+            config = '',
         },
 
         {
@@ -142,7 +143,6 @@ local config = {
             disable = false,
         },
 
-
         {
             'tpope/vim-obsession',
         },
@@ -192,6 +192,9 @@ local config = {
             },
         },
 
+        ------------------
+        -- Fuzzy Finder --
+        ------------------
         {
             'nvim-telescope/telescope.nvim',
             disable = false,
@@ -200,8 +203,16 @@ local config = {
                 { 'nvim-lua/popup.nvim' },
                 { 'nvim-lua/plenary.nvim' },
                 { 'nvim-telescope/telescope-ui-select.nvim' },
+                {
+                    'nvim-telescope/telescope-smart-history.nvim',
+                    requires = { 'kkharji/sqlite.lua' },
+                },
             },
         },
+
+        ---------
+        -- Git --
+        ---------
 
         {
             'tpope/vim-fugitive',

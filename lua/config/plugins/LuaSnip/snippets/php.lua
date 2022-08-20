@@ -62,7 +62,7 @@ return {
                 }}
 
             }}
-        ]]   ,
+        ]],
             {
                 i(1, 'Class description'),
                 i(2, 'Classname'),

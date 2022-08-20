@@ -6,7 +6,7 @@ local sources = {
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.prettier,
     null_ls.builtins.formatting.phpcsfixer,
-    null_ls.builtins.formatting.rustfmt
+    null_ls.builtins.formatting.rustfmt,
 }
 
 -- local augroup = vim.api.nvim_create_augroup('LspFormatting', {})

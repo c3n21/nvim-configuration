@@ -415,6 +415,12 @@ local settings_config = {
                 opts = { noremap = true, silent = true },
             },
         },
+        ['<leader>/'] = {
+            [':HopPattern<cr>'] = {
+                modes = { 'n' },
+                opts = { noremap = true, silent = true },
+            },
+        },
         ['<leader>w'] = {
             [':HopWord<cr>'] = {
                 modes = { 'n' },
