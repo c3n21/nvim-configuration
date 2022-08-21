@@ -1,5 +1,5 @@
 local fmt = string.format
-local luasnip = require('luasnip')
+local success, luasnip = pcall(require, 'luasnip')
 
 local function reset()
     local ns = { 'packer', 'config', 'config.plugins.packer_nvim', 'settings', 'settings.map' }
@@ -38,7 +38,6 @@ start()
 
 vim.env.GIT_EDITOR = 'nvr -cc split --remote-wait'
 
-local success
 local packer
 local packer_config
 
