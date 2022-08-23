@@ -141,6 +141,12 @@ local settings_config = {
                 opts = opts,
             },
         },
+        ['gD'] = {
+            [vim.lsp.buf.type_definition] = {
+                modes = { 'n' },
+                opts = opts,
+            },
+        },
         ['K'] = {
             [vim.lsp.buf.hover] = {
                 modes = { 'n' },
