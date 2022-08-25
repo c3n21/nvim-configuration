@@ -7,16 +7,19 @@ local sources = {
     null_ls.builtins.formatting.prettier,
     null_ls.builtins.formatting.phpcsfixer,
     null_ls.builtins.formatting.rustfmt,
+    null_ls.builtins.formatting.xmllint,
+    null_ls.builtins.diagnostics.tidy,
+    --[[ null_ls.builtins.diagnostics.phpcs, ]]
+    --[[ null_ls.builtins.diagnostics.phpmd, ]]
+    --[[ null_ls.builtins.diagnostics.phpstan, ]]
 }
-
--- local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
 
 null_ls.setup({
     cmd = { 'nvim' },
     debounce = 250,
-    debug = false,
-    default_timeout = 5000,
-    diagnostics_format = '#{m}',
+    debug = true,
+    default_timeout = 1000,
+    diagnostics_format = "[#{c}] #{m} (#{s})",
     fallback_severity = vim.diagnostic.severity.ERROR,
     log = {
         enable = true,
@@ -39,7 +42,7 @@ null_ls.setup({
     -- end,
     on_init = nil,
     on_exit = nil,
-    -- root_dir = u.root_pattern(".null-ls-root", "Makefile", ".git"),
+    --[[ root_dir = u.root_pattern(".null-ls-root", "Makefile", ".git"), ]]
     update_in_insert = false,
     sources = sources,
 })

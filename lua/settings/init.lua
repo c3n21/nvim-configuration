@@ -1,5 +1,7 @@
 vim.o.path = vim.o.path .. '**'
 
+vim.diagnostic.config({update_in_insert = true})
+
 vim.g.mapleader = ' '
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     virtual_text = false,
