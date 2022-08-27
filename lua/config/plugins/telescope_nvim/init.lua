@@ -43,6 +43,10 @@ telescope.setup({
         },
     },
     defaults = {
+        cache_picker = {
+            num_pickers = -1,
+            limit_entries = 1000,
+        },
         mappings = {
             n = {
                 ['<C-d>'] = require('telescope.actions').delete_buffer,
@@ -102,7 +106,7 @@ local extensions = {
     'ui-select',
     'projects',
     'smart_history',
-    'fzf'
+    'fzf',
     -- 'file_browser'
 }
 

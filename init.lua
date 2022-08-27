@@ -214,7 +214,7 @@ local settings_config = {
             },
         },
         ['<leader>lo'] = {
-            [':lopen<CR>'] = {
+            [':Telescope loclist<CR>'] = {
                 modes = { 'n' },
                 opts = opts,
             },
@@ -238,7 +238,8 @@ local settings_config = {
             },
         },
         ['<leader>qo'] = {
-            [':copen<CR>'] = {
+            --[[ [':copen<CR>'] = { ]]
+            [':Telescope quickfix<CR>'] = {
                 modes = { 'n' },
                 opts = opts,
             },
