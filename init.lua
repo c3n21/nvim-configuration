@@ -454,10 +454,6 @@ local settings_config = {
     },
 }
 
-vim.api.nvim_create_user_command('LoadLaunchJS', function()
-    require('dap.ext.vscode').load_launchjs()
-end, {})
-
 -- [[
 -- Adding undo breakpoints mappings
 -- ]]
