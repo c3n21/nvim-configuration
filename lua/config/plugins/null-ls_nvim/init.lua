@@ -1,4 +1,10 @@
+local h = require('null-ls.helpers')
 local null_ls = require('null-ls')
+
+local severities = {
+    Warning = vim.diagnostic.severity.WARN,
+    Error = vim.diagnostic.severity.ERROR,
+}
 -- register any number of sources simultaneously
 local sources = {
     null_ls.builtins.code_actions.refactoring,
@@ -8,7 +14,24 @@ local sources = {
     null_ls.builtins.formatting.phpcsfixer,
     null_ls.builtins.formatting.rustfmt,
     null_ls.builtins.formatting.xmllint,
-    null_ls.builtins.diagnostics.tidy,
+    null_ls.builtins.diagnostics.tidy.with({
+        args = function(params)
+            local common_args = {
+                '-quiet',
+                '-errors',
+            }
+            if params.ft == 'xml' then
+                table.insert(common_args, 1, '-xml')
+            end
+
+            return common_args
+        end,
+        on_output = h.diagnostics.from_pattern(
+            [[line (%d+) column (%d+) %- (%a+): (.+)]],
+            { 'row', 'col', 'severity', 'message' },
+            { severities = severities }
+        ),
+    }),
     --[[ null_ls.builtins.diagnostics.phpcs, ]]
     --[[ null_ls.builtins.diagnostics.phpmd, ]]
     --[[ null_ls.builtins.diagnostics.phpstan, ]]
@@ -19,7 +42,7 @@ null_ls.setup({
     debounce = 250,
     debug = true,
     default_timeout = 1000,
-    diagnostics_format = "[#{c}] #{m} (#{s})",
+    diagnostics_format = '[#{c}] #{m} (#{s})',
     fallback_severity = vim.diagnostic.severity.ERROR,
     log = {
         enable = true,
