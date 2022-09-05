@@ -12,16 +12,21 @@ local sources = {
     --[[ null_ls.builtins.formatting.tidy, ]]
 
     null_ls.builtins.diagnostics.tidy,
-    --[[ null_ls.builtins.diagnostics.phpcs, ]]
+    null_ls.builtins.diagnostics.php,
+    null_ls.builtins.diagnostics.phpcs,
     --[[ null_ls.builtins.diagnostics.phpmd, ]]
-    --[[ null_ls.builtins.diagnostics.phpstan, ]]
+    null_ls.builtins.diagnostics.phpstan,
+    --[[ null_ls.builtins.diagnostics.phpstan.with({ ]]
+    --[[     method = require('null-ls.methods').internal.DIAGNOSTICS_ON_SAVE, ]]
+    --[[     to_temp_file = false, ]]
+    --[[ }), ]]
 }
 
 null_ls.setup({
     cmd = { 'nvim' },
     debounce = 250,
     debug = true,
-    default_timeout = 1000,
+    default_timeout = 5000,
     diagnostics_format = '[#{c}] #{m} (#{s})',
     fallback_severity = vim.diagnostic.severity.ERROR,
     log = {
