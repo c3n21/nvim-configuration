@@ -9,7 +9,18 @@ local sources = {
     null_ls.builtins.formatting.prettier,
     null_ls.builtins.formatting.phpcsfixer,
     null_ls.builtins.formatting.rustfmt,
-    --[[ null_ls.builtins.formatting.tidy, ]]
+    null_ls.builtins.formatting.tidy.with({
+        filetypes = {"xml"},
+        args = {
+            '--tidy-mark',
+            'no',
+            '-quiet',
+            '-indent',
+            '-wrap',
+            '-xml',
+            '-',
+        },
+    }),
 
     null_ls.builtins.diagnostics.tidy,
     null_ls.builtins.diagnostics.php,
