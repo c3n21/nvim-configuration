@@ -133,9 +133,14 @@ local config = {
         --------------
         {
             'ms-jpq/chadtree',
-            disable = false,
+            disable = true,
             branch = 'chad',
             run = 'python3 -m chadtree deps',
+        },
+
+        {
+            'kyazdani42/nvim-tree.lua',
+            disable = false,
         },
 
         {

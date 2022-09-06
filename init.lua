@@ -285,7 +285,8 @@ local settings_config = {
             },
         },
         ['<leader>e'] = {
-            ['<cmd>CHADopen<cr>'] = {
+            --[[ ['<cmd>CHADopen<cr>'] = { ]]
+            ['<cmd>NvimTreeToggle<CR>'] = {
                 -- [':Telescope file_browser<CR>'] = {
                 modes = { 'n' },
                 opts = { noremap = true, silent = true },
