@@ -340,7 +340,7 @@ local config = {
 
         {
             'akinsho/toggleterm.nvim',
-            disable = true,
+            disable = false,
         },
 
         {
