@@ -39,6 +39,9 @@ end
 -- }
 
 cmp.setup({
+    enabled = function()
+        return vim.api.nvim_buf_get_option(0, 'buftype') ~= 'prompt' or require('cmp_dap').is_dap_buffer()
+    end,
     snippet = {
         -- REQUIRED - you must specify a snippet engine
         expand = function(args)
@@ -105,7 +108,7 @@ cmp.setup({
         end, { 'i', 's', 'c' }),
     },
     sources = cmp.config.sources({
-        { name = 'nvim_lsp_signature_help' },
+        --[[ { name = 'nvim_lsp_signature_help' }, ]]
         { name = 'neorg' },
         { name = 'nvim_lsp' },
         -- { name = 'vsnip' }, -- For vsnip users.
@@ -120,6 +123,7 @@ cmp.setup({
 cmp.setup.cmdline('/', {
     sources = {
         { name = 'buffer' },
+        { name = 'nvim_lsp_document_symbol' },
     },
 })
 
@@ -137,4 +141,10 @@ cmp.setup.cmdline(':', {
         { name = 'path' },
         { name = 'cmdline' },
     }),
+})
+
+cmp.setup.filetype({ 'dap-repl', 'dapui_watches' }, {
+    sources = {
+        { name = 'dap' },
+    },
 })

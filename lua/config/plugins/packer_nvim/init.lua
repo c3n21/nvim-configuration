@@ -56,8 +56,8 @@ local config = {
         },
 
         {
-            'hrsh7th/cmp-nvim-lsp-signature-help',
-            disable = false,
+            'ray-x/lsp_signature.nvim',
+            disable = false
         },
 
         {
@@ -66,6 +66,9 @@ local config = {
             requires = {
                 { 'hrsh7th/cmp-nvim-lsp' },
                 { 'hrsh7th/cmp-cmdline' },
+                { 'rcarriga/cmp-dap' },
+                { 'hrsh7th/cmp-nvim-lsp-document-symbol' },
+                --[[ { 'hrsh7th/cmp-nvim-lsp-signature-help' }, ]]
             },
         },
 
