@@ -213,6 +213,28 @@ local settings_config = {
                 opts = opts,
             },
         },
+
+        ['<leader>ldd'] = {
+            [':Telescope diagnostics<CR>'] = {
+                modes = { 'n' },
+                opts = opts,
+            },
+        },
+
+        ['<leader>lds'] = {
+            [':Telescope lsp_document_symbols<CR>'] = {
+                modes = { 'n' },
+                opts = opts,
+            },
+        },
+
+        ['<leader>lws'] = {
+            [':Telescope lsp_dynamic_workspace_symbols<CR>'] = {
+                modes = { 'n' },
+                opts = opts,
+            },
+        },
+
         ['<leader>lo'] = {
             [':Telescope loclist<CR>'] = {
                 modes = { 'n' },
@@ -370,18 +392,6 @@ local settings_config = {
             [':tabe %<CR>'] = {
                 modes = { 'n' },
 
-                opts = { noremap = true, silent = true },
-            },
-        },
-        [']t'] = {
-            [':tabnext<CR>'] = {
-                modes = { 'n' },
-                opts = { noremap = true, silent = true },
-            },
-        },
-        ['[t'] = {
-            [':tabprevious<CR>'] = {
-                modes = { 'n' },
                 opts = { noremap = true, silent = true },
             },
         },
