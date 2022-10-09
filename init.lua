@@ -159,6 +159,12 @@ local settings_config = {
                 opts = opts,
             },
         },
+        ['<leader>lr'] = {
+            [':Telescope lsp_references<CR>'] = {
+                modes = { 'n' },
+                opts = opts,
+            },
+        },
         ['H'] = {
             [vim.lsp.buf.signature_help] = {
                 modes = { 'n' },
