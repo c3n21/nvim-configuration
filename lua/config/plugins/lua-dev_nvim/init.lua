@@ -1,10 +1,6 @@
 local completion = require('settings').completion
 
-local sumneko_root_path = '/usr/lib/lua-language-server'
-local sumneko_binary = '/bin/lua-language-server'
-
 local lspconfig = {
-    -- cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
     cmd = { 'lua-language-server' },
     settings = {
         Lua = {
@@ -35,6 +31,7 @@ local config = {
         -- plugins = {"plenary.nvim"}, -- installed opt or start plugins in packpath
         -- you can also specify the list of plugins to make available as a workspace library
         -- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
+        plugins = true
     },
     -- pass any additional options that will be merged in the final lsp config
     lspconfig = lspconfig,
