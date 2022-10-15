@@ -370,6 +370,9 @@ local config = {
                 'MunifTanjim/nui.nvim',
             },
         },
+        {
+            'Shatur/neovim-session-manager'
+        },
     },
 
     config = {
