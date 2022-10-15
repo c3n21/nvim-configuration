@@ -323,12 +323,6 @@ local settings_config = {
                 opts = { expr = true },
             },
         },
-        ['<leader>e'] = {
-            ['<cmd>Neotree<CR>'] = {
-                modes = { 'n' },
-                opts = { noremap = true, silent = true },
-            },
-        },
         --[[ 
         DAP
        --]]
