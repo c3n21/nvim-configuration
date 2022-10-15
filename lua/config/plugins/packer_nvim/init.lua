@@ -373,6 +373,9 @@ local config = {
         {
             'Shatur/neovim-session-manager'
         },
+        {
+            'esensar/nvim-dev-container'
+        }
     },
 
     config = {
