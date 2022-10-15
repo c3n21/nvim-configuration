@@ -11,6 +11,10 @@ local config = {
         },
 
         {
+            'kyazdani42/nvim-web-devicons'
+        },
+
+        {
             'jose-elias-alvarez/null-ls.nvim',
         },
 
@@ -57,7 +61,7 @@ local config = {
 
         {
             'ray-x/lsp_signature.nvim',
-            disable = false
+            disable = false,
         },
 
         {
@@ -143,7 +147,7 @@ local config = {
 
         {
             'kyazdani42/nvim-tree.lua',
-            disable = false,
+            disable = true,
         },
 
         {
@@ -354,8 +358,15 @@ local config = {
             'phaazon/hop.nvim',
         },
         {
-            'lewis6991/impatient.nvim'
-        }
+            'lewis6991/impatient.nvim',
+        },
+        {
+            'nvim-neo-tree/neo-tree.nvim',
+            requires = {
+                'nvim-lua/plenary.nvim',
+                'MunifTanjim/nui.nvim',
+            },
+        },
     },
 
     config = {

@@ -4,21 +4,19 @@ local function cmd(command)
     return table.concat({ '<Cmd>', command, '<CR>' })
 end
 
-local hint = [[
-                 _f_: files       _m_: marks
-   🭇🬭🬭🬭🬭🬭🬭🬭🬭🬼    _o_: old files   _g_: live grep
-  🭉🭁🭠🭘    🭣🭕🭌🬾   _p_: projects    _/_: search in file
-  🭅█ ▁     █🭐
-  ██🬿      🭊██   _h_: vim help    _c_: execute command
- 🭋█🬝🮄🮄🮄🮄🮄🮄🮄🮄🬆█🭀  _k_: keymap      _;_: commands history
- 🭤🭒🬺🬹🬱🬭🬭🬭🬭🬵🬹🬹🭝🭙  _r_: registers   _?_: search history
-
-                 _<Enter>_: Telescope           _<Esc>_ 
-]]
-
 Hydra({
     name = 'Telescope',
-    hint = hint,
+    hint = [[
+_f_: files       _m_: marks
+_o_: old files   _g_: live grep
+_p_: projects    _/_: search in file
+
+_h_: vim help    _c_: execute command
+_k_: keymap      _;_: commands history
+_r_: registers   _?_: search history
+
+_<Enter>_: Telescope           _<Esc>_ 
+]],
     config = {
         color = 'teal',
         invoke_on_body = true,
@@ -71,12 +69,51 @@ Hydra({
         { 'e', '<C-w>=' },
 
         -- close active window
-        { 'Q', ':q<cr>' },
-        { '<C-q>', ':q<cr>' },
+        { 'Q', '<cmd>q<cr>' },
+        { '<C-q>', '<cmd>q<cr>' },
 
         -- exit this Hydra
         { 'q', nil, { exit = true, nowait = true } },
         { ';', nil, { exit = true, nowait = true } },
+        { '<Esc>', nil, { exit = true, nowait = true } },
+    },
+})
+
+Hydra({
+    name = 'Neotree',
+    mode = { 'n' },
+    body = '<leader>e',
+    hint = [[
+ _f_        Neotree float  
+ _e_        Neotree reveal  
+ _q_        Neotree close  
+ _l_        Neotree right  
+ _h_        Neotree left  
+ _k_        Neotree top  
+ _j_        Neotree bottom  
+ _gs_       Neotree git_status  
+ _b_        Neotree buffers  
+ _<Esc>_    quit
+    ]],
+
+    config = {
+        color = 'teal',
+        invoke_on_body = true,
+        hint = {
+            position = 'middle',
+            border = 'rounded',
+        },
+    },
+    heads = {
+        { 'f', '<cmd>Neotree float<CR>' },
+        { 'e', '<cmd>Neotree reveal<CR>' },
+        { 'q', '<cmd>Neotree close<CR>' },
+        { 'l', '<cmd>Neotree right<CR>' },
+        { 'h', '<cmd>Neotree left<CR>' },
+        { 'k', '<cmd>Neotree top<CR>' },
+        { 'j', '<cmd>Neotree bottom<CR>' },
+        { 'gs', '<cmd>Neotree git_status<CR>' },
+        { 'b', '<cmd>Neotree buffers<CR>' },
         { '<Esc>', nil, { exit = true, nowait = true } },
     },
 })
