@@ -353,6 +353,9 @@ local config = {
         {
             'phaazon/hop.nvim',
         },
+        {
+            'lewis6991/impatient.nvim'
+        }
     },
 
     config = {
