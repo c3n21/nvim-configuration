@@ -101,7 +101,7 @@ local config = {
         },
 
         {
-            'folke/lua-dev.nvim',
+            'folke/neodev.nvim',
             disable = false,
         },
 
