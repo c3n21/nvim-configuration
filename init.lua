@@ -404,12 +404,6 @@ local settings_config = {
                 opts = { noremap = true, silent = true },
             },
         },
-        ['<leader>fd'] = {
-            [':Telescope fd<CR>'] = {
-                modes = { 'n' },
-                opts = { noremap = true, silent = true },
-            },
-        },
         ['<c-l>'] = {
             [function()
                 if luasnip.choice_active() then

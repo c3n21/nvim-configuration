@@ -26,7 +26,7 @@ _<Enter>_: Telescope           _<Esc>_
         },
     },
     mode = 'n',
-    body = '<Leader>f',
+    body = '<Leader><Leader>t',
     heads = {
         { 'f', cmd('Telescope find_files') },
         { 'g', cmd('Telescope live_grep') },
