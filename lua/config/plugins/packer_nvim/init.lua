@@ -11,6 +11,10 @@ local config = {
         },
 
         {
+            'kyazdani42/nvim-web-devicons'
+        },
+
+        {
             'jose-elias-alvarez/null-ls.nvim',
         },
 
@@ -143,7 +147,7 @@ local config = {
 
         {
             'kyazdani42/nvim-tree.lua',
-            disable = false,
+            disable = true,
         },
 
         {
@@ -358,6 +362,13 @@ local config = {
         },
         {
             'TimUntersberger/neogit',
+        },
+        {
+            'nvim-neo-tree/neo-tree.nvim',
+            requires = {
+                'nvim-lua/plenary.nvim',
+                'MunifTanjim/nui.nvim',
+            },
         },
     },
 
