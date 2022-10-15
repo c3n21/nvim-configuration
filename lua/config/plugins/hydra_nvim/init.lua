@@ -106,7 +106,8 @@ Hydra({
     },
     heads = {
         { 'f', '<cmd>Neotree float<CR>' },
-        { 'e', '<cmd>Neotree reveal<CR>' },
+        { 'e', '<cmd>Neotree toggle<CR>' },
+        { 'r', '<cmd>Neotree reveal<CR>' },
         { 'q', '<cmd>Neotree close<CR>' },
         { 'l', '<cmd>Neotree right<CR>' },
         { 'h', '<cmd>Neotree left<CR>' },
