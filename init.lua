@@ -479,6 +479,12 @@ local settings_config = {
                 opts = { noremap = true, silent = true },
             },
         },
+        ['<leader>ng'] = {
+            [':Neogit <CR>'] = {
+                modes = { 'n' },
+                opts = { noremap = true, silent = true },
+            },
+        },
     },
 }
 

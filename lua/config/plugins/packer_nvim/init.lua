@@ -57,7 +57,7 @@ local config = {
 
         {
             'ray-x/lsp_signature.nvim',
-            disable = false
+            disable = false,
         },
 
         {
@@ -354,8 +354,11 @@ local config = {
             'phaazon/hop.nvim',
         },
         {
-            'lewis6991/impatient.nvim'
-        }
+            'lewis6991/impatient.nvim',
+        },
+        {
+            'TimUntersberger/neogit',
+        },
     },
 
     config = {
