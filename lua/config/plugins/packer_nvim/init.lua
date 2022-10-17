@@ -11,7 +11,7 @@ local config = {
         },
 
         {
-            'kyazdani42/nvim-web-devicons'
+            'kyazdani42/nvim-web-devicons',
         },
 
         {
@@ -229,11 +229,6 @@ local config = {
         ---------
         -- Git --
         ---------
-
-        {
-            'tpope/vim-fugitive',
-        },
-
         {
             'sindrets/diffview.nvim',
         },
@@ -285,7 +280,7 @@ local config = {
 
         {
             'ThePrimeagen/harpoon',
-            disable = true,
+            disable = false,
         },
 
         -------------------------
@@ -303,9 +298,10 @@ local config = {
         -----------------
         {
             'nvim-neorg/neorg',
-            disable = false,
+            disable = true,
             requires = 'nvim-lua/plenary.nvim',
         },
+
         {
             'vimwiki/vimwiki',
             disable = true,
@@ -326,11 +322,6 @@ local config = {
         {
             'Shatur/neovim-cmake',
         },
-        {
-            'nikvdp/neomux',
-            disable = true,
-        },
-
         {
             'L3MON4D3/LuaSnip',
             disable = false,
@@ -371,11 +362,11 @@ local config = {
             },
         },
         {
-            'Shatur/neovim-session-manager'
+            'esensar/nvim-dev-container',
         },
         {
-            'esensar/nvim-dev-container'
-        }
+            'rmagatti/auto-session',
+        },
     },
 
     config = {
