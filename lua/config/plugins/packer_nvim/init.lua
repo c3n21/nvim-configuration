@@ -92,7 +92,7 @@ local config = {
 
         {
             'glepnir/lspsaga.nvim',
-            disable = true,
+            disable = false,
         },
 
         {
