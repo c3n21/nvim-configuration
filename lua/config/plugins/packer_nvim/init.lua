@@ -367,6 +367,9 @@ local config = {
         {
             'rmagatti/auto-session',
         },
+        {
+            'theHamsta/nvim-dap-virtual-text'
+        }
     },
 
     config = {
