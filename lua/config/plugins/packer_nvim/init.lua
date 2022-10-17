@@ -368,8 +368,16 @@ local config = {
             'rmagatti/auto-session',
         },
         {
-            'theHamsta/nvim-dap-virtual-text'
-        }
+            'theHamsta/nvim-dap-virtual-text',
+        },
+        {
+            'mxsdev/nvim-dap-vscode-js',
+            requires = {
+                'microsoft/vscode-js-debug',
+                opt = true,
+                run = 'npm cache clear --force && npm install --legacy-peer-deps && npm run compile',
+            },
+        },
     },
 
     config = {
