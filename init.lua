@@ -8,9 +8,10 @@ _G.__luacache_config = {
         path = vim.fn.stdpath('cache') .. '/luacache_modpaths',
     },
 }
-require('impatient')
+local success, _ = pcall(require, 'impatient')
 local fmt = string.format
-local success, luasnip = pcall(require, 'luasnip')
+local luasnip
+success, luasnip = pcall(require, 'luasnip')
 
 local function reset()
     local ns = { 'packer', 'config', 'config.plugins.packer_nvim', 'settings', 'settings.map' }
