@@ -72,6 +72,7 @@ local config = {
                 { 'hrsh7th/cmp-cmdline' },
                 { 'rcarriga/cmp-dap' },
                 { 'hrsh7th/cmp-nvim-lsp-document-symbol' },
+                { 'rcarriga/cmp-dap' },
                 --[[ { 'hrsh7th/cmp-nvim-lsp-signature-help' }, ]]
             },
         },
@@ -370,19 +371,19 @@ local config = {
         {
             'theHamsta/nvim-dap-virtual-text',
         },
+
         {
-            'mxsdev/nvim-dap-vscode-js',
-            requires = {
-                'microsoft/vscode-js-debug',
-                opt = true,
-                run = 'npm cache clear --force && npm install --legacy-peer-deps && npm run compile',
-            },
+            'microsoft/vscode-js-debug',
+            opt = true,
+            run = 'npm cache clear --force && npm install --legacy-peer-deps && npm run compile',
         },
+
+        { 'mxsdev/nvim-dap-vscode-js', requires = { 'mfussenegger/nvim-dap' } },
     },
 
     config = {
         snapshot = nil,
-        snapshot_path = vim.fn.stdpath('config') .. '/lua/snapshots',
+        snapshot_path = packer_util.join_paths(vim.fn.stdpath('config'), 'lua', 'snapshots'),
         log = { log_level = log_level },
         compile_path = packer_util.join_paths(vim.fn.stdpath('config'), 'lua', 'packer_compiled.lua'),
         auto_reload_compiled = true,
