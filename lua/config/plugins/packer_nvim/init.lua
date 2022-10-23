@@ -5,8 +5,7 @@ local utils = require('utils')
 local config = {
     {
         -- Packer can manage itself
-        {
-            'wbthomason/packer.nvim',
+        { 'wbthomason/packer.nvim',
             opt = true,
             config = '',
         },
@@ -356,6 +355,7 @@ local config = {
     },
 
     config = {
+        opt_default = false,
         snapshot = nil,
         snapshot_path = packer_util.join_paths(vim.fn.stdpath('config'), 'lua', 'snapshots'),
         log = { log_level = log_level },

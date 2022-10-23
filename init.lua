@@ -366,7 +366,7 @@ else
     settings.setup(settings_config)
 end
 
---success, settings = pcall(require, 'packer_compiled')
---if not success then
---    vim.notify(fmt('Error loading packer_compiled: %s', vim.inspect(success)), vim.log.levels.WARN)
---end
+success, settings = pcall(require, 'packer_compiled')
+if not success then
+    vim.notify(fmt('Error loading packer_compiled: %s', vim.inspect(success)), vim.log.levels.WARN)
+end
