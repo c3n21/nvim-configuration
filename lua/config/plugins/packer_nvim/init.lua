@@ -370,4 +370,6 @@ for _, plugin in pairs(config[1]) do
     end
 end
 
-return config
+local packer = require('packer')
+
+packer.startup(config)

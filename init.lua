@@ -13,61 +13,9 @@ local fmt = string.format
 local luasnip
 success, luasnip = pcall(require, 'luasnip')
 
-local function reset()
-    local ns = { 'packer', 'config', 'config.plugins.packer_nvim', 'settings', 'settings.map' }
-    for _, name in pairs(ns) do
-        package.loaded[name] = nil
-    end
-end
-
-local function start()
-    local fn = vim.fn
-
-    local install_path = ''
-    vim.notify(fmt("Detected OS: '%s'", jit.os), vim.log.levels.INFO)
-    if jit.os == 'Linux' then
-        install_path = fn.stdpath('data') .. '/site/pack/packer/opt/packer.nvim'
-    else
-        error(fmt("OS: '%s' not supported"))
-    end
-
-    if fn.empty(fn.glob(install_path)) > 0 then
-        vim.notify(fmt("packer.nvim not installed: installing in '%s'", install_path), vim.log.levels.INFO)
-        fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
-        vim.notify('packer.nvim installed', vim.log.levels.INFO)
-
-        vim.cmd([[packadd packer.nvim]])
-
-        install_path = fn.stdpath('data') .. '/site/pack/packer/start/plenary.nvim'
-
-        fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/nvim-lua/plenary.nvim', install_path })
-        vim.cmd([[packadd plenary.nvim]])
-    end
-end
-
-reset()
-start()
-
 vim.env.GIT_EDITOR = 'nvr -cc split --remote-wait'
 
-local packer
-local packer_config
-
 local opts = { noremap = true, silent = true }
-success, packer_config = pcall(require, 'config.plugins.packer_nvim')
-
-if not success then
-    vim.notify(fmt("Error loading packer's config: %s", vim.inspect(success)), vim.log.levels.WARN)
-    packer_config = {}
-end
-
-success, packer = pcall(require, 'packer')
-
-if not success then
-    vim.notify(fmt('Error loading packer: %s', vim.inspect(success)), vim.log.levels.WARN)
-else
-    packer.startup(packer_config)
-end
 
 local undo_breakpoints = (function()
     local breakpoints = { ',', '.', '[', ']', '!', '?' }
@@ -324,77 +272,6 @@ local settings_config = {
                 opts = { expr = true },
             },
         },
-        --[[ 
-        DAP
-       --]]
---        ['<F1>'] = {
---            [require('dap').toggle_breakpoint] = {
---                modes = { 'n' },
---                opts = { expr = true },
---            },
---        },
---        ['<F2>'] = {
---            [function()
---                require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))
---            end] = {
---                modes = { 'n' },
---                opts = { expr = true },
---            },
---        },
---        ['<F3>'] = {
---            [function()
---                require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))
---            end] = {
---                modes = { 'n' },
---                opts = { expr = true },
---            },
---        },
---        ['<F4>'] = {
---            [require('dap').repl.open] = {
---                modes = { 'n' },
---                opts = { expr = true },
---            },
---        },
---        ['<F5>'] = {
---            [function()
---                vim.schedule(require('dap').continue)
---            end] = {
---                modes = { 'n' },
---                opts = { expr = true },
---            },
---        },
---        ['<F6>'] = {
---            [require('dap').run_last] = {
---                modes = { 'n' },
---                opts = { expr = true },
---            },
---        },
---        ['<F7>'] = {
---            [function()
---                vim.schedule(require('dapui').toggle)
---            end] = {
---                modes = { 'n' },
---                opts = { expr = true },
---            },
---        },
---        ['<F10>'] = {
---            [require('dap').step_over] = {
---                modes = { 'n' },
---                opts = { expr = true },
---            },
---        },
---        ['<F11>'] = {
---            [require('dap').step_into] = {
---                modes = { 'n' },
---                opts = { expr = true },
---            },
---        },
---        ['<F12>'] = {
---            [require('dap').step_out] = {
---                modes = { 'n' },
---                opts = { expr = true },
---            },
---        },
         --[[
         TABS
         --]]
@@ -489,7 +366,7 @@ else
     settings.setup(settings_config)
 end
 
-success, settings = pcall(require, 'packer_compiled')
-if not success then
-    vim.notify(fmt('Error loading packer_compiled: %s', vim.inspect(success)), vim.log.levels.WARN)
-end
+--success, settings = pcall(require, 'packer_compiled')
+--if not success then
+--    vim.notify(fmt('Error loading packer_compiled: %s', vim.inspect(success)), vim.log.levels.WARN)
+--end

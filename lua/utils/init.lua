@@ -1,3 +1,5 @@
+vim.cmd('packadd plenary.nvim')
+
 local function sanitize(plugin_name)
     local result = vim.split(plugin_name, '/', {
         plain = true,
