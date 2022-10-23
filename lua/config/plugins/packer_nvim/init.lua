@@ -7,6 +7,7 @@ local config = {
         -- Packer can manage itself
         {
             'wbthomason/packer.nvim',
+            opt = true,
             config = '',
         },
 
@@ -140,18 +141,6 @@ local config = {
         -- Projects --
         --------------
         {
-            'ms-jpq/chadtree',
-            disable = true,
-            branch = 'chad',
-            run = 'python3 -m chadtree deps',
-        },
-
-        {
-            'kyazdani42/nvim-tree.lua',
-            disable = true,
-        },
-
-        {
             'ahmedkhalf/project.nvim',
             disable = false,
         },
@@ -235,11 +224,6 @@ local config = {
         },
 
         {
-            'akinsho/bufferline.nvim',
-            disable = true,
-        },
-
-        {
             'lukas-reineke/indent-blankline.nvim',
         },
 
@@ -257,19 +241,9 @@ local config = {
         },
 
         {
-            'KabbAmine/zeavim.vim',
-            disable = false,
-        },
-
-        {
             --- https://github.com/JoosepAlviste/nvim-ts-context-commentstring#integrations
             'numToStr/Comment.nvim',
             requires = 'JoosepAlviste/nvim-ts-context-commentstring',
-        },
-
-        {
-            'terrortylor/nvim-comment',
-            disable = true,
         },
 
         {
