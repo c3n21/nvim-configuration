@@ -37,7 +37,6 @@ local settings_config = {
 
 local settings
 
-require('mappings')
 success, settings = pcall(require, 'settings')
 if not success then
     vim.notify(fmt('Error loading settings: %s', vim.inspect(success)), vim.log.levels.WARN)
@@ -45,6 +44,7 @@ else
     settings.setup(settings_config)
 end
 
+require('mappings')
 success, settings = pcall(require, 'packer_compiled')
 if not success then
     vim.notify(fmt('Error loading packer_compiled: %s', vim.inspect(success)), vim.log.levels.WARN)

@@ -32,5 +32,5 @@ vim.keymap.set({ 'n' }, '<leader>q', vim.diagnostic.setloclist, opts)
 vim.keymap.set({ 'n' }, '<leader><leader>f', vim.lsp.buf.format, opts)
 
 for _, breakpoint in ipairs({ ',', '.', '[', ']', '!', '?' }) do
-  vim.keymap.set({ 'i' }, breakpoint, breakpoint .. '<c-g>u', opts)
+    vim.keymap.set({ 'i' }, breakpoint, breakpoint .. '<c-g>u', opts)
 end

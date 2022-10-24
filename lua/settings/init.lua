@@ -141,8 +141,8 @@ vim.opt.signcolumn = 'yes'
 vim.opt.colorcolumn = '80'
 vim.incsearch = true
 
-vim.opt.tabstop = 4 -- number of spaces for each tab
-vim.opt.shiftwidth = 4 -- number of space used for indenting using >> or <<
+--[[ vim.opt.tabstop = 4 -- number of spaces for each tab ]]
+--[[ vim.opt.shiftwidth = 4 -- number of space used for indenting using >> or << ]]
 vim.opt.expandtab = true
 
 local _config = {
