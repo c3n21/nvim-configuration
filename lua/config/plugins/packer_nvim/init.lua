@@ -98,6 +98,10 @@ local config = {
         },
 
         {
+            'rest-nvim/rest.nvim'
+        },
+
+        {
             'rcarriga/nvim-dap-ui',
             disable = false,
         },

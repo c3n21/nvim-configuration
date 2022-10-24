@@ -118,3 +118,30 @@ Hydra({
         { '<Esc>', nil, { exit = true, nowait = true } },
     },
 })
+
+Hydra({
+    name = 'rest.nvim',
+    mode = { 'n' },
+    body = '<leader><leader>r',
+    hint = [[
+ _r_        RestNvim
+ _p_        RestNvimPreview
+ _l_        RestNvimLast
+ _<Esc>_    quit
+    ]],
+
+    config = {
+        color = 'teal',
+        invoke_on_body = true,
+        hint = {
+            position = 'middle',
+            border = 'rounded',
+        },
+    },
+    heads = {
+        { 'r', '<Plug>RestNvim' },
+        { 'p', '<Plug>RestNvimPreview' },
+        { 'l', '<Plug>RestNvimLast' },
+        { '<Esc>', nil, { exit = true, nowait = true } },
+    },
+})
