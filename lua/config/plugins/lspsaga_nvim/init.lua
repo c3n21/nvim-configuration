@@ -32,7 +32,7 @@ saga.init_lsp_saga({
         enable = true,
         enable_in_insert = true,
         cache_code_action = true,
-        sign = true,
+        sign = false,
         update_time = 150,
         sign_priority = 20,
         virtual_text = true,
@@ -113,7 +113,7 @@ saga.init_lsp_saga({
 keymap('n', 'gh', '<cmd>Lspsaga lsp_finder<CR>', { silent = true })
 
 -- Code action
-keymap({"n","v"}, "<leader>ca", "<cmd>Lspsaga code_action<CR>", { silent = true })
+keymap({ 'n', 'v' }, '<leader>ca', '<cmd>Lspsaga code_action<CR>', { silent = true })
 
 -- Rename
 keymap('n', '<leader>rn', '<cmd>Lspsaga rename<CR>', { silent = true })

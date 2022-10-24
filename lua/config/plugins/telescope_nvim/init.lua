@@ -113,3 +113,14 @@ local extensions = {
 for _, value in ipairs(extensions) do
     telescope.load_extension(value)
 end
+
+local opts = { noremap = true, silent = true }
+vim.keymap.set({ 'n' }, '<leader>bo', function()
+    require('telescope.builtin').buffers({ only_cwd = vim.fn.haslocaldir() == 1 })
+end, opts)
+vim.keymap.set({ 'n' }, '<leader>lr', ':Telescope lsp_references<CR>', opts)
+vim.keymap.set({ 'n' }, '<leader>ldd', ':Telescope diagnostics<CR>', opts)
+vim.keymap.set({ 'n' }, '<leader>lds', ':Telescope lsp_document_symbols<CR>', opts)
+vim.keymap.set({ 'n' }, '<leader>lws', ':Telescope lsp_dynamic_workspace_symbols<CR>', opts)
+vim.keymap.set({ 'n' }, '<leader>lo', ':Telescope loclist<CR>', opts)
+vim.keymap.set({ 'n' }, '<leader>qo', ':Telescope quickfix<CR>', opts)

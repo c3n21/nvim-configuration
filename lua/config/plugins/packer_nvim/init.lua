@@ -5,10 +5,7 @@ local utils = require('utils')
 local config = {
     {
         -- Packer can manage itself
-        { 'wbthomason/packer.nvim',
-            opt = true,
-            config = '',
-        },
+        { 'wbthomason/packer.nvim', opt = true, config = '' },
 
         {
             'kyazdani42/nvim-web-devicons',
@@ -174,18 +171,16 @@ local config = {
 
         {
             'nvim-treesitter/nvim-treesitter-textobjects',
-            after = 'nvim-treesitter',
+            disable = true,
             requires = {
                 {
                     'nvim-treesitter/nvim-treesitter',
                 },
             },
-            disable = true,
         },
 
         {
             'romgrk/nvim-treesitter-context',
-            after = 'nvim-treesitter',
             requires = {
                 {
                     'nvim-treesitter/nvim-treesitter',
@@ -272,7 +267,7 @@ local config = {
         -----------------
         {
             'nvim-neorg/neorg',
-            disable = true,
+            disable = false,
             requires = 'nvim-lua/plenary.nvim',
         },
 

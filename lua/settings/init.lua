@@ -146,22 +146,12 @@ vim.opt.shiftwidth = 4 -- number of space used for indenting using >> or <<
 vim.opt.expandtab = true
 
 local _config = {
-    mappings = {},
     plugins = {},
     enable_dap = {},
     enable_lsp = {},
     log_level = vim.log.levels.WARN,
     completion = 'nvim-cmp',
 }
-
-local function apply()
-    local maps = _config.mappings
-    for lhs, map in pairs(maps) do
-        for rhs, map_opts in pairs(map) do
-            vim.keymap.set(map_opts.modes, lhs, rhs, map_opts.opts)
-        end
-    end
-end
 
 local _setup_completion = nil
 
@@ -177,7 +167,6 @@ return {
 
         _setup_completion = setup_completion
         _config = config
-        apply()
     end,
 
     ['completion'] = function(ls_config)
