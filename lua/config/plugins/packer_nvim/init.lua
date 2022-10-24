@@ -9,6 +9,7 @@ local config = {
 
         {
             'kyazdani42/nvim-web-devicons',
+            config = ''
         },
 
         {
@@ -36,25 +37,6 @@ local config = {
         -------------------------
         --- Completion Engine ---
         -------------------------
-
-        {
-            'neoclide/coc.nvim',
-            branch = 'release',
-            disable = true,
-        },
-
-        {
-            'ms-jpq/coq_nvim',
-            branch = 'coq',
-            opt = true,
-            disable = true,
-        },
-
-        {
-            'ms-jpq/coq.artifacts',
-            branch = 'artifacts',
-            disable = true,
-        },
 
         {
             'ray-x/lsp_signature.nvim',
