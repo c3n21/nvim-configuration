@@ -167,6 +167,7 @@ local config = {
 
         {
             'romgrk/nvim-treesitter-context',
+            disable = true,
             requires = {
                 {
                     'nvim-treesitter/nvim-treesitter',
