@@ -9,7 +9,7 @@ local config = {
 
         {
             'kyazdani42/nvim-web-devicons',
-            config = ''
+            config = '',
         },
 
         {
@@ -98,7 +98,7 @@ local config = {
         },
 
         {
-            'rest-nvim/rest.nvim'
+            'rest-nvim/rest.nvim',
         },
 
         {
@@ -322,7 +322,13 @@ local config = {
         },
         {
             'rmagatti/auto-session',
+            disable = true,
         },
+
+        {
+            'Shatur/neovim-session-manager',
+        },
+
         {
             'theHamsta/nvim-dap-virtual-text',
         },
