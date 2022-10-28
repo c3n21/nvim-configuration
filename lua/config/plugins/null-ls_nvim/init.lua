@@ -11,7 +11,7 @@ local sources = {
     null_ls.builtins.formatting.rustfmt,
     null_ls.builtins.formatting.ocamlformat,
     null_ls.builtins.formatting.tidy.with({
-        filetypes = {"xml"},
+        filetypes = { 'xml' },
         args = {
             '--tidy-mark',
             'no',
@@ -33,6 +33,8 @@ local sources = {
     --[[     method = require('null-ls.methods').internal.DIAGNOSTICS_ON_SAVE, ]]
     --[[     to_temp_file = false, ]]
     --[[ }), ]]
+    null_ls.builtins.diagnostics.eslint_d,
+    null_ls.builtins.code_actions.eslint_d,
 }
 
 null_ls.setup({
@@ -66,4 +68,12 @@ null_ls.setup({
     --[[ root_dir = u.root_pattern(".null-ls-root", "Makefile", ".git"), ]]
     update_in_insert = false,
     sources = sources,
+})
+
+vim.diagnostic.config({
+    underline = true,
+    virtual_text = false,
+    signs = true,
+    update_in_insert = true,
+    severity_sort = true,
 })
