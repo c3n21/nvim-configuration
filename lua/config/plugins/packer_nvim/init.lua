@@ -67,6 +67,7 @@ local config = {
         {
             'mfussenegger/nvim-jdtls',
             disable = false,
+            config = '',
             ft = 'java',
         },
 
