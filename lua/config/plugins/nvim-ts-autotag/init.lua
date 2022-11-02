@@ -4,6 +4,8 @@ local filetypes = {
     'typescript',
     'javascriptreact',
     'typescriptreact',
+    'jsx',
+    'tsx',
     'svelte',
     'vue',
     'tsx',
