@@ -29,7 +29,7 @@ ts_setup.setup({
         enable = true,
         enable_autocmd = false,
     },
-    ensure_installed = { 'c', 'bash', 'html', 'javascript', 'lua', 'python', 'php', 'http', 'json' }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    ensure_installed = 'all', -- one of "all", "maintained" (parsers with maintainers), or a list of languages
 
     highlight = {
         enable = true, -- false will disable the whole extension
