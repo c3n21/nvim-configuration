@@ -141,7 +141,7 @@ local config = {
         },
 
         {
-            'nvim-treesitter/nvim-treesitter',
+            'kevinhwang91/nvim-treesitter'--'nvim-treesitter/nvim-treesitter',
         },
 
         {
