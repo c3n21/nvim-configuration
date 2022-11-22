@@ -21,11 +21,6 @@ local config = {
         },
 
         {
-            'jbyuki/one-small-step-for-vimkind',
-            disable = true,
-        },
-
-        {
             'ThePrimeagen/git-worktree.nvim',
             disable = false,
         },
@@ -141,7 +136,7 @@ local config = {
         },
 
         {
-            'kevinhwang91/nvim-treesitter'--'nvim-treesitter/nvim-treesitter',
+            'kevinhwang91/nvim-treesitter', --'nvim-treesitter/nvim-treesitter',
         },
 
         {
@@ -154,26 +149,6 @@ local config = {
 
         {
             'anuvyklack/fold-preview.nvim',
-        },
-
-        {
-            'nvim-treesitter/nvim-treesitter-textobjects',
-            disable = true,
-            requires = {
-                {
-                    'nvim-treesitter/nvim-treesitter',
-                },
-            },
-        },
-
-        {
-            'romgrk/nvim-treesitter-context',
-            disable = true,
-            requires = {
-                {
-                    'nvim-treesitter/nvim-treesitter',
-                },
-            },
         },
 
         ------------------
@@ -260,11 +235,6 @@ local config = {
         },
 
         {
-            'vimwiki/vimwiki',
-            disable = true,
-        },
-
-        {
             'nvim-lua/plenary.nvim',
         },
 
@@ -320,10 +290,6 @@ local config = {
         },
         {
             'esensar/nvim-dev-container',
-        },
-        {
-            'rmagatti/auto-session',
-            disable = true,
         },
 
         {
