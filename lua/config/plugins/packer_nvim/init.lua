@@ -12,7 +12,7 @@ local config = {
             config = '',
         },
 
-        { 'folke/neoconf.nvim' },
+        { 'folke/neoconf.nvim', config = '' },
 
         {
             'jose-elias-alvarez/null-ls.nvim',
@@ -76,12 +76,12 @@ local config = {
         {
             'scalameta/nvim-metals',
             requires = { 'nvim-lua/plenary.nvim' },
-            config = ''
+            config = '',
         },
 
         {
             'simrat39/rust-tools.nvim',
-            config = ''
+            config = '',
         },
 
         {
@@ -300,7 +300,7 @@ local config = {
             'microsoft/vscode-js-debug',
             opt = true,
             config = '',
-            run = 'npm cache clear --force && npm install --legacy-peer-deps && npm run compile',
+            run = 'git reset --hard && npm cache clear --force && npm install --legacy-peer-deps && npm run compile',
         },
 
         { 'mxsdev/nvim-dap-vscode-js', requires = { 'mfussenegger/nvim-dap' } },
