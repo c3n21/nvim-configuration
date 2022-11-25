@@ -12,6 +12,8 @@ local config = {
             config = '',
         },
 
+        { 'folke/neoconf.nvim' },
+
         {
             'jose-elias-alvarez/null-ls.nvim',
         },
@@ -74,10 +76,12 @@ local config = {
         {
             'scalameta/nvim-metals',
             requires = { 'nvim-lua/plenary.nvim' },
+            config = ''
         },
 
         {
             'simrat39/rust-tools.nvim',
+            config = ''
         },
 
         {
@@ -253,10 +257,6 @@ local config = {
 
         {
             'folke/twilight.nvim',
-        },
-
-        {
-            'folke/zen-mode.nvim',
         },
 
         {

@@ -1,6 +1,26 @@
+require("neoconf").setup({
+  -- override any of the default settings here
+})
+
+-- rust
+require('rust-tools').setup({})
+
+-- metals
+local metals_config = require('metals').bare_config()
+local completion = require('settings').completion
+
+metals_config = completion(metals_config)
+
+metals_config.settings = {
+    showImplicitArguments = true,
+    excludePackages = {
+        'akka.actor.typed.javadsl',
+        'com.github.swagger.akka.javadsl',
+    },
+}
+
 local lspconfig = require('lspconfig')
 local config = require('settings').get_config()
-local completion = require('settings').completion
 
 local language_servers = config.enable_lsp
 
