@@ -53,19 +53,21 @@ local config = {
             },
         },
 
+        { 'SmiteshP/nvim-navic', config = '' },
+
         ----------------------------
         --      nvim-lsp
         ----------------------------
         {
             'neovim/nvim-lspconfig',
             disable = false,
+            config = '',
         },
 
         {
             'mfussenegger/nvim-jdtls',
             disable = false,
             config = '',
-            ft = 'java',
         },
 
         {
@@ -87,6 +89,7 @@ local config = {
         {
             'folke/neodev.nvim',
             disable = false,
+            config = '',
         },
 
         ---------
