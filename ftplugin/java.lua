@@ -6,8 +6,10 @@
 --[[ local _configuration = home .. '/.local/share/java/jdtls/config_linux' ]]
 
 --[[ local _data = home .. '/.local/jdtls/' .. project_name ]]
+local on_attach = require('config.plugins.nvim-lspconfig.navic')
 
 local config = {
+    on_attach = on_attach,
     -- The command that starts the language server
     -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
     cmd = { 'jdtls' },
