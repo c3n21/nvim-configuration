@@ -68,7 +68,7 @@ local config = {
 
         {
             'glepnir/lspsaga.nvim',
-            disable = false,
+            disable = true,
         },
 
         {
@@ -232,10 +232,6 @@ local config = {
             'nvim-neorg/neorg',
             disable = false,
             requires = 'nvim-lua/plenary.nvim',
-        },
-
-        {
-            'nvim-lua/plenary.nvim',
         },
 
         {
