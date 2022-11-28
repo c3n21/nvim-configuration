@@ -26,7 +26,7 @@ local settings_config = {
         'intelephense',
         'tailwindcss',
         'erlangls',
-        'eslint'
+        'eslint',
         -- 'rust_analyzer',
         -- "sumneko_lua" using lua-dev
         -- "fsautocomplete",

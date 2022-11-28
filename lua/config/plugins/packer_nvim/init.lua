@@ -70,27 +70,26 @@ local config = {
             'neovim/nvim-lspconfig',
             disable = false,
             config = '',
-            requires = { 'neoconf.nvim', config = '' },
         },
 
-        {
+        --[[ {
             'mfussenegger/nvim-jdtls',
             disable = false,
             config = '',
             requires = { 'neoconf.nvim', config = '' },
-        },
+        }, ]]
 
-        {
+        --[[ {
             'scalameta/nvim-metals',
             requires = { { 'nvim-lua/plenary.nvim' }, { 'neoconf.nvim', config = '' } },
             config = '',
-        },
+        }, ]]
 
-        {
+        --[[ {
             'simrat39/rust-tools.nvim',
             config = '',
             requires = { 'neoconf.nvim', config = '' },
-        },
+        }, ]]
 
         {
             'folke/neodev.nvim',
@@ -134,7 +133,7 @@ local config = {
         --------------
         {
             'ahmedkhalf/project.nvim',
-            disable = false,
+            disable = true,
         },
 
         {
@@ -235,7 +234,7 @@ local config = {
 
         {
             'iamcco/markdown-preview.nvim',
-            disable = false,
+            disable = true,
             run = 'cd app && yarn install',
         },
 
@@ -306,7 +305,7 @@ local config = {
 
         {
             'Shatur/neovim-session-manager',
-            disable = true
+            disable = false
         },
 
         {
