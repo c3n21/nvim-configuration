@@ -81,7 +81,7 @@ cmp.setup({
             i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
         }),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }, { 'i' }),
         ['<Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
@@ -94,7 +94,7 @@ cmp.setup({
             else
                 fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
             end
-        end, { 'i', 's', 'c' }),
+        end, { 'i' }),
 
         ['<S-Tab>'] = cmp.mapping(function()
             if cmp.visible() then
@@ -104,7 +104,7 @@ cmp.setup({
                 -- elseif vim.fn["vsnip#jumpable"](-1) == 1 then
                 --   feedkey("<Plug>(vsnip-jump-prev)", "")
             end
-        end, { 'i', 's', 'c' }),
+        end, { 'i' }),
     },
     sources = cmp.config.sources({
         --[[ { name = 'nvim_lsp_signature_help' }, ]]
@@ -119,12 +119,12 @@ cmp.setup({
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline('/', {
-    sources = {
-        { name = 'buffer' },
-        { name = 'nvim_lsp_document_symbol' },
-    },
-})
+--cmp.setup.cmdline('/', {
+--    sources = {
+--        { name = 'buffer' },
+--        --[[ { name = 'nvim_lsp_document_symbol' }, ]]
+--    },
+--})
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 -- cmp.setup.cmdline(':', {
@@ -135,15 +135,15 @@ cmp.setup.cmdline('/', {
 --     }),
 -- })
 
-cmp.setup.cmdline(':', {
-    sources = cmp.config.sources({
-        { name = 'path' },
-        { name = 'cmdline' },
-    }),
-})
+--cmp.setup.cmdline(':', {
+--    sources = cmp.config.sources({
+--        { name = 'path' },
+--        { name = 'cmdline' },
+--    }),
+--})
 
-require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
-  sources = {
-    { name = "dap" },
-  },
+require('cmp').setup.filetype({ 'dap-repl', 'dapui_watches', 'dapui_hover' }, {
+    sources = {
+        { name = 'dap' },
+    },
 })
