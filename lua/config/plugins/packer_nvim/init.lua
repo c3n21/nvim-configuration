@@ -12,8 +12,6 @@ local config = {
             config = '',
         },
 
-        { 'folke/neoconf.nvim', config = '' },
-
         {
             'jose-elias-alvarez/null-ls.nvim',
         },
@@ -48,7 +46,6 @@ local config = {
                 { 'hrsh7th/cmp-cmdline' },
                 { 'rcarriga/cmp-dap' },
                 { 'hrsh7th/cmp-nvim-lsp-document-symbol' },
-                { 'rcarriga/cmp-dap' },
                 --[[ { 'hrsh7th/cmp-nvim-lsp-signature-help' }, ]]
             },
         },
@@ -58,38 +55,48 @@ local config = {
         ----------------------------
         --      nvim-lsp
         ----------------------------
+        { 'folke/neoconf.nvim', config = [[require('config.plugins.neoconf_nvim')]] },
+
+        {
+            'williamboman/mason-lspconfig.nvim',
+            config = '',
+        },
+
+        {
+            'williamboman/mason.nvim',
+        },
+
         {
             'neovim/nvim-lspconfig',
             disable = false,
             config = '',
+            requires = { 'neoconf.nvim', config = '' },
         },
 
         {
             'mfussenegger/nvim-jdtls',
             disable = false,
             config = '',
-        },
-
-        {
-            'glepnir/lspsaga.nvim',
-            disable = true,
+            requires = { 'neoconf.nvim', config = '' },
         },
 
         {
             'scalameta/nvim-metals',
-            requires = { 'nvim-lua/plenary.nvim' },
+            requires = { { 'nvim-lua/plenary.nvim' }, { 'neoconf.nvim', config = '' } },
             config = '',
         },
 
         {
             'simrat39/rust-tools.nvim',
             config = '',
+            requires = { 'neoconf.nvim', config = '' },
         },
 
         {
             'folke/neodev.nvim',
             disable = false,
             config = '',
+            requires = { 'neoconf.nvim', config = '' },
         },
 
         ---------
@@ -252,6 +259,7 @@ local config = {
         {
             'Shatur/neovim-cmake',
         },
+
         {
             'L3MON4D3/LuaSnip',
             disable = false,
@@ -271,15 +279,19 @@ local config = {
             'anuvyklack/pretty-fold.nvim',
             requires = 'anuvyklack/nvim-keymap-amend', -- only for preview
         },
+
         {
             'phaazon/hop.nvim',
         },
+
         {
             'lewis6991/impatient.nvim',
         },
+
         {
             'TimUntersberger/neogit',
         },
+
         {
             'nvim-neo-tree/neo-tree.nvim',
             requires = {
@@ -287,6 +299,7 @@ local config = {
                 'MunifTanjim/nui.nvim',
             },
         },
+
         {
             'esensar/nvim-dev-container',
         },
