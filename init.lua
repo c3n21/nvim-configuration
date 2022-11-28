@@ -25,7 +25,8 @@ local settings_config = {
         'ocamllsp',
         'intelephense',
         'tailwindcss',
-        'erlangls'
+        'erlangls',
+        'eslint'
         -- 'rust_analyzer',
         -- "sumneko_lua" using lua-dev
         -- "fsautocomplete",

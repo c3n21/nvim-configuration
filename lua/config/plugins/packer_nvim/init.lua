@@ -156,7 +156,7 @@ local config = {
         {
             'nvim-treesitter/nvim-treesitter-refactor',
             after = 'nvim-treesitter',
-            require = {
+            requires = {
                 'nvim-treesitter/nvim-treesitter',
             },
         },
@@ -306,17 +306,11 @@ local config = {
 
         {
             'Shatur/neovim-session-manager',
+            disable = true
         },
 
         {
             'theHamsta/nvim-dap-virtual-text',
-        },
-
-        {
-            'microsoft/vscode-js-debug',
-            opt = true,
-            config = '',
-            run = 'git reset --hard && npm cache clear --force && npm install --legacy-peer-deps && npm run compile',
         },
 
         { 'mxsdev/nvim-dap-vscode-js', requires = { 'mfussenegger/nvim-dap' } },
