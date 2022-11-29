@@ -83,31 +83,31 @@ require('neodev').setup({
 local lspconfig = require('lspconfig')
 
 -- example to setup sumneko and enable call snippets
---lspconfig.sumneko_lua.setup({
---    on_attach = on_attach,
---    settings = {
---        Lua = {
---            runtime = {
---                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
---                version = 'LuaJIT',
---            },
---            --[[ diagnostics = {
---                -- Get the language server to recognize the `vim` global
---            }, ]]
---            workspace = {
---                maxPreload = 5000,
---            },
---            -- Do not send telemetry data containing a randomized but unique identifier
---            telemetry = {
---                enable = false,
---            },
---
---            completion = {
---                callSnippet = 'Replace',
---            },
---        },
---    },
---})
+lspconfig.sumneko_lua.setup({
+    on_attach = on_attach,
+    settings = {
+        Lua = {
+            runtime = {
+                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                version = 'LuaJIT',
+            },
+            --[[ diagnostics = {
+                -- Get the language server to recognize the `vim` global
+            }, ]]
+            workspace = {
+                maxPreload = 5000,
+            },
+            -- Do not send telemetry data containing a randomized but unique identifier
+            telemetry = {
+                enable = false,
+            },
+
+            completion = {
+                callSnippet = 'Replace',
+            },
+        },
+    },
+})
 
 local config = require('settings').get_config()
 
