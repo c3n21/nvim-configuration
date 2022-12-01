@@ -104,7 +104,7 @@ telescope.setup({
 
 local extensions = {
     'ui-select',
-    'projects',
+    --[[ 'projects', ]]
     'smart_history',
     'fzf',
     -- 'file_browser'
