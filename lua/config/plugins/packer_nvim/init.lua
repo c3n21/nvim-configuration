@@ -161,6 +161,10 @@ packer.startup({
         })
 
         use_config({
+            'NMAC427/guess-indent.nvim',
+        })
+
+        use_config({
             'nvim-treesitter/nvim-treesitter-refactor',
             after = 'nvim-treesitter',
             requires = {
@@ -207,11 +211,6 @@ packer.startup({
 
         use_config({
             'mbbill/undotree',
-        })
-
-        use({
-            'tpope/vim-sleuth',
-            disable = false,
         })
 
         use({

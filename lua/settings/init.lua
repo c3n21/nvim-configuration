@@ -114,6 +114,9 @@ end
 --  trail = nil,--'•', -- BULLET (U+2022, UTF-8: E2 80 A2)
 --}
 
+vim.opt.shiftwidth=4
+vim.opt.tabstop=4
+vim.opt.expandtab=true
 vim.opt.autoindent = true --indent a new line the same amount as the line just typed
 -----------------------------
 -- Editor settings
