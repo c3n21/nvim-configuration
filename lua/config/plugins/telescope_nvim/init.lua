@@ -1,4 +1,5 @@
 local telescope = require('telescope')
+local builtin = require('telescope.builtin')
 
 telescope.setup({
     extensions = {
@@ -118,9 +119,14 @@ local opts = { noremap = true, silent = true }
 vim.keymap.set({ 'n' }, '<leader>bo', function()
     require('telescope.builtin').buffers({ only_cwd = vim.fn.haslocaldir() == 1 })
 end, opts)
-vim.keymap.set({ 'n' }, '<leader>lr', ':Telescope lsp_references<CR>', opts)
-vim.keymap.set({ 'n' }, '<leader>ldd', ':Telescope diagnostics<CR>', opts)
-vim.keymap.set({ 'n' }, '<leader>lds', ':Telescope lsp_document_symbols<CR>', opts)
-vim.keymap.set({ 'n' }, '<leader>lws', ':Telescope lsp_dynamic_workspace_symbols<CR>', opts)
-vim.keymap.set({ 'n' }, '<leader>lo', ':Telescope loclist<CR>', opts)
-vim.keymap.set({ 'n' }, '<leader>qo', ':Telescope quickfix<CR>', opts)
+vim.keymap.set({ 'n' }, '<leader>lr', builtin.lsp_references, opts)
+vim.keymap.set({ 'n' }, '<leader>ldd', builtin.diagnostics, opts)
+vim.keymap.set({ 'n' }, '<leader>lds', builtin.lsp_document_symbols, opts)
+vim.keymap.set({ 'n' }, '<leader>lws', builtin.lsp_workspace_symbols, opts)
+vim.keymap.set({ 'n' }, '<leader>lo', builtin.loclist, opts)
+vim.keymap.set({ 'n' }, '<leader>qo', builtin.quickfix, opts)
+vim.keymap.set({ 'n' }, 'gd', builtin.lsp_definitions, opts)
+vim.keymap.set({ 'n' }, 'gD', builtin.lsp_type_definitions, opts)
+vim.keymap.set({ 'n' }, 'K', vim.lsp.buf.hover, opts)
+vim.keymap.set({ 'n' }, 'gi', builtin.lsp_implementations, opts)
+vim.keymap.set({ 'n' }, 'H', vim.lsp.buf.signature_help, opts)
