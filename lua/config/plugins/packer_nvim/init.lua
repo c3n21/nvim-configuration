@@ -321,6 +321,12 @@ packer.startup({
         })
 
         use_config({ 'mxsdev/nvim-dap-vscode-js', requires = { 'mfussenegger/nvim-dap' } })
+
+        use({
+            'microsoft/vscode-js-debug',
+            opt = true,
+            run = 'npm install --legacy-peer-deps && npm run compile',
+        })
     end,
     config = {
         opt_default = false,
