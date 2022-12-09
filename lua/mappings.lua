@@ -30,6 +30,8 @@ vim.keymap.set({ 'n' }, '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set({ 'n' }, ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set({ 'n' }, '<leader>q', vim.diagnostic.setloclist, opts)
 vim.keymap.set({ 'n' }, '<leader><leader>f', vim.lsp.buf.format, opts)
+vim.keymap.set({ 'n' }, '<leader>lw', vim.lsp.buf.workspace_symbol, opts)
+vim.keymap.set({ 'n' }, '<leader>ld', vim.lsp.buf.document_symbol, opts)
 
 for _, breakpoint in ipairs({ ',', '.', '[', ']', '!', '?' }) do
     vim.keymap.set({ 'i' }, breakpoint, breakpoint .. '<c-g>u', opts)
