@@ -1,5 +1,4 @@
 local telescope = require('telescope')
-local builtin = require('telescope.builtin')
 
 telescope.setup({
     extensions = {
@@ -115,18 +114,4 @@ for _, value in ipairs(extensions) do
     telescope.load_extension(value)
 end
 
-local opts = { noremap = true, silent = true }
-vim.keymap.set({ 'n' }, '<leader>bo', function()
-    require('telescope.builtin').buffers({ only_cwd = vim.fn.haslocaldir() == 1 })
-end, opts)
-vim.keymap.set({ 'n' }, '<leader>lr', builtin.lsp_references, opts)
-vim.keymap.set({ 'n' }, '<leader>ldd', builtin.diagnostics, opts)
-vim.keymap.set({ 'n' }, '<leader>lds', builtin.lsp_document_symbols, opts)
-vim.keymap.set({ 'n' }, '<leader>lws', builtin.lsp_workspace_symbols, opts)
-vim.keymap.set({ 'n' }, '<leader>lo', builtin.loclist, opts)
-vim.keymap.set({ 'n' }, '<leader>qo', builtin.quickfix, opts)
-vim.keymap.set({ 'n' }, 'gd', builtin.lsp_definitions, opts)
-vim.keymap.set({ 'n' }, 'gD', builtin.lsp_type_definitions, opts)
-vim.keymap.set({ 'n' }, 'K', vim.lsp.buf.hover, opts)
-vim.keymap.set({ 'n' }, 'gi', builtin.lsp_implementations, opts)
-vim.keymap.set({ 'n' }, 'H', vim.lsp.buf.signature_help, opts)
+require('config.plugins.telescope_nvim.hydra')
