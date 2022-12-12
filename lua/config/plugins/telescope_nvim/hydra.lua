@@ -46,9 +46,9 @@ _<Enter>_: Telescope           _<Esc>_
     },
 })
 
-vim.keymap.set({ 'n' }, '<leader>bo', function()
-    require('telescope.builtin').buffers({ only_cwd = vim.fn.haslocaldir() == 1 })
-end, opts)
+--[[ vim.keymap.set({ 'n' }, '<leader>bo', function() ]]
+--[[     require('telescope.builtin').buffers({ only_cwd = vim.fn.haslocaldir() == 1 }) ]]
+--[[ end, opts) ]]
 
 vim.keymap.set({ 'n' }, '<leader>lr', builtin.lsp_references, opts)
 vim.keymap.set({ 'n' }, '<leader>ldd', builtin.diagnostics, opts)
