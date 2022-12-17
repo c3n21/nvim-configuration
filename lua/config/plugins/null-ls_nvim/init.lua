@@ -34,7 +34,7 @@ local sources = {
     --[[     to_temp_file = false, ]]
     --[[ }), ]]
     --[[ null_ls.builtins.diagnostics.eslint_d, ]]
-    --[[ null_ls.builtins.code_actions.eslint_d, ]]
+    null_ls.builtins.code_actions.eslint_d,
 }
 
 null_ls.setup({
