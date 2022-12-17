@@ -1,11 +1,13 @@
 vim.o.path = vim.o.path .. '**'
 
 vim.g.mapleader = ' '
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = false,
-    underline = true,
-    signs = true,
-})
+
+--[[ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { ]]
+--[[     virtual_text = false, ]]
+--[[     underline = true, ]]
+--[[     signs = true, ]]
+--[[ }) ]]
+
 -- Grep rg
 -- Use faster grep alternatives if possible
 if vim.fn.executable('rg') then
@@ -133,7 +135,7 @@ vim.termguicolors = true
 
 vim.opt.showmatch = true
 vim.opt.mouse = 'v'
-vim.opt.hlsearch = true
+vim.opt.hlsearch = false
 vim.opt.pyx = 3
 vim.opt.autoread = true
 vim.opt.hidden = true
