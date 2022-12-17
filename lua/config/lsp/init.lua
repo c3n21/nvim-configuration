@@ -80,13 +80,19 @@ navic.setup({
 })
 
 local lsp_formatting = function(bufnr)
-    vim.lsp.buf.format({
-        filter = function(client)
-            -- apply whatever logic you want (in this example, we'll only use null-ls)
-            return client.name == 'null-ls'
-        end,
-        bufnr = bufnr,
-    })
+    local has_changed = vim.fn.getbufinfo(vim.fn.bufname(bufnr))[1]['changed'] == 1
+
+    if has_changed then
+        vim.lsp.buf.format({
+            filter = function(client)
+                -- apply whatever logic you want (in this example, we'll only use null-ls)
+                return client.name == 'null-ls'
+            end,
+            bufnr = bufnr,
+        })
+    else
+        print("Not formatting since it hasn't changed")
+    end
 end
 
 -- if you want to set up formatting on save, you can use this as a callback
