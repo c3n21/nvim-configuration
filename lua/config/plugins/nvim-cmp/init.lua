@@ -56,19 +56,19 @@ cmp.setup({
     --         return vim_item
     --     end,
     -- },
-    window = {
-        completion = cmp.config.window.bordered({
-            -- side_padding = 30,
-            -- col_offset = 100,
-            -- max_width = 30,
-            -- zindex = 100
-        }),
-        documentation = cmp.config.window.bordered({
-            -- max_width = 30,
-            -- max_height = 30,
-            -- zindex = 100
-        }),
-    },
+    --[[ window = { ]]
+    --[[     completion = cmp.config.window.bordered({ ]]
+    --[[         -- side_padding = 30, ]]
+    --[[         -- col_offset = 100, ]]
+    --[[         -- max_width = 30, ]]
+    --[[         -- zindex = 100 ]]
+    --[[     }), ]]
+    --[[     documentation = cmp.config.window.bordered({ ]]
+    --[[         -- max_width = 30, ]]
+    --[[         -- max_height = 30, ]]
+    --[[         -- zindex = 100 ]]
+    --[[     }), ]]
+    --[[ }, ]]
     experimental = {
         ghost_text = true,
     },

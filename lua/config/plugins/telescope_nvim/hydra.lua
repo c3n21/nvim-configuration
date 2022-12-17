@@ -17,7 +17,7 @@ _k_: keymap      _;_: commands history
 _r_: registers   _?_: search history
 
 _<Enter>_: Telescope           _<Esc>_ 
-]],
+]]   ,
     config = {
         color = 'teal',
         invoke_on_body = true,
@@ -46,20 +46,5 @@ _<Enter>_: Telescope           _<Esc>_
     },
 })
 
---[[ vim.keymap.set({ 'n' }, '<leader>bo', function() ]]
---[[     require('telescope.builtin').buffers({ only_cwd = vim.fn.haslocaldir() == 1 }) ]]
---[[ end, opts) ]]
-
-vim.keymap.set({ 'n' }, '<leader>lr', builtin.lsp_references, opts)
-vim.keymap.set({ 'n' }, '<leader>ldd', builtin.diagnostics, opts)
---TODO: use these again
---[[ vim.keymap.set({ 'n' }, '<leader>ld', builtin.lsp_document_symbols, opts) ]]
---[[ vim.keymap.set({ 'n' }, '<leader>lw', builtin.lsp_workspace_symbols, opts) ]]
-
 vim.keymap.set({ 'n' }, '<leader><leader>l', builtin.loclist, opts)
 vim.keymap.set({ 'n' }, '<leader><leader>q', builtin.quickfix, opts)
-vim.keymap.set({ 'n' }, '<leader>d', builtin.lsp_definitions, opts)
-vim.keymap.set({ 'n' }, 'gD', builtin.lsp_type_definitions, opts)
-vim.keymap.set({ 'n' }, 'K', vim.lsp.buf.hover, opts)
-vim.keymap.set({ 'n' }, 'gi', builtin.lsp_implementations, opts)
-vim.keymap.set({ 'n' }, 'H', vim.lsp.buf.signature_help, opts)
