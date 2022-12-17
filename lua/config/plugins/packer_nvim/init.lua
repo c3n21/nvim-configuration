@@ -69,7 +69,7 @@ packer.startup({
         ----------------------------
         --      nvim-lsp
         ----------------------------
-        use_config({ 'folke/neoconf.nvim' }, [[require('config.plugins.neoconf_nvim')]])
+        use({ 'folke/neoconf.nvim' })
 
         use({
             'williamboman/mason-lspconfig.nvim',
@@ -79,10 +79,11 @@ packer.startup({
             'williamboman/mason.nvim',
         })
 
-        use({
+        use_config({
             'neovim/nvim-lspconfig',
             disable = false,
-        })
+            
+        }, [[require('config.lsp')]])
 
         use({
             'mfussenegger/nvim-jdtls',
