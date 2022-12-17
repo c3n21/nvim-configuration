@@ -82,7 +82,6 @@ packer.startup({
         use_config({
             'neovim/nvim-lspconfig',
             disable = false,
-            
         }, [[require('config.lsp')]])
 
         use({
