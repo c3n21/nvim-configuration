@@ -330,7 +330,7 @@ packer.startup({
     config = {
         opt_default = false,
         snapshot = nil,
-        snapshot_path = packer_util.join_paths(vim.fn.stdpath('config'), 'lua', 'snapshots'),
+        snapshot_path = packer_util.join_paths(vim.fn.stdpath('cache'), 'packer.nvim', 'snapshots'),
         log = { log_level = log_level },
         compile_path = packer_util.join_paths(vim.fn.stdpath('config'), 'lua', 'packer_compiled.lua'),
         auto_reload_compiled = true,
