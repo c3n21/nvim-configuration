@@ -35,6 +35,7 @@ local sources = {
     --[[ }), ]]
     --[[ null_ls.builtins.diagnostics.eslint_d, ]]
     null_ls.builtins.code_actions.eslint_d,
+    null_ls.builtins.formatting.erlfmt,
 }
 
 null_ls.setup({
