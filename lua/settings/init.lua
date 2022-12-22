@@ -116,9 +116,9 @@ end
 --  trail = nil,--'•', -- BULLET (U+2022, UTF-8: E2 80 A2)
 --}
 
-vim.opt.shiftwidth=4
-vim.opt.tabstop=4
-vim.opt.expandtab=true
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.expandtab = true
 vim.opt.autoindent = true --indent a new line the same amount as the line just typed
 -----------------------------
 -- Editor settings
@@ -147,36 +147,3 @@ vim.incsearch = true
 --[[ vim.opt.tabstop = 4 -- number of spaces for each tab ]]
 --[[ vim.opt.shiftwidth = 4 -- number of space used for indenting using >> or << ]]
 vim.opt.expandtab = true
-
-local _config = {
-    plugins = {},
-    enable_dap = {},
-    enable_lsp = {},
-    log_level = vim.log.levels.WARN,
-    completion = 'nvim-cmp',
-}
-
-local _setup_completion = nil
-
-return {
-    ['setup'] = function(config)
-        local fmt = string.format
-        local completion_framework = fmt('settings.%s', config.completion)
-        local success, setup_completion = pcall(require, completion_framework)
-
-        if not success then
-            vim.notify(string.format("Completion framework '%s' not available", config.completion), vim.log.levels.WARN)
-        end
-
-        _setup_completion = setup_completion
-        _config = config
-    end,
-
-    ['completion'] = function(ls_config)
-        return _setup_completion(ls_config)
-    end,
-
-    ['get_config'] = function()
-        return _config
-    end,
-}

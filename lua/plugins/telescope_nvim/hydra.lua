@@ -17,7 +17,7 @@ _k_: keymap      _;_: commands history
 _r_: registers   _?_: search history
 
 _<Enter>_: Telescope           _<Esc>_ 
-]]   ,
+]],
     config = {
         color = 'teal',
         invoke_on_body = true,
