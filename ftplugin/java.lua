@@ -6,7 +6,7 @@
 --[[ local _configuration = home .. '/.local/share/java/jdtls/config_linux' ]]
 
 --[[ local _data = home .. '/.local/jdtls/' .. project_name ]]
-local on_attach = require('config.lsp')
+local on_attach = require('plugins.lsp.on_attach')
 
 local config = {
     on_attach = on_attach,
