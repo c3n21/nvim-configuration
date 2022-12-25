@@ -13,6 +13,7 @@ return {
         'nvim-telescope/telescope.nvim',
         'jose-elias-alvarez/null-ls.nvim',
         'smjonas/inc-rename.nvim',
+        'mfussenegger/nvim-jdtls',
     },
 
     config = function()
