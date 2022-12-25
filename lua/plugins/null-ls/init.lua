@@ -2,6 +2,7 @@ return {
     'jose-elias-alvarez/null-ls.nvim',
     config = function()
         local null_ls = require('null-ls')
+        local on_attach = require('plugins.lsp.on_attach')
 
         -- register any number of sources simultaneously
         local sources = {
@@ -55,7 +56,7 @@ return {
                 level = 'warn',
                 use_console = 'async',
             },
-            on_attach = nil,
+            on_attach = on_attach,
             -- function(client, bufnr)
             --     if client.supports_method('textDocument/formatting') then
             --         vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
