@@ -9,17 +9,17 @@ return {
     svelte = {},
     eslint = {},
     html = {},
-    --    jsonls = {
-    --      settings = {
-    --        json = {
-    --          format = {
-    --            enable = true,
-    --          },
-    --          schemas = require("schemastore").json.schemas(),
-    --          validate = { enable = true },
-    --        },
-    --      },
-    --    },
+    jsonls = {
+        settings = {
+            json = {
+                format = {
+                    enable = true,
+                },
+                schemas = require('schemastore').json.schemas(),
+                validate = { enable = true },
+            },
+        },
+    },
     gopls = {},
     marksman = {},
     pyright = {},

@@ -14,6 +14,7 @@ return {
         'jose-elias-alvarez/null-ls.nvim',
         'smjonas/inc-rename.nvim',
         'mfussenegger/nvim-jdtls',
+        'b0o/schemastore.nvim',
     },
 
     config = function()
