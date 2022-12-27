@@ -115,14 +115,14 @@ return {
                 }),
                 ['<CR>'] = cmp.mapping.confirm({ select = true }, { 'i' }),
                 ['<Tab>'] = cmp.mapping(function(fallback)
-                    if cmp.visible() and has_words_before() then
+                    if cmp.visible() then
                         cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
                         -- elseif luasnip.expand_or_jumpable() then
                         --     luasnip.expand_or_jump()
                         -- elseif vim.fn["vsnip#available"](1) == 1 then
                         --   feedkey("<Plug>(vsnip-expand-or-jump)", "")
-
-                        --[[ cmp.complete() ]]
+                    elseif has_words_before() then
+                        cmp.complete()
                     else
                         fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
                     end
@@ -147,26 +147,30 @@ return {
                 { name = 'luasnip', group_index = 2 }, -- For luasnip users.
                 -- { name = 'ultisnips' }, -- For ultisnips users.
                 -- { name = 'snippy' }, -- For snippy users.
-                --[[ { name = 'buffer', group_index = 2 }, ]]
+                { name = 'buffer', group_index = 2 },
+                { name = 'path' },
+                { name = 'cmdline' },
             }),
         })
 
         -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-        --cmp.setup.cmdline('/', {
-        --    sources = {
-        --        { name = 'buffer' },
-        --        --[[ { name = 'nvim_lsp_document_symbol' }, ]]
-        --    },
-        --})
+        cmp.setup.cmdline('/', {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = {
+                { name = 'buffer' },
+                --[[ { name = 'nvim_lsp_document_symbol' }, ]]
+            },
+        })
 
         -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-        -- cmp.setup.cmdline(':', {
-        --     sources = cmp.config.sources({
-        --         { name = 'path' },
-        --     }, {
-        --         { name = 'cmdline' },
-        --     }),
-        -- })
+        cmp.setup.cmdline(':', {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = cmp.config.sources({
+                { name = 'path' },
+            }, {
+                { name = 'cmdline' },
+            }),
+        })
 
         --cmp.setup.cmdline(':', {
         --    sources = cmp.config.sources({
