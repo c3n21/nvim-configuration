@@ -149,7 +149,7 @@ return {
                 -- { name = 'snippy' }, -- For snippy users.
                 { name = 'buffer', group_index = 2 },
                 { name = 'path' },
-                { name = 'cmdline' },
+                --[[ { name = 'cmdline' }, ]]
             }),
         })
 
