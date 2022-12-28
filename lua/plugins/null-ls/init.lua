@@ -10,7 +10,9 @@ return {
             null_ls.builtins.code_actions.gitsigns,
 
             null_ls.builtins.formatting.stylua,
-            null_ls.builtins.formatting.prettierd,
+            null_ls.builtins.formatting.prettierd.with({
+                extra_filetypes = { 'java' },
+            }),
             null_ls.builtins.formatting.phpcsfixer,
             null_ls.builtins.formatting.rustfmt,
             null_ls.builtins.formatting.ocamlformat,

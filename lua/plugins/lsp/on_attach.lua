@@ -61,7 +61,7 @@ local on_attach = function(client, bufnr)
     vim.keymap.set({ 'n', 'i' }, '<C>]', builtin.lsp_definitions, opts)
     vim.keymap.set({ 'n' }, 'gD', builtin.lsp_type_definitions, opts)
     -- Check hover plugin
-    --[[ vim.keymap.set({ 'n' }, 'K', vim.lsp.buf.hover, opts) ]]
+    vim.keymap.set({ 'n' }, 'K', vim.lsp.buf.hover, opts)
     vim.keymap.set({ 'n' }, 'gi', builtin.lsp_implementations, opts)
     vim.keymap.set({ 'n' }, 'gd', vim.lsp.buf.declaration, opts)
     vim.keymap.set({ 'n' }, 'H', vim.lsp.buf.signature_help, opts)

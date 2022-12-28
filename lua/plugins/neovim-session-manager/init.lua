@@ -1,5 +1,6 @@
 return {
     'Shatur/neovim-session-manager',
+    enabled = false,
     config = function()
         local Path = require('plenary.path')
         require('session_manager').setup({

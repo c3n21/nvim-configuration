@@ -1,6 +1,6 @@
 return {
     'hrsh7th/nvim-cmp',
-    event = 'InsertEnter',
+    --event = 'InsertEnter',
     dependencies = {
         'zbirenbaum/copilot-cmp',
         'zbirenbaum/copilot.lua',
