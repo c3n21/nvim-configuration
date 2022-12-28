@@ -50,18 +50,21 @@ local on_attach = function(client, bufnr)
     -- LSP
     vim.keymap.set({ 'n', 'i' }, '<C>]', builtin.lsp_definitions, opts)
     vim.keymap.set({ 'n' }, 'gD', builtin.lsp_type_definitions, opts)
-    vim.keymap.set({ 'n' }, 'K', vim.lsp.buf.hover, opts)
+    -- Check hover plugin
+    --[[ vim.keymap.set({ 'n' }, 'K', vim.lsp.buf.hover, opts) ]]
     vim.keymap.set({ 'n' }, 'gi', builtin.lsp_implementations, opts)
     vim.keymap.set({ 'n' }, 'gd', vim.lsp.buf.declaration, opts)
     vim.keymap.set({ 'n' }, 'H', vim.lsp.buf.signature_help, opts)
     --[[ vim.keymap.set({ 'n' }, '<leader>rn', vim.lsp.buf.rename, opts) ]]
-    vim.keymap.set({ 'n' }, '<leader>rn', ':IncRename ', opts)
+    vim.keymap.set('n', '<leader>rn', function()
+        return ':IncRename ' .. vim.fn.expand('<cword>')
+    end, { expr = true })
     vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
     vim.keymap.set({ 'n' }, '<leader><leader>d', vim.diagnostic.open_float, opts)
     vim.keymap.set({ 'n' }, '[d', vim.diagnostic.goto_prev, opts)
     vim.keymap.set({ 'n' }, ']d', vim.diagnostic.goto_next, opts)
     vim.keymap.set({ 'n' }, '<leader>q', vim.diagnostic.setloclist, opts)
-    vim.keymap.set({ 'n' }, '<leader><leader>f', vim.lsp.buf.format, opts)
+    vim.keymap.set({ 'n' }, '<leader><leader>f', format, opts)
     vim.keymap.set({ 'n' }, '<leader>lw', vim.lsp.buf.workspace_symbol, opts)
     vim.keymap.set({ 'n' }, '<leader>ld', vim.lsp.buf.document_symbol, opts)
 end
