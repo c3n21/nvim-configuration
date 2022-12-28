@@ -1,16 +1,25 @@
 local navic = require('nvim-navic')
 
+local function format(opts)
+    local get_formatter = require('plugins.lsp.get_formatter')
+    local format_client = get_formatter() or {}
+    print(format_client.name)
+
+    if not opts.filter and not vim.tbl_isempty(format_client) then
+        -- extend opts with a table with filter function
+        opts.filter = function(client)
+            return client.name == format_client.name
+        end
+    end
+
+    vim.lsp.buf.format(opts)
+end
+
 local lsp_formatting = function(bufnr)
     local has_changed = vim.fn.getbufinfo(vim.fn.bufname(bufnr))[1]['changed'] == 1
 
     if has_changed then
-        vim.lsp.buf.format({
-            filter = function(client)
-                -- apply whatever logic you want (in this example, we'll only use null-ls)
-                return client.name == 'null-ls'
-            end,
-            bufnr = bufnr,
-        })
+        format({ bufnr = bufnr })
     else
         print("Not formatting since it hasn't changed")
     end
