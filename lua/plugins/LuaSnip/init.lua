@@ -22,11 +22,11 @@ return {
             },
         })
 
-        --local luasnip_snippets_realpath = string.format('%s/lua/config/plugins/LuaSnip/snippets', vim.fn.stdpath('config'))
-        --local vscode_snippets_realpath =
-        --string.format('%s/lua/config/plugins/LuaSnip/friendly-snippets', vim.fn.stdpath('config'))
-        --require('luasnip.loaders.from_lua').load({ paths = luasnip_snippets_realpath })
-        --require('luasnip.loaders.from_vscode').lazy_load({ paths = { vscode_snippets_realpath } })
+        local luasnip_snippets_realpath = string.format('%s/lua/plugins/LuaSnip/snippets', vim.fn.stdpath('config'))
+        local vscode_snippets_realpath =
+            string.format('%s/lua/plugins/LuaSnip/friendly-snippets', vim.fn.stdpath('config'))
+        require('luasnip.loaders.from_lua').load({ paths = luasnip_snippets_realpath })
+        require('luasnip.loaders.from_vscode').lazy_load({ paths = { vscode_snippets_realpath } })
 
         vim.keymap.set({ 'i', 's' }, '<c-l>', function()
             if luasnip.choice_active() then
@@ -49,7 +49,7 @@ return {
         vim.keymap.set(
             { 'n' },
             '<leader><leader>s',
-            '<cmd> source ~/.config/nvim/lua/config/plugins/LuaSnip/init.lua <CR>',
+            '<cmd> source ~/.config/nvim/lua/plugins/LuaSnip/init.lua <CR>',
             { noremap = true, silent = true }
         )
     end,
