@@ -1,5 +1,6 @@
 return {
     'rmagatti/auto-session',
+    enabled = false,
     config = function()
         vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
         require('auto-session').setup({
@@ -8,7 +9,7 @@ return {
             auto_session_root_dir = vim.fn.stdpath('data') .. '/sessions/',
             auto_session_enabled = true,
             auto_save_enabled = true,
-            auto_restore_enabled = false,
+            auto_restore_enabled = true,
             auto_session_suppress_dirs = nil,
             auto_session_use_git_branch = true,
             -- the configs below are lua only
@@ -20,6 +21,7 @@ return {
                 'fugitiveblame',
                 'gitrebase',
                 'gitcommit',
+                'neo-tree',
                 --[[ 'toggleterm', ]]
             },
         })
