@@ -1,7 +1,8 @@
 return {
     'hrsh7th/nvim-cmp',
-    --event = 'InsertEnter',
+    event = 'InsertEnter',
     dependencies = {
+        'L3MON4D3/LuaSnip',
         'zbirenbaum/copilot-cmp',
         'zbirenbaum/copilot.lua',
         'hrsh7th/cmp-nvim-lsp',
@@ -15,6 +16,7 @@ return {
     },
     config = function()
         local cmp = require('cmp')
+        local luasnip = require('luasnip')
         require('copilot_cmp').setup({
             method = 'getCompletionsCycling',
             formatters = {
@@ -24,22 +26,19 @@ return {
             },
         })
 
-        --[[ local has_words_before = function() ]]
-        --[[     local line, col = unpack(vim.api.nvim_win_get_cursor(0)) ]]
-        --[[     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil ]]
-        --[[ end ]]
+        --[[ cmp.event:on('menu_opened', function() ]]
+        --[[     vim.b.copilot_suggestion_hidden = true ]]
+        --[[ end) ]]
+
+        --[[ cmp.event:on('menu_closed', function() ]]
+        --[[     vim.b.copilot_suggestion_hidden = false ]]
+        --[[ end) ]]
 
         local has_words_before = function()
-            if vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt' then
-                return false
-            end
             local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-            return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match('^%s*$') == nil
+            return not vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt'
+                and (col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match('^%s*$') == nil)
         end
-
-        -- local feedkey = function(key, mode)
-        --   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
-        -- end
 
         -- local cmp_kinds = {
         --     Text = '  ',
@@ -73,6 +72,7 @@ return {
             enabled = function()
                 return vim.api.nvim_buf_get_option(0, 'buftype') ~= 'prompt' or require('cmp_dap').is_dap_buffer()
             end,
+
             snippet = {
                 -- REQUIRED - you must specify a snippet engine
                 expand = function(args)
@@ -82,6 +82,7 @@ return {
                     -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
                 end,
             },
+
             -- formatting = {
             --     format = function(_, vim_item)
             --         vim_item.kind = (cmp_kinds[vim_item.kind] or '') .. vim_item.kind
@@ -101,9 +102,11 @@ return {
             --[[         -- zindex = 100 ]]
             --[[     }), ]]
             --[[ }, ]]
+            --
             experimental = {
                 ghost_text = true,
             },
+
             mapping = {
                 ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
                 ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
@@ -151,6 +154,25 @@ return {
                 { name = 'path' },
                 --[[ { name = 'cmdline' }, ]]
             }),
+            sorting = {
+                priority_weight = 2,
+                comparators = {
+                    require('copilot_cmp.comparators').prioritize,
+                    require('copilot_cmp.comparators').score,
+
+                    -- Below is the default comparitor list and order for nvim-cmp
+                    cmp.config.compare.offset,
+                    -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+                    cmp.config.compare.exact,
+                    cmp.config.compare.score,
+                    cmp.config.compare.recently_used,
+                    cmp.config.compare.locality,
+                    cmp.config.compare.kind,
+                    cmp.config.compare.sort_text,
+                    cmp.config.compare.length,
+                    cmp.config.compare.order,
+                },
+            },
         })
 
         -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
@@ -184,5 +206,9 @@ return {
                 { name = 'dap' },
             },
         })
+
+        -- If you want insert `(` after select function or method item
+        local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+        cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
     end,
 }
