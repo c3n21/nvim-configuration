@@ -9,7 +9,6 @@ return {
         'ray-x/lsp_signature.nvim',
         'simrat39/rust-tools.nvim',
         'SmiteshP/nvim-navic',
-        'scalameta/nvim-metals',
         'nvim-telescope/telescope.nvim',
         'jose-elias-alvarez/null-ls.nvim',
         'smjonas/inc-rename.nvim',
