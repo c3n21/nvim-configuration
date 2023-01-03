@@ -16,7 +16,6 @@ return {
     },
     config = function()
         local cmp = require('cmp')
-        local luasnip = require('luasnip')
         require('copilot_cmp').setup({
             method = 'getCompletionsCycling',
             formatters = {
@@ -143,15 +142,15 @@ return {
             },
             sources = cmp.config.sources({
                 --[[ { name = 'nvim_lsp_signature_help' }, ]]
-                { name = 'neorg', group_index = 2 },
-                { name = 'nvim_lsp', group_index = 2 },
-                { name = 'copilot', group_index = 2 },
+                { name = 'neorg', group_index = 2, dup = 0 },
+                { name = 'nvim_lsp', group_index = 2, dup = 0 },
+                { name = 'copilot', group_index = 2, dup = 0 },
                 -- { name = 'vsnip' }, -- For vsnip users.
-                { name = 'luasnip', group_index = 2 }, -- For luasnip users.
+                { name = 'luasnip', group_index = 2, dup = 0 }, -- For luasnip users.
                 -- { name = 'ultisnips' }, -- For ultisnips users.
                 -- { name = 'snippy' }, -- For snippy users.
-                { name = 'buffer', group_index = 2 },
-                { name = 'path' },
+                { name = 'buffer', group_index = 2, dup = 0 },
+                { name = 'path', dup = 0 },
                 --[[ { name = 'cmdline' }, ]]
             }),
             sorting = {
