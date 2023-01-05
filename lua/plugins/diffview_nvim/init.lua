@@ -53,7 +53,7 @@ return {
             hooks = {
                 diff_buf_read = function(bufnr)
                     -- Change local options in diff buffers
-                    vim.opt_local.wrap = false
+                    vim.opt_local.wrap = true
                     vim.opt_local.list = false
                     vim.opt_local.colorcolumn = { 80 }
                 end,
@@ -61,6 +61,12 @@ return {
                     print(('A new %s was opened on tab page %d!'):format(view:class():name(), view.tabpage))
                 end,
             }, -- See ':h diffview-config-hooks'
+            view = {
+                merge_tool = {
+                    layout = 'diff3_mixed', -- One of 'horizontal' or 'vertical'
+                    disable_diagnostics = true,
+                },
+            },
             keymaps = {
                 disable_defaults = false, -- Disable the default keymaps
                 view = {
