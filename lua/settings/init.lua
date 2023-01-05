@@ -87,6 +87,7 @@ vim.opt.diffopt = vim.opt.diffopt
         'context:4',
         'algorithm:histogram',
         'indent-heuristic',
+        'linematch:60',
     }
 
 local wslenv = os.getenv('WSLENV')
