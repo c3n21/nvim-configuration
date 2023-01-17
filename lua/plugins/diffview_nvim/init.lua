@@ -62,6 +62,10 @@ return {
                 end,
             }, -- See ':h diffview-config-hooks'
             view = {
+                default = {
+                    -- Config for changed files, and staged files in diff views.
+                    winbar_info = true, -- See ':h diffview-config-view.x.winbar_info'
+                },
                 merge_tool = {
                     layout = 'diff3_mixed', -- One of 'horizontal' or 'vertical'
                     disable_diagnostics = true,
