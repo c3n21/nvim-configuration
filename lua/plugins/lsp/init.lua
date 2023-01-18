@@ -3,7 +3,6 @@ return {
     name = 'lsp',
     event = 'BufReadPre',
     dependencies = {
-        'hrsh7th/cmp-nvim-lsp',
         'folke/neodev.nvim',
         'folke/neoconf.nvim',
         'ray-x/lsp_signature.nvim',
@@ -12,7 +11,6 @@ return {
         'nvim-telescope/telescope.nvim',
         'jose-elias-alvarez/null-ls.nvim',
         'smjonas/inc-rename.nvim',
-        'mfussenegger/nvim-jdtls',
         'b0o/schemastore.nvim',
     },
 
