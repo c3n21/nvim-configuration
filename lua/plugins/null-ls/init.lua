@@ -40,7 +40,7 @@ return {
             --[[     to_temp_file = false, ]]
             --[[ }), ]]
             --[[ null_ls.builtins.diagnostics.eslint_d, ]]
-            null_ls.builtins.code_actions.eslint_d,
+            --[[ null_ls.builtins.code_actions.eslint_d, ]]
             null_ls.builtins.formatting.erlfmt,
 
             require('typescript.extensions.null-ls.code-actions'),
@@ -58,7 +58,7 @@ return {
                 level = 'warn',
                 use_console = 'async',
             },
-            on_attach = on_attach,
+            on_attach = on_attach.format_attach,
             -- function(client, bufnr)
             --     if client.supports_method('textDocument/formatting') then
             --         vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })

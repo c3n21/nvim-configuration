@@ -1,8 +1,10 @@
 return {
     'jose-elias-alvarez/typescript.nvim',
     dependencies = {
-        'lsp',
+        'folke/neoconf.nvim',
+        'folke/noice.nvim',
     },
+    ft = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
     config = function()
         require('typescript').setup({
             disable_commands = false, -- prevent the plugin from creating Vim commands
@@ -12,7 +14,7 @@ return {
             },
 
             server = { -- pass options to lspconfig's setup method
-                on_attach = require('plugins.lsp.on_attach'),
+                on_attach = require('plugins.lsp.on_attach').lsp_attach,
             },
         })
     end,

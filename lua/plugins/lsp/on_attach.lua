@@ -1,4 +1,5 @@
 local navic = require('nvim-navic')
+local opts = { noremap = true, silent = true }
 
 local function format(opts)
     opts = opts or {}
@@ -16,7 +17,7 @@ local function format(opts)
     vim.lsp.buf.format(opts)
 end
 
-local lsp_formatting = function(bufnr)
+local function lazy_format(bufnr)
     local has_changed = vim.fn.getbufinfo(vim.fn.bufname(bufnr))[1]['changed'] == 1
 
     if has_changed then
@@ -29,19 +30,21 @@ end
 -- if you want to set up formatting on save, you can use this as a callback
 local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
 
-local on_attach = function(client, bufnr)
+local function format_attach(client, bufnr)
     if client.supports_method('textDocument/formatting') then
         vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
         vim.api.nvim_create_autocmd('BufWritePre', {
             group = augroup,
             buffer = bufnr,
             callback = function()
-                lsp_formatting(bufnr)
+                lazy_format(bufnr)
             end,
         })
     end
+    vim.keymap.set({ 'n' }, '<leader><leader>f', format, opts)
+end
 
-    local opts = { noremap = true, silent = true }
+local function lsp_attach(client, bufnr)
     if client.server_capabilities.documentSymbolProvider then
         navic.attach(client, bufnr)
     end
@@ -74,9 +77,11 @@ local on_attach = function(client, bufnr)
     vim.keymap.set({ 'n' }, '[d', vim.diagnostic.goto_prev, opts)
     vim.keymap.set({ 'n' }, ']d', vim.diagnostic.goto_next, opts)
     vim.keymap.set({ 'n' }, '<leader>q', vim.diagnostic.setloclist, opts)
-    vim.keymap.set({ 'n' }, '<leader><leader>f', format, opts)
     vim.keymap.set({ 'n' }, '<leader>lw', vim.lsp.buf.workspace_symbol, opts)
     vim.keymap.set({ 'n' }, '<leader>ld', vim.lsp.buf.document_symbol, opts)
 end
 
-return on_attach
+return {
+    lsp_attach = lsp_attach,
+    format_attach = format_attach,
+}

@@ -5,7 +5,7 @@ return {
     dependencies = {
         'folke/neodev.nvim',
         'folke/neoconf.nvim',
-        'ray-x/lsp_signature.nvim',
+        'folke/noice.nvim',
         'simrat39/rust-tools.nvim',
         'SmiteshP/nvim-navic',
         'nvim-telescope/telescope.nvim',
@@ -13,9 +13,7 @@ return {
         'smjonas/inc-rename.nvim',
         'b0o/schemastore.nvim',
     },
-
     config = function()
-        require('neoconf').setup()
         require('neodev').setup({
             library = {
                 enabled = true, -- when not enabled, neodev will not change any settings to the LSP server
@@ -46,7 +44,7 @@ return {
         local on_attach = require('plugins.lsp.on_attach')
 
         local options = {
-            on_attach = on_attach,
+            on_attach = on_attach.lsp_attach,
             capabilities = capabilities,
             flags = {
                 debounce_text_changes = 150,
