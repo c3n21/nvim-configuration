@@ -7,7 +7,7 @@ return {
     dockerls = {},
     --[[ tsserver = {}, ]]
     svelte = {},
-    eslint = {},
+    --[[ eslint = {}, ]]
     html = {},
     jsonls = {
         settings = {
@@ -88,5 +88,5 @@ return {
     },
     teal_ls = {},
     vimls = {},
-    tailwindcss = {},
+    --[[ tailwindcss = {}, ]]
 }
