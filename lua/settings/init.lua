@@ -141,7 +141,7 @@ vim.opt.pyx = 3
 vim.opt.autoread = true
 vim.opt.hidden = true
 vim.opt.scrolloff = 8
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = 'auto:9'
 vim.opt.colorcolumn = '80'
 vim.incsearch = true
 
