@@ -1,0 +1,17 @@
+{
+  "neodev": {
+    "library": {
+      "enabled": true,
+      "types": true,
+      "plugins": true,
+      "runtime": true
+    },
+    "lspconfig": true,
+    "debug": false,
+    "override": null,
+    "setup_jsonls": true,
+    "experimental": { "pathStrict": false }
+  },
+  "neoconf": { "filetype_jsonc": true },
+  "lspconfig": {}
+}

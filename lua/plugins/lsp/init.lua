@@ -28,8 +28,10 @@ return {
             -- for your Neovim config directory, the config.library settings will be used as is
             -- for plugin directories (root_dirs having a /lua directory), config.library.plugins will be disabled
             -- for any other directory, config.library.enabled will be set to false
-            override = function(root_dir, options) end,
+            --[[ override = function(root_dir, options) end, ]]
             -- add any options here, or leave empty to use the default settings
+            lspconfig = true,
+            pathStrict = true,
         })
 
         local servers = require('plugins.lsp.servers')

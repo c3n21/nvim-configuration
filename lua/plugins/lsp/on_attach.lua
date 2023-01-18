@@ -1,5 +1,5 @@
 local navic = require('nvim-navic')
-local opts = { noremap = true, silent = true }
+local map_opts = { noremap = true, silent = true }
 
 local function format(opts)
     opts = opts or {}
@@ -41,7 +41,7 @@ local function format_attach(client, bufnr)
             end,
         })
     end
-    vim.keymap.set({ 'n' }, '<leader><leader>f', format, opts)
+    vim.keymap.set({ 'n' }, '<leader><leader>f', format, map_opts)
 end
 
 local function lsp_attach(client, bufnr)
@@ -54,31 +54,31 @@ local function lsp_attach(client, bufnr)
     --[[ end, opts) ]]
     local builtin = require('telescope.builtin')
 
-    vim.keymap.set({ 'n' }, 'gr', builtin.lsp_references, opts)
-    vim.keymap.set({ 'n' }, '<leader>ldd', builtin.diagnostics, opts)
+    vim.keymap.set({ 'n' }, 'gr', builtin.lsp_references, map_opts)
+    vim.keymap.set({ 'n' }, '<leader>ldd', builtin.diagnostics, map_opts)
     --TODO: use these again
     --[[ vim.keymap.set({ 'n' }, '<leader>ld', builtin.lsp_document_symbols, opts) ]]
     --[[ vim.keymap.set({ 'n' }, '<leader>lw', builtin.lsp_workspace_symbols, opts) ]]
 
     -- LSP
-    vim.keymap.set({ 'n', 'i' }, '<C>]', builtin.lsp_definitions, opts)
-    vim.keymap.set({ 'n' }, 'gD', builtin.lsp_type_definitions, opts)
+    vim.keymap.set({ 'n', 'i' }, '<C>]', builtin.lsp_definitions, map_opts)
+    vim.keymap.set({ 'n' }, 'gD', builtin.lsp_type_definitions, map_opts)
     -- Check hover plugin
-    vim.keymap.set({ 'n' }, 'K', vim.lsp.buf.hover, opts)
-    vim.keymap.set({ 'n' }, 'gi', builtin.lsp_implementations, opts)
-    vim.keymap.set({ 'n' }, 'gd', vim.lsp.buf.declaration, opts)
-    vim.keymap.set({ 'n' }, 'H', vim.lsp.buf.signature_help, opts)
+    vim.keymap.set({ 'n' }, 'K', vim.lsp.buf.hover, map_opts)
+    vim.keymap.set({ 'n' }, 'gi', builtin.lsp_implementations, map_opts)
+    vim.keymap.set({ 'n' }, 'gd', vim.lsp.buf.declaration, map_opts)
+    vim.keymap.set({ 'n' }, 'H', vim.lsp.buf.signature_help, map_opts)
     --[[ vim.keymap.set({ 'n' }, '<leader>rn', vim.lsp.buf.rename, opts) ]]
     vim.keymap.set('n', '<leader>rn', function()
         return ':IncRename ' .. vim.fn.expand('<cword>')
     end, { expr = true })
-    vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
-    vim.keymap.set({ 'n' }, '<leader><leader>d', vim.diagnostic.open_float, opts)
-    vim.keymap.set({ 'n' }, '[d', vim.diagnostic.goto_prev, opts)
-    vim.keymap.set({ 'n' }, ']d', vim.diagnostic.goto_next, opts)
-    vim.keymap.set({ 'n' }, '<leader>q', vim.diagnostic.setloclist, opts)
-    vim.keymap.set({ 'n' }, '<leader>lw', vim.lsp.buf.workspace_symbol, opts)
-    vim.keymap.set({ 'n' }, '<leader>ld', vim.lsp.buf.document_symbol, opts)
+    vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, map_opts)
+    vim.keymap.set({ 'n' }, '<leader><leader>d', vim.diagnostic.open_float, map_opts)
+    vim.keymap.set({ 'n' }, '[d', vim.diagnostic.goto_prev, map_opts)
+    vim.keymap.set({ 'n' }, ']d', vim.diagnostic.goto_next, map_opts)
+    vim.keymap.set({ 'n' }, '<leader>q', vim.diagnostic.setloclist, map_opts)
+    vim.keymap.set({ 'n' }, '<leader>lw', vim.lsp.buf.workspace_symbol, map_opts)
+    vim.keymap.set({ 'n' }, '<leader>ld', vim.lsp.buf.document_symbol, map_opts)
 end
 
 return {
