@@ -1,7 +1,7 @@
 local on_attach = require('plugins.lsp.on_attach')
 
 return {
-    on_attach = on_attach,
+    on_attach = on_attach.lsp_attach,
     -- The command that starts the language server
     -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
     cmd = { 'jdtls' },
