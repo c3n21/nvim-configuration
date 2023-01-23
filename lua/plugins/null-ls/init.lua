@@ -17,7 +17,7 @@ return {
             null_ls.builtins.formatting.rustfmt,
             null_ls.builtins.formatting.ocamlformat,
             null_ls.builtins.formatting.tidy.with({
-                filetypes = { 'xml' },
+                filetypes = { 'xml', 'fxml' },
                 args = {
                     '--tidy-mark',
                     'no',
