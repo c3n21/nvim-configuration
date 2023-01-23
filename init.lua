@@ -26,33 +26,7 @@ local fmt = string.format
 
 vim.env.GIT_EDITOR = 'nvr -cc split --remote-wait'
 
-local settings_config = {
-    enable_dap = {
-        'php',
-    },
-    enable_lsp = {
-        'pyright',
-        'tsserver',
-        'clangd',
-        'dartls',
-        'ocamllsp',
-        'intelephense',
-        'tailwindcss',
-        'erlangls',
-        'eslint',
-        -- 'rust_analyzer',
-        -- "sumneko_lua" using lua-dev
-        -- "fsautocomplete",
-        -- "rnix",
-        -- "efm"
-    },
-    log_level = vim.log.levels.WARN,
-    completion = 'nvim-cmp',
-}
-
-local settings
-
-success, settings = pcall(require, 'settings')
+success, _ = pcall(require, 'settings')
 if not success then
     vim.notify(fmt('Error loading settings: %s', vim.inspect(success)), vim.log.levels.WARN)
 end
