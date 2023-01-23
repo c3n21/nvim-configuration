@@ -39,8 +39,8 @@ return {
             --[[     method = require('null-ls.methods').internal.DIAGNOSTICS_ON_SAVE, ]]
             --[[     to_temp_file = false, ]]
             --[[ }), ]]
-            --[[ null_ls.builtins.diagnostics.eslint_d, ]]
-            --[[ null_ls.builtins.code_actions.eslint_d, ]]
+            null_ls.builtins.diagnostics.eslint_d,
+            null_ls.builtins.code_actions.eslint_d,
             null_ls.builtins.formatting.erlfmt,
 
             require('typescript.extensions.null-ls.code-actions'),
