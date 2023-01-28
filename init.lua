@@ -21,7 +21,7 @@ _G.__luacache_config = {
         path = vim.fn.stdpath('cache') .. '/luacache_modpaths',
     },
 }
-local success, _ = pcall(require, 'impatient')
+
 local fmt = string.format
 
 vim.env.GIT_EDITOR = 'nvr -cc split --remote-wait'
