@@ -11,17 +11,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.runtimepath:prepend(lazypath)
 
-_G.__luacache_config = {
-    chunks = {
-        enable = true,
-        path = vim.fn.stdpath('cache') .. '/luacache_chunks',
-    },
-    modpaths = {
-        enable = true,
-        path = vim.fn.stdpath('cache') .. '/luacache_modpaths',
-    },
-}
-
 local fmt = string.format
 
 vim.env.GIT_EDITOR = 'nvr -cc split --remote-wait'
