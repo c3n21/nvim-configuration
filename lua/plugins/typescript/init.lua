@@ -1,3 +1,4 @@
+local map_opts = { noremap = true, silent = true }
 return {
     'jose-elias-alvarez/typescript.nvim',
     dependencies = {
@@ -14,7 +15,11 @@ return {
             },
 
             server = { -- pass options to lspconfig's setup method
-                on_attach = require('plugins.lsp.on_attach').lsp_attach,
+                on_attach = function(client, bufnr)
+                    require('plugins.lsp.on_attach').lsp_attach(client, bufnr)
+                    vim.keymap.set('n', '<leader>rf', '<cmd>TypescriptRenameFile<CR>', map_opts)
+                    vim.keymap.set({ 'n', 'i' }, '<C>]', '<cmd>TypescriptGoToSourceDefinition<CR>', map_opts)
+                end,
             },
         })
     end,
