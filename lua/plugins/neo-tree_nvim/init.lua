@@ -259,7 +259,7 @@ return {
             },
         })
 
-        vim.keymap.set({ 'n' }, '<leader>bo', '<cmd>Neotree buffers<CR>')
+        -- vim.keymap.set({ 'n' }, '<leader>bo', '<cmd>Neotree buffers<CR>')
 
         vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
     end,
