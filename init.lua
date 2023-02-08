@@ -120,7 +120,3 @@ require('lazy').setup('plugins', {
         skip_if_doc_exists = true,
     },
 })
---[[ success, settings = pcall(require, 'packer_compiled') ]]
---[[ if not success then ]]
---[[     vim.notify(fmt('Error loading packer_compiled: %s', vim.inspect(success)), vim.log.levels.WARN) ]]
---[[ end ]]
