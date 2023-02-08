@@ -13,5 +13,9 @@
     "experimental": { "pathStrict": false }
   },
   "neoconf": { "filetype_jsonc": true },
-  "lspconfig": {}
+  "lspconfig": {
+    "tsserver": {
+      "typescript.tsserver.experimental.enableProjectDiagnostics": true
+    }
+  }
 }
