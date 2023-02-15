@@ -15,7 +15,34 @@
   "neoconf": { "filetype_jsonc": true },
   "lspconfig": {
     "tsserver": {
-      "typescript.tsserver.experimental.enableProjectDiagnostics": true
+      "javascript.autoClosingTags": true,
+      "typescript.enablePromptUseWorkspaceTsdk": true,
+      "typescript.experimental.tsserver.web.enableProjectWideIntellisense": true,
+      "typescript.implementationsCodeLens.enabled": true,
+      "typescript.inlayHints.enumMemberValues.enabled": true,
+      "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+      "typescript.inlayHints.parameterNames.enabled": "all",
+      "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": true,
+      "typescript.inlayHints.parameterTypes.enabled": true,
+      "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+      "typescript.inlayHints.variableTypes.enabled": true,
+      "typescript.inlayHints.variableTypes.suppressWhenTypeMatchesName": true,
+      "typescript.preferences.importModuleSpecifier": "non-relative",
+      "typescript.preferences.importModuleSpecifierEnding": "auto",
+      "typescript.preferences.includePackageJsonAutoImports": "auto",
+      "typescript.preferences.jsxAttributeCompletionStyle": "auto",
+      "typescript.referencesCodeLens.enabled": true,
+      "typescript.referencesCodeLens.showOnAllFunctions": true,
+      "typescript.suggest.autoImports": true,
+      "typescript.suggest.completeFunctionCalls": true,
+      "typescript.suggest.completeJSDocs": true,
+      "typescript.suggest.enabled": true,
+      "typescript.suggest.includeAutomaticOptionalChainCompletions": true,
+      "typescript.suggest.jsdoc.generateReturns": true,
+      "typescript.tsserver.experimental.enablePackageJsonAutoImportCompletions": true,
+      "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+      "typescript.updateImportsOnFileMove.enabled": "prompt",
+      "typescript.workspaceSymbols.scope": "allOpenProjects"
     }
   }
 }
