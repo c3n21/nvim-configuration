@@ -5,9 +5,7 @@ return {
     clangd = {},
     cssls = {},
     dockerls = {},
-    --[[ tsserver = {}, ]]
     svelte = {},
-    --[[ eslint = {}, ]]
     html = {},
     jsonls = {
         settings = {
