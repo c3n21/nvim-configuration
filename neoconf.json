@@ -14,6 +14,60 @@
   },
   "neoconf": { "filetype_jsonc": true },
   "lspconfig": {
+    "lua_ls": {
+      "Lua.hint.arrayIndex": "Auto",
+      "Lua.workspace.userThirdParty": [],
+      "Lua.workspace.library": [],
+      "Lua.codeLens.enable": true,
+      "Lua.completion.autoRequire": true,
+      "Lua.completion.workspaceWord": true,
+      "Lua.completion.callSnippet": "Both",
+      "Lua.completion.displayContext": 1,
+      "Lua.completion.enable": true,
+      "Lua.completion.showParams": true,
+      "Lua.completion.keywordSnippet": "Both",
+      "Lua.completion.postfix": "@",
+      "Lua.completion.showWord": "Enable",
+      "Lua.runtime.special": {},
+      "Lua.runtime.version": "LuaJIT",
+      "Lua.misc.parameters": ["--log-level=trace"],
+      "Lua.diagnostics.enable": true
+    },
+
+    //             diagnostics = {
+    //                 -- enable = false,
+    //                 groupSeverity = {
+    //                     strong = 'Warning',
+    //                     strict = 'Warning',
+    //                 },
+    //                 groupFileStatus = {
+    //                     ['ambiguity'] = 'Opened',
+    //                     ['await'] = 'Opened',
+    //                     ['codestyle'] = 'None',
+    //                     ['duplicate'] = 'Opened',
+    //                     ['global'] = 'Opened',
+    //                     ['luadoc'] = 'Opened',
+    //                     ['redefined'] = 'Opened',
+    //                     ['strict'] = 'Opened',
+    //                     ['strong'] = 'Opened',
+    //                     ['type-check'] = 'Opened',
+    //                     ['unbalanced'] = 'Opened',
+    //                     ['unused'] = 'Opened',
+    //                 },
+    //                 unusedLocalExclude = { '_*' },
+    //             },
+    //             format = {
+    //                 enable = false,
+    //                 defaultConfig = {
+    //                     indent_style = 'space',
+    //                     indent_size = '2',
+    //                     continuation_indent_size = '2',
+    //                 },
+    //             },
+    //         },
+    //     },
+
+    // },
     "tsserver": {
       "javascript.autoClosingTags": true,
       "typescript.enablePromptUseWorkspaceTsdk": true,
