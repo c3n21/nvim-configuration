@@ -1,7 +1,7 @@
 return {
     'L3MON4D3/LuaSnip',
     dependencies = {
-        'kevinhwang91/nvim-treesitter',
+        'nvim-treesitter/nvim-treesitter',
     },
     config = function()
         local luasnip = require('luasnip')
