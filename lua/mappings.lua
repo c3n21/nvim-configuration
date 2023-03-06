@@ -19,3 +19,7 @@ vim.keymap.set({ 'n' }, '<leader><leader>i', ':luafile ' .. os.getenv('MYVIMRC')
 for _, breakpoint in ipairs({ ',', '.', '[', ']', '!', '?' }) do
     vim.keymap.set({ 'i' }, breakpoint, breakpoint .. '<c-g>u', opts)
 end
+
+return {
+    ['FindFiles'] = '<leader>ff',
+}

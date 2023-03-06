@@ -1,3 +1,11 @@
+local mappings_enum = require('mappings')
+local layout_config = {
+    width = 0.8,
+    height = 0.4,
+    preview_cutoff = 1,
+}
+local DROPDOWN_THEME = 'dropdown'
+
 return {
     'nvim-telescope/telescope.nvim',
     dependencies = {
@@ -11,6 +19,7 @@ return {
     },
     config = function()
         local telescope = require('telescope')
+        local themes = require('telescope.themes')
 
         telescope.setup({
             extensions = {
@@ -112,7 +121,29 @@ return {
                 -- Developer configurations: Not meant for general override
                 buffer_previewer_maker = require('telescope.previewers').buffer_previewer_maker,
             },
+            pickers = {
+                find_files = {
+                    theme = DROPDOWN_THEME,
+                    layout_config = layout_config,
+                },
+                buffers = {
+                    theme = DROPDOWN_THEME,
+                    layout_config = layout_config,
+                },
+            },
         })
+
+        local builtin = require('telescope.builtin')
+        local map_opts = { noremap = true, silent = true }
+        vim.keymap.set({ 'n' }, '<leader>bo', function()
+            builtin.buffers({
+                only_cwd = vim.fn.haslocaldir() == 1,
+                sort_mru = true,
+                ignore_current_buffer = true,
+            })
+        end, map_opts)
+
+        vim.keymap.set({ 'n' }, mappings_enum['FindFiles'], builtin.find_files, map_opts)
 
         local extensions = {
             'ui-select',

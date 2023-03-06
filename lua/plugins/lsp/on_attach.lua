@@ -52,13 +52,6 @@ local function lsp_attach(client, bufnr)
     end
 
     local builtin = require('telescope.builtin')
-    vim.keymap.set({ 'n' }, '<leader>bo', function()
-        builtin.buffers({
-            only_cwd = vim.fn.haslocaldir() == 1,
-            sort_mru = true,
-            ignore_current_buffer = true,
-        })
-    end, map_opts)
 
     vim.keymap.set({ 'n' }, 'gr', builtin.lsp_references, map_opts)
     vim.keymap.set({ 'n' }, '<leader>ldd', builtin.diagnostics, map_opts)
