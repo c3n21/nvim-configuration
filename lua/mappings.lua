@@ -1,25 +1,36 @@
 local opts = { noremap = true, silent = true }
 
+local enum = {
+    ['FindFiles'] = '<leader>ff',
+    ['SourceInit'] = '<leader><leader>i',
+    ['TabNext'] = '<leader>tn',
+    ['CPrev'] = '[q',
+    ['CNext'] = ']q',
+    ['CClose'] = '<leader>qq',
+    ['LPrev'] = '[l',
+    ['LNext'] = ']l',
+    ['LClose'] = '<leader>lq',
+    ['BufferClose'] = '<leader>bq',
+}
+
 -- Generic
 vim.keymap.set({ 'x' }, '<M-K>', ':m-2 <CR>gv=gv', opts)
 vim.keymap.set({ 'n' }, '<M-K>', ':<C-u>m-2<CR>==', opts)
 vim.keymap.set({ 'n' }, '<M-J>', ':<C-u>m-2<CR>==', opts)
 vim.keymap.set({ 'x' }, '<M-J>', ":m'>+<CR>gv=gv", opts)
 vim.keymap.set({ 'n' }, '<M-J>', ':<C-u>m+<CR>==', opts)
-vim.keymap.set({ 'n' }, '<leader>bq', ':bd<CR>', opts)
-vim.keymap.set({ 'n' }, '<leader>lq', ':lclose<CR>', opts)
-vim.keymap.set({ 'n' }, ']l', ':lnext<CR>', opts)
-vim.keymap.set({ 'n' }, '[l', ':lprev<CR>', opts)
-vim.keymap.set({ 'n' }, '<leader>qq', ':cclose<CR>', opts)
-vim.keymap.set({ 'n' }, ']q', ':cnext <CR>', opts)
-vim.keymap.set({ 'n' }, '[q', ':cprevious <CR>', opts)
-vim.keymap.set({ 'n' }, '<leader>tn', ':tabe %<CR>', opts)
-vim.keymap.set({ 'n' }, '<leader><leader>i', ':luafile ' .. os.getenv('MYVIMRC') .. '<CR>', opts)
+vim.keymap.set({ 'n' }, enum['BufferClose'], ':bd<CR>', opts)
+vim.keymap.set({ 'n' }, enum['LClose'], ':lclose<CR>', opts)
+vim.keymap.set({ 'n' }, enum['LNext'], ':lnext<CR>', opts)
+vim.keymap.set({ 'n' }, enum['LPrev'], ':lprev<CR>', opts)
+vim.keymap.set({ 'n' }, enum['CClose'], ':cclose<CR>', opts)
+vim.keymap.set({ 'n' }, enum['CPrev'], ':cnext <CR>', opts)
+vim.keymap.set({ 'n' }, enum['CNext'], ':cprevious <CR>', opts)
+vim.keymap.set({ 'n' }, enum['TabNext'], ':tabe %<CR>', opts)
+vim.keymap.set({ 'n' }, enum['SourceInit'], ':luafile ' .. os.getenv('MYVIMRC') .. '<CR>', opts)
 
 for _, breakpoint in ipairs({ ',', '.', '[', ']', '!', '?' }) do
     vim.keymap.set({ 'i' }, breakpoint, breakpoint .. '<c-g>u', opts)
 end
 
-return {
-    ['FindFiles'] = '<leader>ff',
-}
+return enum
