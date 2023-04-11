@@ -1,3 +1,6 @@
+local map_opts = { noremap = true, silent = true }
+local mapping_enum = require('mappings')
+
 return {
     'jose-elias-alvarez/null-ls.nvim',
     dependencies = {
@@ -46,6 +49,11 @@ return {
             null_ls.builtins.code_actions.eslint_d,
             null_ls.builtins.formatting.erlfmt,
 
+            -- Python
+            null_ls.builtins.diagnostics.ruff,
+            null_ls.builtins.formatting.autopep8,
+            -- null_ls.builtins.formatting.ruff,
+            -- null_ls.builtins.formatting.black,
             require('typescript.extensions.null-ls.code-actions'),
         }
 
@@ -89,5 +97,27 @@ return {
             update_in_insert = true,
             severity_sort = true,
         })
+
+        vim.keymap.set({ 'n', 'v' }, mapping_enum['CodeActions'], vim.lsp.buf.code_action, map_opts)
+        vim.keymap.set({ 'n' }, mapping_enum['OpenFloatDiagnostic'], vim.diagnostic.open_float, map_opts)
+        vim.keymap.set({ 'n' }, mapping_enum['PrevDiagnosticInfo'], function()
+            vim.diagnostic.goto_prev({ wrap = false, severity = { max = vim.diagnostic.severity.INFO } })
+        end, map_opts)
+        vim.keymap.set({ 'n' }, mapping_enum['NextDiagnosticInfo'], function()
+            vim.diagnostic.goto_next({ wrap = false, severity = { max = vim.diagnostic.severity.INFO } })
+        end, map_opts)
+        vim.keymap.set({ 'n' }, mapping_enum['PrevDiagnosticWarning'], function()
+            vim.diagnostic.goto_prev({ wrap = false, severity = vim.diagnostic.severity.WARN })
+        end, map_opts)
+        vim.keymap.set({ 'n' }, mapping_enum['NextDiagnosticWarning'], function()
+            vim.diagnostic.goto_next({ wrap = false, severity = vim.diagnostic.severity.WARN })
+        end, map_opts)
+        vim.keymap.set({ 'n' }, mapping_enum['PrevDiagnosticError'], function()
+            vim.diagnostic.goto_prev({ wrap = false, severity = vim.diagnostic.severity.ERROR })
+        end, map_opts)
+        vim.keymap.set({ 'n' }, mapping_enum['NextDiagnosticError'], function()
+            vim.diagnostic.goto_next({ wrap = false, severity = vim.diagnostic.severity.ERROR })
+        end, map_opts)
+        vim.keymap.set({ 'n' }, mapping_enum['OpenDiagnosticLoclist'], vim.diagnostic.setloclist, map_opts)
     end,
 }

@@ -24,7 +24,7 @@ local visibility_modifiers = {
     t('protected'),
 }
 
-local query_constructor_args = vim.treesitter.parse_query(
+local query_constructor_args = vim.treesitter.query.parse(
     'php',
     [[
     (method_declaration
@@ -137,5 +137,4 @@ return {
             {}
         )
     ),
-},
-    {}
+}, {}

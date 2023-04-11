@@ -11,6 +11,15 @@ local enum = {
     ['LNext'] = ']l',
     ['LClose'] = '<leader>lq',
     ['BufferClose'] = '<leader>bq',
+    ['CodeActions'] = '<leader>ca',
+    ['OpenFloatDiagnostic'] = '<leader><leader>d',
+    ['PrevDiagnosticInfo'] = '[d',
+    ['NextDiagnosticInfo'] = ']d',
+    ['PrevDiagnosticWarning'] = '[w',
+    ['NextDiagnosticWarning'] = ']w',
+    ['PrevDiagnosticError'] = '[e',
+    ['NextDiagnosticError'] = ']e',
+    ['OpenDiagnosticLoclist'] = '<leader>q',
 }
 
 -- Generic
