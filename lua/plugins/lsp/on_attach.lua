@@ -7,7 +7,6 @@ local function format(opts)
     opts = opts or {}
     local get_formatter = require('plugins.lsp.get_formatter')
     local format_client = get_formatter() or {}
-    print(format_client.name)
 
     if not opts.filter and not vim.tbl_isempty(format_client) then
         -- extend opts with a table with filter function

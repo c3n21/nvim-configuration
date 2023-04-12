@@ -1,7 +1,10 @@
 -- return function that returns null-ls formatter if exists, otherwise
 -- return the first formatter found otherwise nil
 return function()
-    local active_clients = vim.lsp.buf_get_clients(0)
+    local active_clients = vim.lsp.get_active_clients({
+        bufnr = 0,
+        allowlist = { 'null-ls', 'efm' },
+    })
     -- filter clients with document_formatting capability
     local format_clients = vim.tbl_filter(function(client)
         return client.supports_method('textDocument/formatting')
