@@ -1,4 +1,5 @@
 local navic = require('nvim-navic')
+local mappings_enum = require('mappings')
 local map_opts = { noremap = true, silent = true }
 -- TODO:
 -- write a wrapper that allocates the right mappings based on client's capabilities
@@ -59,12 +60,24 @@ local function lsp_attach(client, bufnr)
     --[[ vim.keymap.set({ 'n' }, '<leader>lw', builtin.lsp_workspace_symbols, opts) ]]
 
     -- LSP
-    vim.keymap.set({ 'n', 'i' }, '<C>]', builtin.lsp_definitions, map_opts)
+    vim.keymap.set({ 'n', 'i' }, '<C>]', function()
+        builtin.lsp_definitions({
+            {
+                reuse_win = true,
+            },
+        })
+    end, map_opts)
     vim.keymap.set({ 'n' }, 'gD', builtin.lsp_type_definitions, map_opts)
     -- Check hover plugin
     vim.keymap.set({ 'n' }, 'K', vim.lsp.buf.hover, map_opts)
     vim.keymap.set({ 'n' }, 'gi', builtin.lsp_implementations, map_opts)
     vim.keymap.set({ 'n' }, 'gd', vim.lsp.buf.declaration, map_opts)
+    vim.keymap.set(
+        { 'n' },
+        mappings_enum['GoToDefinitionTab'],
+        '<cmd>tab split | lua vim.lsp.buf.definition()<CR> ',
+        map_opts
+    )
     vim.keymap.set({ 'n' }, 'H', vim.lsp.buf.signature_help, map_opts)
     --[[ vim.keymap.set({ 'n' }, '<leader>rn', vim.lsp.buf.rename, opts) ]]
     vim.keymap.set('n', '<leader>rn', function()

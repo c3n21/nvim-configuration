@@ -20,6 +20,7 @@ local enum = {
     ['PrevDiagnosticError'] = '[e',
     ['NextDiagnosticError'] = ']e',
     ['OpenDiagnosticLoclist'] = '<leader>q',
+    ['GoToDefinitionTab'] = '<C-w><C-]>',
 }
 
 -- Generic
