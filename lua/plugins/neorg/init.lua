@@ -1,20 +1,19 @@
 return {
     'nvim-neorg/neorg',
-    enabled = false,
     config = function()
         local neorg = require('neorg')
 
         neorg.setup({
             load = {
                 ['core.defaults'] = {}, -- Load all the defaults
-                ['core.norg.completion'] = {
+                ['core.completion'] = {
                     config = {
                         -- Note that this table is optional and doesn't need to be provided
                         -- Configuration here
                         engine = 'nvim-cmp',
                     },
                 },
-                ['core.norg.concealer'] = {
+                ['core.concealer'] = {
                     config = {
                         icon_preset = 'diamond',
                         -- markup_preset = "dimmed",
@@ -29,7 +28,7 @@ return {
                 --         end,
                 --     },
                 -- },
-                ['core.norg.dirman'] = { -- Manage Neorg directories
+                ['core.dirman'] = { -- Manage Neorg directories
                     config = {
                         workspaces = {
                             work = '~/Documents/Notes',
@@ -42,8 +41,8 @@ return {
                 -- ["core.integrations.treesitter"] = {
                 --     config = {
                 --         parser_configs = {
-                --             norg = {
-                --                 url = "~/dev/tree-sitter-norg"
+                --            .= {
+                --                 url = "~/dev/tree-sitter.
                 --             }
                 --         }
                 --     }
@@ -58,7 +57,7 @@ return {
                 --         zen_mode = "truezen",
                 --     },
                 -- },
-                ['core.norg.journal'] = {},
+                ['core.journal'] = {},
                 ['core.export'] = {},
                 -- ["core.upgrade"] = {},
                 ['core.export.markdown'] = {
@@ -74,7 +73,7 @@ return {
             },
         })
 
-        neorg.modules.load_module('core.norg.completion', nil, {
+        neorg.modules.load_module('core.completion', nil, {
             engine = 'nvim-cmp',
         })
     end,
