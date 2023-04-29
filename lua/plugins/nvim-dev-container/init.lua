@@ -1,6 +1,7 @@
 return {
     'esensar/nvim-dev-container',
     dir = '~/Downloads/github/nvim-dev-container.git/feature/attach_container_nvim',
+    enabled = false,
     dev = true,
     config = function()
         require('devcontainer').setup({
