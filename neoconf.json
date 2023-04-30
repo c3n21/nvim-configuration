@@ -2,8 +2,8 @@
   "neodev": {
     "library": {
       "enabled": true,
-      "types": true,
-      "plugins": true,
+      "types": false,
+      "plugins": false,
       "runtime": true
     },
     "lspconfig": true,
@@ -28,6 +28,7 @@
       "Lua.completion.keywordSnippet": "Both",
       "Lua.completion.postfix": "@",
       "Lua.completion.showWord": "Enable",
+      "Lua.workspace.checkThirdParty": false,
       "Lua.runtime.special": {},
       "Lua.runtime.version": "LuaJIT",
       "Lua.misc.parameters": ["--log-level=trace"],

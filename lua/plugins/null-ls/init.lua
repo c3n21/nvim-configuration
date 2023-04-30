@@ -36,7 +36,9 @@ return {
             }),
 
             null_ls.builtins.diagnostics.tidy,
-            null_ls.builtins.diagnostics.selene,
+            -- null_ls.builtins.diagnostics.selene,
+            null_ls.builtins.formatting.nixfmt,
+            null_ls.builtins.diagnostics.luacheck,
             --[[ null_ls.builtins.diagnostics.php, ]]
             --[[ null_ls.builtins.diagnostics.phpcs, ]]
             --[[ null_ls.builtins.diagnostics.phpmd, ]]
