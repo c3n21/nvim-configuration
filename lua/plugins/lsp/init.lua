@@ -12,9 +12,11 @@ return {
         'jose-elias-alvarez/null-ls.nvim',
         'smjonas/inc-rename.nvim',
         'b0o/schemastore.nvim',
+        'jmbuhr/otter.nvim',
     },
     config = function()
         require('neoconf').setup()
+        require('otter').dev_setup()
         require('neodev').setup({
             library = {
                 enabled = true, -- when not enabled, neodev will not change any settings to the LSP server
