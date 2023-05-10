@@ -103,7 +103,10 @@ return {
             --[[ }, ]]
             --
             experimental = {
-                ghost_text = true,
+                -- Temporary workaround for https://github.com/hrsh7th/nvim-cmp/issues/1565
+                ghost_text = {
+                    enabled = true,
+                },
             },
 
             mapping = {
