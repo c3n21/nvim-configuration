@@ -2,8 +2,8 @@
   "neodev": {
     "library": {
       "enabled": true,
-      "types": false,
-      "plugins": false,
+      "types": true,
+      "plugins": true,
       "runtime": true
     },
     "lspconfig": true,
