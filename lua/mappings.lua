@@ -21,9 +21,23 @@ local enum = {
     ['NextDiagnosticError'] = ']e',
     ['OpenDiagnosticLoclist'] = '<leader>q',
     ['GoToDefinitionTab'] = '<C-w><C-]>',
+    ['LspReferences'] = 'gr',
 }
 
 -- Generic
+-- vim.keymap.set({ 'n', 'i' }, '<C-]>', function()
+--     local cword = vim.fn.expand('<cword>')
+--     print(cword)
+--     local tags = vim.lsp.tagfunc(cword, 'cr')
+--     print(vim.inspect(tags))
+--     -- builtin.lsp_definitions({
+--     --     {
+--     --         reuse_win = true,
+--     --     },
+--     -- })
+-- end, opts)
+
+vim.keymap.set({ 'n' }, enum['LspReferences'], vim.lsp.buf.references, opts)
 vim.keymap.set({ 'x' }, '<M-K>', ':m-2 <CR>gv=gv', opts)
 vim.keymap.set({ 'n' }, '<M-K>', ':<C-u>m-2<CR>==', opts)
 vim.keymap.set({ 'n' }, '<M-J>', ':<C-u>m-2<CR>==', opts)
@@ -34,8 +48,8 @@ vim.keymap.set({ 'n' }, enum['LClose'], ':lclose<CR>', opts)
 vim.keymap.set({ 'n' }, enum['LNext'], ':lnext<CR>', opts)
 vim.keymap.set({ 'n' }, enum['LPrev'], ':lprev<CR>', opts)
 vim.keymap.set({ 'n' }, enum['CClose'], ':cclose<CR>', opts)
-vim.keymap.set({ 'n' }, enum['CPrev'], ':cnext <CR>', opts)
-vim.keymap.set({ 'n' }, enum['CNext'], ':cprevious <CR>', opts)
+vim.keymap.set({ 'n' }, enum['CNext'], ':cnext <CR>', opts)
+vim.keymap.set({ 'n' }, enum['CPrev'], ':cprevious <CR>', opts)
 vim.keymap.set({ 'n' }, enum['TabNext'], ':tabe %<CR>', opts)
 vim.keymap.set({ 'n' }, enum['SourceInit'], ':luafile ' .. os.getenv('MYVIMRC') .. '<CR>', opts)
 

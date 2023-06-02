@@ -53,20 +53,13 @@ local function lsp_attach(client, bufnr)
 
     local builtin = require('telescope.builtin')
 
-    vim.keymap.set({ 'n' }, 'gr', builtin.lsp_references, map_opts)
+    -- vim.keymap.set({ 'n' }, 'gr', builtin.lsp_references, map_opts)
     vim.keymap.set({ 'n' }, '<leader>ldd', builtin.diagnostics, map_opts)
     --TODO: use these again
     --[[ vim.keymap.set({ 'n' }, '<leader>ld', builtin.lsp_document_symbols, opts) ]]
     --[[ vim.keymap.set({ 'n' }, '<leader>lw', builtin.lsp_workspace_symbols, opts) ]]
 
     -- LSP
-    vim.keymap.set({ 'n', 'i' }, '<C>]', function()
-        builtin.lsp_definitions({
-            {
-                reuse_win = true,
-            },
-        })
-    end, map_opts)
     vim.keymap.set({ 'n' }, 'gD', builtin.lsp_type_definitions, map_opts)
     -- Check hover plugin
     vim.keymap.set({ 'n' }, 'K', vim.lsp.buf.hover, map_opts)

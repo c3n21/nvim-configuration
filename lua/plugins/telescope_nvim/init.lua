@@ -21,6 +21,8 @@ return {
         local telescope = require('telescope')
         local themes = require('telescope.themes')
 
+        local previewers = require('telescope.previewers')
+        local conf = require('telescope.config').values
         telescope.setup({
             extensions = {
                 fzf = {
@@ -112,7 +114,9 @@ return {
                 border = {},
                 borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
                 color_devicons = true,
-                path_display = {},
+                path_display = {
+                    'smart',
+                },
                 set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
                 file_previewer = require('telescope.previewers').vim_buffer_cat.new,
                 grep_previewer = require('telescope.previewers').vim_buffer_vimgrep.new,
@@ -122,6 +126,12 @@ return {
                 buffer_previewer_maker = require('telescope.previewers').buffer_previewer_maker,
             },
             pickers = {
+                lsp_references = {
+                    layout_strategy = 'vertical',
+                    -- theme = DROPDOWN_THEME,
+                    -- layout_config = layout_config,
+                    -- previewer = require('telescope.previewers').vim_buffer_cat.new,
+                },
                 find_files = {
                     theme = DROPDOWN_THEME,
                     layout_config = layout_config,
