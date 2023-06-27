@@ -5,6 +5,7 @@ return {
     'jose-elias-alvarez/null-ls.nvim',
     dependencies = {
         'folke/neoconf.nvim',
+        'lewis6991/gitsigns.nvim',
     },
     config = function()
         local null_ls = require('null-ls')
