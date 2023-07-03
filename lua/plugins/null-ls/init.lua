@@ -4,6 +4,7 @@ local mapping_enum = require('mappings')
 return {
     'jose-elias-alvarez/null-ls.nvim',
     dependencies = {
+        'nvim-lua/plenary.nvim',
         'folke/neoconf.nvim',
         'lewis6991/gitsigns.nvim',
     },
@@ -37,9 +38,9 @@ return {
             }),
 
             null_ls.builtins.diagnostics.tidy,
-            -- null_ls.builtins.diagnostics.selene,
+            null_ls.builtins.diagnostics.selene,
             null_ls.builtins.formatting.nixfmt,
-            null_ls.builtins.diagnostics.luacheck,
+            -- null_ls.builtins.diagnostics.luacheck,
             --[[ null_ls.builtins.diagnostics.php, ]]
             --[[ null_ls.builtins.diagnostics.phpcs, ]]
             --[[ null_ls.builtins.diagnostics.phpmd, ]]
