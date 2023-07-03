@@ -16,7 +16,7 @@ return {
     },
     config = function()
         require('neoconf').setup()
-        require('otter').dev_setup()
+        -- require('otter').dev_setup()
         require('neodev').setup({
             library = {
                 enabled = true, -- when not enabled, neodev will not change any settings to the LSP server
