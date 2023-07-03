@@ -88,25 +88,28 @@ return {
                 -- Text object
                 vim.keymap.set({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
 
-                vim.keymap.set({ 'n' }, ']c', function()
-                    if vim.wo.diff then
-                        return ']c'
-                    end
-                    vim.schedule(function()
-                        require('gitsigns').next_hunk()
-                    end)
-                    return '<Ignore>'
-                end, { expr = true })
+                vim.keymap.set({ 'n' }, ']h', gs.next_hunk)
+                vim.keymap.set({ 'n' }, '[h', gs.prev_hunk)
 
-                vim.keymap.set({ 'n' }, '[c', function()
-                    if vim.wo.diff then
-                        return '[c'
-                    end
-                    vim.schedule(function()
-                        require('gitsigns').prev_hunk()
-                    end)
-                    return '<Ignore>'
-                end, { expr = true })
+                -- vim.keymap.set({ 'n' }, ']c', function()
+                --     if vim.wo.diff then
+                --         return ']c'
+                --     end
+                --     vim.schedule(function()
+                --         require('gitsigns').next_hunk()
+                --     end)
+                --     return '<Ignore>'
+                -- end, { expr = true })
+
+                -- vim.keymap.set({ 'n' }, '[c', function()
+                --     if vim.wo.diff then
+                --         return '[c'
+                --     end
+                --     vim.schedule(function()
+                --         require('gitsigns').prev_hunk()
+                --     end)
+                --     return '<Ignore>'
+                -- end, { expr = true })
             end,
         })
     end,
