@@ -1,6 +1,6 @@
 return {
     'sindrets/diffview.nvim',
-    config = function() -- Lua
+    config = function()
         local actions = require('diffview.actions')
 
         require('diffview').setup({
@@ -57,9 +57,7 @@ return {
                     vim.opt_local.list = false
                     vim.opt_local.colorcolumn = { 80 }
                 end,
-                view_opened = function(view)
-                    print(('A new %s was opened on tab page %d!'):format(view:class():name(), view.tabpage))
-                end,
+                view_opened = function(view) end,
             }, -- See ':h diffview-config-hooks'
             view = {
                 default = {
