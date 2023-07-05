@@ -7,9 +7,11 @@ local enum = {
     ['CPrev'] = '[q',
     ['CNext'] = ']q',
     ['CClose'] = '<leader>qq',
+    ['COpen'] = '<leader>qo',
     ['LPrev'] = '[l',
     ['LNext'] = ']l',
     ['LClose'] = '<leader>lq',
+    ['LOpen'] = '<leader>lo',
     ['BufferClose'] = '<leader>bq',
     ['CodeActions'] = '<leader>ca',
     ['OpenFloatDiagnostic'] = '<leader><leader>d',
@@ -52,6 +54,8 @@ vim.keymap.set({ 'n' }, enum['CNext'], ':cnext <CR>', opts)
 vim.keymap.set({ 'n' }, enum['CPrev'], ':cprevious <CR>', opts)
 vim.keymap.set({ 'n' }, enum['TabNext'], ':tabe %<CR>', opts)
 vim.keymap.set({ 'n' }, enum['SourceInit'], ':luafile ' .. os.getenv('MYVIMRC') .. '<CR>', opts)
+vim.keymap.set({ 'n' }, enum['COpen'], ':copen<CR>', opts)
+vim.keymap.set({ 'n' }, enum['LOpen'], ':lopen<CR>', opts)
 
 for _, breakpoint in ipairs({ ',', '.', '[', ']', '!', '?' }) do
     vim.keymap.set({ 'i' }, breakpoint, breakpoint .. '<c-g>u', opts)
