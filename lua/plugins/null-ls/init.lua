@@ -58,7 +58,7 @@ return {
             null_ls.builtins.formatting.autopep8,
             -- null_ls.builtins.formatting.ruff,
             -- null_ls.builtins.formatting.black,
-            require('typescript.extensions.null-ls.code-actions'),
+            -- require('typescript.extensions.null-ls.code-actions'),
         }
 
         null_ls.setup({

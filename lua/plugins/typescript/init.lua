@@ -6,6 +6,7 @@ return {
         'folke/noice.nvim',
     },
     ft = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
+    enabled = false,
     config = function()
         require('typescript').setup({
             disable_commands = false, -- prevent the plugin from creating Vim commands
