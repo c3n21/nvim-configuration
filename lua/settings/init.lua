@@ -149,8 +149,10 @@ vim.incsearch = true
 --[[ vim.opt.shiftwidth = 4 -- number of space used for indenting using >> or << ]]
 vim.opt.expandtab = true
 local fmt = string.format
-function tabline()
-    local _tabline = ''
+
+local function generate_tabline_entries()
+    ---@type string[]
+    local tabline_entries = {}
     for index = 1, vim.fn.tabpagenr('$') do
         local winnr = vim.fn.tabpagewinnr(index)
         local buflist = vim.fn.tabpagebuflist(index)
@@ -160,15 +162,44 @@ function tabline()
         local bufmodified = vim.fn.getbufvar(bufnr, '&mod')
         local tabmodified = bufmodified == 1 and '+' or ''
         local tabcurrent = fmt('%% %d %s - %s/ %s', index, bufname, bufdir, tabmodified)
+        tabline_entries[index] = tabcurrent
+    end
 
-        if index == vim.fn.tabpagenr() then
-            tabcurrent = fmt('%%#TabLineSel#|> %s <|', tabcurrent)
-        else
-            tabcurrent = fmt('%%#TabLine# %s ', tabcurrent)
+    return tabline_entries
+end
+
+vim.o.showtabline = 2
+
+function tabline()
+    local tabline_entries = generate_tabline_entries()
+    local TABLINESEL = '%#TabLineSel#'
+    local TABLINE = '%#TabLine#'
+
+    local viewport_width = vim.o.columns
+    local tabpagenr = vim.fn.tabpagenr('$')
+    local current_tab_index = vim.fn.tabpagenr()
+    local prev_tab_index = math.max(1, current_tab_index - 1)
+    local next_tab_index = math.min(current_tab_index + 1, tabpagenr)
+    local tabline_width = #tabline_entries[current_tab_index]
+    local _tabline = fmt('%s |> %s <|', TABLINESEL, tabline_entries[current_tab_index])
+    tabline_entries[current_tab_index] = ''
+
+    while tabline_width < viewport_width and (prev_tab_index >= 1 or next_tab_index <= tabpagenr) do
+        if prev_tab_index > 0 then
+            local tabcurrent = tabline_entries[prev_tab_index]
+            tabline_width = tabline_width + #tabcurrent
+            _tabline = tabline_width < viewport_width and fmt('%s %s %s', TABLINE, tabcurrent, _tabline) or _tabline
+            prev_tab_index = prev_tab_index - 1
         end
 
-        _tabline = fmt('%s %s ', _tabline, tabcurrent)
+        if next_tab_index <= tabpagenr then
+            local tabcurrent = tabline_entries[next_tab_index]
+            tabline_width = tabline_width + #tabcurrent
+            _tabline = tabline_width < viewport_width and fmt('%s %s %s', _tabline, TABLINE, tabcurrent) or _tabline
+            next_tab_index = next_tab_index + 1
+        end
     end
+
     return _tabline
 end
 
