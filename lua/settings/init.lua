@@ -148,3 +148,28 @@ vim.incsearch = true
 --[[ vim.opt.tabstop = 4 -- number of spaces for each tab ]]
 --[[ vim.opt.shiftwidth = 4 -- number of space used for indenting using >> or << ]]
 vim.opt.expandtab = true
+local fmt = string.format
+function tabline()
+    local _tabline = ''
+    for index = 1, vim.fn.tabpagenr('$') do
+        local winnr = vim.fn.tabpagewinnr(index)
+        local buflist = vim.fn.tabpagebuflist(index)
+        local bufnr = buflist[winnr]
+        local bufname = vim.fn.fnamemodify(vim.fn.bufname(bufnr), ':t')
+        local bufdir = vim.fn.fnamemodify(vim.fn.bufname(bufnr), ':p:h:t')
+        local bufmodified = vim.fn.getbufvar(bufnr, '&mod')
+        local tabmodified = bufmodified == 1 and '+' or ''
+        local tabcurrent = fmt('%% %d %s - %s/ %s', index, bufname, bufdir, tabmodified)
+
+        if index == vim.fn.tabpagenr() then
+            tabcurrent = fmt('%%#TabLineSel#|> %s <|', tabcurrent)
+        else
+            tabcurrent = fmt('%%#TabLine# %s ', tabcurrent)
+        end
+
+        _tabline = fmt('%s %s ', _tabline, tabcurrent)
+    end
+    return _tabline
+end
+
+vim.o.tabline = '%!v:lua.tabline()'
