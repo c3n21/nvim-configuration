@@ -15,6 +15,7 @@ return {
         'jmbuhr/otter.nvim',
         'pmizio/typescript-tools.nvim',
         'williamboman/mason.nvim',
+        'akinsho/flutter-tools.nvim',
     },
     config = function()
         require('neoconf').setup()
@@ -39,8 +40,6 @@ return {
             pathStrict = true,
         })
 
-        local servers = require('plugins.lsp.servers')
-
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
         capabilities.textDocument.foldingRange = {
@@ -49,6 +48,13 @@ return {
         }
 
         local on_attach = require('plugins.lsp.on_attach')
+
+        local flutter_tools = require('flutter-tools')
+        flutter_tools.setup({
+            lsp = {
+                on_attach = on_attach.lsp_attach,
+            },
+        })
 
         local options = {
             on_attach = on_attach.lsp_attach,
@@ -122,6 +128,7 @@ return {
         -- then setup your lsp server as usual
         local lspconfig = require('lspconfig')
 
+        local servers = require('plugins.lsp.servers')
         for ls_name, ls_config in pairs(servers) do
             local opts = vim.tbl_deep_extend('force', {}, options, ls_config or {})
             lspconfig[ls_name].setup(opts)

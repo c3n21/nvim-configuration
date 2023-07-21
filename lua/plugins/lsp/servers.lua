@@ -1,3 +1,4 @@
+local lspconfig = require('lspconfig')
 ---@type lspconfig.options
 return {
     ansiblels = {},
@@ -7,6 +8,20 @@ return {
     dockerls = {},
     svelte = {},
     html = {},
+    intelephense = {
+        -- root_dir = lspconfig.util.root_pattern('composer.json'),
+        root_dir = lspconfig.util.root_pattern('.git'),
+        settings = {
+            intelephense = {
+                files = {
+                    maxSize = 1000000,
+                },
+                diagnostics = {
+                    undefinedProperties = true,
+                },
+            },
+        },
+    },
     jsonls = {
         settings = {
             json = {
