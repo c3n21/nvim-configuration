@@ -5,7 +5,6 @@ return {
     dependencies = {
         'folke/neodev.nvim',
         'folke/neoconf.nvim',
-        'folke/noice.nvim',
         'simrat39/rust-tools.nvim',
         'SmiteshP/nvim-navic',
         'nvim-telescope/telescope.nvim',
