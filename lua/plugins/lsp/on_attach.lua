@@ -1,5 +1,4 @@
 local navic = require('nvim-navic')
-local mappings_enum = require('mappings')
 local map_opts = { noremap = true, silent = true }
 -- TODO:
 -- write a wrapper that allocates the right mappings based on client's capabilities
@@ -50,34 +49,6 @@ local function lsp_attach(client, bufnr)
     if client.server_capabilities.documentSymbolProvider then
         navic.attach(client, bufnr)
     end
-
-    local builtin = require('telescope.builtin')
-
-    -- vim.keymap.set({ 'n' }, 'gr', builtin.lsp_references, map_opts)
-    vim.keymap.set({ 'n' }, '<leader>ldd', builtin.diagnostics, map_opts)
-    --TODO: use these again
-    --[[ vim.keymap.set({ 'n' }, '<leader>ld', builtin.lsp_document_symbols, opts) ]]
-    --[[ vim.keymap.set({ 'n' }, '<leader>lw', builtin.lsp_workspace_symbols, opts) ]]
-
-    -- LSP
-    vim.keymap.set({ 'n' }, 'gD', builtin.lsp_type_definitions, map_opts)
-    -- Check hover plugin
-    vim.keymap.set({ 'n' }, 'K', vim.lsp.buf.hover, map_opts)
-    vim.keymap.set({ 'n' }, 'gi', builtin.lsp_implementations, map_opts)
-    vim.keymap.set({ 'n' }, 'gd', vim.lsp.buf.declaration, map_opts)
-    vim.keymap.set(
-        { 'n' },
-        mappings_enum['GoToDefinitionTab'],
-        '<cmd>tab split | lua vim.lsp.buf.definition()<CR> ',
-        map_opts
-    )
-    vim.keymap.set({ 'n' }, 'H', vim.lsp.buf.signature_help, map_opts)
-    --[[ vim.keymap.set({ 'n' }, '<leader>rn', vim.lsp.buf.rename, opts) ]]
-    vim.keymap.set('n', '<leader>rn', function()
-        return ':IncRename ' .. vim.fn.expand('<cword>')
-    end, { expr = true })
-    vim.keymap.set({ 'n' }, '<leader>lw', vim.lsp.buf.workspace_symbol, map_opts)
-    vim.keymap.set({ 'n' }, '<leader>ld', vim.lsp.buf.document_symbol, map_opts)
 end
 
 return {

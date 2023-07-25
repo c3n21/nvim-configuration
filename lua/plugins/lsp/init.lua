@@ -98,6 +98,7 @@ return {
                 require('plugins.lsp.on_attach').lsp_attach(client, bufnr)
             end,
             settings = {
+
                 -- spawn additional tsserver instance to calculate diagnostics on it
                 separate_diagnostic_server = true,
                 -- "change"|"insert_leave" determine when the client asks the server about diagnostic
@@ -120,7 +121,10 @@ return {
                 tsserver_max_memory = 'auto',
                 -- described below
                 tsserver_format_options = {},
-                tsserver_file_preferences = {},
+                tsserver_file_preferences = {
+                    includeInlayParameterNameHints = 'all',
+                    includeCompletionsForModuleExports = true,
+                },
             },
         })
 
