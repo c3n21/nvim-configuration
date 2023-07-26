@@ -124,6 +124,12 @@ return {
                 tsserver_file_preferences = {
                     includeInlayParameterNameHints = 'all',
                     includeCompletionsForModuleExports = true,
+                    includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                    includeInlayFunctionParameterTypeHints = true,
+                    includeInlayVariableTypeHints = true,
+                    includeInlayPropertyDeclarationTypeHints = true,
+                    includeInlayFunctionLikeReturnTypeHints = true,
+                    includeInlayEnumMemberValueHints = true,
                 },
             },
         })

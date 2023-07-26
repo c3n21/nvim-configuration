@@ -45,10 +45,28 @@ local function format_attach(client, bufnr)
     vim.keymap.set({ 'n' }, '<leader><leader>f', format, map_opts)
 end
 
+---Attach LSP client to buffer
+---@param client lsp.Client
+---@param bufnr number
 local function lsp_attach(client, bufnr)
     if client.server_capabilities.documentSymbolProvider then
         navic.attach(client, bufnr)
     end
+    local augroup_id = vim.api.nvim_create_augroup('lsp_augroup', { clear = true })
+    vim.api.nvim_create_autocmd('InsertEnter', {
+        buffer = bufnr,
+        callback = function()
+            vim.lsp.inlay_hint(bufnr, client.server_capabilities.inlayHintProvider)
+        end,
+        group = augroup_id,
+    })
+    vim.api.nvim_create_autocmd('InsertLeave', {
+        buffer = bufnr,
+        callback = function()
+            vim.lsp.inlay_hint(bufnr, false)
+        end,
+        group = augroup_id,
+    })
 end
 
 return {
