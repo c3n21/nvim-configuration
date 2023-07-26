@@ -22,6 +22,7 @@ return {
                 'gitrebase',
                 'gitcommit',
                 'neo-tree',
+                'NeogitConsole',
                 --[[ 'toggleterm', ]]
             },
         })
