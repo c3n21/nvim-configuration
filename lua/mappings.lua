@@ -24,6 +24,7 @@ local mappings_enum = {
     ['OpenDiagnosticLoclist'] = '<leader>q',
     ['GoToDefinitionTab'] = '<C-w><C-]>',
     ['LspReferences'] = 'gr',
+    ['ToggleInlayHints'] = 'gK',
 }
 
 -- Generic
@@ -124,6 +125,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
         end, { expr = true })
         vim.keymap.set({ 'n' }, '<leader>lw', vim.lsp.buf.workspace_symbol, opts)
         vim.keymap.set({ 'n' }, '<leader>ld', vim.lsp.buf.document_symbol, opts)
+        vim.keymap.set({ 'n' }, mappings_enum['ToggleInlayHints'], function()
+            vim.lsp.inlay_hint(0, nil)
+        end, opts)
     end,
 })
 
