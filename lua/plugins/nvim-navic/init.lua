@@ -33,12 +33,10 @@ return {
                 TypeParameter = ' ',
             },
             highlight = true,
-            separator = ' || ',
+            separator = '  ',
             depth_limit = 0,
             depth_limit_indicator = '..',
             safe_output = true,
         })
-
-        vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
     end,
 }
