@@ -143,6 +143,8 @@ vim.opt.hidden = true
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = 'auto:9'
 vim.opt.colorcolumn = '80'
+vim.opt.cursorline = true
+vim.opt.cursorcolumn = true
 vim.incsearch = true
 
 --[[ vim.opt.tabstop = 4 -- number of spaces for each tab ]]
