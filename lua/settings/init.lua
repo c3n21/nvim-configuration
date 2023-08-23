@@ -150,3 +150,14 @@ vim.incsearch = true
 --[[ vim.opt.tabstop = 4 -- number of spaces for each tab ]]
 --[[ vim.opt.shiftwidth = 4 -- number of space used for indenting using >> or << ]]
 vim.opt.expandtab = true
+
+vim.diagnostic.config({
+    float = {
+        source = true,
+    },
+    underline = true,
+    virtual_text = false,
+    signs = true,
+    update_in_insert = true,
+    severity_sort = true,
+})

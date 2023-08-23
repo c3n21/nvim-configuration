@@ -94,14 +94,6 @@ return {
             sources = sources,
         })
 
-        vim.diagnostic.config({
-            underline = true,
-            virtual_text = false,
-            signs = true,
-            update_in_insert = true,
-            severity_sort = true,
-        })
-
         vim.keymap.set({ 'n', 'v' }, mapping_enum['CodeActions'], vim.lsp.buf.code_action, map_opts)
         vim.keymap.set({ 'n' }, mapping_enum['OpenFloatDiagnostic'], vim.diagnostic.open_float, map_opts)
         vim.keymap.set({ 'n' }, mapping_enum['PrevDiagnosticInfo'], function()
