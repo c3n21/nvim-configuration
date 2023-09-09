@@ -4,6 +4,7 @@ return {
     --            'nvim-treesitter/nvim-treesitter-refactor',
     dependencies = {
         'nvim-treesitter/nvim-treesitter-textobjects',
+        'windwp/nvim-ts-autotag',
     },
     config = function()
         local ts_setup = require('nvim-treesitter.configs')
@@ -177,5 +178,6 @@ return {
                 },
             },
         })
+        require('nvim-ts-autotag').setup()
     end,
 }
