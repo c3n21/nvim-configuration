@@ -45,7 +45,6 @@ local mappings_enum = {
 --     -- })
 -- end, opts)
 
-vim.keymap.set({ 'n' }, mappings_enum['LspReferences'], vim.lsp.buf.references, map_opts)
 vim.keymap.set({ 'x' }, '<M-K>', ':m-2 <CR>gv=gv', map_opts)
 vim.keymap.set({ 'n' }, '<M-K>', ':<C-u>m-2<CR>==', map_opts)
 vim.keymap.set({ 'n' }, '<M-J>', ':<C-u>m-2<CR>==', map_opts)
@@ -66,33 +65,6 @@ vim.keymap.set({ 'n' }, mappings_enum['LOpen'], ':lopen<CR>', map_opts)
 for _, breakpoint in ipairs({ ',', '.', '[', ']', '!', '?' }) do
     vim.keymap.set({ 'i' }, breakpoint, breakpoint .. '<c-g>u', map_opts)
 end
-
--- Global mappings.
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
-vim.keymap.set('n', mappings_enum['DiagnosticPrev'], vim.diagnostic.goto_prev)
-vim.keymap.set('n', mappings_enum['DiagnosticNext'], vim.diagnostic.goto_next)
-vim.keymap.set({ 'n', 'v' }, mappings_enum['CodeActions'], vim.lsp.buf.code_action, map_opts)
-vim.keymap.set({ 'n' }, mappings_enum['OpenFloatDiagnostic'], vim.diagnostic.open_float, map_opts)
-vim.keymap.set({ 'n' }, mappings_enum['DiagnosticInfoPrev'], function()
-    vim.diagnostic.goto_prev({ wrap = false, severity = { max = vim.diagnostic.severity.INFO } })
-end, map_opts)
-vim.keymap.set({ 'n' }, mappings_enum['DiagnosticInfoNext'], function()
-    vim.diagnostic.goto_next({ wrap = false, severity = { max = vim.diagnostic.severity.INFO } })
-end, map_opts)
-vim.keymap.set({ 'n' }, mappings_enum['DiagnosticWarningPrev'], function()
-    vim.diagnostic.goto_prev({ wrap = false, severity = vim.diagnostic.severity.WARN })
-end, map_opts)
-vim.keymap.set({ 'n' }, mappings_enum['DiagnosticWarningNext'], function()
-    vim.diagnostic.goto_next({ wrap = false, severity = vim.diagnostic.severity.WARN })
-end, map_opts)
-vim.keymap.set({ 'n' }, mappings_enum['DiagnosticErrorPrev'], function()
-    vim.diagnostic.goto_prev({ wrap = false, severity = vim.diagnostic.severity.ERROR })
-end, map_opts)
-vim.keymap.set({ 'n' }, mappings_enum['DiagnosticErrorNext'], function()
-    vim.diagnostic.goto_next({ wrap = false, severity = vim.diagnostic.severity.ERROR })
-end, map_opts)
-vim.keymap.set({ 'n' }, mappings_enum['OpenDiagnosticLoclist'], vim.diagnostic.setloclist, map_opts)
-vim.keymap.set('n', mappings_enum['Rename'], vim.lsp.buf.rename, map_opts)
 
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer

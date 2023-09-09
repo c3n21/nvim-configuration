@@ -46,12 +46,40 @@ local function format_attach(client, bufnr)
     vim.keymap.set({ 'n' }, mappings['Format'], format, map_opts)
 end
 
+local mappings_enum = require('mappings')
+
 ---@param client lsp.Client
 ---@param bufnr number
 local function lsp_attach(client, bufnr)
     if client.server_capabilities.documentSymbolProvider then
         navic.attach(client, bufnr)
     end
+
+    vim.keymap.set({ 'n' }, mappings_enum['LspReferences'], vim.lsp.buf.references, map_opts)
+    vim.keymap.set('n', mappings_enum['DiagnosticPrev'], vim.diagnostic.goto_prev)
+    vim.keymap.set('n', mappings_enum['DiagnosticNext'], vim.diagnostic.goto_next)
+    vim.keymap.set({ 'n', 'v' }, mappings_enum['CodeActions'], vim.lsp.buf.code_action, map_opts)
+    vim.keymap.set({ 'n' }, mappings_enum['OpenFloatDiagnostic'], vim.diagnostic.open_float, map_opts)
+    vim.keymap.set({ 'n' }, mappings_enum['DiagnosticInfoPrev'], function()
+        vim.diagnostic.goto_prev({ wrap = false, severity = { max = vim.diagnostic.severity.INFO } })
+    end, map_opts)
+    vim.keymap.set({ 'n' }, mappings_enum['DiagnosticInfoNext'], function()
+        vim.diagnostic.goto_next({ wrap = false, severity = { max = vim.diagnostic.severity.INFO } })
+    end, map_opts)
+    vim.keymap.set({ 'n' }, mappings_enum['DiagnosticWarningPrev'], function()
+        vim.diagnostic.goto_prev({ wrap = false, severity = vim.diagnostic.severity.WARN })
+    end, map_opts)
+    vim.keymap.set({ 'n' }, mappings_enum['DiagnosticWarningNext'], function()
+        vim.diagnostic.goto_next({ wrap = false, severity = vim.diagnostic.severity.WARN })
+    end, map_opts)
+    vim.keymap.set({ 'n' }, mappings_enum['DiagnosticErrorPrev'], function()
+        vim.diagnostic.goto_prev({ wrap = false, severity = vim.diagnostic.severity.ERROR })
+    end, map_opts)
+    vim.keymap.set({ 'n' }, mappings_enum['DiagnosticErrorNext'], function()
+        vim.diagnostic.goto_next({ wrap = false, severity = vim.diagnostic.severity.ERROR })
+    end, map_opts)
+    vim.keymap.set({ 'n' }, mappings_enum['OpenDiagnosticLoclist'], vim.diagnostic.setloclist, map_opts)
+    vim.keymap.set('n', mappings_enum['Rename'], vim.lsp.buf.rename, map_opts)
 end
 
 return {
