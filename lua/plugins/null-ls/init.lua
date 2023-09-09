@@ -93,27 +93,5 @@ return {
             update_in_insert = false,
             sources = sources,
         })
-
-        vim.keymap.set({ 'n', 'v' }, mapping_enum['CodeActions'], vim.lsp.buf.code_action, map_opts)
-        vim.keymap.set({ 'n' }, mapping_enum['OpenFloatDiagnostic'], vim.diagnostic.open_float, map_opts)
-        vim.keymap.set({ 'n' }, mapping_enum['PrevDiagnosticInfo'], function()
-            vim.diagnostic.goto_prev({ wrap = false, severity = { max = vim.diagnostic.severity.INFO } })
-        end, map_opts)
-        vim.keymap.set({ 'n' }, mapping_enum['NextDiagnosticInfo'], function()
-            vim.diagnostic.goto_next({ wrap = false, severity = { max = vim.diagnostic.severity.INFO } })
-        end, map_opts)
-        vim.keymap.set({ 'n' }, mapping_enum['PrevDiagnosticWarning'], function()
-            vim.diagnostic.goto_prev({ wrap = false, severity = vim.diagnostic.severity.WARN })
-        end, map_opts)
-        vim.keymap.set({ 'n' }, mapping_enum['NextDiagnosticWarning'], function()
-            vim.diagnostic.goto_next({ wrap = false, severity = vim.diagnostic.severity.WARN })
-        end, map_opts)
-        vim.keymap.set({ 'n' }, mapping_enum['PrevDiagnosticError'], function()
-            vim.diagnostic.goto_prev({ wrap = false, severity = vim.diagnostic.severity.ERROR })
-        end, map_opts)
-        vim.keymap.set({ 'n' }, mapping_enum['NextDiagnosticError'], function()
-            vim.diagnostic.goto_next({ wrap = false, severity = vim.diagnostic.severity.ERROR })
-        end, map_opts)
-        vim.keymap.set({ 'n' }, mapping_enum['OpenDiagnosticLoclist'], vim.diagnostic.setloclist, map_opts)
     end,
 }
