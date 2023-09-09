@@ -1,5 +1,6 @@
 local map_opts = { noremap = true, silent = true }
 
+---@enum GlobalMappings
 local mappings_enum = {
     ['BufferClose'] = '<leader>bq',
     ['CClose'] = '<leader>qq',
