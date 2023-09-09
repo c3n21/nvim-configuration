@@ -5,7 +5,6 @@ return {
     dependencies = {
         'lsp',
     },
-    ft = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
     config = function()
         local mason_registry = require('mason-registry')
         local tsserver_path = mason_registry.get_package('typescript-language-server'):get_install_path()
