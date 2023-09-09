@@ -25,6 +25,7 @@ local mappings_enum = {
     ['GoToDefinitionTab'] = '<C-w><C-]>',
     ['LspReferences'] = 'gr',
     ['ToggleInlayHints'] = 'gK',
+    ['Format'] = '==',
 }
 
 -- Generic

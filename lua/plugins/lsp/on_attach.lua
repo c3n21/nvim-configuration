@@ -1,4 +1,5 @@
 local navic = require('nvim-navic')
+local mappings = require('mappings')
 local map_opts = { noremap = true, silent = true }
 -- TODO:
 -- write a wrapper that allocates the right mappings based on client's capabilities
@@ -42,7 +43,7 @@ local function format_attach(client, bufnr)
             end,
         })
     end
-    vim.keymap.set({ 'n' }, '<leader><leader>f', format, map_opts)
+    vim.keymap.set({ 'n' }, mappings['Format'], format, map_opts)
 end
 
 ---@param client lsp.Client
