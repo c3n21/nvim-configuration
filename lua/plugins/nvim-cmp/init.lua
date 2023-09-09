@@ -17,14 +17,8 @@ return {
     },
     config = function()
         local cmp = require('cmp')
-        require('copilot_cmp').setup({
-            method = 'getCompletionsCycling',
-            formatters = {
-                label = require('copilot_cmp.format').format_label_text,
-                insert_text = require('copilot_cmp.format').format_insert_text,
-                preview = require('copilot_cmp.format').deindent,
-            },
-        })
+        local copilot_cmp = require('copilot_cmp')
+        copilot_cmp.setup()
 
         --[[ cmp.event:on('menu_opened', function() ]]
         --[[     vim.b.copilot_suggestion_hidden = true ]]
@@ -149,10 +143,7 @@ return {
                 { name = 'neorg', group_index = 2, dup = 0 },
                 { name = 'nvim_lsp', group_index = 2, dup = 0 },
                 { name = 'copilot', group_index = 2, dup = 0 },
-                -- { name = 'vsnip' }, -- For vsnip users.
                 { name = 'luasnip', group_index = 2, dup = 0 }, -- For luasnip users.
-                -- { name = 'ultisnips' }, -- For ultisnips users.
-                -- { name = 'snippy' }, -- For snippy users.
                 { name = 'buffer', group_index = 2, dup = 0 },
                 { name = 'path', dup = 0 },
                 --[[ { name = 'cmdline' }, ]]
@@ -179,7 +170,7 @@ return {
         })
 
         -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-        cmp.setup.cmdline('/', {
+        cmp.setup.cmdline({ '/', '?' }, {
             mapping = cmp.mapping.preset.cmdline(),
             sources = {
                 { name = 'buffer' },
