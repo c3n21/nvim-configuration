@@ -13,6 +13,7 @@ return {
         'hrsh7th/cmp-path',
         'rcarriga/cmp-dap',
         'saadparwaiz1/cmp_luasnip',
+        'hrsh7th/cmp-nvim-lsp-signature-help',
     },
     config = function()
         local cmp = require('cmp')
@@ -144,7 +145,7 @@ return {
                 end, { 'i' }),
             },
             sources = cmp.config.sources({
-                --[[ { name = 'nvim_lsp_signature_help' }, ]]
+                { name = 'nvim_lsp_signature_help' },
                 { name = 'neorg', group_index = 2, dup = 0 },
                 { name = 'nvim_lsp', group_index = 2, dup = 0 },
                 { name = 'copilot', group_index = 2, dup = 0 },
