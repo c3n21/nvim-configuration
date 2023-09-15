@@ -156,6 +156,7 @@ return {
         vim.keymap.set({ 'n' }, mappings_enum['FindFiles'], builtin.find_files, map_opts)
         vim.keymap.set({ 'n' }, mappings_enum['COpen'], builtin.quickfix, map_opts)
         vim.keymap.set({ 'n' }, mappings_enum['LOpen'], builtin.loclist, map_opts)
+        vim.keymap.set({ 'n', 'i' }, '<C-p>g', builtin.git_files, map_opts)
 
         local extensions = {
             'ui-select',
