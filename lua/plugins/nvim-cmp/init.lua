@@ -61,6 +61,7 @@ return {
         --     Operator = '  ',
         --     TypeParameter = '  ',
         -- }
+        local cmp_buffer = require('cmp_buffer')
 
         cmp.setup({
             enabled = function()
@@ -144,13 +145,26 @@ return {
                 { name = 'nvim_lsp', group_index = 2, dup = 0 },
                 { name = 'copilot', group_index = 2, dup = 0 },
                 { name = 'luasnip', group_index = 2, dup = 0 }, -- For luasnip users.
-                { name = 'buffer', group_index = 2, dup = 0 },
+                {
+                    name = 'buffer',
+                    group_index = 2,
+                    dup = 0,
+                    option = {
+                        get_bufnrs = function()
+                            return vim.api.nvim_list_bufs()
+                        end,
+                    },
+                },
                 { name = 'path', dup = 0 },
                 --[[ { name = 'cmdline' }, ]]
             }),
             sorting = {
                 priority_weight = 2,
                 comparators = {
+                    function(...)
+                        return cmp_buffer:compare_locality(...)
+                    end,
+                    -- The rest of your comparators...
                     require('copilot_cmp.comparators').prioritize,
                     require('copilot_cmp.comparators').score,
 
