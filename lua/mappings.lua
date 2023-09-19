@@ -27,6 +27,7 @@ local mappings_enum = {
     ['OpenDiagnosticLoclist'] = '<leader>q',
     ['OpenFloatDiagnostic'] = '<leader><leader>d',
     ['Rename'] = '<leader>rn',
+    ['SignatureHelp'] = 'H',
     ['SourceInit'] = '<leader><leader>i',
     ['TabNext'] = '<leader>tn',
     ['ToggleInlayHints'] = 'gK',
@@ -115,7 +116,6 @@ end
 --             '<cmd>tab split | lua vim.lsp.buf.definition()<CR> ',
 --             opts
 --         )
---         vim.keymap.set({ 'n' }, 'H', vim.lsp.buf.signature_help, opts)
 --         --[[ vim.keymap.set({ 'n' }, '<leader>rn', vim.lsp.buf.rename, opts) ]]
 --         vim.keymap.set('n', '<leader>rn', function()
 --             return ':IncRename ' .. vim.fn.expand('<cword>')

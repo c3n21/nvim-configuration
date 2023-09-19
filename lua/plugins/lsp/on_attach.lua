@@ -54,7 +54,7 @@ local function lsp_attach(client, bufnr)
     if client.server_capabilities.documentSymbolProvider then
         navic.attach(client, bufnr)
     end
-
+    vim.keymap.set({ 'n' }, mappings_enum['SignatureHelp'], vim.lsp.buf.signature_help, map_opts)
     vim.keymap.set({ 'n' }, mappings_enum['LspReferences'], vim.lsp.buf.references, map_opts)
     vim.keymap.set('n', mappings_enum['DiagnosticPrev'], vim.diagnostic.goto_prev)
     vim.keymap.set('n', mappings_enum['DiagnosticNext'], vim.diagnostic.goto_next)
