@@ -1,6 +1,12 @@
 local navic = require('nvim-navic')
 local mappings = require('mappings')
 local map_opts = { noremap = true, silent = true }
+
+local lsp_definition_opts = {
+    jump_type = 'split',
+    show_line = false,
+    reuse_win = true,
+}
 -- TODO:
 -- write a wrapper that allocates the right mappings based on client's capabilities
 
@@ -51,11 +57,37 @@ local mappings_enum = require('mappings')
 ---@param client lsp.Client
 ---@param bufnr number
 local function lsp_attach(client, bufnr)
+    local builtin = require('telescope.builtin')
+    if client.server_capabilities.definitionProvider then
+        vim.api.nvim_buf_set_option(bufnr, 'tagfunc', 'v:lua.vim.lsp.tagfunc')
+        vim.keymap.set({ 'n' }, mappings_enum['LeaderDefinition'], function()
+            builtin.lsp_definitions(lsp_definition_opts)
+        end, map_opts)
+    end
+
+    if client.server_capabilities.typeDefinitionProvider then
+        vim.keymap.set({ 'n' }, mappings_enum['LeaderTypeDefinition'], function()
+            builtin.lsp_type_definitions(lsp_definition_opts)
+        end, map_opts)
+    end
+
+    if client.server_capabilities.referencesProvider then
+        vim.keymap.set({ 'n' }, mappings_enum['LspReferences'], function()
+            builtin.lsp_references({
+                jump_type = 'split',
+                show_line = false,
+            })
+        end, map_opts)
+    end
+
     if client.server_capabilities.documentSymbolProvider then
         navic.attach(client, bufnr)
     end
-    vim.keymap.set({ 'n' }, mappings_enum['SignatureHelp'], vim.lsp.buf.signature_help, map_opts)
-    vim.keymap.set({ 'n' }, mappings_enum['LspReferences'], vim.lsp.buf.references, map_opts)
+
+    if client.server_capabilities.signatureHelpProvider then
+        vim.keymap.set({ 'n' }, mappings_enum['SignatureHelp'], vim.lsp.buf.signature_help, map_opts)
+    end
+
     vim.keymap.set('n', mappings_enum['DiagnosticPrev'], vim.diagnostic.goto_prev)
     vim.keymap.set('n', mappings_enum['DiagnosticNext'], vim.diagnostic.goto_next)
     vim.keymap.set({ 'n', 'v' }, mappings_enum['CodeActions'], vim.lsp.buf.code_action, map_opts)
@@ -80,6 +112,9 @@ local function lsp_attach(client, bufnr)
     end, map_opts)
     vim.keymap.set({ 'n' }, mappings_enum['OpenDiagnosticLoclist'], vim.diagnostic.setloclist, map_opts)
     vim.keymap.set('n', mappings_enum['Rename'], vim.lsp.buf.rename, map_opts)
+    vim.keymap.set({ 'n' }, mappings_enum['ToggleInlayHints'], function()
+        vim.lsp.inlay_hint(0, nil)
+    end, map_opts)
 end
 
 return {

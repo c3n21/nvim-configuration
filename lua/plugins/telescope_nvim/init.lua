@@ -1,10 +1,4 @@
 local mappings_enum = require('mappings')
-local layout_config = {
-    width = 0.8,
-    height = 0.4,
-    preview_cutoff = 1,
-}
-local DROPDOWN_THEME = 'dropdown'
 
 return {
     'nvim-telescope/telescope.nvim',
@@ -98,13 +92,13 @@ return {
                 initial_mode = 'normal',
                 selection_strategy = 'closest',
                 sorting_strategy = 'descending',
-                layout_strategy = 'horizontal',
+                layout_strategy = 'vertical',
                 layout_config = {
-                    horizontal = {
-                        mirror = false,
-                    },
                     vertical = {
-                        mirror = false,
+                        preview_cutoff = -1,
+                        height = 0.9,
+                        prompt_position = 'bottom',
+                        width = 0.8,
                     },
                 },
                 file_sorter = require('telescope.sorters').get_fuzzy_file,
@@ -125,22 +119,6 @@ return {
                 -- Developer configurations: Not meant for general override
                 buffer_previewer_maker = require('telescope.previewers').buffer_previewer_maker,
             },
-            pickers = {
-                lsp_references = {
-                    layout_strategy = 'vertical',
-                    -- theme = DROPDOWN_THEME,
-                    -- layout_config = layout_config,
-                    -- previewer = require('telescope.previewers').vim_buffer_cat.new,
-                },
-                find_files = {
-                    theme = DROPDOWN_THEME,
-                    layout_config = layout_config,
-                },
-                buffers = {
-                    theme = DROPDOWN_THEME,
-                    layout_config = layout_config,
-                },
-            },
         })
 
         local builtin = require('telescope.builtin')
@@ -156,7 +134,20 @@ return {
         vim.keymap.set({ 'n' }, mappings_enum['FindFiles'], builtin.find_files, map_opts)
         vim.keymap.set({ 'n' }, mappings_enum['COpen'], builtin.quickfix, map_opts)
         vim.keymap.set({ 'n' }, mappings_enum['LOpen'], builtin.loclist, map_opts)
-        vim.keymap.set({ 'n', 'i' }, '<C-p>g', builtin.git_files, map_opts)
+        vim.keymap.set({ 'n', 'i' }, '<M-t>gf', builtin.git_files, map_opts)
+        vim.keymap.set({ 'n', 'i' }, '<M-t>r', builtin.resume, map_opts)
+        vim.keymap.set({ 'n', 'i' }, '<M-t>d', builtin.diagnostics, map_opts)
+
+        -- vim.keymap.set({ 'n', 'i' }, '<C-]>', function()
+        --     local cword = vim.fn.expand('<cword>')
+        --     local tags = vim.lsp.tagfunc(cword, 'cr')
+        --     print(vim.inspect(tags))
+        --     builtin.lsp_definitions({
+        --         {
+        --             reuse_win = true,
+        --         },
+        --     })
+        -- end, map_opts)
 
         local extensions = {
             'ui-select',

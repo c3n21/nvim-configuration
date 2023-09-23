@@ -5,7 +5,7 @@ local mappings_enum = {
     ['BufferClose'] = '<leader>bq',
     ['CClose'] = '<leader>qq',
     ['CNext'] = ']q',
-    ['COpen'] = '<leader>qo',
+    ['COpen'] = '<M-q>',
     ['CPrev'] = '[q',
     ['CodeActions'] = '<leader>ca',
     ['DiagnosticErrorNext'] = '<leader>]e',
@@ -21,30 +21,19 @@ local mappings_enum = {
     ['GoToDefinitionTab'] = '<C-w><C-]>',
     ['LClose'] = '<leader>lq',
     ['LNext'] = ']l',
-    ['LOpen'] = '<leader>lo',
+    ['LOpen'] = '<M-l>',
     ['LPrev'] = '[l',
     ['LspReferences'] = 'gr',
-    ['OpenDiagnosticLoclist'] = '<leader>q',
+    ['OpenDiagnosticLoclist'] = '<leader>l',
     ['OpenFloatDiagnostic'] = '<leader><leader>d',
     ['Rename'] = '<leader>rn',
     ['SignatureHelp'] = 'H',
     ['SourceInit'] = '<leader><leader>i',
     ['TabNext'] = '<leader>tn',
     ['ToggleInlayHints'] = 'gK',
+    ['LeaderDefinition'] = '<leader>gd',
+    ['LeaderTypeDefinition'] = '<leader>gD',
 }
-
--- Generic
--- vim.keymap.set({ 'n', 'i' }, '<C-]>', function()
---     local cword = vim.fn.expand('<cword>')
---     print(cword)
---     local tags = vim.lsp.tagfunc(cword, 'cr')
---     print(vim.inspect(tags))
---     -- builtin.lsp_definitions({
---     --     {
---     --         reuse_win = true,
---     --     },
---     -- })
--- end, opts)
 
 vim.keymap.set({ 'x' }, '<M-K>', ':m-2 <CR>gv=gv', map_opts)
 vim.keymap.set({ 'n' }, '<M-K>', ':<C-u>m-2<CR>==', map_opts)
@@ -122,9 +111,6 @@ end
 --         end, { expr = true })
 --         vim.keymap.set({ 'n' }, '<leader>lw', vim.lsp.buf.workspace_symbol, opts)
 --         vim.keymap.set({ 'n' }, '<leader>ld', vim.lsp.buf.document_symbol, opts)
---         vim.keymap.set({ 'n' }, mappings_enum['ToggleInlayHints'], function()
---             vim.lsp.inlay_hint(0, nil)
---         end, opts)
 --     end,
 -- })
 
