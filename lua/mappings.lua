@@ -106,9 +106,6 @@ end
 --             opts
 --         )
 --         --[[ vim.keymap.set({ 'n' }, '<leader>rn', vim.lsp.buf.rename, opts) ]]
---         vim.keymap.set('n', '<leader>rn', function()
---             return ':IncRename ' .. vim.fn.expand('<cword>')
---         end, { expr = true })
 --         vim.keymap.set({ 'n' }, '<leader>lw', vim.lsp.buf.workspace_symbol, opts)
 --         vim.keymap.set({ 'n' }, '<leader>ld', vim.lsp.buf.document_symbol, opts)
 --     end,

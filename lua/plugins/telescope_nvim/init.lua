@@ -16,7 +16,9 @@ return {
         local themes = require('telescope.themes')
 
         local previewers = require('telescope.previewers')
-        local conf = require('telescope.config').values
+        local actions = require('telescope.actions')
+        local sorters = require('telescope.sorters')
+
         telescope.setup({
             extensions = {
                 fzf = {
@@ -26,21 +28,8 @@ return {
                     case_mode = 'smart_case', -- or "ignore_case" or "respect_case"
                     -- the default case_mode is "smart_case"
                 },
-                file_browser = {
-                    theme = 'ivy',
-                    -- disables netrw and use telescope-file-browser in its place
-                    -- hijack_netrw = true,
-                    -- mappings = {
-                    --   ["i"] = {
-                    --     -- your custom insert mode mappings
-                    --   },
-                    --   ["n"] = {
-                    --     -- your custom normal mode mappings
-                    --   },
-                    -- },
-                },
                 ['ui-select'] = {
-                    require('telescope.themes').get_dropdown({
+                    themes.get_dropdown({
                         -- even more opts
                     }),
 
@@ -66,11 +55,11 @@ return {
                 },
                 mappings = {
                     n = {
-                        ['<C-d>'] = require('telescope.actions').delete_buffer,
+                        ['<C-d>'] = actions.delete_buffer,
                     },
                     i = {
-                        ['<C-Down>'] = require('telescope.actions').cycle_history_next,
-                        ['<C-Up>'] = require('telescope.actions').cycle_history_prev,
+                        ['<C-Down>'] = actions.cycle_history_next,
+                        ['<C-Up>'] = actions.cycle_history_prev,
                     },
                 },
                 history = {
@@ -101,9 +90,9 @@ return {
                         width = 0.8,
                     },
                 },
-                file_sorter = require('telescope.sorters').get_fuzzy_file,
+                file_sorter = sorters.get_fuzzy_file,
                 file_ignore_patterns = {},
-                generic_sorter = require('telescope.sorters').get_generic_fuzzy_sorter,
+                generic_sorter = sorters.get_generic_fuzzy_sorter,
                 winblend = 0,
                 border = {},
                 borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
@@ -112,12 +101,12 @@ return {
                     'smart',
                 },
                 set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
-                file_previewer = require('telescope.previewers').vim_buffer_cat.new,
-                grep_previewer = require('telescope.previewers').vim_buffer_vimgrep.new,
-                qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
+                file_previewer = previewers.vim_buffer_cat.new,
+                grep_previewer = previewers.vim_buffer_vimgrep.new,
+                qflist_previewer = previewers.vim_buffer_qflist.new,
 
                 -- Developer configurations: Not meant for general override
-                buffer_previewer_maker = require('telescope.previewers').buffer_previewer_maker,
+                buffer_previewer_maker = previewers.buffer_previewer_maker,
             },
         })
 
@@ -137,24 +126,24 @@ return {
         vim.keymap.set({ 'n', 'i' }, '<M-t>gf', builtin.git_files, map_opts)
         vim.keymap.set({ 'n', 'i' }, '<M-t>r', builtin.resume, map_opts)
         vim.keymap.set({ 'n', 'i' }, '<M-t>d', builtin.diagnostics, map_opts)
-
-        -- vim.keymap.set({ 'n', 'i' }, '<C-]>', function()
-        --     local cword = vim.fn.expand('<cword>')
-        --     local tags = vim.lsp.tagfunc(cword, 'cr')
-        --     print(vim.inspect(tags))
-        --     builtin.lsp_definitions({
-        --         {
-        --             reuse_win = true,
-        --         },
-        --     })
-        -- end, map_opts)
+        vim.api.nvim_create_autocmd('LspAttach', {
+            callback = function(args)
+                -- print(vim.inspect(args))
+                -- local bufnr = args.buf
+                -- local client = vim.lsp.get_client_by_id(args.data.client_id)
+                -- if client.server_capabilities.completionProvider then
+                --     vim.bo[bufnr].omnifunc = 'v:lua.vim.lsp.omnifunc'
+                -- end
+                -- if client.server_capabilities.definitionProvider then
+                --     vim.bo[bufnr].tagfunc = 'v:lua.vim.lsp.tagfunc'
+                -- end
+            end,
+        })
 
         local extensions = {
             'ui-select',
-            --[[ 'projects', ]]
             'smart_history',
             'fzf',
-            -- 'file_browser'
         }
 
         for _, value in ipairs(extensions) do
