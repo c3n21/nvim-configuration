@@ -6,8 +6,6 @@ return {
         'lsp',
     },
     config = function()
-        local mason_registry = require('mason-registry')
-        local tsserver_path = mason_registry.get_package('typescript-language-server'):get_install_path()
         require('typescript-tools').setup({
             on_attach = function(client, bufnr)
                 require('plugins.lsp.on_attach').lsp_attach(client, bufnr)
@@ -28,7 +26,7 @@ return {
                 },
                 -- string|nil - specify a custom path to `tsserver.js` file, if this is nil or file under path
                 -- not exists then standard path resolution strategy is applied
-                tsserver_path = tsserver_path .. '/node_modules/typescript/lib/tsserver.js',
+                -- tsserver_path = tsserver_path .. '/node_modules/typescript/lib/tsserver.js',
                 -- specify a list of plugins to load by tsserver, e.g., for support `styled-components`
                 -- (see 💅 `styled-components` support section)
                 tsserver_plugins = {},
