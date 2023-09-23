@@ -84,6 +84,10 @@ local function lsp_attach(client, bufnr)
         navic.attach(client, bufnr)
     end
 
+    if client.server_capabilities.hoverProvider then
+        vim.keymap.set({ 'n' }, mappings_enum['Hover'], vim.lsp.buf.hover, map_opts)
+    end
+
     if client.server_capabilities.signatureHelpProvider then
         vim.keymap.set({ 'n' }, mappings_enum['SignatureHelp'], vim.lsp.buf.signature_help, map_opts)
     end
