@@ -1,10 +1,9 @@
 return {
-    -- 'kevinhwang91/nvim-treesitter',
     'nvim-treesitter/nvim-treesitter',
-    --            'nvim-treesitter/nvim-treesitter-refactor',
     dependencies = {
         'nvim-treesitter/nvim-treesitter-textobjects',
         'windwp/nvim-ts-autotag',
+        'windwp/nvim-autopairs',
     },
     config = function()
         local ts_setup = require('nvim-treesitter.configs')
