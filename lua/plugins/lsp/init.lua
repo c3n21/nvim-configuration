@@ -14,9 +14,11 @@ return {
         'jmbuhr/otter.nvim',
         'williamboman/mason.nvim',
         'akinsho/flutter-tools.nvim',
+        'williamboman/mason-lspconfig.nvim',
     },
     config = function()
         require('neoconf').setup()
+        require('mason-lspconfig').setup()
         -- require('otter').dev_setup()
         require('neodev').setup({
             library = {
