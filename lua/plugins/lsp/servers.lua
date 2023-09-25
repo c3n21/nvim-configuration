@@ -47,5 +47,5 @@ return {
     lua_ls = {},
     teal_ls = {},
     vimls = {},
-    --[[ tailwindcss = {}, ]]
+    tailwindcss = {},
 }
