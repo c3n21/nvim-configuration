@@ -136,6 +136,11 @@ vim.opt.wildmode = { 'longest,list' } -- completion
 
 vim.opt.encoding = 'utf-8'
 vim.opt.fileencoding = 'utf-8'
+-- wrap lines degrades performance
+-- see:
+-- https://github.com/neovim/neovim/issues/23521
+-- https://github.com/neovim/neovim/issues/4736
+vim.opt.wrap = false -- dont wrap lines
 
 vim.termguicolors = true
 
