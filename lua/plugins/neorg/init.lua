@@ -5,6 +5,7 @@ return {
 
         neorg.setup({
             load = {
+                ['core.esupports.indent'] = {},
                 ['core.defaults'] = {}, -- Load all the defaults
                 ['core.completion'] = {
                     config = {
