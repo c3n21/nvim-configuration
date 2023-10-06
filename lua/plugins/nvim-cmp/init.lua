@@ -133,42 +133,29 @@ return {
                 end, { 'i' }),
             },
             sources = cmp.config.sources({
+                { name = 'nvim_lsp', group_index = 1 },
                 { name = 'nvim_lsp_signature_help', group_index = 1 },
-                { name = 'nvim_lsp', group_index = 1, dup = 0 },
-                { name = 'copilot', group_index = 1, dup = 0 },
-                { name = 'luasnip', group_index = 1, dup = 0 }, -- For luasnip users.
-                { name = 'neorg', group_index = 1, dup = 0 },
+                { name = 'copilot', group_index = 1 },
+                { name = 'luasnip', group_index = 1 },
+                { name = 'neorg', group_index = 1 },
+                { name = 'path', group_index = 1 },
                 {
                     name = 'buffer',
                     group_index = 2,
-                    dup = 0,
                     option = {
                         get_bufnrs = function()
                             return vim.api.nvim_list_bufs()
                         end,
                     },
                 },
-                { name = 'path', dup = 0 },
-                --[[ { name = 'cmdline' }, ]]
             }),
             sorting = {
-                priority_weight = 2,
                 comparators = {
-                    cmp.config.compare.scopes,
-                    cmp.config.compare.score,
-                    cmp.config.compare.exact,
-                    cmp.config.compare.kind,
+                    require('copilot_cmp.comparators').prioritize,
+                    require('copilot_cmp.comparators').score,
                     function(...)
                         return cmp_buffer:compare_locality(...)
                     end,
-                    require('copilot_cmp.comparators').prioritize,
-                    require('copilot_cmp.comparators').score,
-                    cmp.config.compare.offset,
-                    cmp.config.compare.recently_used,
-                    cmp.config.compare.locality,
-                    cmp.config.compare.sort_text,
-                    cmp.config.compare.length,
-                    cmp.config.compare.order,
                 },
             },
         })
@@ -177,8 +164,8 @@ return {
         cmp.setup.cmdline({ '/', '?' }, {
             mapping = cmp.mapping.preset.cmdline(),
             sources = {
+                { name = 'nvim_lsp' },
                 { name = 'buffer' },
-                --[[ { name = 'nvim_lsp_document_symbol' }, ]]
             },
         })
 
@@ -192,14 +179,7 @@ return {
             }),
         })
 
-        --cmp.setup.cmdline(':', {
-        --    sources = cmp.config.sources({
-        --        { name = 'path' },
-        --        { name = 'cmdline' },
-        --    }),
-        --})
-
-        require('cmp').setup.filetype({ 'dap-repl', 'dapui_watches', 'dapui_hover' }, {
+        cmp.setup.filetype({ 'dap-repl', 'dapui_watches', 'dapui_hover' }, {
             sources = {
                 { name = 'dap' },
             },
