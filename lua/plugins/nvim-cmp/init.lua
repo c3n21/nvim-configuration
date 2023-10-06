@@ -21,14 +21,6 @@ return {
         local copilot_cmp = require('copilot_cmp')
         copilot_cmp.setup()
 
-        --[[ cmp.event:on('menu_opened', function() ]]
-        --[[     vim.b.copilot_suggestion_hidden = true ]]
-        --[[ end) ]]
-
-        --[[ cmp.event:on('menu_closed', function() ]]
-        --[[     vim.b.copilot_suggestion_hidden = false ]]
-        --[[ end) ]]
-
         local has_words_before = function()
             local line, col = unpack(vim.api.nvim_win_get_cursor(0))
             return not vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt'
@@ -116,7 +108,7 @@ return {
                     c = cmp.mapping.close(),
                 }),
                 ['<CR>'] = cmp.mapping.confirm({ select = true }, { 'i' }),
-                ['<Tab>'] = cmp.mapping(function(fallback)
+                ['<C-n>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
                         -- elseif luasnip.expand_or_jumpable() then
@@ -130,7 +122,7 @@ return {
                     end
                 end, { 'i' }),
 
-                ['<S-Tab>'] = cmp.mapping(function()
+                ['<C-p>'] = cmp.mapping(function()
                     if cmp.visible() then
                         cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
                         -- elseif luasnip.jumpable(-1) then
@@ -162,19 +154,16 @@ return {
             sorting = {
                 priority_weight = 2,
                 comparators = {
+                    cmp.config.compare.scopes,
+                    cmp.config.compare.score,
+                    cmp.config.compare.exact,
+                    cmp.config.compare.kind,
                     function(...)
                         return cmp_buffer:compare_locality(...)
                     end,
-                    -- The rest of your comparators...
                     require('copilot_cmp.comparators').prioritize,
                     require('copilot_cmp.comparators').score,
-                    cmp.config.compare.kind,
-                    cmp.config.compare.scopes,
-                    cmp.config.compare.exact,
-                    -- Below is the default comparitor list and order for nvim-cmp
                     cmp.config.compare.offset,
-                    -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
-                    cmp.config.compare.score,
                     cmp.config.compare.recently_used,
                     cmp.config.compare.locality,
                     cmp.config.compare.sort_text,
