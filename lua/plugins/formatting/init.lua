@@ -29,12 +29,13 @@ return {
         conform.setup(opts)
         local map_opts = { noremap = true, silent = true }
         vim.keymap.set('n', mappings_enum['Format'], function()
-            if not conform.format({
-                    async        = true,
-                    lsp_fallback = true
-
-                }) then
-                print("No formatters attempted")
+            if
+                not conform.format({
+                    async = true,
+                    lsp_fallback = true,
+                })
+            then
+                print('No formatters attempted')
             end
         end, map_opts)
         vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
