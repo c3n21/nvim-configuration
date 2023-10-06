@@ -17,29 +17,8 @@ return {
             null_ls.builtins.code_actions.refactoring,
             null_ls.builtins.code_actions.gitsigns,
 
-            null_ls.builtins.formatting.stylua,
-            null_ls.builtins.formatting.prettierd.with({
-                extra_filetypes = { 'java', 'astro' },
-            }),
-            null_ls.builtins.formatting.phpcsfixer,
-            null_ls.builtins.formatting.rustfmt,
-            null_ls.builtins.formatting.ocamlformat,
-            null_ls.builtins.formatting.tidy.with({
-                filetypes = { 'xml', 'fxml' },
-                args = {
-                    '--tidy-mark',
-                    'no',
-                    '-quiet',
-                    '-indent',
-                    '-wrap',
-                    '-xml',
-                    '-',
-                },
-            }),
-
             null_ls.builtins.diagnostics.tidy,
             null_ls.builtins.diagnostics.selene,
-            null_ls.builtins.formatting.nixfmt,
             -- null_ls.builtins.diagnostics.luacheck,
             --[[ null_ls.builtins.diagnostics.php, ]]
             --[[ null_ls.builtins.diagnostics.phpcs, ]]
@@ -51,11 +30,9 @@ return {
             --[[ }), ]]
             null_ls.builtins.diagnostics.eslint_d,
             null_ls.builtins.code_actions.eslint_d,
-            null_ls.builtins.formatting.erlfmt,
 
             -- Python
             null_ls.builtins.diagnostics.ruff,
-            null_ls.builtins.formatting.autopep8,
             -- null_ls.builtins.formatting.ruff,
             -- null_ls.builtins.formatting.black,
             -- require('typescript.extensions.null-ls.code-actions'),
@@ -74,19 +51,6 @@ return {
                 use_console = 'async',
             },
             on_attach = on_attach,
-            -- function(client, bufnr)
-            --     if client.supports_method('textDocument/formatting') then
-            --         vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-            --         vim.api.nvim_create_autocmd('BufWritePre', {
-            --             group = augroup,
-            --             buffer = bufnr,
-            --             callback = function()
-            --                 -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-            --                 vim.lsp.buf.format({ bufnr = bufnr })
-            --             end,
-            --         })
-            --     end
-            -- end,
             on_init = nil,
             on_exit = nil,
             --[[ root_dir = u.root_pattern(".null-ls-root", "Makefile", ".git"), ]]

@@ -8,7 +8,7 @@ return {
     config = function()
         require('typescript-tools').setup({
             on_attach = function(client, bufnr)
-                require('plugins.lsp.on_attach').lsp_attach(client, bufnr)
+                require('plugins.lsp.on_attach')(client, bufnr)
                 vim.keymap.set({ 'n', 'i' }, '<leader>gsd', '<cmd>TSToolsGoToSourceDefinition<CR>', map_opts)
             end,
             settings = {

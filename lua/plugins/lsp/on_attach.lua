@@ -3,9 +3,6 @@ local mappings = require('mappings')
 local map_opts = { noremap = true, silent = true }
 local lsp_definition_opts = { jump_type = 'split', show_line = false, reuse_win = true }
 
--- if you want to set up formatting on save, you can use this as a callback
-local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
-
 local mappings_enum = require('mappings')
 
 ---@param client lsp.Client
@@ -46,16 +43,10 @@ local function lsp_attach(client, bufnr)
         vim.keymap.set({ 'n' }, mappings_enum['SignatureHelp'], vim.lsp.buf.signature_help, map_opts)
     end
 
-    if client.supports_method('textDocument/formatting') then
-        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-        vim.api.nvim_create_autocmd('BufWritePre', {
-            group = augroup,
-            buffer = bufnr,
-            callback = function()
-                vim.lsp.buf.format()
-            end,
-        })
+    if client.server_capabilities.inlayHintProvider then
+        vim.lsp.inlay_hint(0, true)
     end
+
     vim.keymap.set({ 'n' }, mappings['Format'], vim.lsp.buf.format, map_opts)
 
     vim.keymap.set('n', mappings_enum['DiagnosticPrev'], vim.diagnostic.goto_prev)
