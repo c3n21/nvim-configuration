@@ -94,10 +94,7 @@ return {
             --[[ }, ]]
             --
             experimental = {
-                -- Temporary workaround for https://github.com/hrsh7th/nvim-cmp/issues/1565
-                ghost_text = {
-                    enabled = true,
-                },
+                ghost_text = false,
             },
 
             mapping = {
