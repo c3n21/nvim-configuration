@@ -52,12 +52,12 @@ return {
         local flutter_tools = require('flutter-tools')
         flutter_tools.setup({
             lsp = {
-                on_attach = on_attach.lsp_attach,
+                on_attach = on_attach,
             },
         })
 
         local options = {
-            on_attach = on_attach.lsp_attach,
+            on_attach = on_attach,
             capabilities = capabilities,
             flags = {
                 debounce_text_changes = 150,

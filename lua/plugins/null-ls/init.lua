@@ -19,7 +19,7 @@ return {
 
             null_ls.builtins.formatting.stylua,
             null_ls.builtins.formatting.prettierd.with({
-                extra_filetypes = { 'java' },
+                extra_filetypes = { 'java', 'astro' },
             }),
             null_ls.builtins.formatting.phpcsfixer,
             null_ls.builtins.formatting.rustfmt,
@@ -73,7 +73,7 @@ return {
                 level = 'warn',
                 use_console = 'async',
             },
-            on_attach = on_attach.format_attach,
+            on_attach = on_attach,
             -- function(client, bufnr)
             --     if client.supports_method('textDocument/formatting') then
             --         vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
