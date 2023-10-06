@@ -47,8 +47,6 @@ local function lsp_attach(client, bufnr)
         vim.lsp.inlay_hint(0, true)
     end
 
-    vim.keymap.set({ 'n' }, mappings['Format'], vim.lsp.buf.format, map_opts)
-
     vim.keymap.set('n', mappings_enum['DiagnosticPrev'], vim.diagnostic.goto_prev)
     vim.keymap.set('n', mappings_enum['DiagnosticNext'], vim.diagnostic.goto_next)
     vim.keymap.set({ 'n', 'v' }, mappings_enum['CodeActions'], vim.lsp.buf.code_action, map_opts)
