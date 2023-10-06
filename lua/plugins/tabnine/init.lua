@@ -6,7 +6,7 @@ return {
     build = './dl_binaries.sh',
     opts = {
         disable_auto_comment = true,
-        accept_keymap = '<Tab>',
+        accept_keymap = '<M-l>',
         dismiss_keymap = '<Esc>',
         debounce_ms = 800,
         suggestion_color = { gui = '#808080', cterm = 244 },
