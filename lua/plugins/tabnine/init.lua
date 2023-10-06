@@ -7,7 +7,7 @@ return {
     opts = {
         disable_auto_comment = true,
         accept_keymap = '<M-l>',
-        dismiss_keymap = '<Esc>',
+        dismiss_keymap = '<C-e>',
         debounce_ms = 800,
         suggestion_color = { gui = '#808080', cterm = 244 },
         exclude_filetypes = { 'TelescopePrompt' },
