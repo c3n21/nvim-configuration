@@ -1,6 +1,3 @@
-local map_opts = { noremap = true, silent = true }
-local mapping_enum = require('mappings')
-
 return {
     'jose-elias-alvarez/null-ls.nvim',
     dependencies = {
@@ -14,9 +11,12 @@ return {
 
         -- register any number of sources simultaneously
         local sources = {
+            -- code actions
             null_ls.builtins.code_actions.refactoring,
             null_ls.builtins.code_actions.gitsigns,
+            null_ls.builtins.code_actions.eslint_d,
 
+            -- diagnostics
             null_ls.builtins.diagnostics.tidy,
             null_ls.builtins.diagnostics.selene,
             -- null_ls.builtins.diagnostics.luacheck,
@@ -29,13 +29,7 @@ return {
             --[[     to_temp_file = false, ]]
             --[[ }), ]]
             null_ls.builtins.diagnostics.eslint_d,
-            null_ls.builtins.code_actions.eslint_d,
-
-            -- Python
             null_ls.builtins.diagnostics.ruff,
-            -- null_ls.builtins.formatting.ruff,
-            -- null_ls.builtins.formatting.black,
-            -- require('typescript.extensions.null-ls.code-actions'),
         }
 
         null_ls.setup({
@@ -53,7 +47,6 @@ return {
             on_attach = on_attach,
             on_init = nil,
             on_exit = nil,
-            --[[ root_dir = u.root_pattern(".null-ls-root", "Makefile", ".git"), ]]
             update_in_insert = false,
             sources = sources,
         })
