@@ -39,6 +39,7 @@ return {
             },
         },
     },
+    ocamllsp = {},
     gopls = {},
     marksman = {},
     nil_ls = {},
