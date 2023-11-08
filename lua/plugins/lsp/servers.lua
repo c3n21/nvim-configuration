@@ -42,7 +42,7 @@ return {
     ocamllsp = {},
     gopls = {},
     marksman = {},
-    nil_ls = {},
+    nixd = {},
     pyright = {},
     yamlls = {},
     lua_ls = {},
