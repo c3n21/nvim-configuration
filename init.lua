@@ -1,502 +1,121 @@
-_G.__luacache_config = {
-    chunks = {
-        enable = true,
-        path = vim.fn.stdpath('cache') .. '/luacache_chunks',
-    },
-    modpaths = {
-        enable = true,
-        path = vim.fn.stdpath('cache') .. '/luacache_modpaths',
-    },
-}
-require('impatient')
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        'git',
+        'clone',
+        '--filter=blob:none',
+        '--single-branch',
+        'https://github.com/folke/lazy.nvim.git',
+        lazypath,
+    })
+end
+vim.opt.runtimepath:prepend(lazypath)
+
 local fmt = string.format
-local success, luasnip = pcall(require, 'luasnip')
-
-local function reset()
-    local ns = { 'packer', 'config', 'config.plugins.packer_nvim', 'settings', 'settings.map' }
-    for _, name in pairs(ns) do
-        package.loaded[name] = nil
-    end
-end
-
-local function start()
-    local fn = vim.fn
-
-    local install_path = ''
-    vim.notify(fmt("Detected OS: '%s'", jit.os), vim.log.levels.INFO)
-    if jit.os == 'Linux' then
-        install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-    else
-        error(fmt("OS: '%s' not supported"))
-    end
-
-    if fn.empty(fn.glob(install_path)) > 0 then
-        vim.notify(fmt("packer.nvim not installed: installing in '%s'", install_path), vim.log.levels.INFO)
-        fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
-        vim.notify('packer.nvim installed', vim.log.levels.INFO)
-
-        vim.cmd([[packadd packer.nvim]])
-
-        install_path = fn.stdpath('data') .. '/site/pack/packer/start/plenary.nvim'
-
-        fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/nvim-lua/plenary.nvim', install_path })
-        vim.cmd([[packadd plenary.nvim]])
-    end
-end
-
-reset()
-start()
 
 vim.env.GIT_EDITOR = 'nvr -cc split --remote-wait'
 
-local packer
-local packer_config
-
-local opts = { noremap = true, silent = true }
-success, packer_config = pcall(require, 'config.plugins.packer_nvim')
-
-if not success then
-    vim.notify(fmt("Error loading packer's config: %s", vim.inspect(success)), vim.log.levels.WARN)
-    packer_config = {}
-end
-
-success, packer = pcall(require, 'packer')
-
-if not success then
-    vim.notify(fmt('Error loading packer: %s', vim.inspect(success)), vim.log.levels.WARN)
-else
-    packer.startup(packer_config)
-end
-
-local undo_breakpoints = (function()
-    local breakpoints = { ',', '.', '[', ']', '!', '?' }
-    local mappings = {}
-    for _, breakpoint in ipairs(breakpoints) do
-        mappings[#mappings + 1] = {
-            [breakpoint] = {
-                [breakpoint .. '<c-g>u'] = {
-                    modes = 'i',
-                    opts = opts,
-                },
-            },
-        }
-    end
-
-    return mappings
-end)()
-
-local settings_config = {
-    enable_dap = {
-        'php',
-    },
-    enable_lsp = {
-        'pyright',
-        'tsserver',
-        'clangd',
-        'dartls',
-        'ocamllsp',
-        'intelephense',
-        'tailwindcss',
-        -- 'rust_analyzer',
-        -- "sumneko_lua" using lua-dev
-        -- "fsautocomplete",
-        -- "rnix",
-        -- "efm"
-    },
-    log_level = vim.log.levels.WARN,
-    completion = 'nvim-cmp',
-    mappings = {
-        --[[
-        Lines manipulation
-        --]]
-        ['<M-K>'] = {
-            [':m-2 <CR>gv=gv'] = {
-                modes = { 'x' },
-                opts = opts,
-            },
-            [':<C-u>m-2<CR>=='] = {
-                modes = { 'n' },
-                opts = opts,
-            },
-        },
-        ['<M-J>'] = {
-            [":m'>+<CR>gv=gv"] = {
-                modes = { 'x' },
-                opts = opts,
-            },
-            [':<C-u>m+<CR>=='] = {
-                modes = { 'n' },
-                opts = opts,
-            },
-        },
-        --[[
-        Undo break points
-        --]]
-        ['<leader>bo'] = {
-            [function()
-                require('telescope.builtin').buffers({ only_cwd = vim.fn.haslocaldir() == 1 })
-            end] = {
-                modes = { 'n' },
-                opts = opts,
-            },
-        },
-        ['<leader>bq'] = {
-            [':bd<CR>'] = {
-                modes = { 'n' },
-                opts = opts,
-            },
-        },
-        ['gd'] = {
-            [vim.lsp.buf.definition] = {
-                modes = { 'n' },
-                opts = opts,
-            },
-        },
-        ['gD'] = {
-            [vim.lsp.buf.type_definition] = {
-                modes = { 'n' },
-                opts = opts,
-            },
-        },
-        ['K'] = {
-            [vim.lsp.buf.hover] = {
-                modes = { 'n' },
-                opts = opts,
-            },
-        },
-        ['gi'] = {
-            [vim.lsp.buf.implementation] = {
-                modes = { 'n' },
-                opts = opts,
-            },
-        },
-        ['<leader>lr'] = {
-            [':Telescope lsp_references<CR>'] = {
-                modes = { 'n' },
-                opts = opts,
-            },
-        },
-        ['H'] = {
-            [vim.lsp.buf.signature_help] = {
-                modes = { 'n' },
-                opts = opts,
-            },
-        },
-        ['<leader>D'] = {
-            [vim.lsp.buf.type_definition] = {
-                modes = { 'n' },
-                opts = opts,
-            },
-        },
-        ['<leader>rn'] = {
-            [vim.lsp.buf.rename] = {
-                modes = { 'n' },
-                opts = opts,
-            },
-        },
-        ['<leader>ca'] = {
-            [vim.lsp.buf.code_action] = {
-                modes = { 'n', 'v' },
-                opts = opts,
-            },
-        },
-        ['<leader>d'] = {
-            [vim.diagnostic.open_float] = {
-                modes = { 'n' },
-                opts = opts,
-            },
-        },
-        ['[d'] = {
-            [vim.diagnostic.goto_prev] = {
-                modes = { 'n' },
-                opts = opts,
-            },
-        },
-        [']d'] = {
-            [vim.diagnostic.goto_next] = {
-                modes = { 'n' },
-                opts = opts,
-            },
-        },
-        ['<leader>q'] = {
-            [vim.diagnostic.setloclist] = {
-                modes = { 'n' },
-                opts = opts,
-            },
-        },
-        ['<leader>lq'] = {
-            [':lclose<CR>'] = {
-                modes = { 'n' },
-                opts = opts,
-            },
-        },
-
-        ['<leader>ldd'] = {
-            [':Telescope diagnostics<CR>'] = {
-                modes = { 'n' },
-                opts = opts,
-            },
-        },
-
-        ['<leader>lds'] = {
-            [':Telescope lsp_document_symbols<CR>'] = {
-                modes = { 'n' },
-                opts = opts,
-            },
-        },
-
-        ['<leader>lws'] = {
-            [':Telescope lsp_dynamic_workspace_symbols<CR>'] = {
-                modes = { 'n' },
-                opts = opts,
-            },
-        },
-
-        ['<leader>lo'] = {
-            [':Telescope loclist<CR>'] = {
-                modes = { 'n' },
-                opts = opts,
-            },
-        },
-        [']l'] = {
-            [':lnext<CR>'] = {
-                modes = { 'n' },
-                opts = opts,
-            },
-        },
-        ['[l'] = {
-            [':lprev<CR>'] = {
-                modes = { 'n' },
-                opts = opts,
-            },
-        },
-        ['<leader>qq'] = {
-            [':cclose<CR>'] = {
-                modes = { 'n' },
-                opts = opts,
-            },
-        },
-        ['<leader>qo'] = {
-            --[[ [':copen<CR>'] = { ]]
-            [':Telescope quickfix<CR>'] = {
-                modes = { 'n' },
-                opts = opts,
-            },
-        },
-        [']q'] = {
-            [':cnext <CR>'] = {
-                modes = { 'n' },
-                opts = opts,
-            },
-        },
-        ['[q'] = {
-            [':cprevious <CR>'] = {
-                modes = { 'n' },
-                opts = opts,
-            },
-        },
-        [']c'] = {
-            [function()
-                if vim.wo.diff then
-                    return ']c'
-                end
-                vim.schedule(function()
-                    require('gitsigns').next_hunk()
-                end)
-                return '<Ignore>'
-            end] = {
-                modes = { 'n' },
-                opts = { expr = true },
-            },
-        },
-        ['[c'] = {
-            [function()
-                if vim.wo.diff then
-                    return '[c'
-                end
-                vim.schedule(function()
-                    require('gitsigns').prev_hunk()
-                end)
-                return '<Ignore>'
-            end] = {
-                modes = { 'n' },
-                opts = { expr = true },
-            },
-        },
-        ['<leader>e'] = {
-            --[[ ['<cmd>CHADopen<cr>'] = { ]]
-            ['<cmd>NvimTreeToggle<CR>'] = {
-                -- [':Telescope file_browser<CR>'] = {
-                modes = { 'n' },
-                opts = { noremap = true, silent = true },
-            },
-        },
-        --[[ 
-        DAP
-       --]]
-        ['<F1>'] = {
-            [require('dap').toggle_breakpoint] = {
-                modes = { 'n' },
-                opts = { expr = true },
-            },
-        },
-        ['<F2>'] = {
-            [function()
-                require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))
-            end] = {
-                modes = { 'n' },
-                opts = { expr = true },
-            },
-        },
-        ['<F3>'] = {
-            [function()
-                require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))
-            end] = {
-                modes = { 'n' },
-                opts = { expr = true },
-            },
-        },
-        ['<F4>'] = {
-            [require('dap').repl.open] = {
-                modes = { 'n' },
-                opts = { expr = true },
-            },
-        },
-        ['<F5>'] = {
-            [function()
-                vim.schedule(require('dap').continue)
-            end] = {
-                modes = { 'n' },
-                opts = { expr = true },
-            },
-        },
-        ['<F6>'] = {
-            [require('dap').run_last] = {
-                modes = { 'n' },
-                opts = { expr = true },
-            },
-        },
-        ['<F7>'] = {
-            [function()
-                vim.schedule(require('dapui').toggle)
-            end] = {
-                modes = { 'n' },
-                opts = { expr = true },
-            },
-        },
-        ['<F10>'] = {
-            [require('dap').step_over] = {
-                modes = { 'n' },
-                opts = { expr = true },
-            },
-        },
-        ['<F11>'] = {
-            [require('dap').step_into] = {
-                modes = { 'n' },
-                opts = { expr = true },
-            },
-        },
-        ['<F12>'] = {
-            [require('dap').step_out] = {
-                modes = { 'n' },
-                opts = { expr = true },
-            },
-        },
-        --[[
-        TABS
-        --]]
-        ['<leader>tn'] = {
-            [':tabe %<CR>'] = {
-                modes = { 'n' },
-
-                opts = { noremap = true, silent = true },
-            },
-        },
-        ['<leader>fd'] = {
-            [':Telescope fd<CR>'] = {
-                modes = { 'n' },
-                opts = { noremap = true, silent = true },
-            },
-        },
-        ['<c-l>'] = {
-            [function()
-                if luasnip.choice_active() then
-                    luasnip.change_choice(1)
-                end
-            end] = {
-                modes = { 'i', 's' },
-                opts = { noremap = true, silent = true },
-            },
-        },
-        ['<c-j>'] = {
-            [function()
-                if luasnip.jumpable(-1) then
-                    luasnip.jump(-1)
-                end
-            end] = {
-                modes = { 'i', 's' },
-                opts = { noremap = true, silent = true },
-            },
-        },
-        ['<c-k>'] = {
-            [function()
-                if luasnip.expand_or_jumpable() then
-                    luasnip.expand_or_jump()
-                end
-            end] = {
-
-                modes = { 'i', 's' },
-                opts = { noremap = true, silent = true },
-            },
-        },
-        ['<leader>/'] = {
-            [':HopPattern<cr>'] = {
-                modes = { 'n' },
-                opts = { noremap = true, silent = true },
-            },
-        },
-        ['<leader>w'] = {
-            [':HopWord<cr>'] = {
-                modes = { 'n' },
-                opts = { noremap = true, silent = true },
-            },
-        },
-        ['<leader><leader>s'] = {
-            ['<cmd> source ~/.config/nvim/lua/config/plugins/LuaSnip/init.lua <CR>'] = {
-                modes = { 'n' },
-                opts = { noremap = true, silent = true },
-            },
-        },
-        ['<leader><leader>f'] = {
-            [vim.lsp.buf.format] = {
-                modes = { 'n' },
-                opts = { noremap = true, silent = true },
-            },
-        },
-        ['<leader><leader>i'] = {
-            [':luafile ' .. os.getenv('MYVIMRC') .. '<CR>'] = {
-                modes = { 'n' },
-                opts = { noremap = true, silent = true },
-            },
-        },
-    },
-}
-
--- [[
--- Adding undo breakpoints mappings
--- ]]
-settings_config.mappings = vim.tbl_extend('keep', settings_config.mappings, unpack(undo_breakpoints))
-
-local settings
-
-success, settings = pcall(require, 'settings')
+local success, _ = pcall(require, 'settings')
 if not success then
     vim.notify(fmt('Error loading settings: %s', vim.inspect(success)), vim.log.levels.WARN)
-else
-    settings.setup(settings_config)
 end
 
-success, settings = pcall(require, 'packer_compiled')
-if not success then
-    vim.notify(fmt('Error loading packer_compiled: %s', vim.inspect(success)), vim.log.levels.WARN)
-end
+require('mappings')
+require('lazy').setup('plugins', {
+    root = vim.fn.stdpath('data') .. '/lazy', -- directory where plugins will be installed
+    defaults = {
+        lazy = false, -- should plugins be lazy-loaded?
+        version = nil,
+        -- version = "*", -- enable this to try installing the latest stable versions of plugins
+    },
+    lockfile = vim.fn.stdpath('config') .. '/lazy-lock.json', -- lockfile generated after running update.
+    concurrency = nil, ---@type number limit the maximum amount of concurrent tasks
+    git = {
+        -- defaults for the `Lazy log` command
+        -- log = { "-10" }, -- show the last 10 commits
+        log = { '--since=3 days ago' }, -- show commits from the last 3 days
+        timeout = 120, -- kill processes that take more than 2 minutes
+        url_format = 'https://github.com/%s.git',
+    },
+    dev = {
+        -- directory where you store your local plugin projects
+        path = '~/projects',
+        ---@type string[] plugins that match these patterns will use your local versions instead of being fetched from GitHub
+        patterns = {}, -- For example {"folke"}
+    },
+    install = {
+        -- install missing plugins on startup. This doesn't increase startup time.
+        missing = false,
+        -- try to load one of these colorschemes when starting an installation during startup
+        colorscheme = { 'kanagawa' },
+    },
+    ui = {
+        -- a number <1 is a percentage., >1 is a fixed size
+        size = { width = 0.8, height = 0.8 },
+        -- The border to use for the UI window. Accepts same border values as |nvim_open_win()|.
+        border = 'none',
+        icons = {
+            cmd = ' ',
+            config = '',
+            event = '',
+            ft = ' ',
+            init = ' ',
+            keys = ' ',
+            plugin = ' ',
+            runtime = ' ',
+            source = ' ',
+            start = '',
+            task = '✔ ',
+        },
+        throttle = 20, -- how frequently should the ui process render events
+    },
+    checker = {
+        -- automatically check for plugin updates
+        enabled = false,
+        concurrency = nil, ---@type number? set to 1 to check for updates very slowly
+        notify = true, -- get a notification when new updates are found
+        frequency = 3600, -- check for updates every hour
+    },
+    change_detection = {
+        -- automatically check for config file changes and reload the ui
+        enabled = true,
+        notify = true, -- get a notification when changes are found
+    },
+    performance = {
+        cache = {
+            enabled = true,
+            path = vim.fn.stdpath('state') .. '/lazy/cache',
+            -- Once one of the following events triggers, caching will be disabled.
+            -- To cache all modules, set this to `{}`, but that is not recommended.
+            -- The default is to disable on:
+            --  * VimEnter: not useful to cache anything else beyond startup
+            --  * BufReadPre: this will be triggered early when opening a file from the command line directly
+            disable_events = { 'VimEnter', 'BufReadPre' },
+        },
+        reset_packpath = true, -- reset the package path to improve startup time
+        rtp = {
+            reset = true, -- reset the runtime path to $VIMRUNTIME and your config directory
+            ---@type string[]
+            paths = {}, -- add any custom paths here that you want to indluce in the rtp
+            ---@type string[] list any plugins you want to disable here
+            disabled_plugins = {
+                'gzip',
+                'matchit',
+                'matchparen',
+                'tarPlugin',
+                'tohtml',
+                'tutor',
+                'zipPlugin',
+            },
+        },
+    },
+    -- lazy can generate helptags from the headings in markdown readme files,
+    -- so :help works even for plugins that don't have vim docs.
+    -- when the readme opens with :help it will be correctly displayed as markdown
+    readme = {
+        root = vim.fn.stdpath('state') .. '/lazy/readme',
+        files = { 'README.md' },
+        -- only generate markdown helptags for plugins that dont have docs
+        skip_if_doc_exists = true,
+    },
+})

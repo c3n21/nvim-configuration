@@ -1,0 +1,104 @@
+{
+  "neodev": {
+    "library": {
+      "enabled": true,
+      "types": true,
+      "plugins": true,
+      "runtime": true
+    },
+    "lspconfig": true,
+    "debug": false,
+    "override": null,
+    "setup_jsonls": true,
+    "experimental": { "pathStrict": false }
+  },
+  "neoconf": { "filetype_jsonc": true },
+  "lspconfig": {
+    "lua_ls": {
+      "Lua.hint.arrayIndex": "Auto",
+      "Lua.workspace.userThirdParty": [],
+      "Lua.workspace.library": [],
+      "Lua.codeLens.enable": true,
+      "Lua.completion.autoRequire": true,
+      "Lua.completion.workspaceWord": true,
+      "Lua.completion.callSnippet": "Both",
+      "Lua.completion.displayContext": 1,
+      "Lua.completion.enable": true,
+      "Lua.completion.showParams": true,
+      "Lua.completion.keywordSnippet": "Both",
+      "Lua.completion.postfix": "@",
+      "Lua.completion.showWord": "Enable",
+      "Lua.workspace.checkThirdParty": false,
+      "Lua.runtime.special": {},
+      "Lua.runtime.version": "LuaJIT",
+      "Lua.misc.parameters": ["--log-level=trace"],
+      "Lua.diagnostics.enable": true
+    },
+
+    //             diagnostics = {
+    //                 -- enable = false,
+    //                 groupSeverity = {
+    //                     strong = 'Warning',
+    //                     strict = 'Warning',
+    //                 },
+    //                 groupFileStatus = {
+    //                     ['ambiguity'] = 'Opened',
+    //                     ['await'] = 'Opened',
+    //                     ['codestyle'] = 'None',
+    //                     ['duplicate'] = 'Opened',
+    //                     ['global'] = 'Opened',
+    //                     ['luadoc'] = 'Opened',
+    //                     ['redefined'] = 'Opened',
+    //                     ['strict'] = 'Opened',
+    //                     ['strong'] = 'Opened',
+    //                     ['type-check'] = 'Opened',
+    //                     ['unbalanced'] = 'Opened',
+    //                     ['unused'] = 'Opened',
+    //                 },
+    //                 unusedLocalExclude = { '_*' },
+    //             },
+    //             format = {
+    //                 enable = false,
+    //                 defaultConfig = {
+    //                     indent_style = 'space',
+    //                     indent_size = '2',
+    //                     continuation_indent_size = '2',
+    //                 },
+    //             },
+    //         },
+    //     },
+
+    // },
+    "tsserver": {
+      "typescript.tsserver.maxTsServerMemory": 4096,
+      "javascript.autoClosingTags": true,
+      "typescript.enablePromptUseWorkspaceTsdk": true,
+      "typescript.experimental.tsserver.web.enableProjectWideIntellisense": true,
+      "typescript.implementationsCodeLens.enabled": true,
+      "typescript.inlayHints.enumMemberValues.enabled": true,
+      "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+      "typescript.inlayHints.parameterNames.enabled": "all",
+      "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": true,
+      "typescript.inlayHints.parameterTypes.enabled": true,
+      "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+      "typescript.inlayHints.variableTypes.enabled": true,
+      "typescript.inlayHints.variableTypes.suppressWhenTypeMatchesName": true,
+      "typescript.preferences.importModuleSpecifier": "non-relative",
+      "typescript.preferences.importModuleSpecifierEnding": "auto",
+      "typescript.preferences.includePackageJsonAutoImports": "auto",
+      "typescript.preferences.jsxAttributeCompletionStyle": "auto",
+      "typescript.referencesCodeLens.enabled": true,
+      "typescript.referencesCodeLens.showOnAllFunctions": true,
+      "typescript.suggest.autoImports": true,
+      "typescript.suggest.completeFunctionCalls": true,
+      "typescript.suggest.completeJSDocs": true,
+      "typescript.suggest.enabled": true,
+      "typescript.suggest.includeAutomaticOptionalChainCompletions": true,
+      "typescript.suggest.jsdoc.generateReturns": true,
+      "typescript.tsserver.experimental.enablePackageJsonAutoImportCompletions": true,
+      "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+      "typescript.updateImportsOnFileMove.enabled": "prompt",
+      "typescript.workspaceSymbols.scope": "allOpenProjects"
+    }
+  }
+}
