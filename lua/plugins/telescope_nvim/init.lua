@@ -149,7 +149,5 @@ return {
         for _, value in ipairs(extensions) do
             telescope.load_extension(value)
         end
-
-        require('plugins.telescope_nvim.hydra')
     end,
 }

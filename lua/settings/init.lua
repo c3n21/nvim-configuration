@@ -4,7 +4,7 @@ vim.fn.sign_define('DiagnosticSignInfo', { text = ' ', texthl = 'DiagnosticSi
 vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
 
 vim.o.path = vim.o.path .. '**'
-
+vim.opt.updatetime = 100
 vim.g.mapleader = ' '
 
 --[[ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { ]]
