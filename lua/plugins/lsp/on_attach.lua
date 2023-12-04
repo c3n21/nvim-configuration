@@ -44,7 +44,7 @@ local function lsp_attach(client, bufnr)
     end
 
     if client.server_capabilities.inlayHintProvider then
-        vim.lsp.inlay_hint(0, true)
+        vim.lsp.inlay_hint.enable(0, true)
     end
 
     vim.keymap.set('n', mappings_enum['DiagnosticPrev'], vim.diagnostic.goto_prev)

@@ -21,17 +21,9 @@ return {
         local copilot_cmp = require('copilot_cmp')
         copilot_cmp.setup()
 
-        --[[ cmp.event:on('menu_opened', function() ]]
-        --[[     vim.b.copilot_suggestion_hidden = true ]]
-        --[[ end) ]]
-
-        --[[ cmp.event:on('menu_closed', function() ]]
-        --[[     vim.b.copilot_suggestion_hidden = false ]]
-        --[[ end) ]]
-
         local has_words_before = function()
             local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-            return not vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt'
+            return not vim.api.nvim_get_option_value('buftype', { buf = 0 }) == 'prompt'
                 and (col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match('^%s*$') == nil)
         end
 
@@ -66,7 +58,9 @@ return {
 
         cmp.setup({
             enabled = function()
-                return vim.api.nvim_buf_get_option(0, 'buftype') ~= 'prompt' or require('cmp_dap').is_dap_buffer()
+                return vim.api.nvim_get_option_value('buftype', {
+                    buf = 0,
+                }) ~= 'prompt' or require('cmp_dap').is_dap_buffer()
             end,
 
             snippet = {
@@ -100,10 +94,7 @@ return {
             --[[ }, ]]
             --
             experimental = {
-                -- Temporary workaround for https://github.com/hrsh7th/nvim-cmp/issues/1565
-                ghost_text = {
-                    enabled = true,
-                },
+                ghost_text = false,
             },
 
             mapping = {
@@ -116,7 +107,7 @@ return {
                     c = cmp.mapping.close(),
                 }),
                 ['<CR>'] = cmp.mapping.confirm({ select = true }, { 'i' }),
-                ['<Tab>'] = cmp.mapping(function(fallback)
+                ['<C-n>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
                         -- elseif luasnip.expand_or_jumpable() then
@@ -130,7 +121,7 @@ return {
                     end
                 end, { 'i' }),
 
-                ['<S-Tab>'] = cmp.mapping(function()
+                ['<C-p>'] = cmp.mapping(function()
                     if cmp.visible() then
                         cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
                         -- elseif luasnip.jumpable(-1) then
@@ -141,45 +132,29 @@ return {
                 end, { 'i' }),
             },
             sources = cmp.config.sources({
+                { name = 'nvim_lsp', group_index = 1 },
                 { name = 'nvim_lsp_signature_help', group_index = 1 },
-                { name = 'nvim_lsp', group_index = 1, dup = 0 },
-                { name = 'copilot', group_index = 1, dup = 0 },
-                { name = 'luasnip', group_index = 1, dup = 0 }, -- For luasnip users.
-                { name = 'neorg', group_index = 1, dup = 0 },
+                { name = 'copilot', group_index = 1 },
+                { name = 'luasnip', group_index = 1 },
+                { name = 'neorg', group_index = 1 },
+                { name = 'path', group_index = 1 },
                 {
                     name = 'buffer',
                     group_index = 2,
-                    dup = 0,
                     option = {
                         get_bufnrs = function()
                             return vim.api.nvim_list_bufs()
                         end,
                     },
                 },
-                { name = 'path', dup = 0 },
-                --[[ { name = 'cmdline' }, ]]
             }),
             sorting = {
-                priority_weight = 2,
                 comparators = {
+                    require('copilot_cmp.comparators').prioritize,
+                    require('copilot_cmp.comparators').score,
                     function(...)
                         return cmp_buffer:compare_locality(...)
                     end,
-                    -- The rest of your comparators...
-                    require('copilot_cmp.comparators').prioritize,
-                    require('copilot_cmp.comparators').score,
-                    cmp.config.compare.kind,
-                    cmp.config.compare.scopes,
-                    cmp.config.compare.exact,
-                    -- Below is the default comparitor list and order for nvim-cmp
-                    cmp.config.compare.offset,
-                    -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
-                    cmp.config.compare.score,
-                    cmp.config.compare.recently_used,
-                    cmp.config.compare.locality,
-                    cmp.config.compare.sort_text,
-                    cmp.config.compare.length,
-                    cmp.config.compare.order,
                 },
             },
         })
@@ -188,8 +163,8 @@ return {
         cmp.setup.cmdline({ '/', '?' }, {
             mapping = cmp.mapping.preset.cmdline(),
             sources = {
+                { name = 'nvim_lsp' },
                 { name = 'buffer' },
-                --[[ { name = 'nvim_lsp_document_symbol' }, ]]
             },
         })
 
@@ -203,14 +178,7 @@ return {
             }),
         })
 
-        --cmp.setup.cmdline(':', {
-        --    sources = cmp.config.sources({
-        --        { name = 'path' },
-        --        { name = 'cmdline' },
-        --    }),
-        --})
-
-        require('cmp').setup.filetype({ 'dap-repl', 'dapui_watches', 'dapui_hover' }, {
+        cmp.setup.filetype({ 'dap-repl', 'dapui_watches', 'dapui_hover' }, {
             sources = {
                 { name = 'dap' },
             },
