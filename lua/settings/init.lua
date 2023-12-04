@@ -1,13 +1,18 @@
+vim.fn.sign_define('DiagnosticSignError', { text = ' ', texthl = 'DiagnosticSignError' })
+vim.fn.sign_define('DiagnosticSignWarn', { text = ' ', texthl = 'DiagnosticSignWarn' })
+vim.fn.sign_define('DiagnosticSignInfo', { text = ' ', texthl = 'DiagnosticSignInfo' })
+vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
+
 vim.o.path = vim.o.path .. '**'
 
-vim.diagnostic.config({update_in_insert = true})
-
 vim.g.mapleader = ' '
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = false,
-    underline = true,
-    signs = true,
-})
+
+--[[ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, { ]]
+--[[     virtual_text = false, ]]
+--[[     underline = true, ]]
+--[[     signs = true, ]]
+--[[ }) ]]
+
 -- Grep rg
 -- Use faster grep alternatives if possible
 if vim.fn.executable('rg') then
@@ -87,6 +92,7 @@ vim.opt.diffopt = vim.opt.diffopt
         'context:4',
         'algorithm:histogram',
         'indent-heuristic',
+        'linematch:60',
     }
 
 local wslenv = os.getenv('WSLENV')
@@ -116,6 +122,9 @@ end
 --  trail = nil,--'•', -- BULLET (U+2022, UTF-8: E2 80 A2)
 --}
 
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.expandtab = true
 vim.opt.autoindent = true --indent a new line the same amount as the line just typed
 -----------------------------
 -- Editor settings
@@ -127,64 +136,38 @@ vim.opt.wildmode = { 'longest,list' } -- completion
 
 vim.opt.encoding = 'utf-8'
 vim.opt.fileencoding = 'utf-8'
+-- wrap lines degrades performance
+-- see:
+-- https://github.com/neovim/neovim/issues/23521
+-- https://github.com/neovim/neovim/issues/4736
+vim.opt.wrap = false -- dont wrap lines
 
 vim.termguicolors = true
 
 vim.opt.showmatch = true
 vim.opt.mouse = 'v'
-vim.opt.hlsearch = true
+vim.opt.hlsearch = false
 vim.opt.pyx = 3
 vim.opt.autoread = true
 vim.opt.hidden = true
 vim.opt.scrolloff = 8
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = 'auto:9'
 vim.opt.colorcolumn = '80'
+vim.opt.cursorline = true
+vim.opt.cursorcolumn = true
 vim.incsearch = true
 
-vim.opt.tabstop = 4 -- number of spaces for each tab
-vim.opt.shiftwidth = 4 -- number of space used for indenting using >> or <<
+--[[ vim.opt.tabstop = 4 -- number of spaces for each tab ]]
+--[[ vim.opt.shiftwidth = 4 -- number of space used for indenting using >> or << ]]
 vim.opt.expandtab = true
 
-local _config = {
-    mappings = {},
-    plugins = {},
-    enable_dap = {},
-    enable_lsp = {},
-    log_level = vim.log.levels.WARN,
-    completion = 'nvim-cmp',
-}
-
-local function apply()
-    local maps = _config.mappings
-    for lhs, map in pairs(maps) do
-        for rhs, map_opts in pairs(map) do
-            vim.keymap.set(map_opts.modes, lhs, rhs, map_opts.opts)
-        end
-    end
-end
-
-local _setup_completion = nil
-
-return {
-    ['setup'] = function(config)
-        local fmt = string.format
-        local completion_framework = fmt('settings.%s', config.completion)
-        local success, setup_completion = pcall(require, completion_framework)
-
-        if not success then
-            vim.notify(string.format("Completion framework '%s' not available", config.completion), vim.log.levels.WARN)
-        end
-
-        _setup_completion = setup_completion
-        _config = config
-        apply()
-    end,
-
-    ['completion'] = function(ls_config)
-        return _setup_completion(ls_config)
-    end,
-
-    ['get_config'] = function()
-        return _config
-    end,
-}
+vim.diagnostic.config({
+    float = {
+        source = true,
+    },
+    underline = true,
+    virtual_text = false,
+    signs = true,
+    update_in_insert = true,
+    severity_sort = true,
+})
