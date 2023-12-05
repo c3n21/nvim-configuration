@@ -43,10 +43,6 @@ local function lsp_attach(client, bufnr)
         vim.keymap.set({ 'n' }, mappings_enum['SignatureHelp'], vim.lsp.buf.signature_help, map_opts)
     end
 
-    if client.server_capabilities.inlayHintProvider then
-        vim.lsp.inlay_hint.enable(0, true)
-    end
-
     vim.keymap.set('n', mappings_enum['DiagnosticPrev'], vim.diagnostic.goto_prev)
     vim.keymap.set('n', mappings_enum['DiagnosticNext'], vim.diagnostic.goto_next)
     vim.keymap.set({ 'n', 'v' }, mappings_enum['CodeActions'], vim.lsp.buf.code_action, map_opts)
