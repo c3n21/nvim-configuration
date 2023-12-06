@@ -131,6 +131,7 @@ return {
         })
         vim.keymap.set({ 'n' }, '<leader>O', builtin.lsp_dynamic_workspace_symbols, map_opts)
         vim.keymap.set({ 'n' }, '<M-t>d', builtin.diagnostics, map_opts)
+        vim.keymap.set({ 'n' }, '<leader>lg', builtin.live_grep, map_opts)
         vim.api.nvim_create_autocmd('LspAttach', {
             callback = function(args)
                 -- print(vim.inspect(args))
