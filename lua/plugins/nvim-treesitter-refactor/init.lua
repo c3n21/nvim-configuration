@@ -6,7 +6,7 @@ return {
                 highlight_definitions = { enable = true },
                 highlight_current_scope = { enable = true },
                 navigation = {
-                    enable = true,
+                    enable = false,
                     keymaps = {
                         goto_definition = 'gnd',
                         list_definitions = 'gnD',
