@@ -125,12 +125,12 @@ return {
         vim.keymap.set({ 'n' }, mappings_enum['LOpen'], builtin.loclist, map_opts)
         vim.keymap.set({ 'n', 'i' }, '<M-t>gf', builtin.git_files, map_opts)
         vim.keymap.set({ 'n', 'i' }, '<M-t>r', builtin.resume, map_opts)
-        vim.keymap.set({ 'n', 'i' }, '<leader>o', builtin.lsp_document_symbols, map_opts)
-        vim.keymap.set({ 'n', 'i' }, '<leader>qo', ':Telescope lsp_workspace_symbols query=', {
+        vim.keymap.set({ 'n' }, '<leader>o', builtin.lsp_document_symbols, map_opts)
+        vim.keymap.set({ 'n' }, '<leader>qo', ':Telescope lsp_workspace_symbols query=', {
             noremap = true,
         })
-        vim.keymap.set({ 'n', 'i' }, '<leader>O', builtin.lsp_dynamic_workspace_symbols, map_opts)
-        vim.keymap.set({ 'n', 'i' }, '<M-t>d', builtin.diagnostics, map_opts)
+        vim.keymap.set({ 'n' }, '<leader>O', builtin.lsp_dynamic_workspace_symbols, map_opts)
+        vim.keymap.set({ 'n' }, '<M-t>d', builtin.diagnostics, map_opts)
         vim.api.nvim_create_autocmd('LspAttach', {
             callback = function(args)
                 -- print(vim.inspect(args))
