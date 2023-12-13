@@ -21,10 +21,16 @@ return {
         -- Set the log level. Use `:ConformInfo` to see the location of the log file.
         log_level = vim.log.levels.ERROR,
         -- Conform will notify you when a formatter errors
-        notify_on_error = true,
+        notify_on_error = false,
     },
     init = function()
         vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+        local conform = require('conform')
+        vim.keymap.set({ 'n', 'i' }, '<leader><leader>f', function()
+            conform.format({
+                async = true,
+            })
+        end)
     end,
     config = function(_, opts)
         local conform = require('conform')
