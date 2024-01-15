@@ -4,14 +4,15 @@ local map = vim.keymap.set
 
 return {
     'scalameta/nvim-metals',
-    enabled = false,
+    enabled = true,
+    ft = { 'scala' },
     dependencies = {
         'nvim-lua/plenary.nvim',
         'mfussenegger/nvim-dap',
+        'hrsh7th/nvim-cmp',
     },
     config = function()
         local metals_config = require('metals').bare_config()
-
         -- Example of settings
         metals_config.settings = {
             showImplicitArguments = true,
@@ -23,7 +24,7 @@ return {
         -- you *have* to have a setting to display this in your statusline or else
         -- you'll not see any messages from metals. There is more info in the help
         -- docs about this
-        -- metals_config.init_options.statusBarProvider = "on"
+        metals_config.init_options.statusBarProvider = 'on'
 
         -- Example if you are using cmp how to make sure the correct capabilities for snippets are set
         metals_config.capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -53,6 +54,7 @@ return {
 
         metals_config.on_attach = function(client, bufnr)
             require('metals').setup_dap()
+            require('plugins.lsp.on_attach')(client, bufnr)
         end
 
         -- Autocmd that will actually be in charging of starting the whole thing
