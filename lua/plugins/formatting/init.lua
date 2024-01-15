@@ -26,7 +26,7 @@ return {
     init = function()
         vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
         local conform = require('conform')
-        vim.keymap.set({ 'n', 'i' }, '<leader><leader>f', function()
+        vim.keymap.set({ 'n' }, '<leader><leader>f', function()
             conform.format({
                 async = true,
             })
