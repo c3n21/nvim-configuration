@@ -3,8 +3,12 @@ return {
     event = 'InsertEnter',
     dependencies = {
         'L3MON4D3/LuaSnip',
-        'zbirenbaum/copilot-cmp',
-        'zbirenbaum/copilot.lua',
+        {
+            'zbirenbaum/copilot-cmp',
+            dependencies = {
+                'zbirenbaum/copilot.lua',
+            },
+        },
         'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-buffer',
         'hrsh7th/cmp-emoji',
@@ -19,7 +23,12 @@ return {
     config = function()
         local cmp = require('cmp')
         local copilot_cmp = require('copilot_cmp')
-        copilot_cmp.setup()
+        copilot_cmp.setup({
+            event = { 'InsertEnter', 'LspAttach' },
+            fix_pairs = true,
+        })
+
+        local copilot_comparators = require('copilot_cmp.comparators')
 
         local has_words_before = function()
             local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -149,9 +158,20 @@ return {
                 },
             }),
             sorting = {
+                priority_weight = 2,
                 comparators = {
-                    require('copilot_cmp.comparators').prioritize,
-                    require('copilot_cmp.comparators').score,
+                    cmp.config.compare.exact,
+                    copilot_comparators.prioritize,
+                    cmp.config.compare.offset,
+                    -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+                    cmp.config.compare.exact,
+                    cmp.config.compare.score,
+                    cmp.config.compare.recently_used,
+                    cmp.config.compare.locality,
+                    cmp.config.compare.kind,
+                    cmp.config.compare.sort_text,
+                    cmp.config.compare.length,
+                    cmp.config.compare.order,
                     function(...)
                         return cmp_buffer:compare_locality(...)
                     end,
