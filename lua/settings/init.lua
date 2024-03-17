@@ -69,6 +69,7 @@ vim.opt.formatoptions = {
     q = true, -- continue comments with "gq"
     c = true, -- Auto-wrap comments using textwidth
     r = true, -- Continue comments when pressing Enter
+    o = true, -- Continue comments when pressing `o`
     n = true, -- Recognize numbered lists
     t = false, -- autowrap lines using text width value
     j = true, -- remove a comment leader when joining lines.
