@@ -4,6 +4,7 @@ return {
     'codota/tabnine-nvim',
     name = 'tabnine',
     build = './dl_binaries.sh',
+    enabled = false,
     opts = {
         disable_auto_comment = true,
         accept_keymap = '<M-l>',
