@@ -19,6 +19,13 @@ return {
         local actions = require('telescope.actions')
         local sorters = require('telescope.sorters')
 
+        local path = vim.fn.stdpath('data') .. '/databases/telescope_history.sqlite3'
+
+        if vim.fn.filereadable(path) == 0 then
+            vim.notify('Creating file: ' .. path)
+            vim.fn.system('touch ' .. path)
+        end
+
         telescope.setup({
             extensions = {
                 fzf = {
