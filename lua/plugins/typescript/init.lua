@@ -9,7 +9,7 @@ return {
         require('typescript-tools').setup({
             on_attach = function(client, bufnr)
                 require('plugins.lsp.on_attach')(client, bufnr)
-                vim.keymap.set({ 'n', 'i' }, '<leader>gsd', '<cmd>TSToolsGoToSourceDefinition<CR>', map_opts)
+                vim.keymap.set({ 'n' }, '<leader>gsd', '<cmd>TSToolsGoToSourceDefinition<CR>', map_opts)
             end,
             settings = {
 
@@ -19,11 +19,7 @@ return {
                 publish_diagnostic_on = 'insert_leave',
                 -- array of strings("fix_all"|"add_missing_imports"|"remove_unused")
                 -- specify commands exposed as code_actions
-                expose_as_code_action = {
-                    'fix_all',
-                    'add_missing_imports',
-                    'remove_unused',
-                },
+                expose_as_code_action = 'all',
                 -- string|nil - specify a custom path to `tsserver.js` file, if this is nil or file under path
                 -- not exists then standard path resolution strategy is applied
                 -- tsserver_path = tsserver_path .. '/node_modules/typescript/lib/tsserver.js',

@@ -4,6 +4,7 @@ return {
         'nvim-treesitter/nvim-treesitter-textobjects',
         'windwp/nvim-ts-autotag',
         'windwp/nvim-autopairs',
+        'luckasRanarison/tree-sitter-hypr',
     },
     config = function()
         local ts_setup = require('nvim-treesitter.configs')

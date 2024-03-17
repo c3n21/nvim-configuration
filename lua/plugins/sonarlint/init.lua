@@ -1,5 +1,8 @@
 return {
     'https://gitlab.com/schrieveslaach/sonarlint.nvim',
+    dependencies = {
+        'lsp',
+    },
     config = function()
         local install_root_dir = vim.fn.stdpath('data') .. '/mason'
         require('sonarlint').setup({

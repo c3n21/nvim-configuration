@@ -19,6 +19,13 @@ return {
         local actions = require('telescope.actions')
         local sorters = require('telescope.sorters')
 
+        local path = vim.fn.stdpath('data') .. '/databases/telescope_history.sqlite3'
+
+        if vim.fn.filereadable(path) == 0 then
+            vim.notify('Creating file: ' .. path)
+            vim.fn.system('touch ' .. path)
+        end
+
         telescope.setup({
             extensions = {
                 fzf = {
@@ -132,19 +139,6 @@ return {
         vim.keymap.set({ 'n' }, '<leader>O', builtin.lsp_dynamic_workspace_symbols, map_opts)
         vim.keymap.set({ 'n' }, '<M-t>d', builtin.diagnostics, map_opts)
         vim.keymap.set({ 'n' }, '<leader>lg', builtin.live_grep, map_opts)
-        vim.api.nvim_create_autocmd('LspAttach', {
-            callback = function(args)
-                -- print(vim.inspect(args))
-                -- local bufnr = args.buf
-                -- local client = vim.lsp.get_client_by_id(args.data.client_id)
-                -- if client.server_capabilities.completionProvider then
-                --     vim.bo[bufnr].omnifunc = 'v:lua.vim.lsp.omnifunc'
-                -- end
-                -- if client.server_capabilities.definitionProvider then
-                --     vim.bo[bufnr].tagfunc = 'v:lua.vim.lsp.tagfunc'
-                -- end
-            end,
-        })
 
         local extensions = {
             'ui-select',

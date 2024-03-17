@@ -1,5 +1,6 @@
 return {
     'akinsho/toggleterm.nvim',
+    enabled = false,
     config = function()
         vim.o.hidden = true
         require('toggleterm').setup({

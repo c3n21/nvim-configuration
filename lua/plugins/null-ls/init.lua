@@ -14,7 +14,6 @@ return {
             -- code actions
             null_ls.builtins.code_actions.refactoring,
             null_ls.builtins.code_actions.gitsigns,
-            null_ls.builtins.code_actions.eslint_d,
 
             -- diagnostics
             null_ls.builtins.diagnostics.tidy,
@@ -28,7 +27,6 @@ return {
             --[[     method = require('null-ls.methods').internal.DIAGNOSTICS_ON_SAVE, ]]
             --[[     to_temp_file = false, ]]
             --[[ }), ]]
-            null_ls.builtins.diagnostics.eslint_d,
             null_ls.builtins.diagnostics.ruff,
         }
 
