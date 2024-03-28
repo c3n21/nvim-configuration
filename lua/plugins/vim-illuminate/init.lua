@@ -15,6 +15,7 @@ return {
         filetype_overrides = {},
         -- filetypes_denylist: filetypes to not illuminate, this overrides filetypes_allowlist
         filetypes_denylist = {
+            'TelescopePrompt',
             'dirbuf',
             'dirvish',
             'fugitive',
@@ -56,7 +57,7 @@ return {
         -- case_insensitive_regex: sets regex case sensitivity
         case_insensitive_regex = false,
     },
-    config = function(config)
-        require('illuminate').configure(config)
+    config = function(_, opts)
+        require('illuminate').configure(opts)
     end,
 }
