@@ -2,7 +2,13 @@ return {
     'nvim-neorg/neorg',
     dependencies = {
         'hrsh7th/nvim-cmp',
+        {
+            'vhyrro/luarocks.nvim',
+            priority = 1000,
+            config = true,
+        },
     },
+    enabled = false,
     config = function()
         local neorg = require('neorg')
 
