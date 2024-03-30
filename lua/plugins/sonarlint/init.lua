@@ -3,9 +3,26 @@ return {
     dependencies = {
         'lsp',
     },
-    config = function()
+    opts = function()
+        local sonarlint = {}
         local install_root_dir = vim.fn.stdpath('data') .. '/mason'
-        require('sonarlint').setup({
+
+        --- @type string
+        local pathToNodeExecutable = vim.fn.exepath('node')
+
+        if type(pathToNodeExecutable) ~= 'string' or pathToNodeExecutable == '' then
+            vim.notify(
+                string.format("pathToNodeExecutable '%s' is not valid", pathToNodeExecutable),
+                vim.log.levels.WARN,
+                {
+                    stuff = pathToNodeExecutable,
+                }
+            )
+        else
+            sonarlint.pathToNodeExecutable = pathToNodeExecutable
+        end
+
+        return {
             server = {
                 cmd = {
                     -- vim.fn.expand('$MASON/bin/sonarlint-language-server'),
@@ -19,6 +36,9 @@ return {
                     install_root_dir .. '/share/sonarlint-analyzers/sonarjava.jar',
                     install_root_dir .. '/share/sonarlint-analyzers/sonarjs.jar',
                 },
+                settings = {
+                    sonarlint = sonarlint,
+                },
             },
             filetypes = {
                 -- Tested and working
@@ -29,6 +49,6 @@ return {
                 -- Requires nvim-jdtls, otherwise an error message will be printed
                 'java',
             },
-        })
+        }
     end,
 }
