@@ -4,8 +4,6 @@ return {
     'nvim-telescope/telescope.nvim',
     dependencies = {
         'nvim-telescope/telescope-ui-select.nvim',
-        'nvim-telescope/telescope-smart-history.nvim',
-        'kkharji/sqlite.lua',
         {
             'nvim-telescope/telescope-fzf-native.nvim',
             build = 'make',
@@ -142,7 +140,6 @@ return {
 
         local extensions = {
             'ui-select',
-            'smart_history',
             'fzf',
         }
 
