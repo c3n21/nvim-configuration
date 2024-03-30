@@ -11,7 +11,7 @@ return {
             javascriptreact = { { 'prettierd', 'prettier' } },
             typescript = { { 'prettierd', 'prettier' } },
             typescriptreact = { { 'prettierd', 'prettier' } },
-            nix = { 'nixpkgs-fmt' },
+            nix = { 'alejandra' },
         },
         format_on_save = {
             -- These options will be passed to conform.format()
