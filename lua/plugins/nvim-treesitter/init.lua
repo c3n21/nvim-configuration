@@ -60,6 +60,8 @@ return {
                 'php',
                 'norg',
                 'java',
+                'vim',
+                'vimdoc',
             }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
 
             highlight = {
