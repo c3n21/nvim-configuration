@@ -52,6 +52,7 @@ vim.keymap.set({ 'n' }, mappings_enum['TabNext'], ':tabe %<CR>', map_opts)
 vim.keymap.set({ 'n' }, mappings_enum['SourceInit'], ':luafile ' .. os.getenv('MYVIMRC') .. '<CR>', map_opts)
 vim.keymap.set({ 'n' }, mappings_enum['COpen'], ':copen<CR>', map_opts)
 vim.keymap.set({ 'n' }, mappings_enum['LOpen'], ':lopen<CR>', map_opts)
+vim.keymap.set({ 't' }, '<ESC>', '<C-\\><C-n>', map_opts)
 
 for _, breakpoint in ipairs({ ',', '.', '[', ']', '!', '?' }) do
     vim.keymap.set({ 'i' }, breakpoint, breakpoint .. '<c-g>u', map_opts)
