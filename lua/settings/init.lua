@@ -122,7 +122,6 @@ end
 --  precedes = '‹', -- Alternatives: … «
 --  trail = nil,--'•', -- BULLET (U+2022, UTF-8: E2 80 A2)
 --}
-
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.expandtab = true
@@ -161,7 +160,7 @@ vim.incsearch = true
 --[[ vim.opt.tabstop = 4 -- number of spaces for each tab ]]
 --[[ vim.opt.shiftwidth = 4 -- number of space used for indenting using >> or << ]]
 vim.opt.expandtab = true
-
+vim.opt.shell = 'fish'
 vim.diagnostic.config({
     float = {
         source = true,
