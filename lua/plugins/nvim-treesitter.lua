@@ -1,30 +1,34 @@
+require('nvim-treesitter.install').prefer_git = true
 local ts_setup = require('nvim-treesitter.configs')
-require('ts_context_commentstring').setup({})
-vim.g.skip_ts_context_commentstring_module = true
+-- require('ts_context_commentstring').setup({})
+-- vim.g.skip_ts_context_commentstring_module = true
+local function name()
+    print('test')
+end
 ts_setup.setup({
-    query_linter = {
-        enable = true,
-        use_virtual_text = true,
-        lint_events = { 'BufWrite', 'CursorHold', 'InsertLeave' },
-    },
-    playground = {
-        enable = true,
-        disable = {},
-        updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-        persist_queries = false, -- Whether the query persists across vim sessions
-        keybindings = {
-            toggle_query_editor = 'o',
-            toggle_hl_groups = 'i',
-            toggle_injected_languages = 't',
-            toggle_anonymous_nodes = 'a',
-            toggle_language_display = 'I',
-            focus_language = 'f',
-            unfocus_language = 'F',
-            update = 'R',
-            goto_node = '<cr>',
-            show_help = '?',
-        },
-    },
+    -- query_linter = {
+    --     enable = true,
+    --     use_virtual_text = true,
+    --     lint_events = { 'BufWrite', 'CursorHold', 'InsertLeave' },
+    -- },
+    -- playground = {
+    --     enable = true,
+    --     disable = {},
+    --     updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+    --     persist_queries = false, -- Whether the query persists across vim sessions
+    --     keybindings = {
+    --         toggle_query_editor = 'o',
+    --         toggle_hl_groups = 'i',
+    --         toggle_injected_languages = 't',
+    --         toggle_anonymous_nodes = 'a',
+    --         toggle_language_display = 'I',
+    --         focus_language = 'f',
+    --         unfocus_language = 'F',
+    --         update = 'R',
+    --         goto_node = '<cr>',
+    --         show_help = '?',
+    --     },
+    -- },
     -- for Comment.nvim (https://github.com/JoosepAlviste/nvim-ts-context-commentstring#integrations)
     -- context_commentstring = {
     --     enable = true,
@@ -40,20 +44,20 @@ ts_setup.setup({
     --         typescript = { __default = '// %s', __multiline = '/* %s */' },
     --     },
     -- },
-    ensure_installed = {
-        'javascript',
-        'typescript',
-        'tsx',
-        'lua',
-        'json',
-        'jsonc',
-        'json5',
-        'php',
-        'norg',
-        'java',
-        'vim',
-        'vimdoc',
-    }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    -- ensure_installed = {
+    --     'javascript',
+    --     'typescript',
+    --     'tsx',
+    --     'lua',
+    --     'json',
+    --     'jsonc',
+    --     'json5',
+    --     'php',
+    --     'norg',
+    --     'java',
+    --     'vim',
+    --     'vimdoc',
+    -- }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
 
     highlight = {
         enable = true, -- false will disable the whole extension
@@ -80,20 +84,20 @@ ts_setup.setup({
         },
     },
 
-    refactor = {
-        highlight_definitions = { enable = true },
-        highlight_current_scope = { enable = true },
-        navigation = {
-            enable = true,
-            keymaps = {
-                goto_definition = 'gnd',
-                list_definitions = 'gnD',
-                list_definitions_toc = 'gO',
-                goto_next_usage = '<a-*>',
-                goto_previous_usage = '<a-#>',
-            },
-        },
-    },
+    -- refactor = {
+    --     highlight_definitions = { enable = true },
+    --     highlight_current_scope = { enable = true },
+    --     navigation = {
+    --         enable = true,
+    --         keymaps = {
+    --             goto_definition = 'gnd',
+    --             list_definitions = 'gnD',
+    --             list_definitions_toc = 'gO',
+    --             goto_next_usage = '<a-*>',
+    --             goto_previous_usage = '<a-#>',
+    --         },
+    --     },
+    -- },
     textobjects = {
         swap = {
             enable = true,
@@ -172,7 +176,7 @@ ts_setup.setup({
         },
     },
 })
-require('nvim-ts-autotag').setup()
+-- require('nvim-ts-autotag').setup()
 
 -- return {
 --     'nvim-treesitter/nvim-treesitter',
