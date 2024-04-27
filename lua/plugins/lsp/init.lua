@@ -1,23 +1,3 @@
-return {
-    'neovim/nvim-lspconfig',
-    name = 'lsp',
-    event = 'BufReadPre',
-    dependencies = {
-        'SmiteshP/nvim-navic',
-        'akinsho/flutter-tools.nvim',
-        'b0o/schemastore.nvim',
-        'folke/neoconf.nvim',
-        'folke/neodev.nvim',
-        'hrsh7th/cmp-nvim-lsp',
-        'jmbuhr/otter.nvim',
-        'jose-elias-alvarez/null-ls.nvim',
-        'nvim-telescope/telescope.nvim',
-        'simrat39/rust-tools.nvim',
-        'smjonas/inc-rename.nvim',
-        'williamboman/mason-lspconfig.nvim',
-        'williamboman/mason.nvim',
-    },
-    config = function()
         require('neoconf').setup()
         require('mason-lspconfig').setup()
         -- require('otter').dev_setup()
@@ -101,5 +81,26 @@ return {
             local opts = vim.tbl_deep_extend('force', {}, options, ls_config or {})
             lspconfig[ls_name].setup(opts)
         end
-    end,
-}
+
+-- return {
+--     'neovim/nvim-lspconfig',
+--     name = 'lsp',
+--     event = 'BufReadPre',
+--     dependencies = {
+--         'SmiteshP/nvim-navic',
+--         'akinsho/flutter-tools.nvim',
+--         'b0o/schemastore.nvim',
+--         'folke/neoconf.nvim',
+--         'folke/neodev.nvim',
+--         'hrsh7th/cmp-nvim-lsp',
+--         'jmbuhr/otter.nvim',
+--         'jose-elias-alvarez/null-ls.nvim',
+--         'nvim-telescope/telescope.nvim',
+--         'simrat39/rust-tools.nvim',
+--         'smjonas/inc-rename.nvim',
+--         'williamboman/mason-lspconfig.nvim',
+--         'williamboman/mason.nvim',
+--     },
+--     config = function()
+--     end,
+-- }

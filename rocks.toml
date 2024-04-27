@@ -1,0 +1,77 @@
+# This is your rocks.nvim plugins declaration file.
+# Here is a small yet pretty detailed example on how to use it:
+#
+# [plugins]
+# nvim-treesitter = "semver_version"  # e.g. "1.0.0"
+
+[config]
+plugins_dir = "plugins/"
+auto_setup = false
+
+# List of non-Neovim rocks.
+# This includes things like `toml` or other lua packages.
+[rocks]
+
+# List of Neovim plugins to install alongside their versions.
+# If the plugin name contains a dot then you must add quotes to the key name!
+[plugins]
+"Comment.nvim" = "0.8.0"
+"conform.nvim" = "5.6.0"
+"copilot.lua" = "scm"
+"flutter-tools.nvim" = "1.9.0"
+"kanagawa.nvim" = "scm"
+"lualine.nvim" = "scm"
+"mason-lspconfig.nvim" = "1.28.0"
+"mason.nvim" = "1.10.0"
+"neodev.nvim" = "2.5.2"
+"oil.nvim" = "2.8.0"
+"rocks-config.nvim" = "1.5.0"
+"rocks-git.nvim" = "1.4.0"
+"rocks-treesitter.nvim" = "scm"
+"rocks.nvim" = "2.23.0" # rocks.nvim can also manage itself :D
+"schemastore.nvim" = "0.2.0"
+"telescope-ui-select.nvim" = "scm"
+"telescope.nvim" = "scm"
+LuaSnip = "2.3.0"
+# cmp-buffer = "scm"
+# cmp-cmdline = "scm"
+# cmp-nvim-lsp = "scm"
+# cmp-path = "scm"
+# cmp_luasnip = "scm"
+# copilot-cmp = "scm"
+nvim-autopairs = "scm"
+# nvim-cmp = "scm"
+nvim-dap = "0.7.0"
+nvim-lspconfig = "0.1.7"
+nvim-navic = "scm"
+nvim-treesitter-textobjects = "scm"
+nvim-ts-autotag = "scm"
+nvim-web-devicons = "0.99"
+
+[plugins."telescope-fzf-native.nvim"]
+git = "nvim-telescope/telescope-fzf-native.nvim"
+
+[plugins.cmp-dap]
+git = "rcarriga/cmp-dap"
+
+[plugins.cmp-nvim-lsp-signature-help]
+git = "hrsh7th/cmp-nvim-lsp-signature-help"
+
+[plugins.nvim-cmp]
+git = "hrsh7th/nvim-cmp"
+
+[plugins.cmp_luasnip]
+git = "saadparwaiz1/cmp_luasnip"
+
+[plugins.cmp-nvim-lsp]
+git = "hrsh7th/cmp-nvim-lsp"
+
+[plugins.copilot-cmp]
+git = "zbirenbaum/copilot-cmp"
+
+[plugins.cmp-buffer]
+git = "hrsh7th/cmp-buffer"
+
+[plugins.neogit]
+git = "NeogitOrg/neogit"
+branch = "nightly"
