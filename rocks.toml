@@ -52,6 +52,13 @@ tree-sitter-c = "scm"
 tree-sitter-lua = "scm"
 tree-sitter-vim = "scm"
 tree-sitter-vimdoc = "scm"
+tree-sitter-typescript = "scm"
+tree-sitter-javascript = "scm"
+tree-sitter-jsdoc = "scm"
+tree-sitter-json = "scm"
+tree-sitter-tsx= "scm"
+tree-sitter-toml = "scm"
+auto-session = "2.0.1"
 
 [plugins."telescope-fzf-native.nvim"]
 git = "nvim-telescope/telescope-fzf-native.nvim"
