@@ -104,3 +104,7 @@ git = "RRethy/vim-illuminate"
 
 [plugins.vim-fugitive]
 git = "tpope/vim-fugitive"
+
+[plugins."indent-blankline.nvim"]
+git = "lukas-reineke/indent-blankline.nvim"
+rev = "3d08501caef2329aba5121b753e903904088f7e6"
