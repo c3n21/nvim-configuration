@@ -15,16 +15,6 @@ auto_setup = false
 # List of Neovim plugins to install alongside their versions.
 # If the plugin name contains a dot then you must add quotes to the key name!
 [plugins]
-tree-sitter-c = "scm"
-tree-sitter-lua = "scm"
-tree-sitter-vim = "scm"
-tree-sitter-vimdoc = "scm"
-tree-sitter-typescript = "scm"
-tree-sitter-javascript = "scm"
-tree-sitter-jsdoc = "scm"
-tree-sitter-json = "scm"
-tree-sitter-tsx= "scm"
-tree-sitter-toml = "scm"
 "conform.nvim" = "5.6.0"
 "copilot.lua" = "scm"
 "flutter-tools.nvim" = "1.9.0"
@@ -59,6 +49,7 @@ nvim-treesitter = "0.9.2"
 auto-session = "2.0.1"
 "comment.nvim" = "0.8.0"
 luasnip = "2.3.0"
+"typescript-tools.nvim" = "scm"
 
 [plugins."telescope-fzf-native.nvim"]
 git = "nvim-telescope/telescope-fzf-native.nvim"
