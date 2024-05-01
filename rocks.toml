@@ -97,3 +97,6 @@ git = "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
 
 [plugins."gitsigns.nvim"]
 git = "lewis6991/gitsigns.nvim"
+
+[plugins.vim-illuminate]
+git = "RRethy/vim-illuminate"
