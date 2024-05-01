@@ -100,3 +100,6 @@ git = "lewis6991/gitsigns.nvim"
 
 [plugins.vim-illuminate]
 git = "RRethy/vim-illuminate"
+
+[plugins.vim-fugitive]
+git = "tpope/vim-fugitive"
