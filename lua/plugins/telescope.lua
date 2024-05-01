@@ -129,7 +129,7 @@ vim.keymap.set({ 'n' }, '<leader>lg', builtin.live_grep, map_opts)
 
 local extensions = {
     'ui-select',
-    'fzf',
+    -- 'fzf',
 }
 
 for _, value in ipairs(extensions) do

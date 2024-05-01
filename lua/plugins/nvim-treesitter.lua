@@ -1,10 +1,6 @@
-require('nvim-treesitter.install').prefer_git = true
 local ts_setup = require('nvim-treesitter.configs')
 -- require('ts_context_commentstring').setup({})
 -- vim.g.skip_ts_context_commentstring_module = true
-local function name()
-    print('test')
-end
 ts_setup.setup({
     -- query_linter = {
     --     enable = true,
@@ -44,20 +40,6 @@ ts_setup.setup({
     --         typescript = { __default = '// %s', __multiline = '/* %s */' },
     --     },
     -- },
-    -- ensure_installed = {
-    --     'javascript',
-    --     'typescript',
-    --     'tsx',
-    --     'lua',
-    --     'json',
-    --     'jsonc',
-    --     'json5',
-    --     'php',
-    --     'norg',
-    --     'java',
-    --     'vim',
-    --     'vimdoc',
-    -- }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
 
     highlight = {
         enable = true, -- false will disable the whole extension
@@ -177,15 +159,3 @@ ts_setup.setup({
     },
 })
 -- require('nvim-ts-autotag').setup()
-
--- return {
---     'nvim-treesitter/nvim-treesitter',
---     dependencies = {
---         'nvim-treesitter/nvim-treesitter-textobjects',
---         'windwp/nvim-ts-autotag',
---         'windwp/nvim-autopairs',
---         'luckasRanarison/tree-sitter-hypr',
---     },
---     config = function()
---     end,
--- }

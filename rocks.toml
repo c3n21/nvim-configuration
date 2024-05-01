@@ -44,12 +44,15 @@ nvim-navic = "scm"
 nvim-ts-autotag = "scm"
 nvim-web-devicons = "0.99"
 nvim-ts-context-commentstring = "scm"
-nvim-treesitter = "0.9.2"
 
 auto-session = "2.0.1"
 "comment.nvim" = "0.8.0"
 luasnip = "2.3.0"
 "typescript-tools.nvim" = "scm"
+tree-sitter-lua = "scm"
+tree-sitter-markdown = "scm"
+tree-sitter-typescript = "scm"
+tree-sitter-tsx = "scm"
 
 [plugins."telescope-fzf-native.nvim"]
 git = "nvim-telescope/telescope-fzf-native.nvim"
@@ -79,14 +82,17 @@ git = "hrsh7th/cmp-buffer"
 git = "NeogitOrg/neogit"
 branch = "nightly"
 
+[plugins.nvim-treesitter]
+git = "nvim-treesitter/nvim-treesitter"
+
 [plugins.nvim-treesitter-textobjects]
 git = "nvim-treesitter/nvim-treesitter-textobjects"
 
 [plugins."lsp_lines.nvim"]
 git = "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
 
-[plugins."sonarlint.nvim"]
-git = "https://gitlab.com/schrieveslaach/sonarlint.nvim"
+# [plugins."sonarlint.nvim"]
+# git = "https://gitlab.com/schrieveslaach/sonarlint.nvim"
 
 [plugins."gitsigns.nvim"]
 git = "lewis6991/gitsigns.nvim"
