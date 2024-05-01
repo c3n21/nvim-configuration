@@ -54,6 +54,7 @@ tree-sitter-markdown = "scm"
 tree-sitter-typescript = "scm"
 tree-sitter-tsx = "scm"
 tree-sitter-astro = "scm"
+nvim-surround = "2.1.5"
 
 [plugins."telescope-fzf-native.nvim"]
 git = "nvim-telescope/telescope-fzf-native.nvim"
