@@ -60,6 +60,7 @@ neorg = "8.4.0"
 tree-sitter-norg-meta = "0.1.0"
 tree-sitter-norg = "0.2.4"
 "diffview.nvim" = "scm"
+"inc-rename.nvim" = "scm"
 
 [plugins."telescope-fzf-native.nvim"]
 git = "nvim-telescope/telescope-fzf-native.nvim"
