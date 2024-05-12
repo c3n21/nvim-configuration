@@ -182,32 +182,6 @@ cmp.setup.filetype({ 'dap-repl', 'dapui_watches', 'dapui_hover' }, {
     },
 })
 
--- If you want insert `(` after select function or method item
-local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
-
--- return {
---     'hrsh7th/nvim-cmp',
---     event = 'InsertEnter',
---     dependencies = {
---         'L3MON4D3/LuaSnip',
---         {
---             'zbirenbaum/copilot-cmp',
---             dependencies = {
---                 'zbirenbaum/copilot.lua',
---             },
---         },
---         'hrsh7th/cmp-nvim-lsp',
---         'hrsh7th/cmp-buffer',
---         'hrsh7th/cmp-emoji',
---         'hrsh7th/cmp-cmdline',
---         'dmitmel/cmp-cmdline-history',
---         'hrsh7th/cmp-path',
---         'rcarriga/cmp-dap',
---         'saadparwaiz1/cmp_luasnip',
---         'hrsh7th/cmp-nvim-lsp-signature-help',
---         'windwp/nvim-autopairs',
---     },
---     config = function()
---     end,
--- }
+-- [[ If you want insert `(` after select function or method item ]]
+-- local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+-- cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
