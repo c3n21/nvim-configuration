@@ -238,7 +238,6 @@ local config = {
             ['u'] = 'Unstage',
             ['U'] = 'UnstageStaged',
             ['$'] = 'CommandHistory',
-            ['#'] = 'Console',
             ['Y'] = 'YankSelected',
             ['<c-r>'] = 'RefreshBuffer',
             ['<enter>'] = 'GoToFile',
@@ -252,12 +251,3 @@ local config = {
 }
 
 require('neogit').setup(config)
-
--- return {
---     'NeogitOrg/neogit',
---     dependencies = {
---         'nvim-lua/plenary.nvim',
---         'sindrets/diffview.nvim',
---         'nvim-telescope/telescope.nvim',
---     },
--- }
