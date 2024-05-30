@@ -61,6 +61,7 @@ tree-sitter-norg-meta = "0.1.0"
 tree-sitter-norg = "0.2.4"
 "diffview.nvim" = "scm"
 "inc-rename.nvim" = "scm"
+neogit = "1.0.0"
 
 [plugins."telescope-fzf-native.nvim"]
 git = "nvim-telescope/telescope-fzf-native.nvim"
@@ -85,10 +86,6 @@ git = "zbirenbaum/copilot-cmp"
 
 [plugins.cmp-buffer]
 git = "hrsh7th/cmp-buffer"
-
-[plugins.neogit]
-git = "NeogitOrg/neogit"
-branch = "nightly"
 
 [plugins.nvim-treesitter]
 git = "nvim-treesitter/nvim-treesitter"
