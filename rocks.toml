@@ -99,6 +99,10 @@ git = "nvim-treesitter/nvim-treesitter-textobjects"
 [plugins."lsp_lines.nvim"]
 git = "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
 
+[plugins.vim-matchup]
+git = "andymass/vim-matchup"
+rev = "1535a769d5dca851fe7d41b0be95f7c7203a4bef"
+
 # [plugins."sonarlint.nvim"]
 # git = "https://gitlab.com/schrieveslaach/sonarlint.nvim"
 
