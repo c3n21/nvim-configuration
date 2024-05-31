@@ -25,7 +25,6 @@ auto_setup = false
 "neodev.nvim" = "2.5.2"
 "oil.nvim" = "2.8.0"
 "rocks-config.nvim" = "1.5.0"
-"rocks-git.nvim" = "1.4.0"
 "rocks.nvim" = "2.26.0" # rocks.nvim can also manage itself :D
 "schemastore.nvim" = "0.2.0"
 "telescope-ui-select.nvim" = "scm"
@@ -62,6 +61,7 @@ tree-sitter-norg = "0.2.4"
 "diffview.nvim" = "scm"
 "inc-rename.nvim" = "scm"
 neogit = "1.0.0"
+"rocks-git.nvim" = "1.5.1"
 
 [plugins."telescope-fzf-native.nvim"]
 git = "nvim-telescope/telescope-fzf-native.nvim"
@@ -100,8 +100,8 @@ git = "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
 git = "andymass/vim-matchup"
 rev = "1535a769d5dca851fe7d41b0be95f7c7203a4bef"
 
-# [plugins."sonarlint.nvim"]
-# git = "https://gitlab.com/schrieveslaach/sonarlint.nvim"
+[plugins."sonarlint.nvim"]
+git = "https://gitlab.com/schrieveslaach/sonarlint.nvim.git"
 
 [plugins."gitsigns.nvim"]
 git = "lewis6991/gitsigns.nvim"
