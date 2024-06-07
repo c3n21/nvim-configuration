@@ -40,9 +40,7 @@ nvim-autopairs = "scm"
 nvim-dap = "0.7.0"
 nvim-lspconfig = "0.1.7"
 nvim-navic = "scm"
-nvim-ts-autotag = "scm"
 nvim-web-devicons = "0.99"
-nvim-ts-context-commentstring = "scm"
 
 auto-session = "2.0.1"
 "comment.nvim" = "0.8.0"
@@ -65,6 +63,14 @@ neogit = "1.0.0"
 
 [plugins."telescope-fzf-native.nvim"]
 git = "nvim-telescope/telescope-fzf-native.nvim"
+
+[plugins."nvim-ts-context-commentstring"]
+git = "JoosepAlviste/nvim-ts-context-commentstring"
+rev = "cbab9ad88036915beebd13b47e100743ff2ed2d5"
+
+[plugins.nvim-ts-autotag]
+git = "windwp/nvim-ts-autotag"
+rev = "cb57b07803476ee902c89412aeff219a9a58be13"
 
 [plugins.cmp-dap]
 git = "rcarriga/cmp-dap"
@@ -105,6 +111,7 @@ git = "https://gitlab.com/schrieveslaach/sonarlint.nvim.git"
 
 [plugins."gitsigns.nvim"]
 git = "lewis6991/gitsigns.nvim"
+rev = "805610a9393fa231f2c2b49cb521bfa413fadb3d"
 
 [plugins.vim-illuminate]
 git = "RRethy/vim-illuminate"
