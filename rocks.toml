@@ -16,7 +16,6 @@ auto_setup = false
 # If the plugin name contains a dot then you must add quotes to the key name!
 [plugins]
 "conform.nvim" = "5.6.0"
-"copilot.lua" = "scm"
 "flutter-tools.nvim" = "1.9.0"
 "kanagawa.nvim" = "scm"
 "lualine.nvim" = "scm"
@@ -89,6 +88,10 @@ git = "hrsh7th/cmp-nvim-lsp"
 
 [plugins.copilot-cmp]
 git = "zbirenbaum/copilot-cmp"
+
+[plugins."copilot.lua"]
+git = "zbirenbaum/copilot.lua"
+config = "plugins.copilot"
 
 [plugins.cmp-buffer]
 git = "hrsh7th/cmp-buffer"
