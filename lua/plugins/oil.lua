@@ -65,6 +65,7 @@ require('oil').setup({
         ['<C-p>'] = 'actions.preview',
         ['<C-c>'] = 'actions.close',
         ['<C-l>'] = 'actions.refresh',
+        ['<C-y>'] = 'actions.copy_entry_path',
         ['-'] = 'actions.parent',
         ['_'] = 'actions.open_cwd',
         ['`'] = 'actions.cd',
