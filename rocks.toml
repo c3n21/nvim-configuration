@@ -91,9 +91,8 @@ git = "hrsh7th/cmp-nvim-lsp"
 [plugins.copilot-cmp]
 git = "zbirenbaum/copilot-cmp"
 
-[plugins."copilot.lua"]
+[plugins.copilot]
 git = "zbirenbaum/copilot.lua"
-config = "plugins.copilot"
 
 [plugins.cmp-buffer]
 git = "hrsh7th/cmp-buffer"
