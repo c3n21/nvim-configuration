@@ -59,6 +59,8 @@ tree-sitter-norg = "0.2.4"
 "inc-rename.nvim" = "scm"
 neogit = "1.0.0"
 "rocks-git.nvim" = "1.5.1"
+tree-sitter-latex = "scm"
+tree-sitter-embedded_template = "scm"
 
 [plugins."telescope-fzf-native.nvim"]
 git = "nvim-telescope/telescope-fzf-native.nvim"
