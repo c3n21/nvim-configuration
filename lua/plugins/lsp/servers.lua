@@ -49,5 +49,5 @@ return {
     teal_ls = {},
     vimls = {},
     eslint = {},
-    -- tailwindcss = {},
+    tailwindcss = {},
 }
