@@ -71,7 +71,7 @@ local config = {
         recent_commit_count = 10,
     },
     commit_editor = {
-        kind = 'auto',
+        kind = 'tab',
     },
     commit_select_view = {
         kind = 'tab',
