@@ -12,10 +12,10 @@ neorg.setup({
             },
         },
         ['core.concealer'] = {
-            config = {
-                icon_preset = 'diamond',
-                -- markup_preset = "dimmed",
-            },
+            -- config = {
+            --     icon_preset = 'diamond',
+            --     -- markup_preset = "dimmed",
+            -- },
         }, -- Allows the use of icons
         -- ["core.keybinds"] = {
         --     config = {

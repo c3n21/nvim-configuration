@@ -1,5 +1,4 @@
 local navic = require('nvim-navic')
-local mappings = require('mappings')
 local map_opts = { noremap = true, silent = true }
 local lsp_definition_opts = { jump_type = 'split', show_line = false, reuse_win = true }
 

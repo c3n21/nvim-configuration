@@ -4,25 +4,6 @@ local mason_config = require('configs.mason')
 require('mason').setup(mason_config)
 require('mason-lspconfig').setup()
 -- require('otter').dev_setup()
-require('neodev').setup({
-    library = {
-        enabled = true, -- when not enabled, neodev will not change any settings to the LSP server
-        -- these settings will be used for your Neovim config directory
-        runtime = true, -- runtime path
-        types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
-        plugins = true, -- installed opt or start plugins in packpath
-        -- you can also specify the list of plugins to make available as a workspace library
-        -- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
-    },
-    setup_jsonls = true, -- configures jsonls to provide completion for project specific .luarc.json files
-    -- for your Neovim config directory, the config.library settings will be used as is
-    -- for plugin directories (root_dirs having a /lua directory), config.library.plugins will be disabled
-    -- for any other directory, config.library.enabled will be set to false
-    --[[ override = function(root_dir, options) end, ]]
-    -- add any options here, or leave empty to use the default settings
-    lspconfig = true,
-    pathStrict = true,
-})
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
@@ -84,26 +65,3 @@ for ls_name, ls_config in pairs(servers) do
     local opts = vim.tbl_deep_extend('force', {}, options, ls_config or {})
     lspconfig[ls_name].setup(opts)
 end
-
--- return {
---     'neovim/nvim-lspconfig',
---     name = 'lsp',
---     event = 'BufReadPre',
---     dependencies = {
---         'SmiteshP/nvim-navic',
---         'akinsho/flutter-tools.nvim',
---         'b0o/schemastore.nvim',
---         'folke/neoconf.nvim',
---         'folke/neodev.nvim',
---         'hrsh7th/cmp-nvim-lsp',
---         'jmbuhr/otter.nvim',
---         'jose-elias-alvarez/null-ls.nvim',
---         'nvim-telescope/telescope.nvim',
---         'simrat39/rust-tools.nvim',
---         'smjonas/inc-rename.nvim',
---         'williamboman/mason-lspconfig.nvim',
---         'williamboman/mason.nvim',
---     },
---     config = function()
---     end,
--- }
