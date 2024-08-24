@@ -77,6 +77,13 @@ return {
     pyright = {},
     yamlls = {},
     lua_ls = {},
+    volar = {
+        init_options = {
+            vue = {
+                hybridMode = false,
+            },
+        },
+    },
     teal_ls = {},
     vimls = {},
     eslint = {},
