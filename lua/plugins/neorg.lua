@@ -30,6 +30,7 @@ neorg.setup({
             config = {
                 workspaces = {
                     work = '~/Documents/Notes',
+                    logica = '~/Documents/neorg/logica',
                 },
 
                 autochdir = false,
