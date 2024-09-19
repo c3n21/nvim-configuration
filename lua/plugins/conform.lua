@@ -3,6 +3,7 @@ local config = {
         lua = { 'stylua' },
         -- Conform will run multiple formatters sequentially
         python = { 'isort', 'black' },
+        php = { 'php_cs_fixer' },
         -- Use a sub-list to run only the first available formatter
         javascript = { { 'prettierd', 'prettier' } },
         javascriptreact = { { 'prettierd', 'prettier' } },
@@ -10,6 +11,7 @@ local config = {
         json = { { 'prettierd', 'prettier' } },
         jsonc = { { 'prettierd', 'prettier' } },
         dart = { 'dart_format' },
+        vue = { { 'prettierd', 'prettier' } },
         typescript = { { 'prettierd', 'prettier' } },
         typescriptreact = { { 'prettierd', 'prettier' } },
         nix = { 'alejandra' },
