@@ -12,6 +12,7 @@ local config = {
         jsonc = { { 'prettierd', 'prettier' } },
         dart = { 'dart_format' },
         vue = { { 'prettierd', 'prettier' } },
+        graphql = { { 'prettierd', 'prettier' } },
         typescript = { { 'prettierd', 'prettier' } },
         typescriptreact = { { 'prettierd', 'prettier' } },
         nix = { 'alejandra' },
