@@ -51,6 +51,7 @@ neorg = "8.9.0"
 neogit = "1.0.0"
 "rocks-git.nvim" = "1.5.1"
 "lazydev.nvim" = "1.6.0"
+"dropbar.nvim" = "8.6.0"
 nvim-dbee = "0.1.9"
 
 [plugins."telescope-fzf-native.nvim"]
