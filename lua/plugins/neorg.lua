@@ -31,6 +31,7 @@ neorg.setup({
                 workspaces = {
                     work = '~/Documents/Notes',
                     logica = '~/Documents/neorg/logica',
+                    scratchpad = '~/Documents/neorg/scratchpad',
                 },
 
                 autochdir = false,
