@@ -1,2 +1,4 @@
 .netrwhist
-lua/packer_compiled.lua
+/luarocks
+/lua_modules
+/.luarocks

@@ -39,15 +39,23 @@ return {
             },
         },
     },
+    lua_ls = {},
     ocamllsp = {},
     gopls = {},
     marksman = {},
     nixd = {},
     pyright = {},
     yamlls = {},
-    lua_ls = {},
+    graphql = {},
+    volar = {
+        init_options = {
+            vue = {
+                hybridMode = false,
+            },
+        },
+    },
     teal_ls = {},
     vimls = {},
     eslint = {},
-    -- tailwindcss = {},
+    tailwindcss = {},
 }

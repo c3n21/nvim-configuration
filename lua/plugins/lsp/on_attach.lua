@@ -1,5 +1,3 @@
-local navic = require('nvim-navic')
-local mappings = require('mappings')
 local map_opts = { noremap = true, silent = true }
 local lsp_definition_opts = { jump_type = 'split', show_line = false, reuse_win = true }
 
@@ -29,10 +27,6 @@ local function lsp_attach(client, bufnr)
                 show_line = false,
             })
         end, map_opts)
-    end
-
-    if client.server_capabilities.documentSymbolProvider then
-        navic.attach(client, bufnr)
     end
 
     if client.server_capabilities.hoverProvider then

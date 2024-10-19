@@ -1,0 +1,124 @@
+# This is your rocks.nvim plugins declaration file.
+# Here is a small yet pretty detailed example on how to use it:
+#
+# [plugins]
+# nvim-treesitter = "semver_version"  # e.g. "1.0.0"
+
+[config]
+plugins_dir = "plugins/"
+auto_setup = false
+
+# List of non-Neovim rocks.
+# This includes things like `toml` or other lua packages.
+[rocks]
+
+# List of Neovim plugins to install alongside their versions.
+# If the plugin name contains a dot then you must add quotes to the key name!
+[plugins]
+"conform.nvim" = "5.6.0"
+"flutter-tools.nvim" = "1.10.0"
+"kanagawa.nvim" = "scm"
+"lualine.nvim" = "scm"
+"mason-lspconfig.nvim" = "1.29.0"
+"mason.nvim" = "1.10.0"
+"oil.nvim" = "2.11.0"
+"rocks-config.nvim" = "2.1.3"
+"rocks.nvim" = "2.35.1"
+"schemastore.nvim" = "0.2.0"
+"telescope-ui-select.nvim" = "scm"
+"telescope.nvim" = "scm"
+# cmp-buffer = "scm"
+# cmp-cmdline = "scm"
+# cmp-nvim-lsp = "scm"
+# cmp-path = "scm"
+# cmp_luasnip = "scm"
+# copilot-cmp = "scm"
+nvim-autopairs = "scm"
+# nvim-cmp = "scm"
+nvim-dap = "0.8.0"
+nvim-lspconfig = "0.1.8"
+nvim-navic = "scm"
+nvim-web-devicons = "0.100"
+
+auto-session = "2.0.1"
+"comment.nvim" = "0.8.0"
+luasnip = "2.3.0"
+"typescript-tools.nvim" = "scm"
+nvim-surround = "2.1.5"
+neorg = "8.9.0"
+"diffview.nvim" = "scm"
+"inc-rename.nvim" = "scm"
+neogit = "1.0.0"
+"rocks-git.nvim" = "1.5.1"
+"lazydev.nvim" = "1.6.0"
+"dropbar.nvim" = "8.6.0"
+"otter.nvim" = "2.4.0"
+nvim-dbee = "0.1.9"
+
+[plugins."telescope-fzf-native.nvim"]
+git = "nvim-telescope/telescope-fzf-native.nvim"
+
+[plugins."nvim-ts-context-commentstring"]
+git = "JoosepAlviste/nvim-ts-context-commentstring"
+rev = "cbab9ad88036915beebd13b47e100743ff2ed2d5"
+
+[plugins.nvim-ts-autotag]
+git = "windwp/nvim-ts-autotag"
+rev = "cb57b07803476ee902c89412aeff219a9a58be13"
+
+[plugins.cmp-dap]
+git = "rcarriga/cmp-dap"
+
+[plugins.cmp-nvim-lsp-signature-help]
+git = "hrsh7th/cmp-nvim-lsp-signature-help"
+
+[plugins.nvim-cmp]
+git = "hrsh7th/nvim-cmp"
+
+[plugins.cmp_luasnip]
+git = "saadparwaiz1/cmp_luasnip"
+
+[plugins.cmp-nvim-lsp]
+git = "hrsh7th/cmp-nvim-lsp"
+
+[plugins.copilot-cmp]
+git = "zbirenbaum/copilot-cmp"
+
+[plugins.copilot]
+git = "zbirenbaum/copilot.lua"
+
+[plugins.cmp-buffer]
+git = "hrsh7th/cmp-buffer"
+
+[plugins.nvim-treesitter]
+git = "nvim-treesitter/nvim-treesitter"
+
+[plugins.nvim-treesitter-textobjects]
+git = "nvim-treesitter/nvim-treesitter-textobjects"
+
+[plugins."lsp_lines.nvim"]
+git = "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
+
+[plugins.vim-matchup]
+git = "andymass/vim-matchup"
+rev = "1535a769d5dca851fe7d41b0be95f7c7203a4bef"
+
+[plugins."sonarlint.nvim"]
+git = "https://gitlab.com/schrieveslaach/sonarlint.nvim.git"
+
+[plugins."gitsigns.nvim"]
+git = "lewis6991/gitsigns.nvim"
+rev = "805610a9393fa231f2c2b49cb521bfa413fadb3d"
+
+[plugins.vim-illuminate]
+git = "RRethy/vim-illuminate"
+
+[plugins.vim-fugitive]
+git = "tpope/vim-fugitive"
+
+[plugins.vim-sleuth]
+git = "tpope/vim-sleuth"
+
+[plugins."indent-blankline.nvim"]
+git = "lukas-reineke/indent-blankline.nvim"
+rev = "v3.7.1"
