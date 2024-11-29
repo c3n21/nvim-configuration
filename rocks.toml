@@ -22,11 +22,9 @@ auto_setup = false
 "rocks.nvim" = "2.35.1"
 # nvim-cmp = "scm"
 nvim-dap = "0.8.0"
-nvim-navic = "scm"
 nvim-web-devicons = "0.100"
 
 auto-session = "2.0.1"
-"comment.nvim" = "0.8.0"
 luasnip = "2.3.0"
 "typescript-tools.nvim" = "scm"
 neorg = "8.9.0"
