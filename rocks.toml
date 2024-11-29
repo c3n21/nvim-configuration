@@ -16,8 +16,6 @@ auto_setup = false
 # If the plugin name contains a dot then you must add quotes to the key name!
 [plugins]
 "flutter-tools.nvim" = "1.10.0"
-"kanagawa.nvim" = "scm"
-"lualine.nvim" = "scm"
 "mason-lspconfig.nvim" = "1.29.0"
 "mason.nvim" = "1.10.0"
 "rocks-config.nvim" = "2.1.3"
