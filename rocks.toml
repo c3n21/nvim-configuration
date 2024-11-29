@@ -23,8 +23,6 @@ auto_setup = false
 # nvim-cmp = "scm"
 nvim-dap = "0.8.0"
 nvim-web-devicons = "0.100"
-
-auto-session = "2.0.1"
 luasnip = "2.3.0"
 "typescript-tools.nvim" = "scm"
 neorg = "8.9.0"
