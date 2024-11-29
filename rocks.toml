@@ -15,7 +15,6 @@ auto_setup = false
 # List of Neovim plugins to install alongside their versions.
 # If the plugin name contains a dot then you must add quotes to the key name!
 [plugins]
-"conform.nvim" = "5.6.0"
 "flutter-tools.nvim" = "1.10.0"
 "kanagawa.nvim" = "scm"
 "lualine.nvim" = "scm"
@@ -23,13 +22,6 @@ auto_setup = false
 "mason.nvim" = "1.10.0"
 "rocks-config.nvim" = "2.1.3"
 "rocks.nvim" = "2.35.1"
-# cmp-buffer = "scm"
-# cmp-cmdline = "scm"
-# cmp-nvim-lsp = "scm"
-# cmp-path = "scm"
-# cmp_luasnip = "scm"
-# copilot-cmp = "scm"
-nvim-autopairs = "scm"
 # nvim-cmp = "scm"
 nvim-dap = "0.8.0"
 nvim-navic = "scm"
