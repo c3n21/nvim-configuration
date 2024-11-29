@@ -62,3 +62,8 @@ if not success then
 end
 
 require('mappings')
+require('plugins.nvim-lspconfig')
+require('plugins.conform')
+require('plugins.nvim-dbee')
+require('plugins.lazydev')
+require('plugins.telescope')
