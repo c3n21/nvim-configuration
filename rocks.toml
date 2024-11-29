@@ -22,47 +22,11 @@ auto_setup = false
 "rocks.nvim" = "2.35.1"
 # nvim-cmp = "scm"
 nvim-dap = "0.8.0"
-luasnip = "2.3.0"
 "typescript-tools.nvim" = "scm"
 neorg = "8.9.0"
 "rocks-git.nvim" = "1.5.1"
 "dropbar.nvim" = "8.6.0"
 "otter.nvim" = "2.4.0"
-
-[plugins."nvim-ts-context-commentstring"]
-git = "JoosepAlviste/nvim-ts-context-commentstring"
-rev = "cbab9ad88036915beebd13b47e100743ff2ed2d5"
-
-[plugins.nvim-ts-autotag]
-git = "windwp/nvim-ts-autotag"
-rev = "cb57b07803476ee902c89412aeff219a9a58be13"
-
-[plugins.cmp-dap]
-git = "rcarriga/cmp-dap"
-
-[plugins.cmp-nvim-lsp-signature-help]
-git = "hrsh7th/cmp-nvim-lsp-signature-help"
-
-[plugins.nvim-cmp]
-git = "hrsh7th/nvim-cmp"
-
-[plugins.cmp_luasnip]
-git = "saadparwaiz1/cmp_luasnip"
-
-[plugins.cmp-nvim-lsp]
-git = "hrsh7th/cmp-nvim-lsp"
-
-[plugins.copilot-cmp]
-git = "zbirenbaum/copilot-cmp"
-
-[plugins.copilot]
-git = "zbirenbaum/copilot.lua"
-
-[plugins.cmp-buffer]
-git = "hrsh7th/cmp-buffer"
-
-[plugins.nvim-treesitter]
-git = "nvim-treesitter/nvim-treesitter"
 
 [plugins.nvim-treesitter-textobjects]
 git = "nvim-treesitter/nvim-treesitter-textobjects"
