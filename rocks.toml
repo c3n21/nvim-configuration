@@ -30,9 +30,6 @@ neorg = "8.9.0"
 "dropbar.nvim" = "8.6.0"
 "otter.nvim" = "2.4.0"
 
-[plugins."telescope-fzf-native.nvim"]
-git = "nvim-telescope/telescope-fzf-native.nvim"
-
 [plugins."nvim-ts-context-commentstring"]
 git = "JoosepAlviste/nvim-ts-context-commentstring"
 rev = "cbab9ad88036915beebd13b47e100743ff2ed2d5"
