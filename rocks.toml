@@ -32,7 +32,6 @@ luasnip = "2.3.0"
 nvim-surround = "2.1.5"
 neorg = "8.9.0"
 "inc-rename.nvim" = "scm"
-neogit = "1.0.0"
 "rocks-git.nvim" = "1.5.1"
 "dropbar.nvim" = "8.6.0"
 "otter.nvim" = "2.4.0"
@@ -88,15 +87,8 @@ rev = "1535a769d5dca851fe7d41b0be95f7c7203a4bef"
 [plugins."sonarlint.nvim"]
 git = "https://gitlab.com/schrieveslaach/sonarlint.nvim.git"
 
-[plugins."gitsigns.nvim"]
-git = "lewis6991/gitsigns.nvim"
-rev = "805610a9393fa231f2c2b49cb521bfa413fadb3d"
-
 [plugins.vim-illuminate]
 git = "RRethy/vim-illuminate"
-
-[plugins.vim-fugitive]
-git = "tpope/vim-fugitive"
 
 [plugins.vim-sleuth]
 git = "tpope/vim-sleuth"
