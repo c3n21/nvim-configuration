@@ -1,8 +1,26 @@
 --        require('neoconf').setup()
-require('plugins.nvim-cmp')
-local mason_config = require('configs.mason')
-require('mason').setup(mason_config)
+require('mason').setup({
+    registries = {
+        'github:nvim-java/mason-registry',
+        'github:mason-org/mason-registry',
+    },
+})
 require('mason-lspconfig').setup()
+require('java').setup({
+    jdk = {
+        -- install jdk using mason.nvim
+        auto_install = false,
+        version = '17.0.2',
+    },
+
+    spring_boot_tools = {
+        enable = false,
+    },
+})
+require('plugins.nvim-cmp')
+vim.g.markdown_fenced_languages = {
+    'ts=typescript',
+}
 require('otter').setup({
     lsp = {
         -- `:h events` that cause the diagnostics to update. Set to:

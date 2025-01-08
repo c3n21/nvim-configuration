@@ -2,7 +2,7 @@
 local lspconfig = require('lspconfig')
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
----@type lspconfig.options
+---@type vim.lsp.config
 return {
     astro = {},
     ansiblels = {},
@@ -11,6 +11,7 @@ return {
     cssls = {
         capabilities = capabilities,
     },
+    denols = {},
     dockerls = {},
     svelte = {},
     html = {},
@@ -58,4 +59,5 @@ return {
     vimls = {},
     eslint = {},
     tailwindcss = {},
+    jdtls = {},
 }

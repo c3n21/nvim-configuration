@@ -32,6 +32,7 @@ neorg.setup({
                     work = '~/Documents/Notes',
                     logica = '~/Documents/neorg/logica',
                     scratchpad = '~/Documents/neorg/scratchpad',
+                    architettura = '~/Downloads/github/computer-architecture/src/theory',
                 },
 
                 autochdir = false,
