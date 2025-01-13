@@ -1,4 +1,5 @@
 --        require('neoconf').setup()
+-- needing this only because nvim-java requires mason
 require('mason').setup({
     registries = {
         'github:nvim-java/mason-registry',
