@@ -56,6 +56,8 @@ return {
         },
     },
     teal_ls = {},
+    terraformls = {},
+    terraform_lsp = {},
     vimls = {},
     eslint = {},
     tailwindcss = {},
