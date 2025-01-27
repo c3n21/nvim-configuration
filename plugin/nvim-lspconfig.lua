@@ -114,3 +114,42 @@ for ls_name, ls_config in pairs(servers) do
     local opts = vim.tbl_deep_extend('force', {}, options, ls_config or {})
     lspconfig[ls_name].setup(opts)
 end
+
+local sonarlint = {
+    rules = {
+        ['typescript:S101'] = { level = 'on', parameters = { format = '^[A-Z][a-zA-Z0-9]*$' } },
+        ['typescript:S103'] = { level = 'on', parameters = { maximumLineLength = 180 } },
+        ['typescript:S106'] = { level = 'on' },
+        ['typescript:S107'] = { level = 'on', parameters = { maximumFunctionParameters = 7 } },
+    },
+}
+
+local pathToNodeExecutable = vim.fn.exepath('node')
+
+if type(pathToNodeExecutable) ~= 'string' or pathToNodeExecutable == '' then
+    vim.notify(string.format("pathToNodeExecutable '%s' is not valid", pathToNodeExecutable), vim.log.levels.WARN, {
+        stuff = pathToNodeExecutable,
+    })
+else
+    sonarlint.pathToNodeExecutable = pathToNodeExecutable
+end
+
+require('sonarlint').setup({
+    server = {
+        cmd = {
+            vim.fn.exepath('sonarlint-ls'),
+        },
+        settings = {
+            sonarlint = sonarlint,
+        },
+    },
+    filetypes = {
+        -- Tested and working
+        'python',
+        'cpp',
+        'typescriptreact',
+        'typescript',
+        -- Requires nvim-jdtls, otherwise an error message will be printed
+        'java',
+    },
+})
