@@ -11,7 +11,7 @@ return {
     cssls = {
         capabilities = capabilities,
     },
-    denols = {},
+    -- denols = {},
     dockerls = {},
     svelte = {},
     html = {},
