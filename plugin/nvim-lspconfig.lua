@@ -1,23 +1,23 @@
 --        require('neoconf').setup()
 -- needing this only because nvim-java requires mason
-require('mason').setup({
-    registries = {
-        'github:nvim-java/mason-registry',
-        'github:mason-org/mason-registry',
-    },
-})
-require('mason-lspconfig').setup()
-require('java').setup({
-    jdk = {
-        -- install jdk using mason.nvim
-        auto_install = false,
-        version = '17.0.2',
-    },
-
-    spring_boot_tools = {
-        enable = false,
-    },
-})
+-- require('mason').setup({
+--     registries = {
+--         'github:nvim-java/mason-registry',
+--         'github:mason-org/mason-registry',
+--     },
+-- })
+-- require('mason-lspconfig').setup()
+-- require('java').setup({
+--     jdk = {
+--         -- install jdk using mason.nvim
+--         auto_install = false,
+--         version = '17.0.2',
+--     },
+--
+--     spring_boot_tools = {
+--         enable = false,
+--     },
+-- })
 require('plugins.nvim-cmp')
 vim.g.markdown_fenced_languages = {
     'ts=typescript',
