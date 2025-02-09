@@ -134,10 +134,17 @@ else
     sonarlint.pathToNodeExecutable = pathToNodeExecutable
 end
 
+local sonarlint_path = vim.fn.exepath('sonarlint-ls')
+local analizers_base_path = vim.fs.joinpath(vim.fn.fnamemodify(sonarlint_path, ':h:h'), 'share/plugins/*')
+
 require('sonarlint').setup({
     server = {
+        capabilities = capabilities,
         cmd = {
-            vim.fn.exepath('sonarlint-ls'),
+            sonarlint_path,
+            '-stdio',
+            '-analyzers',
+            unpack(vim.fn.glob(analizers_base_path, true, true)),
         },
         settings = {
             sonarlint = sonarlint,
