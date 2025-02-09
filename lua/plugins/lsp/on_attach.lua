@@ -88,6 +88,9 @@ local function lsp_attach(client, bufnr)
     end, { expr = true })
 
     if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+        if not vim.lsp.inlay_hint.is_enabled() then
+            vim.lsp.inlay_hint.enable(true)
+        end
         vim.keymap.set({ 'n' }, mappings_enum['ToggleInlayHints'], function()
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
         end, map_opts)
