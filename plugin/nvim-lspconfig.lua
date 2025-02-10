@@ -18,7 +18,8 @@
 --         enable = false,
 --     },
 -- })
-require('plugins.nvim-cmp')
+-- require('plugins.nvim-cmp')
+require('plugins.blink')
 vim.g.markdown_fenced_languages = {
     'ts=typescript',
 }
@@ -55,7 +56,8 @@ require('otter').setup({
 })
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+-- capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+capabilities = require('blink.cmp').get_lsp_capabilities()
 capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,
     lineFoldingOnly = true,
