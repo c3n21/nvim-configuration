@@ -160,3 +160,22 @@ require('sonarlint').setup({
         'java',
     },
 })
+
+-- Create an autocommand group to manage the autocommands
+local augroup = vim.api.nvim_create_augroup('ToggleInlayHints', { clear = true })
+
+-- Disable inlay hints when entering Insert mode
+vim.api.nvim_create_autocmd('InsertEnter', {
+    group = augroup,
+    callback = function()
+        vim.lsp.inlay_hint.enable(false)
+    end,
+})
+
+-- Enable inlay hints when leaving Insert mode (returning to Normal mode)
+vim.api.nvim_create_autocmd('InsertLeave', {
+    group = augroup,
+    callback = function()
+        vim.lsp.inlay_hint.enable(true)
+    end,
+})
