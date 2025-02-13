@@ -1,4 +1,14 @@
+---@type vim.keymap.set.Opts
 local map_opts = { noremap = true, silent = true }
+
+---Automatically set stuff
+---@param mode string|string[]
+---@param lhs string
+---@param rhs string|function
+---@param opts? vim.keymap.set.Opts
+local function set(mode, lhs, rhs, opts)
+    vim.keymap.set(mode, lhs, rhs, vim.tbl_extend('error', opts, map_opts))
+end
 
 ---@enum GlobalMappings
 local mappings_enum = {
@@ -50,8 +60,12 @@ vim.keymap.set({ 'n' }, mappings_enum['CNext'], ':cnext <CR>', map_opts)
 vim.keymap.set({ 'n' }, mappings_enum['CPrev'], ':cprevious <CR>', map_opts)
 vim.keymap.set({ 'n' }, mappings_enum['TabNext'], ':tabe %<CR>', map_opts)
 vim.keymap.set({ 'n' }, mappings_enum['SourceInit'], ':luafile ' .. os.getenv('MYVIMRC') .. '<CR>', map_opts)
-vim.keymap.set({ 'n' }, mappings_enum['COpen'], ':copen<CR>', map_opts)
-vim.keymap.set({ 'n' }, mappings_enum['LOpen'], ':lopen<CR>', map_opts)
+set({ 'n' }, mappings_enum['COpen'], ':copen<CR>', {
+    desc = 'Open quickfix list',
+})
+set({ 'n' }, mappings_enum['LOpen'], ':lopen<CR>', {
+    desc = 'Open location list',
+})
 vim.keymap.set({ 't' }, '<ESC><ESC>', '<C-\\><C-n>', map_opts)
 
 for _, breakpoint in ipairs({ ',', '.', '[', ']', '!', '?' }) do
