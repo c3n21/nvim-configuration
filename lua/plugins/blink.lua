@@ -1,4 +1,7 @@
 require('blink.cmp').setup({
+    enabled = function()
+        return vim.bo.buftype ~= 'prompt' and vim.b.completion ~= false and vim.api.nvim_get_mode().mode ~= 'c'
+    end,
     signature = {
         enabled = true,
     },
