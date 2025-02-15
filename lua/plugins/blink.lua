@@ -14,7 +14,7 @@ require('blink.cmp').setup({
         preset = 'none',
         ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
         ['<C-e>'] = { 'cancel', 'fallback' },
-        ['<C-y>'] = { 'select_and_accept' },
+        ['<Cr>'] = { 'select_and_accept', 'fallback' },
 
         ['<Up>'] = { 'select_prev', 'fallback' },
         ['<Down>'] = { 'select_next', 'fallback' },
@@ -31,16 +31,26 @@ require('blink.cmp').setup({
 
         cmdline = {
             preset = 'none',
-            ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
-            ['<C-e>'] = { 'cancel', 'fallback' },
-
-            ['<Up>'] = { 'select_prev', 'fallback' },
-            ['<Down>'] = { 'select_next', 'fallback' },
-            ['<S-Tab>'] = { 'select_prev', 'fallback' },
-            ['<Tab>'] = { 'select_next', 'fallback' },
+            -- ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+            -- ['<C-e>'] = { 'cancel', 'fallback' },
+            --
+            -- ['<Up>'] = { 'select_prev', 'fallback' },
+            -- ['<Down>'] = { 'select_next', 'fallback' },
+            -- ['<S-Tab>'] = { 'select_prev', 'fallback' },
+            -- ['<Tab>'] = { 'select_next', 'fallback' },
         },
     },
-
+    completion = {
+        list = {
+            selection = {
+                preselect = false,
+                auto_insert = false,
+            },
+        },
+        ghost_text = {
+            enabled = true,
+        },
+    },
     appearance = {
         -- Sets the fallback highlight groups to nvim-cmp's highlight groups
         -- Useful for when your theme doesn't support blink.cmp
