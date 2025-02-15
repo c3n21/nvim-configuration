@@ -68,13 +68,19 @@ require('blink.cmp').setup({
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
-        default = { 'copilot', 'lsp', 'path', 'snippets', 'buffer' },
+        default = { 'copilot', 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
         providers = {
             copilot = {
                 name = 'copilot',
                 module = 'blink-copilot',
                 score_offset = 100,
                 async = true,
+            },
+            lazydev = {
+                name = 'LazyDev',
+                module = 'lazydev.integrations.blink',
+                -- make lazydev completions top priority (see `:h blink.cmp`)
+                score_offset = 100,
             },
         },
     },
