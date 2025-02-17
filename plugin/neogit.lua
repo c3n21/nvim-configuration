@@ -1,6 +1,7 @@
 vim.keymap.set({ 'n' }, '<leader>ng', ':Neogit <CR>', { noremap = true, silent = true })
-local config = {
 
+---@type NeogitConfig
+local config = {
     -- Hides the hints at the top of the status buffer
     disable_hint = false,
     -- Disables changing the buffer highlights based on where the cursor is.
@@ -60,7 +61,7 @@ local config = {
     -- Sorting keys: https://git-scm.com/docs/git-for-each-ref#_options
     sort_branches = '-committerdate',
     -- Change the default way of opening neogit
-    kind = 'tab',
+    kind = 'floating',
     -- Disable line numbers and relative line numbers
     disable_line_numbers = true,
     -- The time after which an output console is shown for slow running commands
@@ -122,7 +123,7 @@ local config = {
         -- If enabled, uses fzf-lua for menu selection. If the telescope integration
         -- is also selected then telescope is used instead
         -- Requires you to have `ibhagwan/fzf-lua` installed.
-        fzf_lua = nil,
+        fzf_lua = false,
     },
     sections = {
         -- Reverting/Cherry Picking
