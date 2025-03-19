@@ -6,6 +6,7 @@ local config = {
         python = { 'isort', 'black' },
         php = { 'php_cs_fixer' },
         -- Use a sub-list to run only the first available formatter
+        css = { 'prettierd', 'prettier', stop_after_first = true },
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
         javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
         astro = { 'prettierd', 'prettier', stop_after_first = true },
