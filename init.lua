@@ -1,5 +1,40 @@
 local fmt = string.format
 
+vim.lsp.config('*', {
+    on_attach = require('plugins.lsp.on_attach'),
+})
+
+vim.lsp.enable({
+    'astro',
+    'ansiblels',
+    'bashls',
+    'clangd',
+    'cssls',
+    -- denols = {},
+    'dockerls',
+    'svelte',
+    'html',
+    'intelephense',
+    'jsonls',
+    'lua_ls',
+    'ocamllsp',
+    'gopls',
+    'marksman',
+    'nixd',
+    'pyright',
+    'yamlls',
+    'graphql',
+    'volar',
+    'teal_ls',
+    'terraformls',
+    'terraform_lsp',
+    'vimls',
+    'eslint',
+    'tailwindcss',
+    'jdtls',
+    'vtsls',
+})
+
 local success, _ = pcall(require, 'settings')
 if not success then
     vim.notify(fmt('Error loading settings: %s', vim.inspect(success)), vim.log.levels.WARN)

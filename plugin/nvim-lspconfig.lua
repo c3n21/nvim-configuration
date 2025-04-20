@@ -42,7 +42,7 @@ require('otter').setup({
         -- if set to true, the filetype of the otterbuffers will be set.
         -- otherwise only the autocommand of lspconfig that attaches
         -- the language server will be executed without setting the filetype
-        set_filetype = false,
+        set_filetype = true,
         -- write <path>.otter.<embedded language extension> files
         -- to disk on save of main buffer.
         -- usefule for some linters that require actual files
@@ -109,13 +109,17 @@ local options = {
 --[[ } ]]
 
 -- then setup your lsp server as usual
-local lspconfig = require('lspconfig')
+-- local lspconfig = require('lspconfig')
+local gonvim = require('go')
+gonvim.setup({
+    lsp_cfg = false,
+})
 
-local servers = require('plugins.lsp.servers')
-for ls_name, ls_config in pairs(servers) do
-    local opts = vim.tbl_deep_extend('force', {}, options, ls_config or {})
-    lspconfig[ls_name].setup(opts)
-end
+-- local servers = require('plugins.lsp.servers')
+-- for ls_name, ls_config in pairs(servers) do
+--     local opts = vim.tbl_deep_extend('force', {}, options, ls_config or {})
+--     lspconfig[ls_name].setup(opts)
+-- end
 
 local sonarlint = {
     rules = {
