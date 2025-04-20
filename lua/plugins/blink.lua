@@ -28,16 +28,10 @@ require('blink.cmp').setup({
         ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
 
         ['<C-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
-
-        cmdline = {
+    },
+    cmdline = {
+        keymap = {
             preset = 'none',
-            -- ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
-            -- ['<C-e>'] = { 'cancel', 'fallback' },
-            --
-            -- ['<Up>'] = { 'select_prev', 'fallback' },
-            -- ['<Down>'] = { 'select_next', 'fallback' },
-            -- ['<S-Tab>'] = { 'select_prev', 'fallback' },
-            -- ['<Tab>'] = { 'select_next', 'fallback' },
         },
     },
     completion = {
