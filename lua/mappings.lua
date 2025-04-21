@@ -12,7 +12,6 @@ end
 
 ---@enum GlobalMappings
 local mappings_enum = {
-    ['BufferClose'] = '<leader>bq',
     ['CClose'] = '<leader>qq',
     ['CNext'] = ']q',
     ['COpen'] = '<M-q>',
@@ -50,7 +49,6 @@ vim.keymap.set({ 'n' }, '<M-K>', ':<C-u>m-2<CR>==', map_opts)
 vim.keymap.set({ 'n' }, '<M-J>', ':<C-u>m-2<CR>==', map_opts)
 vim.keymap.set({ 'x' }, '<M-J>', ":m'>+<CR>gv=gv", map_opts)
 vim.keymap.set({ 'n' }, '<M-J>', ':<C-u>m+<CR>==', map_opts)
-vim.keymap.set({ 'n' }, mappings_enum['BufferClose'], ':bd<CR>', map_opts)
 vim.keymap.set({ 'n' }, mappings_enum['LClose'], ':lclose<CR>', map_opts)
 vim.keymap.set({ 'n' }, mappings_enum['LNext'], ':lnext<CR>', map_opts)
 vim.keymap.set({ 'n' }, mappings_enum['LPrev'], ':lprev<CR>', map_opts)
