@@ -39,7 +39,6 @@ local mappings_enum = {
     ['Rename'] = '<leader>rn',
     ['SignatureHelp'] = 'H',
     ['SourceInit'] = '<leader><leader>i',
-    ['TabNext'] = '<leader>tn',
     ['ToggleInlayHints'] = 'gK',
     ['LeaderDefinition'] = '<leader>gd',
     ['LeaderTypeDefinition'] = '<leader>gD',
@@ -58,7 +57,6 @@ vim.keymap.set({ 'n' }, mappings_enum['LPrev'], ':lprev<CR>', map_opts)
 vim.keymap.set({ 'n' }, mappings_enum['CClose'], ':cclose<CR>', map_opts)
 vim.keymap.set({ 'n' }, mappings_enum['CNext'], ':cnext <CR>', map_opts)
 vim.keymap.set({ 'n' }, mappings_enum['CPrev'], ':cprevious <CR>', map_opts)
-vim.keymap.set({ 'n' }, mappings_enum['TabNext'], ':tabe %<CR>', map_opts)
 vim.keymap.set({ 'n' }, mappings_enum['SourceInit'], ':luafile ' .. os.getenv('MYVIMRC') .. '<CR>', map_opts)
 set({ 'n' }, mappings_enum['COpen'], ':copen<CR>', {
     desc = 'Open quickfix list',
