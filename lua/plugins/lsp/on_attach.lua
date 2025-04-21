@@ -8,7 +8,9 @@ local mappings_enum = require('mappings')
 local function lsp_attach(client, bufnr)
     local builtin = require('telescope.builtin')
     if client.server_capabilities.definitionProvider then
-        vim.api.nvim_buf_set_option(bufnr, 'tagfunc', 'v:lua.vim.lsp.tagfunc')
+        vim.api.nvim_set_option_value('tagfunc', 'v:lua.vim.lsp.tagfunc', {
+            buf = bufnr,
+        })
         vim.keymap.set({ 'n' }, mappings_enum['LeaderDefinition'], function()
             builtin.lsp_definitions(lsp_definition_opts)
         end, map_opts)
