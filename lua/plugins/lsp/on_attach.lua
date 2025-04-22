@@ -3,15 +3,40 @@ local lsp_definition_opts = { jump_type = 'split', show_line = false, reuse_win 
 
 local mappings_enum = require('mappings')
 
----@param client lsp.Client
+---@param client vim.lsp.Client
 ---@param bufnr number
 local function lsp_attach(client, bufnr)
     local builtin = require('telescope.builtin')
     if client.server_capabilities.definitionProvider then
-        vim.api.nvim_buf_set_option(bufnr, 'tagfunc', 'v:lua.vim.lsp.tagfunc')
+        vim.api.nvim_set_option_value('tagfunc', 'v:lua.vim.lsp.tagfunc', {
+            buf = bufnr,
+        })
         vim.keymap.set({ 'n' }, mappings_enum['LeaderDefinition'], function()
             builtin.lsp_definitions(lsp_definition_opts)
         end, map_opts)
+    end
+
+    if client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+        local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
+        vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+            buffer = bufnr,
+            group = highlight_augroup,
+            callback = vim.lsp.buf.document_highlight,
+        })
+
+        vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+            buffer = bufnr,
+            group = highlight_augroup,
+            callback = vim.lsp.buf.clear_references,
+        })
+
+        vim.api.nvim_create_autocmd('LspDetach', {
+            group = vim.api.nvim_create_augroup('lsp-detach', { clear = true }),
+            callback = function(event2)
+                vim.lsp.buf.clear_references()
+                vim.api.nvim_clear_autocmds({ group = 'lsp-highlight', buffer = bufnr })
+            end,
+        })
     end
 
     if client.server_capabilities.typeDefinitionProvider then
@@ -63,9 +88,15 @@ local function lsp_attach(client, bufnr)
     vim.keymap.set('n', mappings_enum['Rename'], function()
         return ':IncRename ' .. vim.fn.expand('<cword>')
     end, { expr = true })
-    vim.keymap.set({ 'n' }, mappings_enum['ToggleInlayHints'], function()
-        vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0))
-    end, map_opts)
+
+    if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+        if not vim.lsp.inlay_hint.is_enabled() then
+            vim.lsp.inlay_hint.enable(true)
+        end
+        vim.keymap.set({ 'n' }, mappings_enum['ToggleInlayHints'], function()
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+        end, map_opts)
+    end
 end
 
 return lsp_attach

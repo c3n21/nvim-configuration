@@ -1,8 +1,28 @@
 --        require('neoconf').setup()
-require('plugins.nvim-cmp')
-local mason_config = require('configs.mason')
-require('mason').setup(mason_config)
-require('mason-lspconfig').setup()
+-- needing this only because nvim-java requires mason
+-- require('mason').setup({
+--     registries = {
+--         'github:nvim-java/mason-registry',
+--         'github:mason-org/mason-registry',
+--     },
+-- })
+-- require('mason-lspconfig').setup()
+-- require('java').setup({
+--     jdk = {
+--         -- install jdk using mason.nvim
+--         auto_install = false,
+--         version = '17.0.2',
+--     },
+--
+--     spring_boot_tools = {
+--         enable = false,
+--     },
+-- })
+-- require('plugins.nvim-cmp')
+require('plugins.blink')
+vim.g.markdown_fenced_languages = {
+    'ts=typescript',
+}
 require('otter').setup({
     lsp = {
         -- `:h events` that cause the diagnostics to update. Set to:
@@ -22,7 +42,7 @@ require('otter').setup({
         -- if set to true, the filetype of the otterbuffers will be set.
         -- otherwise only the autocommand of lspconfig that attaches
         -- the language server will be executed without setting the filetype
-        set_filetype = false,
+        set_filetype = true,
         -- write <path>.otter.<embedded language extension> files
         -- to disk on save of main buffer.
         -- usefule for some linters that require actual files
@@ -36,7 +56,8 @@ require('otter').setup({
 })
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+-- capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+capabilities = require('blink.cmp').get_lsp_capabilities()
 capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,
     lineFoldingOnly = true,
@@ -88,10 +109,33 @@ local options = {
 --[[ } ]]
 
 -- then setup your lsp server as usual
-local lspconfig = require('lspconfig')
+-- local lspconfig = require('lspconfig')
+local gonvim = require('go')
+gonvim.setup({
+    lsp_cfg = false,
+})
 
-local servers = require('plugins.lsp.servers')
-for ls_name, ls_config in pairs(servers) do
-    local opts = vim.tbl_deep_extend('force', {}, options, ls_config or {})
-    lspconfig[ls_name].setup(opts)
-end
+-- local servers = require('plugins.lsp.servers')
+-- for ls_name, ls_config in pairs(servers) do
+--     local opts = vim.tbl_deep_extend('force', {}, options, ls_config or {})
+--     lspconfig[ls_name].setup(opts)
+-- end
+
+-- Create an autocommand group to manage the autocommands
+local augroup = vim.api.nvim_create_augroup('ToggleInlayHints', { clear = true })
+
+-- Disable inlay hints when entering Insert mode
+vim.api.nvim_create_autocmd('InsertEnter', {
+    group = augroup,
+    callback = function()
+        vim.lsp.inlay_hint.enable(false)
+    end,
+})
+
+-- Enable inlay hints when leaving Insert mode (returning to Normal mode)
+vim.api.nvim_create_autocmd('InsertLeave', {
+    group = augroup,
+    callback = function()
+        vim.lsp.inlay_hint.enable(true)
+    end,
+})

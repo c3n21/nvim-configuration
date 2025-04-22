@@ -1,21 +1,24 @@
+---@type conform.setupOpts
 local config = {
     formatters_by_ft = {
+        go = { 'gofmt' },
         lua = { 'stylua' },
         -- Conform will run multiple formatters sequentially
         python = { 'isort', 'black' },
         php = { 'php_cs_fixer' },
         -- Use a sub-list to run only the first available formatter
-        javascript = { { 'prettierd', 'prettier' } },
-        javascriptreact = { { 'prettierd', 'prettier' } },
-        astro = { { 'prettierd', 'prettier' } },
-        json = { { 'prettierd', 'prettier' } },
-        jsonc = { { 'prettierd', 'prettier' } },
+        css = { 'prettierd', 'prettier', stop_after_first = true },
+        javascript = { 'prettierd', 'prettier', stop_after_first = true },
+        javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+        astro = { 'prettierd', 'prettier', stop_after_first = true },
+        json = { 'prettierd', 'prettier', stop_after_first = true },
+        jsonc = { 'prettierd', 'prettier', stop_after_first = true },
         dart = { 'dart_format' },
-        vue = { { 'prettierd', 'prettier' } },
-        graphql = { { 'prettierd', 'prettier' } },
-        typescript = { { 'prettierd', 'prettier' } },
-        typescriptreact = { { 'prettierd', 'prettier' } },
-        nix = { 'alejandra' },
+        vue = { 'prettierd', 'prettier', stop_after_first = true },
+        graphql = { 'prettierd', 'prettier', stop_after_first = true },
+        typescript = { 'prettierd', 'prettier', stop_after_first = true },
+        typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+        nix = { 'nixfmt' },
     },
     format_on_save = {
         -- These options will be passed to conform.format()

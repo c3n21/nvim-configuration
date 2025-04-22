@@ -1,8 +1,17 @@
+---@type vim.keymap.set.Opts
 local map_opts = { noremap = true, silent = true }
+
+---Automatically set stuff
+---@param mode string|string[]
+---@param lhs string
+---@param rhs string|function
+---@param opts? vim.keymap.set.Opts
+local function set(mode, lhs, rhs, opts)
+    vim.keymap.set(mode, lhs, rhs, vim.tbl_extend('error', opts, map_opts))
+end
 
 ---@enum GlobalMappings
 local mappings_enum = {
-    ['BufferClose'] = '<leader>bq',
     ['CClose'] = '<leader>qq',
     ['CNext'] = ']q',
     ['COpen'] = '<M-q>',
@@ -29,7 +38,6 @@ local mappings_enum = {
     ['Rename'] = '<leader>rn',
     ['SignatureHelp'] = 'H',
     ['SourceInit'] = '<leader><leader>i',
-    ['TabNext'] = '<leader>tn',
     ['ToggleInlayHints'] = 'gK',
     ['LeaderDefinition'] = '<leader>gd',
     ['LeaderTypeDefinition'] = '<leader>gD',
@@ -41,17 +49,19 @@ vim.keymap.set({ 'n' }, '<M-K>', ':<C-u>m-2<CR>==', map_opts)
 vim.keymap.set({ 'n' }, '<M-J>', ':<C-u>m-2<CR>==', map_opts)
 vim.keymap.set({ 'x' }, '<M-J>', ":m'>+<CR>gv=gv", map_opts)
 vim.keymap.set({ 'n' }, '<M-J>', ':<C-u>m+<CR>==', map_opts)
-vim.keymap.set({ 'n' }, mappings_enum['BufferClose'], ':bd<CR>', map_opts)
 vim.keymap.set({ 'n' }, mappings_enum['LClose'], ':lclose<CR>', map_opts)
 vim.keymap.set({ 'n' }, mappings_enum['LNext'], ':lnext<CR>', map_opts)
 vim.keymap.set({ 'n' }, mappings_enum['LPrev'], ':lprev<CR>', map_opts)
 vim.keymap.set({ 'n' }, mappings_enum['CClose'], ':cclose<CR>', map_opts)
 vim.keymap.set({ 'n' }, mappings_enum['CNext'], ':cnext <CR>', map_opts)
 vim.keymap.set({ 'n' }, mappings_enum['CPrev'], ':cprevious <CR>', map_opts)
-vim.keymap.set({ 'n' }, mappings_enum['TabNext'], ':tabe %<CR>', map_opts)
 vim.keymap.set({ 'n' }, mappings_enum['SourceInit'], ':luafile ' .. os.getenv('MYVIMRC') .. '<CR>', map_opts)
-vim.keymap.set({ 'n' }, mappings_enum['COpen'], ':copen<CR>', map_opts)
-vim.keymap.set({ 'n' }, mappings_enum['LOpen'], ':lopen<CR>', map_opts)
+set({ 'n' }, mappings_enum['COpen'], ':copen<CR>', {
+    desc = 'Open quickfix list',
+})
+set({ 'n' }, mappings_enum['LOpen'], ':lopen<CR>', {
+    desc = 'Open location list',
+})
 vim.keymap.set({ 't' }, '<ESC><ESC>', '<C-\\><C-n>', map_opts)
 
 for _, breakpoint in ipairs({ ',', '.', '[', ']', '!', '?' }) do

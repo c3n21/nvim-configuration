@@ -7,5 +7,5 @@
 
 --[[ local _data = home .. '/.local/jdtls/' .. project_name ]]
 
-local config = require('plugins.nvim-jdtls.config')
-require('jdtls').start_or_attach(config)
+-- local config = require('plugins.nvim-jdtls.config')
+-- require('jdtls').start_or_attach(config)
