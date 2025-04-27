@@ -20,6 +20,8 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
-      packages."${system}".default = neovim-nightly.packages."${system}".default;
+      packages."${system}".default = pkgs.wrapNeovimUnstable neovim-nightly.packages."${system}".default {
+        autoconfigure = true;
+      };
     };
 }
