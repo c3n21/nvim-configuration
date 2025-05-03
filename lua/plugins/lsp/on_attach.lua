@@ -7,7 +7,8 @@ local mappings_enum = require('mappings')
 ---@param bufnr number
 local function lsp_attach(client, bufnr)
     local builtin = require('telescope.builtin')
-    if client.server_capabilities.definitionProvider then
+    -- if client.server_capabilities.definitionProvider then
+    if client:supports_method(vim.lsp.protocol.Methods.textDocument_definition) then
         vim.api.nvim_set_option_value('tagfunc', 'v:lua.vim.lsp.tagfunc', {
             buf = bufnr,
         })
@@ -39,13 +40,15 @@ local function lsp_attach(client, bufnr)
         })
     end
 
-    if client.server_capabilities.typeDefinitionProvider then
+    -- if client.server_capabilities.typeDefinitionProvider then
+    if client:supports_method(vim.lsp.protocol.Methods.textDocument_typeDefinition) then
         vim.keymap.set({ 'n' }, mappings_enum['LeaderTypeDefinition'], function()
             builtin.lsp_type_definitions(lsp_definition_opts)
         end, map_opts)
     end
 
-    if client.server_capabilities.referencesProvider then
+    -- if client.server_capabilities.referencesProvider then
+    if client:supports_method(vim.lsp.protocol.Methods.textDocument_references) then
         vim.keymap.set({ 'n' }, mappings_enum['LspReferences'], function()
             builtin.lsp_references({
                 jump_type = 'split',
@@ -54,11 +57,13 @@ local function lsp_attach(client, bufnr)
         end, map_opts)
     end
 
-    if client.server_capabilities.hoverProvider then
+    -- if client.server_capabilities.hoverProvider then
+    if client:supports_method(vim.lsp.protocol.Methods.textDocument_hover) then
         vim.keymap.set({ 'n' }, mappings_enum['Hover'], vim.lsp.buf.hover, map_opts)
     end
 
-    if client.server_capabilities.signatureHelpProvider then
+    -- if client.server_capabilities.signatureHelpProvider then
+    if client:supports_method(vim.lsp.protocol.Methods.textDocument_signatureHelp) then
         vim.keymap.set({ 'n' }, mappings_enum['SignatureHelp'], vim.lsp.buf.signature_help, map_opts)
     end
 
