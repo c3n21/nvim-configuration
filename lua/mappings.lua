@@ -35,6 +35,7 @@ local mappings_enum = {
     ['LOpen'] = '<M-l>',
     ['LPrev'] = '[l',
     ['LspReferences'] = 'grr',
+    ['Ls'] = '<leader>ls',
     ['OpenDiagnosticLoclist'] = '<leader>l',
     ['OpenFloatDiagnostic'] = '<leader><leader>d',
     ['Rename'] = 'grn',
