@@ -19,6 +19,9 @@ local config = {
         typescript = { 'prettierd', 'prettier', stop_after_first = true },
         typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
         nix = { 'nixfmt' },
+        sh = { 'shfmt' },
+        bash = { 'shfmt' },
+        norg = {},
     },
     format_on_save = {
         -- These options will be passed to conform.format()
@@ -30,12 +33,39 @@ local config = {
     log_level = vim.log.levels.DEBUG,
     -- Conform will notify you when a formatter errors
     notify_on_error = false,
+    formatters = {
+        injected = {
+            options = {
+                ignore_errors = true,
+                lang_to_ft = {
+                    bash = 'sh',
+                },
+                -- Map of treesitter language to file extension
+                -- A temporary file name with this extension will be generated during formatting
+                -- because some formatters care about the filename.
+                lang_to_ext = {
+                    bash = 'sh',
+                    c_sharp = 'cs',
+                    elixir = 'exs',
+                    javascript = 'js',
+                    julia = 'jl',
+                    latex = 'tex',
+                    markdown = 'md',
+                    python = 'py',
+                    ruby = 'rb',
+                    rust = 'rs',
+                    teal = 'tl',
+                    typescript = 'ts',
+                },
+            },
+        },
+    },
 }
 
 local conform = require('conform')
 conform.setup(config)
 vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-vim.keymap.set({ 'n' }, '<leader><leader>f', function()
+vim.keymap.set({ 'n' }, '<leader>gq', function()
     conform.format({
         async = true,
     })
