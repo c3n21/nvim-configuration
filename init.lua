@@ -1,7 +1,7 @@
 local fmt = string.format
 
 vim.lsp.config('*', {
-    on_attach = require('plugins.lsp.on_attach'),
+    on_attach = require('plugins.lsp.create_lsp_attach')('fzf-lua'),
 })
 
 vim.lsp.enable({
