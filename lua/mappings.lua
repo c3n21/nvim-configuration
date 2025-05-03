@@ -29,6 +29,8 @@ local mappings_enum = {
     ['FindFiles'] = '<leader>ff',
     ['Format'] = '==',
     ['GoToDefinitionTab'] = '<C-w><C-]>',
+    ['Grep'] = '<leader>g',
+    ['LiveGrep'] = '<M-g>l',
     ['Implementation'] = 'gri',
     ['LClose'] = '<leader>lq',
     ['LNext'] = ']l',
