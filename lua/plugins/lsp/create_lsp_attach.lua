@@ -1,6 +1,8 @@
 local map_opts = { noremap = true, silent = true }
 local mappings_enum = require('mappings')
 
+-- @todo telescope needs to be set up before attaching to lsp
+
 --- Same signature as vim.keymap.set
 --- This deletes the given keymap before setting it
 ---@param mode string|string[] Mode "short-name" (see |nvim_set_keymap()|), or a list thereof.
@@ -18,6 +20,8 @@ end
 --- @param fuzzy_finder FuzzyFinders
 --- @return fun(client: vim.lsp.Client, bufnr: number)
 return function(fuzzy_finder)
+    --- @type fun(client: vim.lsp.Client, bufnr: number)
+    local fuzzy_finder_on_attach = require('plugins.lsp.on_attach.' .. fuzzy_finder)
     return function(client, bufnr)
         if client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
             local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
@@ -88,9 +92,6 @@ return function(fuzzy_finder)
                 vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
             end, map_opts)
         end
-
-        --- @type fun(client: vim.lsp.Client, bufnr: number)
-        local fuzzy_finder_on_attach = require('plugins.lsp.on_attach.' .. fuzzy_finder)
 
         fuzzy_finder_on_attach(client, bufnr)
     end
