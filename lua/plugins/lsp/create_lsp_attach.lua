@@ -58,7 +58,6 @@ return function(fuzzy_finder)
 
         vim.keymap.set('n', mappings_enum['DiagnosticPrev'], vim.diagnostic.goto_prev)
         vim.keymap.set('n', mappings_enum['DiagnosticNext'], vim.diagnostic.goto_next)
-        vim.keymap.set({ 'n', 'v' }, mappings_enum['CodeActions'], vim.lsp.buf.code_action, map_opts)
         vim.keymap.set({ 'n' }, mappings_enum['OpenFloatDiagnostic'], vim.diagnostic.open_float, map_opts)
         vim.keymap.set({ 'n' }, mappings_enum['DiagnosticInfoPrev'], function()
             vim.diagnostic.goto_prev({ wrap = false, severity = { max = vim.diagnostic.severity.INFO } })
