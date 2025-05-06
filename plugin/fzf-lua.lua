@@ -8,7 +8,9 @@ local make_opts = (function()
     end
 end)()
 
-local fzf_lua = require('fzf-lua').setup({
+local fzf_lua = require('fzf-lua')
+
+fzf_lua.setup({
     'default',
     'hide',
     winopts = {
