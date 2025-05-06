@@ -133,9 +133,9 @@ vim.api.nvim_create_autocmd('InsertEnter', {
 })
 
 -- Enable inlay hints when leaving Insert mode (returning to Normal mode)
-vim.api.nvim_create_autocmd('InsertLeave', {
-    group = augroup,
-    callback = function()
-        vim.lsp.inlay_hint.enable(true)
-    end,
-})
+-- vim.api.nvim_create_autocmd('InsertLeave', {
+--     group = augroup,
+--     callback = function()
+--         vim.lsp.inlay_hint.enable(true)
+--     end,
+-- })
