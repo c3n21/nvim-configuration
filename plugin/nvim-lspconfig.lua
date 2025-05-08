@@ -45,7 +45,7 @@ require('otter').setup({
         set_filetype = true,
         -- write <path>.otter.<embedded language extension> files
         -- to disk on save of main buffer.
-        -- usefule for some linters that require actual files
+        -- useful for some linters that require actual files
         -- otter files are deleted on quit or main buffer close
         write_to_disk = false,
     },
@@ -63,22 +63,22 @@ capabilities.textDocument.foldingRange = {
     lineFoldingOnly = true,
 }
 
-local on_attach = require('plugins.lsp.on_attach')
+-- local on_attach = require('plugins.lsp.on_attach')
 
-local flutter_tools = require('flutter-tools')
-flutter_tools.setup({
-    lsp = {
-        on_attach = on_attach,
-    },
-})
+-- local flutter_tools = require('flutter-tools')
+-- flutter_tools.setup({
+--     lsp = {
+--         on_attach = on_attach,
+--     },
+-- })
 
-local options = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = {
-        debounce_text_changes = 150,
-    },
-}
+-- local options = {
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     flags = {
+--         debounce_text_changes = 150,
+--     },
+-- }
 
 --        local rt = require('rust-tools')
 --        rt.setup({
@@ -133,9 +133,9 @@ vim.api.nvim_create_autocmd('InsertEnter', {
 })
 
 -- Enable inlay hints when leaving Insert mode (returning to Normal mode)
-vim.api.nvim_create_autocmd('InsertLeave', {
-    group = augroup,
-    callback = function()
-        vim.lsp.inlay_hint.enable(true)
-    end,
-})
+-- vim.api.nvim_create_autocmd('InsertLeave', {
+--     group = augroup,
+--     callback = function()
+--         vim.lsp.inlay_hint.enable(true)
+--     end,
+-- })
