@@ -26,6 +26,7 @@ local mappings_enum = {
     ['DiagnosticWarningNext'] = '<leader>]w',
     ['DiagnosticWarningPrev'] = '<leader>[w',
     ['DocumentSymbol'] = 'gO',
+    ['WorkspaceSymbol'] = '<leader>wgO',
     ['FindFiles'] = '<leader>ff',
     ['FindGitFiles'] = '<leader>gf',
     ['Format'] = '==',
