@@ -158,6 +158,22 @@
 
           # This is for plugins that will load at startup without using packadd:
           startupPlugins = {
+            backend = with pkgs.vimPlugins; [
+              {
+                plugin = (
+                  pluginsPkgs.vimPlugins.nvim-dbee.overrideAttrs {
+                    src = pkgs.fetchFromGitHub {
+                      owner = "c3n21";
+                      repo = "nvim-dbee";
+                      rev = "1420cfc85ee1b8c73664249a741692d851bffe7f";
+                      hash = "sha256-Vbw/+YJq0l/0tHWCN6K2V9J0byh7jGvScPdSPDDE7O0=";
+                    };
+                  }
+                );
+                config.lua = builtins.readFile ./nixCats/nvim-dbee.lua;
+              }
+            ];
+
             nlua = with pkgs.vimPlugins; [
               {
                 plugin = lazydev-nvim;
@@ -484,6 +500,7 @@
               general = true;
               fzf-lua = true;
               gitPlugins = true;
+              backend = true;
               # customPlugins = true;
               # test = true;
               # example = {
