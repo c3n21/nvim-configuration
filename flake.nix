@@ -101,6 +101,19 @@
           mkPlugin,
           ...
         }@packageDef:
+        let
+          pluginsPkgs = inputs.plugins-nixpkgs.legacyPackages.${pkgs.system};
+          sonarlint-ls = (
+            pkgs.sonarlint-ls.overrideAttrs (oldAttrs: {
+              installPhase = ''
+                ${oldAttrs.installPhase}
+
+                makeWrapper ${oldAttrs.mvnJdk.outPath}/bin/java $out/bin/sonarlint-ls \
+                  --add-flags "-jar $out/share/sonarlint-ls.jar"
+              '';
+            })
+          );
+        in
         {
           # to define and use a new category, simply add a new list to a set here,
           # and later, you will include categoryname = true; in the set you
@@ -114,6 +127,8 @@
           lspsAndRuntimeDeps = {
             general = with pkgs; [
               typos-lsp
+              #TODO: I want to put it under a subcategory
+              sonarlint-ls
             ];
 
             go = with pkgs; [
@@ -146,7 +161,8 @@
             node = with pkgs.vimPlugins; [
               {
 
-                plugin = inputs.plugins-nixpkgs.legacyPackages.${pkgs.system}.vimPlugins.nvim-vtsls;
+                plugin = pluginsPkgs.vimPlugins.nvim-vtsls;
+
                 config.lua = # lua
                   ''
                     vim.lsp.enable('vtsls')
@@ -181,6 +197,11 @@
             ];
 
             general = with pkgs.vimPlugins; [
+              {
+                plugin = pluginsPkgs.vimPlugins.sonarlint-nvim;
+                config.lua = builtins.readFile ./nixCats/sonarlint-nvim.lua;
+              }
+
               {
                 plugin = auto-session;
                 config.lua = builtins.readFile ./nixCats/auto-session.lua;
@@ -310,6 +331,16 @@
           extraLuaPackages = {
             test = [ (_: [ ]) ];
           };
+
+          optionalLuaPreInit = {
+            nix = [
+              # lua
+              ''
+                vim.lsp.enable('nixd')
+              ''
+            ];
+          };
+
         };
 
       # And then build a package with specific categories from above here:
