@@ -129,6 +129,9 @@
               typos-lsp
               #TODO: I want to put it under a subcategory
               sonarlint-ls
+              # for jsonls
+              vscode-langservers-extracted
+              yaml-language-server
             ];
 
             go = with pkgs; [
@@ -138,11 +141,11 @@
             nix = with pkgs; [
               nixd
               nixfmt-rfc-style
-
             ];
 
             node = with pkgs; [
               prettierd
+              # for eslint-lsp
               vscode-langservers-extracted
             ];
 
@@ -161,6 +164,14 @@
                 config.lua = builtins.readFile ./nixCats/lazydev.lua;
               }
               nvim-treesitter-parsers.lua
+            ];
+
+            note = with pkgs.vimPlugins; [
+
+              {
+                plugin = neorg;
+                config.lua = builtins.readFile ./nixCats/neorg.lua;
+              }
             ];
 
             node = with pkgs.vimPlugins; [
@@ -205,6 +216,59 @@
             ];
 
             general = with pkgs.vimPlugins; [
+
+              {
+                plugin = otter-nvim;
+                config.lua = builtins.readFile ./nixCats/nvim-lspconfig.lua;
+
+              }
+
+              nvim-treesitter.withAllGrammars
+
+              sleuth
+
+              {
+                plugin = SchemaStore-nvim;
+                config.lua = # lua
+                  ''
+                    vim.lsp.enable('jsonls')
+                  '';
+              }
+
+              {
+                plugin = copilot-lua;
+                config.lua = builtins.readFile ./nixCats/copilot.lua;
+              }
+
+              {
+                plugin = vim-matchup;
+                config.lua = builtins.readFile ./nixCats/vim-matchup.lua;
+              }
+
+              {
+                plugin = vim-illuminate;
+                config.lua = builtins.readFile ./nixCats/vim-illuminate.lua;
+              }
+
+              {
+                plugin = oil-nvim;
+                config.lua = builtins.readFile ./nixCats/oil.lua;
+              }
+
+              {
+                plugin = dropbar-nvim;
+                # config.lua = builtins.readFile ./nixCats;
+              }
+
+              {
+                plugin = lualine-nvim;
+                config.lua = builtins.readFile ./nixCats/lualine.lua;
+              }
+
+              {
+                plugin = indent-blankline-nvim;
+                config.lua = builtins.readFile ./nixCats/indent-blankline.lua;
+              }
               {
                 plugin = pluginsPkgs.vimPlugins.sonarlint-nvim;
                 config.lua = builtins.readFile ./nixCats/sonarlint-nvim.lua;
@@ -453,6 +517,41 @@
             categories = {
               general = true;
               node = true;
+              fzf-lua = true;
+              gitPlugins = true;
+              # customPlugins = true;
+              # test = true;
+              # example = {
+              #   youCan = "add more than just booleans";
+              #   toThisSet = [
+              #     "and the contents of this categories set"
+              #     "will be accessible to your lua with"
+              #     "nixCats('path.to.value')"
+              #     "see :help nixCats"
+              #   ];
+              # };
+            };
+          };
+
+        note-nvim =
+          { pkgs, name, ... }:
+          {
+            # they contain a settings set defined above
+            # see :help nixCats.flake.outputs.settings
+            settings = {
+              suffix-path = true;
+              suffix-LD = true;
+              wrapRc = true;
+              # IMPORTANT:
+              # your alias may not conflict with your other packages.
+              aliases = [ "vim" ];
+              neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
+            };
+            # and a set of categories that you want
+            # (and other information to pass to lua)
+            categories = {
+              general = true;
+              note = true;
               fzf-lua = true;
               gitPlugins = true;
               # customPlugins = true;

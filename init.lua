@@ -43,4 +43,15 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     end,
 })
 
+-- Create an autocommand group to manage the autocommands
+local inlay_hints_augroup = vim.api.nvim_create_augroup('ToggleInlayHints', { clear = true })
+
+-- Disable inlay hints when entering Insert mode
+vim.api.nvim_create_autocmd('InsertEnter', {
+    group = inlay_hints_augroup,
+    callback = function()
+        vim.lsp.inlay_hint.enable(false)
+    end,
+})
+
 require('mappings')
