@@ -32,7 +32,7 @@ local mappings_enum = {
     ['Format'] = '==',
     ['GoToDefinitionTab'] = '<C-w><C-]>',
     ['Grep'] = '<leader>g',
-    ['LiveGrep'] = '<M-g>l',
+    ['LiveGrep'] = '<leader>gl',
     ['Implementation'] = 'gri',
     ['LClose'] = '<leader>lq',
     ['LNext'] = ']l',

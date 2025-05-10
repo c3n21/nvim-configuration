@@ -24,6 +24,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
     plugins-nixpkgs.url = "github:nixos/nixpkgs/master";
+    plugins-neorg-interim-ls.url = "github:benlubas/neorg-interim-ls";
 
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
@@ -182,13 +183,18 @@
               nvim-treesitter-parsers.lua
             ];
 
-            note = with pkgs.vimPlugins; [
+            note =
+              with pkgs.vimPlugins;
+              [
 
-              {
-                plugin = neorg;
-                config.lua = builtins.readFile ./nixCats/neorg.lua;
-              }
-            ];
+                {
+                  plugin = neorg;
+                  config.lua = builtins.readFile ./nixCats/neorg.lua;
+                }
+              ]
+              ++ (with pkgs.neovimPlugins; [
+                neorg-interim-ls
+              ]);
 
             node = with pkgs.vimPlugins; [
               {
