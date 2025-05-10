@@ -4,6 +4,7 @@ capabilities.textDocument.foldingRange = {
     lineFoldingOnly = true,
 }
 
+-- TODO: configure this inside nixCats
 local clientNodePath = vim.fn.exepath('node')
 
 if type(clientNodePath) ~= 'string' or clientNodePath == '' then
@@ -20,6 +21,7 @@ local sonarlint = {
     clientNodePath = clientNodePath,
 }
 
+-- TODO: configure this inside nixCats
 local sonarlint_path = vim.fn.exepath('sonarlint-ls')
 local analizers_base_path = vim.fs.joinpath(vim.fn.fnamemodify(sonarlint_path, ':h:h'), 'share/plugins/*')
 

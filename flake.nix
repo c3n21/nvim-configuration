@@ -141,6 +141,11 @@
 
             ];
 
+            node = with pkgs; [
+              prettierd
+              vscode-langservers-extracted
+            ];
+
             nlua = with pkgs; [
               lua-language-server
               stylua
@@ -168,6 +173,9 @@
                     vim.lsp.enable('vtsls')
                   '';
               }
+              nvim-treesitter-parsers.jsdoc
+              nvim-treesitter-parsers.tsx
+              nvim-treesitter-parsers.typescript
             ];
 
             gitPlugins =
@@ -266,9 +274,6 @@
               # nvim-treesitter-parsers.commonlisp
               # nvim-treesitter-parsers.javascript
               # nvim-treesitter-parsers.java
-              # nvim-treesitter-parsers.jsdoc
-              # nvim-treesitter-parsers.tsx
-              # nvim-treesitter-parsers.typescript
               # nvim-treesitter-parsers.astro
               # nvim-treesitter-parsers.nix
               # nvim-treesitter-parsers.terraform
@@ -332,7 +337,14 @@
             test = [ (_: [ ]) ];
           };
 
-          optionalLuaPreInit = {
+          optionalLuaAdditions = {
+            node = [
+              # lua
+              ''
+                vim.lsp.enable('eslint')
+              ''
+
+            ];
             nix = [
               # lua
               ''
