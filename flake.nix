@@ -115,6 +115,16 @@
               typos-lsp
             ];
 
+            go = with pkgs; [
+              gopls
+            ];
+
+            nix = with pkgs; [
+              nixd
+              nixfmt-rfc-style
+
+            ];
+
             nlua = with pkgs; [
               lua-language-server
               stylua
@@ -131,13 +141,26 @@
               }
               nvim-treesitter-parsers.lua
             ];
+
+            node = with pkgs.vimPlugins; [
+              inputs.mynixpkgs.legacyPackages.${pkgs.system}.vimPlugins.nvim-vtsls
+            ];
+
             gitPlugins =
               with pkgs.neovimPlugins;
               [
               ]
               ++ (with pkgs.vimPlugins; [
-                gitsigns-nvim
-                neogit
+                {
+                  plugin = gitsigns-nvim;
+                  config.lua = builtins.readFile ./nixCats/gitsigns.lua;
+                }
+
+                {
+                  plugin = neogit;
+                  config.lua = builtins.readFile ./nixCats/neogit.lua;
+                }
+
                 vim-fugitive
                 diffview-nvim
               ]);
@@ -308,7 +331,77 @@
             # (and other information to pass to lua)
             categories = {
               nlua = true;
+              nix = true;
               general = true;
+              fzf-lua = true;
+              gitPlugins = true;
+              # customPlugins = true;
+              # test = true;
+              # example = {
+              #   youCan = "add more than just booleans";
+              #   toThisSet = [
+              #     "and the contents of this categories set"
+              #     "will be accessible to your lua with"
+              #     "nixCats('path.to.value')"
+              #     "see :help nixCats"
+              #   ];
+              # };
+            };
+          };
+
+        go-nvim =
+          { pkgs, name, ... }:
+          {
+            # they contain a settings set defined above
+            # see :help nixCats.flake.outputs.settings
+            settings = {
+              suffix-path = true;
+              suffix-LD = true;
+              wrapRc = true;
+              # IMPORTANT:
+              # your alias may not conflict with your other packages.
+              aliases = [ "vim" ];
+              neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
+            };
+            # and a set of categories that you want
+            # (and other information to pass to lua)
+            categories = {
+              general = true;
+              fzf-lua = true;
+              gitPlugins = true;
+              # customPlugins = true;
+              # test = true;
+              # example = {
+              #   youCan = "add more than just booleans";
+              #   toThisSet = [
+              #     "and the contents of this categories set"
+              #     "will be accessible to your lua with"
+              #     "nixCats('path.to.value')"
+              #     "see :help nixCats"
+              #   ];
+              # };
+            };
+          };
+
+        node-nvim =
+          { pkgs, name, ... }:
+          {
+            # they contain a settings set defined above
+            # see :help nixCats.flake.outputs.settings
+            settings = {
+              suffix-path = true;
+              suffix-LD = true;
+              wrapRc = true;
+              # IMPORTANT:
+              # your alias may not conflict with your other packages.
+              aliases = [ "vim" ];
+              neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
+            };
+            # and a set of categories that you want
+            # (and other information to pass to lua)
+            categories = {
+              general = true;
+              node = true;
               fzf-lua = true;
               gitPlugins = true;
               # customPlugins = true;
