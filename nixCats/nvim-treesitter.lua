@@ -1,4 +1,5 @@
 local ts_setup = require('nvim-treesitter.configs')
+
 -- require('ts_context_commentstring').setup({})
 -- vim.g.skip_ts_context_commentstring_module = true
 ts_setup.setup({
@@ -158,4 +159,3 @@ ts_setup.setup({
         },
     },
 })
-require('nvim-ts-autotag').setup()

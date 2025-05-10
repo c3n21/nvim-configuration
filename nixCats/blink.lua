@@ -1,3 +1,16 @@
+local default_sources = {
+    'copilot',
+    'lsp',
+    'path',
+    'snippets',
+    'buffer',
+}
+
+-- TODO: refactor to nixCats
+local lua_source = vim.list_extend({
+    'lazydev',
+}, default_sources)
+
 require('blink.cmp').setup({
     enabled = function()
         return vim.bo.buftype ~= 'prompt' and vim.b.completion ~= false and vim.api.nvim_get_mode().mode ~= 'c'
@@ -62,7 +75,12 @@ require('blink.cmp').setup({
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
-        default = { 'copilot', 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
+        default = function(ctx)
+            if vim.bo.filetype == 'lua' then
+                return lua_source
+            end
+            return default_sources
+        end,
         providers = {
             copilot = {
                 name = 'copilot',

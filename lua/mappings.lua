@@ -16,7 +16,7 @@ local mappings_enum = {
     ['CNext'] = ']q',
     ['COpen'] = '<M-q>',
     ['CPrev'] = '[q',
-    ['CodeActions'] = '<leader>ca',
+    ['CodeActions'] = 'gra',
     ['DiagnosticErrorNext'] = '<leader>]e',
     ['DiagnosticErrorPrev'] = '<leader>[e',
     ['DiagnosticInfoNext'] = '<leader>]i',
@@ -25,17 +25,24 @@ local mappings_enum = {
     ['DiagnosticPrev'] = '<leader>[d',
     ['DiagnosticWarningNext'] = '<leader>]w',
     ['DiagnosticWarningPrev'] = '<leader>[w',
+    ['DocumentSymbol'] = 'gO',
+    ['WorkspaceSymbol'] = '<leader>wgO',
     ['FindFiles'] = '<leader>ff',
+    ['FindGitFiles'] = '<leader>gf',
     ['Format'] = '==',
     ['GoToDefinitionTab'] = '<C-w><C-]>',
+    ['Grep'] = '<leader>g',
+    ['LiveGrep'] = '<M-g>l',
+    ['Implementation'] = 'gri',
     ['LClose'] = '<leader>lq',
     ['LNext'] = ']l',
     ['LOpen'] = '<M-l>',
     ['LPrev'] = '[l',
-    ['LspReferences'] = 'gr',
+    ['LspReferences'] = 'grr',
+    ['Ls'] = '<leader>ls',
     ['OpenDiagnosticLoclist'] = '<leader>l',
     ['OpenFloatDiagnostic'] = '<leader><leader>d',
-    ['Rename'] = '<leader>rn',
+    ['Rename'] = 'grn',
     ['SignatureHelp'] = 'H',
     ['SourceInit'] = '<leader><leader>i',
     ['ToggleInlayHints'] = 'gK',
@@ -55,7 +62,7 @@ vim.keymap.set({ 'n' }, mappings_enum['LPrev'], ':lprev<CR>', map_opts)
 vim.keymap.set({ 'n' }, mappings_enum['CClose'], ':cclose<CR>', map_opts)
 vim.keymap.set({ 'n' }, mappings_enum['CNext'], ':cnext <CR>', map_opts)
 vim.keymap.set({ 'n' }, mappings_enum['CPrev'], ':cprevious <CR>', map_opts)
-vim.keymap.set({ 'n' }, mappings_enum['SourceInit'], ':luafile ' .. os.getenv('MYVIMRC') .. '<CR>', map_opts)
+-- vim.keymap.set({ 'n' }, mappings_enum['SourceInit'], ':luafile ' .. os.getenv('MYVIMRC') .. '<CR>', map_opts)
 set({ 'n' }, mappings_enum['COpen'], ':copen<CR>', {
     desc = 'Open quickfix list',
 })
@@ -119,5 +126,28 @@ end
 --         vim.keymap.set({ 'n' }, '<leader>ld', vim.lsp.buf.document_symbol, opts)
 --     end,
 -- })
+
+vim.keymap.set('n', mappings_enum['DiagnosticPrev'], vim.diagnostic.goto_prev)
+vim.keymap.set('n', mappings_enum['DiagnosticNext'], vim.diagnostic.goto_next)
+vim.keymap.set({ 'n' }, mappings_enum['OpenFloatDiagnostic'], vim.diagnostic.open_float, map_opts)
+vim.keymap.set({ 'n' }, mappings_enum['DiagnosticInfoPrev'], function()
+    vim.diagnostic.goto_prev({ wrap = false, severity = { max = vim.diagnostic.severity.INFO } })
+end, map_opts)
+vim.keymap.set({ 'n' }, mappings_enum['DiagnosticInfoNext'], function()
+    vim.diagnostic.goto_next({ wrap = false, severity = { max = vim.diagnostic.severity.INFO } })
+end, map_opts)
+vim.keymap.set({ 'n' }, mappings_enum['DiagnosticWarningPrev'], function()
+    vim.diagnostic.goto_prev({ wrap = false, severity = vim.diagnostic.severity.WARN })
+end, map_opts)
+vim.keymap.set({ 'n' }, mappings_enum['DiagnosticWarningNext'], function()
+    vim.diagnostic.goto_next({ wrap = false, severity = vim.diagnostic.severity.WARN })
+end, map_opts)
+vim.keymap.set({ 'n' }, mappings_enum['DiagnosticErrorPrev'], function()
+    vim.diagnostic.goto_prev({ wrap = false, severity = vim.diagnostic.severity.ERROR })
+end, map_opts)
+vim.keymap.set({ 'n' }, mappings_enum['DiagnosticErrorNext'], function()
+    vim.diagnostic.goto_next({ wrap = false, severity = vim.diagnostic.severity.ERROR })
+end, map_opts)
+vim.keymap.set({ 'n' }, mappings_enum['OpenDiagnosticLoclist'], vim.diagnostic.setloclist, map_opts)
 
 return mappings_enum

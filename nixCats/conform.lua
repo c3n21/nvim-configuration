@@ -69,4 +69,6 @@ vim.keymap.set({ 'n' }, '<leader>gq', function()
     conform.format({
         async = true,
     })
-end)
+end, {
+    desc = 'Format file',
+})
