@@ -1,39 +1,30 @@
 local fmt = string.format
 
 vim.lsp.config('*', {
-    on_attach = require('plugins.lsp.create_lsp_attach')('fzf-lua'),
-})
+    on_attach = function(client, bufnr)
+        if client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+            local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
+            vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+                buffer = bufnr,
+                group = highlight_augroup,
+                callback = vim.lsp.buf.document_highlight,
+            })
 
-vim.lsp.enable({
-    'ansiblels',
-    'astro',
-    'bashls',
-    'clangd',
-    'cssls',
-    'dockerls',
-    'eslint',
-    'gopls',
-    'graphql',
-    'html',
-    'intelephense',
-    'jdtls',
-    'jsonls',
-    'lua_ls',
-    'marksman',
-    'nixd',
-    'ocamllsp',
-    'pyright',
-    'svelte',
-    'tailwindcss',
-    'teal_ls',
-    'terraform_lsp',
-    'terraformls',
-    'typos_lsp',
-    'vimls',
-    'volar',
-    'vtsls',
-    'yamlls',
-    -- denols = {},
+            vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+                buffer = bufnr,
+                group = highlight_augroup,
+                callback = vim.lsp.buf.clear_references,
+            })
+
+            vim.api.nvim_create_autocmd('LspDetach', {
+                group = vim.api.nvim_create_augroup('lsp-detach', { clear = true }),
+                callback = function(event2)
+                    vim.lsp.buf.clear_references()
+                    vim.api.nvim_clear_autocmds({ group = 'lsp-highlight', buffer = bufnr })
+                end,
+            })
+        end
+    end,
 })
 
 local success, _ = pcall(require, 'settings')

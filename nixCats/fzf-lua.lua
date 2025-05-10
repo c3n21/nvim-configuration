@@ -158,6 +158,33 @@ vim.keymap.set(
     })
 )
 
+vim.keymap.set(
+    { 'n' },
+    mappings_enum['LeaderDefinition'],
+    fzf_lua.lsp_definitions,
+    make_opts({
+        desc = 'LSP definitions',
+    })
+)
+
+vim.keymap.set(
+    { 'n' },
+    mappings_enum['LeaderTypeDefinition'],
+    fzf_lua.lsp_typedefs,
+    make_opts({
+        desc = 'LSP type definitions',
+    })
+)
+
+vim.keymap.set(
+    { 'n' },
+    mappings_enum['LspReferences'],
+    fzf_lua.lsp_references,
+    make_opts({
+        desc = 'LSP references',
+    })
+)
+
 -- vim.keymap.set({ 'n', 'v', 'i' }, '<C-x><C-f>', function()
 --     require('fzf-lua').complete_path()
 -- end, { silent = true, desc = 'Fuzzy complete path' })

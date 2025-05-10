@@ -1,3 +1,5 @@
+vim.lsp.enable('lua_ls')
+
 ---@alias lazydev.Library {path:string, words:string[], mods:string[]}
 ---@alias lazydev.Library.spec string|{path:string, words?:string[], mods?:string[]}
 ---@class lazydev.Config

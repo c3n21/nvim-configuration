@@ -1,4 +1,35 @@
 local ts_setup = require('nvim-treesitter.configs')
+vim.lsp.enable({
+    -- 'ansiblels',
+    -- 'astro',
+    -- 'bashls',
+    -- 'clangd',
+    -- 'cssls',
+    -- 'dockerls',
+    -- 'eslint',
+    -- 'gopls',
+    -- 'graphql',
+    -- 'html',
+    -- 'intelephense',
+    -- 'jdtls',
+    -- 'jsonls',
+    -- 'marksman',
+    -- 'nixd',
+    -- 'ocamllsp',
+    -- 'pyright',
+    -- 'svelte',
+    -- 'tailwindcss',
+    -- 'teal_ls',
+    -- 'terraform_lsp',
+    -- 'terraformls',
+    'typos_lsp',
+    -- 'vimls',
+    -- 'volar',
+    -- 'vtsls',
+    -- 'yamlls',
+    -- denols = {},
+})
+
 -- require('ts_context_commentstring').setup({})
 -- vim.g.skip_ts_context_commentstring_module = true
 ts_setup.setup({
@@ -158,4 +189,3 @@ ts_setup.setup({
         },
     },
 })
-require('nvim-ts-autotag').setup()
