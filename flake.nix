@@ -23,6 +23,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
+    plugins-nixpkgs.url = "github:nixos/nixpkgs/master";
 
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
@@ -143,7 +144,14 @@
             ];
 
             node = with pkgs.vimPlugins; [
-              inputs.mynixpkgs.legacyPackages.${pkgs.system}.vimPlugins.nvim-vtsls
+              {
+
+                plugin = inputs.plugins-nixpkgs.legacyPackages.${pkgs.system}.vimPlugins.nvim-vtsls;
+                config.lua = # lua
+                  ''
+                    vim.lsp.enable('vtsls')
+                  '';
+              }
             ];
 
             gitPlugins =
