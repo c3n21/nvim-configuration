@@ -31,7 +31,7 @@ local mappings_enum = {
     ['FindGitFiles'] = '<leader>gf',
     ['Format'] = '==',
     ['GoToDefinitionTab'] = '<C-w><C-]>',
-    ['Grep'] = '<leader>g',
+    ['Grep'] = '<leader>gg',
     ['LiveGrep'] = '<leader>gl',
     ['Implementation'] = 'gri',
     ['LClose'] = '<leader>lq',
