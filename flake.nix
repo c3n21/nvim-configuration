@@ -459,9 +459,6 @@
               suffix-path = true;
               suffix-LD = true;
               wrapRc = true;
-              # IMPORTANT:
-              # your alias may not conflict with your other packages.
-              aliases = [ "vim" ];
               neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
             };
             # and a set of categories that you want
@@ -486,7 +483,7 @@
             };
           };
 
-        go-nvim =
+        ngo =
           { pkgs, name, ... }:
           {
             # they contain a settings set defined above
@@ -495,9 +492,6 @@
               suffix-path = true;
               suffix-LD = true;
               wrapRc = true;
-              # IMPORTANT:
-              # your alias may not conflict with your other packages.
-              aliases = [ "vim" ];
               neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
             };
             # and a set of categories that you want
@@ -521,7 +515,7 @@
             };
           };
 
-        node-nvim =
+        nno =
           { pkgs, name, ... }:
           {
             # they contain a settings set defined above
@@ -530,9 +524,6 @@
               suffix-path = true;
               suffix-LD = true;
               wrapRc = true;
-              # IMPORTANT:
-              # your alias may not conflict with your other packages.
-              aliases = [ "vim" ];
               neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
             };
             # and a set of categories that you want
@@ -556,7 +547,7 @@
             };
           };
 
-        note-nvim =
+        note =
           { pkgs, name, ... }:
           {
             # they contain a settings set defined above
@@ -565,9 +556,6 @@
               suffix-path = true;
               suffix-LD = true;
               wrapRc = true;
-              # IMPORTANT:
-              # your alias may not conflict with your other packages.
-              aliases = [ "vim" ];
               neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
             };
             # and a set of categories that you want
