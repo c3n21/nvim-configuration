@@ -424,6 +424,13 @@
           };
 
           optionalLuaAdditions = {
+            go = [
+              # lua
+              ''
+                vim.lsp.enable('gopls')
+              ''
+            ];
+
             node = [
               # lua
               ''
@@ -450,7 +457,7 @@
       packageDefinitions = {
         # These are the names of your packages
         # you can include as many as you wish.
-        nvim =
+        vi =
           { pkgs, name, ... }:
           {
             # they contain a settings set defined above
@@ -459,9 +466,6 @@
               suffix-path = true;
               suffix-LD = true;
               wrapRc = true;
-              # IMPORTANT:
-              # your alias may not conflict with your other packages.
-              aliases = [ "vim" ];
               neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
             };
             # and a set of categories that you want
@@ -486,7 +490,7 @@
             };
           };
 
-        go-nvim =
+        ngo =
           { pkgs, name, ... }:
           {
             # they contain a settings set defined above
@@ -495,9 +499,6 @@
               suffix-path = true;
               suffix-LD = true;
               wrapRc = true;
-              # IMPORTANT:
-              # your alias may not conflict with your other packages.
-              aliases = [ "vim" ];
               neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
             };
             # and a set of categories that you want
@@ -507,6 +508,7 @@
               fzf-lua = true;
               gitPlugins = true;
               backend = true;
+              go = true;
               # customPlugins = true;
               # test = true;
               # example = {
@@ -521,7 +523,7 @@
             };
           };
 
-        node-nvim =
+        nno =
           { pkgs, name, ... }:
           {
             # they contain a settings set defined above
@@ -530,9 +532,6 @@
               suffix-path = true;
               suffix-LD = true;
               wrapRc = true;
-              # IMPORTANT:
-              # your alias may not conflict with your other packages.
-              aliases = [ "vim" ];
               neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
             };
             # and a set of categories that you want
@@ -556,7 +555,7 @@
             };
           };
 
-        note-nvim =
+        note =
           { pkgs, name, ... }:
           {
             # they contain a settings set defined above
@@ -565,9 +564,6 @@
               suffix-path = true;
               suffix-LD = true;
               wrapRc = true;
-              # IMPORTANT:
-              # your alias may not conflict with your other packages.
-              aliases = [ "vim" ];
               neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
             };
             # and a set of categories that you want
@@ -593,7 +589,7 @@
       };
       # In this section, the main thing you will need to do is change the default package name
       # to the name of the packageDefinitions entry you wish to use as the default.
-      defaultPackageName = "nvim";
+      defaultPackageName = "vi";
     in
 
     # see :help nixCats.flake.outputs.exports
