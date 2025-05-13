@@ -25,6 +25,10 @@
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
     plugins-nixpkgs.url = "github:nixos/nixpkgs/master";
     plugins-neorg-interim-ls.url = "github:benlubas/neorg-interim-ls";
+    plugins-jq-playground-nvim = {
+      url = "github:yochem/jq-playground.nvim";
+      flake = false;
+    };
 
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
@@ -126,6 +130,11 @@
           # at RUN TIME for plugins. Will be available to PATH within neovim terminal
           # this includes LSPs
           lspsAndRuntimeDeps = {
+            json = with pkgs; [
+              # TODO put it as runtimeDep for jq-playground
+              jq
+            ];
+
             general = with pkgs; [
               typos-lsp
               #TODO: I want to put it under a subcategory
@@ -159,6 +168,12 @@
 
           # This is for plugins that will load at startup without using packadd:
           startupPlugins = {
+
+            # TODO: lazy load maybe?
+            json = with pkgs.neovimPlugins; [
+              jq-playground-nvim
+            ];
+
             backend = with pkgs.vimPlugins; [
               {
                 plugin = (
@@ -476,6 +491,7 @@
               general = true;
               fzf-lua = true;
               gitPlugins = true;
+              json = true;
               # customPlugins = true;
               # test = true;
               # example = {
@@ -541,6 +557,7 @@
               node = true;
               fzf-lua = true;
               gitPlugins = true;
+              json = true;
               # customPlugins = true;
               # test = true;
               # example = {
@@ -615,7 +632,9 @@
 
         # this will make a package out of each of the packageDefinitions defined above
         # and set the default package to the one passed in here.
-        packages = utils.mkAllWithDefault defaultPackage;
+        packages = (utils.mkAllWithDefault defaultPackage) // {
+          neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${system}.neovim;
+        };
 
         # choose your package for devShell
         # and add whatever else you want in it.

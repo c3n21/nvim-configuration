@@ -314,6 +314,22 @@
         "type": "github"
       }
     },
+    "plugins-jq-playground-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1743512733,
+        "narHash": "sha256-t8IN9AoF5Pvx8QgULGmJqJ13VFYki+Fa0kgsu7gJ1hI=",
+        "owner": "yochem",
+        "repo": "jq-playground.nvim",
+        "rev": "40256cb9750fe36057850ef3e20f784934b5a6a4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yochem",
+        "repo": "jq-playground.nvim",
+        "type": "github"
+      }
+    },
     "plugins-neorg-interim-ls": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -355,6 +371,7 @@
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs_2",
+        "plugins-jq-playground-nvim": "plugins-jq-playground-nvim",
         "plugins-neorg-interim-ls": "plugins-neorg-interim-ls",
         "plugins-nixpkgs": "plugins-nixpkgs"
       }
