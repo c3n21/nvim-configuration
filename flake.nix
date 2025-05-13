@@ -491,6 +491,7 @@
               general = true;
               fzf-lua = true;
               gitPlugins = true;
+              json = true;
               # customPlugins = true;
               # test = true;
               # example = {
