@@ -1,7 +1,11 @@
 local fmt = string.format
+local mappings = require('mappings')
 
 vim.lsp.config('*', {
     on_attach = function(client, bufnr)
+        if client:supports_method(vim.lsp.protocol.Methods.textDocument_hover) then
+            vim.keymap.set('n', mappings['Hover'], vim.lsp.buf.hover, { buffer = bufnr, desc = 'LSP Hover' })
+        end
         if client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
             local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
@@ -53,5 +57,3 @@ vim.api.nvim_create_autocmd('InsertEnter', {
         vim.lsp.inlay_hint.enable(false)
     end,
 })
-
-require('mappings')
