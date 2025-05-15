@@ -1,4 +1,10 @@
 local fmt = string.format
+-- settings sets default configuration, thus should be required before everything
+local success, _ = pcall(require, 'settings')
+if not success then
+    vim.notify(fmt('Error loading settings: %s', vim.inspect(success)), vim.log.levels.WARN)
+end
+
 local mappings = require('mappings')
 
 vim.lsp.config('*', {
@@ -30,11 +36,6 @@ vim.lsp.config('*', {
         end
     end,
 })
-
-local success, _ = pcall(require, 'settings')
-if not success then
-    vim.notify(fmt('Error loading settings: %s', vim.inspect(success)), vim.log.levels.WARN)
-end
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
