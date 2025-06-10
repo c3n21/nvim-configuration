@@ -1,6 +1,8 @@
 ---@type conform.setupOpts
 local config = {
     formatters_by_ft = {
+        c = { 'clang-format' },
+        cmake = { 'cmake_format' },
         go = { 'gofmt' },
         lua = { 'stylua' },
         -- Conform will run multiple formatters sequentially
