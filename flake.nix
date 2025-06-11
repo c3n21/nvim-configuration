@@ -144,7 +144,7 @@
             ];
 
             general = with pkgs; [
-              fswatch
+              inotify-tools
               typos-lsp
               #TODO: I want to put it under a subcategory
               sonarlint-ls
