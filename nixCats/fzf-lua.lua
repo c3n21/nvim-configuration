@@ -10,6 +10,10 @@ end)()
 
 local fzf_lua = require('fzf-lua')
 
+if not require('fzf-lua.providers.ui_select').register() then
+    vim.notify('fzf-lua.providers.ui_select.register() failed, please check your configuration', vim.log.levels.ERROR)
+end
+
 fzf_lua.setup({
     'default',
     'hide',
