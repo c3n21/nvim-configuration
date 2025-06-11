@@ -269,7 +269,7 @@
 
               {
                 plugin = otter-nvim;
-                config.lua = builtins.readFile ./nixCats/nvim-lspconfig.lua;
+                config.lua = builtins.readFile ./nixCats/otter.lua;
 
               }
 
@@ -459,6 +459,13 @@
               ''
             ];
 
+            general = [
+              # lua
+              ''
+                vim.lsp.enable('typos_lsp')
+              ''
+            ];
+
             go = [
               # lua
               ''
@@ -611,6 +618,7 @@
               suffix-LD = true;
               wrapRc = true;
               neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
+              autoconfigure = "suffix";
             };
             # and a set of categories that you want
             # (and other information to pass to lua)

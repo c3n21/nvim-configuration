@@ -1,37 +1,6 @@
 local mappings_enum = require('mappings')
 local map_opts = { noremap = true, silent = true }
 
-vim.lsp.enable({
-    -- 'ansiblels',
-    -- 'astro',
-    -- 'bashls',
-    -- 'clangd',
-    -- 'cssls',
-    -- 'dockerls',
-    -- 'eslint',
-    -- 'gopls',
-    -- 'graphql',
-    -- 'html',
-    -- 'intelephense',
-    -- 'jdtls',
-    -- 'jsonls',
-    -- 'marksman',
-    -- 'nixd',
-    -- 'ocamllsp',
-    -- 'pyright',
-    -- 'svelte',
-    -- 'tailwindcss',
-    -- 'teal_ls',
-    -- 'terraform_lsp',
-    -- 'terraformls',
-    'typos_lsp',
-    -- 'vimls',
-    -- 'volar',
-    -- 'vtsls',
-    -- 'yamlls',
-    -- denols = {},
-})
-
 -- vim.keymap.set({ 'n' }, mappings_enum['Hover'], vim.lsp.buf.hover, map_opts)
 
 -- vim.keymap.set({ 'n' }, mappings_enum['SignatureHelp'], vim.lsp.buf.signature_help, map_opts)
