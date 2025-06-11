@@ -130,6 +130,10 @@
           # at RUN TIME for plugins. Will be available to PATH within neovim terminal
           # this includes LSPs
           lspsAndRuntimeDeps = {
+            astro = with pkgs; [
+              astro-language-server
+            ];
+
             json = with pkgs; [
               # TODO put it as runtimeDep for jq-playground
               jq
@@ -140,6 +144,7 @@
             ];
 
             general = with pkgs; [
+              fswatch
               typos-lsp
               #TODO: I want to put it under a subcategory
               sonarlint-ls
@@ -214,6 +219,10 @@
               ++ (with pkgs.neovimPlugins; [
                 neorg-interim-ls
               ]);
+
+            astro = with pkgs.vimPlugins; [
+              nvim-treesitter-parsers.astro
+            ];
 
             node = with pkgs.vimPlugins; [
               {
@@ -443,6 +452,13 @@
           };
 
           optionalLuaAdditions = {
+            astro = [
+              # lua
+              ''
+                vim.lsp.enable('astro')
+              ''
+            ];
+
             go = [
               # lua
               ''
@@ -566,6 +582,40 @@
             # and a set of categories that you want
             # (and other information to pass to lua)
             categories = {
+              general = true;
+              node = true;
+              fzf-lua = true;
+              gitPlugins = true;
+              json = true;
+              # customPlugins = true;
+              # test = true;
+              # example = {
+              #   youCan = "add more than just booleans";
+              #   toThisSet = [
+              #     "and the contents of this categories set"
+              #     "will be accessible to your lua with"
+              #     "nixCats('path.to.value')"
+              #     "see :help nixCats"
+              #   ];
+              # };
+            };
+          };
+
+        nastro =
+          { pkgs, name, ... }:
+          {
+            # they contain a settings set defined above
+            # see :help nixCats.flake.outputs.settings
+            settings = {
+              suffix-path = true;
+              suffix-LD = true;
+              wrapRc = true;
+              neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
+            };
+            # and a set of categories that you want
+            # (and other information to pass to lua)
+            categories = {
+              astro = true;
               general = true;
               node = true;
               fzf-lua = true;
