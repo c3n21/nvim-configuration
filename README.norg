@@ -7,3 +7,6 @@
    ~~~  use it inside another component 
    ~~~ try to use the code action to import it
    ~~~ error
+
+* TODO
+- [ ] Check if the issues are caused by nixCats.

@@ -130,6 +130,10 @@
           # at RUN TIME for plugins. Will be available to PATH within neovim terminal
           # this includes LSPs
           lspsAndRuntimeDeps = {
+            tailwindcss = with pkgs; [
+              tailwindcss-language-server
+            ];
+
             astro = with pkgs; [
               astro-language-server
             ];
@@ -452,6 +456,12 @@
           };
 
           optionalLuaAdditions = {
+            tailwindcss = [
+              # lua
+              ''
+                vim.lsp.enable('tailwindcss')
+              ''
+            ];
             astro = [
               # lua
               ''
@@ -623,6 +633,7 @@
             # and a set of categories that you want
             # (and other information to pass to lua)
             categories = {
+              tailwindcss = true;
               astro = true;
               general = true;
               node = true;
