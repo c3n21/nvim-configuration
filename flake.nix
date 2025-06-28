@@ -604,6 +604,7 @@
               fzf-lua = true;
               gitPlugins = true;
               json = true;
+              tailwindcss = true;
               # customPlugins = true;
               # test = true;
               # example = {
