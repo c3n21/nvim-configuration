@@ -1,0 +1,12 @@
+* Issues
+** Astro
+   - [ ] `before_init` doesn't get merged when specified in `lsp/astro.lua`
+   - [ ] To avoid `Buffer  file://<file>  newer than edits.` I need to re-enter the buffer. Maybe I should check VSCode extension code.
+   -- To reproduce it:
+   ~~~ create a new Astro component
+   ~~~  use it inside another component 
+   ~~~ try to use the code action to import it
+   ~~~ error
+
+* TODO
+- [ ] Check if the issues are caused by nixCats.
