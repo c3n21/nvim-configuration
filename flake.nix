@@ -30,6 +30,11 @@
       flake = false;
     };
 
+    plugins-mcphub-nvim = {
+      url = "github:ravitemer/mcphub.nvim";
+      flake = false;
+    };
+
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
     };
@@ -185,6 +190,18 @@
 
           # This is for plugins that will load at startup without using packadd:
           startupPlugins = {
+
+            ai =
+              with pkgs.vimPlugins;
+              [
+                {
+                  plugin = codecompanion-nvim;
+                  config.lua = builtins.readFile ./nixCats/code-companion.lua;
+                }
+              ]
+              ++ (with pkgs.neovimPlugins; [
+                mcphub-nvim
+              ]);
 
             # TODO: lazy load maybe?
             json = with pkgs.neovimPlugins; [
@@ -715,6 +732,7 @@
             # and a set of categories that you want
             # (and other information to pass to lua)
             categories = {
+              ai = true;
               tailwindcss = true;
               astro = true;
               general = true;

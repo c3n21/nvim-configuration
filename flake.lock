@@ -330,6 +330,22 @@
         "type": "github"
       }
     },
+    "plugins-mcphub-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1752039065,
+        "narHash": "sha256-PpJdZIezV9RPz3g4DUa+BLAJ0pWw7BlAl8Wd5nb4xmI=",
+        "owner": "ravitemer",
+        "repo": "mcphub.nvim",
+        "rev": "68c510efc174cb9a68dca3b14a8e9ebd7ab73eef",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ravitemer",
+        "repo": "mcphub.nvim",
+        "type": "github"
+      }
+    },
     "plugins-neorg-interim-ls": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -372,6 +388,7 @@
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs_2",
         "plugins-jq-playground-nvim": "plugins-jq-playground-nvim",
+        "plugins-mcphub-nvim": "plugins-mcphub-nvim",
         "plugins-neorg-interim-ls": "plugins-neorg-interim-ls",
         "plugins-nixpkgs": "plugins-nixpkgs"
       }
