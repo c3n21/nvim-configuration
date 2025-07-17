@@ -608,6 +608,7 @@
             # and a set of categories that you want
             # (and other information to pass to lua)
             categories = {
+              ai = true;
               general = true;
               fzf-lua = true;
               gitPlugins = true;
