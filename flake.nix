@@ -198,6 +198,15 @@
                   plugin = codecompanion-nvim;
                   config.lua = builtins.readFile ./nixCats/code-companion.lua;
                 }
+                {
+                  plugin = avante-nvim;
+                  config.lua = builtins.readFile ./nixCats/avante.lua;
+                }
+
+                {
+
+                  plugin = blink-cmp-avante;
+                }
               ]
               ++ (with pkgs.neovimPlugins; [
                 mcphub-nvim

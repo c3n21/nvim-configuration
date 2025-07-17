@@ -1,4 +1,5 @@
 local default_sources = {
+    'avante',
     'copilot',
     'lsp',
     'path',
@@ -82,6 +83,13 @@ require('blink.cmp').setup({
             return default_sources
         end,
         providers = {
+            avante = {
+                module = 'blink-cmp-avante',
+                name = 'Avante',
+                opts = {
+                    -- options for blink-cmp-avante
+                },
+            },
             copilot = {
                 name = 'copilot',
                 module = 'blink-copilot',
