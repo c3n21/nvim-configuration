@@ -764,6 +764,36 @@
             };
           };
 
+        neo =
+          { pkgs, name, ... }:
+          {
+            # they contain a settings set defined above
+            # see :help nixCats.flake.outputs.settings
+            settings = {
+              suffix-path = true;
+              suffix-LD = true;
+              wrapRc = true;
+              neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
+              autoconfigure = "suffix";
+            };
+            # and a set of categories that you want
+            # (and other information to pass to lua)
+            categories = {
+              backend = true;
+              ai = true;
+              astro = true;
+              clang = true;
+              fzf-lua = true;
+              general = true;
+              gitPlugins = true;
+              go = true;
+              json = true;
+              node = true;
+              note = true;
+              tailwindcss = true;
+            };
+          };
+
         nclang =
           { pkgs, name, ... }:
           {
