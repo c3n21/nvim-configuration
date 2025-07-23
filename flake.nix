@@ -168,6 +168,7 @@
 
             go = with pkgs; [
               gopls
+              go
             ];
 
             nix = with pkgs; [
