@@ -780,15 +780,17 @@
             # and a set of categories that you want
             # (and other information to pass to lua)
             categories = {
-              backend = true;
               ai = true;
               astro = true;
+              backend = true;
               clang = true;
               fzf-lua = true;
               general = true;
               gitPlugins = true;
               go = true;
               json = true;
+              nix = true;
+              nlua = true;
               node = true;
               note = true;
               tailwindcss = true;
