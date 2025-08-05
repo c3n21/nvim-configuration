@@ -1,4 +1,4 @@
-require('avante').setup({
+local status, result = pcall(require('avante').setup, {
     ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
     ---@type Provider
     provider = 'copilot', -- The provider used in Aider mode or in the planning phase of Cursor Planning Mode
@@ -201,3 +201,9 @@ require('avante').setup({
         exclude_auto_select = {}, -- List of items to exclude from auto selection
     },
 })
+
+local test = 'ciao'
+
+if not status then
+    vim.print('Error')
+end
