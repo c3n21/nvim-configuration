@@ -98,6 +98,15 @@ fzf_lua.setup({
 
 vim.keymap.set(
     { 'n' },
+    mappings_enum['FuzzyFinder'],
+    fzf_lua.global,
+    make_opts({
+        desc = 'Global fuzzy finder',
+    })
+)
+
+vim.keymap.set(
+    { 'n' },
     mappings_enum['FindFiles'],
     fzf_lua.files,
     make_opts({
@@ -195,6 +204,6 @@ vim.keymap.set(
     })
 )
 
--- vim.keymap.set({ 'n', 'v', 'i' }, '<C-x><C-f>', function()
---     require('fzf-lua').complete_path()
--- end, { silent = true, desc = 'Fuzzy complete path' })
+vim.keymap.set({ 'n', 'v', 'i' }, '<C-x><C-f>', function()
+    require('fzf-lua').complete_path()
+end, { silent = true, desc = 'Fuzzy complete path' })

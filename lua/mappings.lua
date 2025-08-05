@@ -30,6 +30,7 @@ local mappings_enum = {
     ['FindFiles'] = '<leader>ff',
     ['FindGitFiles'] = '<leader>gf',
     ['Format'] = '==',
+    ['FuzzyFinder'] = '<M-p>',
     ['GoToDefinitionTab'] = '<C-w><C-]>',
     ['Grep'] = '<leader>gg',
     ['LiveGrep'] = '<leader>gl',
