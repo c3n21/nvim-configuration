@@ -1,4 +1,5 @@
 local default_sources = {
+    'avante',
     'copilot',
     'lsp',
     'path',
@@ -13,7 +14,10 @@ local lua_source = vim.list_extend({
 
 require('blink.cmp').setup({
     enabled = function()
-        return vim.bo.buftype ~= 'prompt' and vim.b.completion ~= false and vim.api.nvim_get_mode().mode ~= 'c'
+        return vim.bo.buftype ~= 'nofile' -- when renaming using fzf-lua I don't want completion
+            and vim.bo.buftype ~= 'prompt'
+            and vim.b.completion ~= false
+            and vim.api.nvim_get_mode().mode ~= 'c'
     end,
     signature = {
         enabled = true,
@@ -82,6 +86,13 @@ require('blink.cmp').setup({
             return default_sources
         end,
         providers = {
+            avante = {
+                module = 'blink-cmp-avante',
+                name = 'Avante',
+                opts = {
+                    -- options for blink-cmp-avante
+                },
+            },
             copilot = {
                 name = 'copilot',
                 module = 'blink-copilot',
