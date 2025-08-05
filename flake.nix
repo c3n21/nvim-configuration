@@ -332,11 +332,17 @@
               [
                 {
                   plugin = codecompanion-nvim;
-                  config.lua = builtins.readFile ./nixCats/code-companion.lua;
+                  config.lua = # lua
+                    ''
+                      require('configs.code-companion')
+                    '';
                 }
                 {
                   plugin = avante-nvim;
-                  config.lua = builtins.readFile ./nixCats/avante.lua;
+                  config.lua = # lua
+                    ''
+                      require('configs.avante')
+                    '';
                 }
 
                 {
@@ -365,14 +371,20 @@
                     };
                   }
                 );
-                config.lua = builtins.readFile ./nixCats/nvim-dbee.lua;
+                config.lua = # lua
+                  ''
+                    require('configs.nvim-dbee')
+                  '';
               }
             ];
 
             nlua = with pkgs.vimPlugins; [
               {
                 plugin = lazydev-nvim;
-                config.lua = builtins.readFile ./nixCats/lazydev.lua;
+                config.lua = # lua
+                  ''
+                    require('configs.lazydev')
+                  '';
               }
               nvim-treesitter-parsers.lua
             ];
@@ -387,7 +399,10 @@
 
                 {
                   plugin = neorg;
-                  config.lua = builtins.readFile ./nixCats/neorg.lua;
+                  config.lua = # lua
+                    ''
+                      require('configs.neorg')
+                    '';
                 }
               ]
               ++ (with pkgs.neovimPlugins; [
@@ -420,12 +435,18 @@
               ++ (with pkgs.vimPlugins; [
                 {
                   plugin = gitsigns-nvim;
-                  config.lua = builtins.readFile ./nixCats/gitsigns.lua;
+                  config.lua = # lua
+                    ''
+                      require('configs.gitsigns')
+                    '';
                 }
 
                 {
                   plugin = neogit;
-                  config.lua = builtins.readFile ./nixCats/neogit.lua;
+                  config.lua = # lua
+                    ''
+                      require('configs.neogit')
+                    '';
                 }
 
                 vim-fugitive
@@ -435,7 +456,10 @@
             fzf-lua = with pkgs.vimPlugins; [
               {
                 plugin = fzf-lua;
-                config.lua = builtins.readFile ./nixCats/fzf-lua.lua;
+                config.lua = # lua
+                  ''
+                    require('configs.fzf-lua')
+                  '';
               }
             ];
 
@@ -443,7 +467,10 @@
 
               {
                 plugin = otter-nvim;
-                config.lua = builtins.readFile ./nixCats/otter.lua;
+                config.lua = # lua
+                  ''
+                    require('configs.otter')
+                  '';
 
               }
 
@@ -461,22 +488,34 @@
 
               {
                 plugin = copilot-lua;
-                config.lua = builtins.readFile ./nixCats/copilot.lua;
+                config.lua = # lua
+                  ''
+                    require('configs.copilot')
+                  '';
               }
 
               {
                 plugin = vim-matchup;
-                config.lua = builtins.readFile ./nixCats/vim-matchup.lua;
+                config.lua = # lua
+                  ''
+                    require('configs.vim-matchup')
+                  '';
               }
 
               {
                 plugin = vim-illuminate;
-                config.lua = builtins.readFile ./nixCats/vim-illuminate.lua;
+                config.lua = # lua
+                  ''
+                    require('configs.vim-illuminate')
+                  '';
               }
 
               {
                 plugin = oil-nvim;
-                config.lua = builtins.readFile ./nixCats/oil.lua;
+                config.lua = # lua
+                  ''
+                    require('configs.oil')
+                  '';
               }
 
               {
@@ -486,26 +525,41 @@
 
               {
                 plugin = lualine-nvim;
-                config.lua = builtins.readFile ./nixCats/lualine.lua;
+                config.lua = # lua
+                  ''
+                    require('configs.lualine')
+                  '';
               }
 
               {
                 plugin = indent-blankline-nvim;
-                config.lua = builtins.readFile ./nixCats/indent-blankline.lua;
+                config.lua = # lua
+                  ''
+                    require('configs.indent-blankline')
+                  '';
               }
               {
                 plugin = pluginsPkgs.vimPlugins.sonarlint-nvim;
-                config.lua = builtins.readFile ./nixCats/sonarlint-nvim.lua;
+                config.lua = # lua
+                  ''
+                    require('configs.sonarlint-nvim')
+                  '';
               }
 
               {
                 plugin = auto-session;
-                config.lua = builtins.readFile ./nixCats/auto-session.lua;
+                config.lua = # lua
+                  ''
+                    require('configs.auto-session')
+                  '';
               }
 
               {
                 plugin = nvim-colorizer-lua;
-                config.lua = builtins.readFile ./nixCats/colorizer.lua;
+                config.lua = # lua
+                  ''
+                    require('configs.colorizer')
+                  '';
 
               }
 
@@ -513,50 +567,77 @@
 
               {
                 plugin = blink-cmp;
-                config.lua = builtins.readFile ./nixCats/blink.lua;
+                config.lua = # lua
+                  ''
+                    require('configs.blink')
+                  '';
               }
 
               {
                 plugin = nvim-lspconfig;
-                config.lua = builtins.readFile ./nixCats/nvim-lspconfig.lua;
+                config.lua = # lua
+                  ''
+                    require('configs.nvim-lspconfig')
+                  '';
               }
 
               {
                 plugin = nvim-surround;
-                config.lua = builtins.readFile ./nixCats/nvim-surround.lua;
+                config.lua = # lua
+                  ''
+                    require('configs.nvim-surround')
+                  '';
               }
 
               {
                 plugin = nvim-treesitter;
-                config.lua = builtins.readFile ./nixCats/nvim-treesitter.lua;
+                config.lua = # lua
+                  ''
+                    require('configs.nvim-treesitter')
+                  '';
               }
               nvim-treesitter-textobjects
 
               {
                 plugin = nvim-ts-autotag;
-                config.lua = builtins.readFile ./nixCats/nvim-ts-autotag.lua;
+                config.lua = # lua
+                  ''
+                    require('configs.nvim-ts-autotag')
+                  '';
               }
 
               nvim-ts-context-commentstring
 
               {
                 plugin = nvim-web-devicons;
-                config.lua = builtins.readFile ./nixCats/nvim-web-devicons.lua;
+                config.lua = # lua
+                  ''
+                    require('configs.nvim-web-devicons')
+                  '';
               }
 
               {
                 plugin = nvim-autopairs;
-                config.lua = builtins.readFile ./nixCats/nvim-autopairs.lua;
+                config.lua = # lua
+                  ''
+                    require('configs.nvim-autopairs')
+                  '';
               }
 
               {
                 plugin = comment-nvim;
-                config.lua = builtins.readFile ./nixCats/comment.lua;
+                config.lua = # lua
+                  ''
+                    require('configs.comment')
+                  '';
               }
 
               {
                 plugin = conform-nvim;
-                config.lua = builtins.readFile ./nixCats/conform.lua;
+                config.lua = # lua
+                  ''
+                    require('configs.conform')
+                  '';
               }
 
               # nvim-treesitter-parsers.commonlisp
@@ -908,7 +989,7 @@
             settings = {
               suffix-path = true;
               suffix-LD = true;
-              wrapRc = true;
+              wrapRc = false;
               neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
               autoconfigure = "suffix";
               hosts = {
