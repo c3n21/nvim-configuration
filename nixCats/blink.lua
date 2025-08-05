@@ -14,7 +14,10 @@ local lua_source = vim.list_extend({
 
 require('blink.cmp').setup({
     enabled = function()
-        return vim.bo.buftype ~= 'prompt' and vim.b.completion ~= false and vim.api.nvim_get_mode().mode ~= 'c'
+        return vim.bo.buftype ~= 'nofile' -- when renaming using fzf-lua I don't want completion
+            and vim.bo.buftype ~= 'prompt'
+            and vim.b.completion ~= false
+            and vim.api.nvim_get_mode().mode ~= 'c'
     end,
     signature = {
         enabled = true,
