@@ -202,8 +202,6 @@ local status, result = pcall(require('avante').setup, {
     },
 })
 
-local test = 'ciao'
-
 if not status then
-    vim.print('Error')
+    vim.print('Avante loaded with error', result)
 end
