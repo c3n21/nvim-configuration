@@ -169,6 +169,7 @@
             go = with pkgs; [
               gopls
               go
+              delve
             ];
 
             nix = with pkgs; [
@@ -180,6 +181,7 @@
               prettierd
               # for eslint-lsp
               vscode-langservers-extracted
+              vscode-js-debug
             ];
 
             nlua = with pkgs; [
@@ -192,7 +194,26 @@
           # This is for plugins that will load at startup without using packadd:
           startupPlugins = {
 
+            # TODO: lazy load
+            dap = with pkgs.vimPlugins; [
+              {
+                plugin = nvim-dap;
+                config.lua = # lua
+                  ''
+                    require('configs.nvim-dap')
+                  '';
+              }
+
+            ];
+
             go = with pkgs.vimPlugins; [
+              {
+                plugin = nvim-dap-go;
+                config.lua = # lua
+                  ''
+                    require('configs/nvim-dap/go')
+                  '';
+              }
               {
                 plugin = go-nvim;
                 config.lua = # lua
@@ -753,6 +774,7 @@
             node = [
               # lua
               ''
+                require('configs.nvim-dap.js')
                 vim.lsp.enable('eslint')
               ''
 
@@ -1019,6 +1041,7 @@
               general = true;
               gitPlugins = true;
               go = true;
+              dap = true;
               json = true;
               nix = true;
               nlua = true;
