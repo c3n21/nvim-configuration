@@ -88,6 +88,8 @@
           # Once we add this overlay to our nixpkgs, we are able to
           # use `pkgs.neovimPlugins`, which is a set of our plugins.
           (utils.standardPluginOverlay inputs)
+          # Add the easy-dotnet-server overlay
+          (import ./overlays/easy-dotnet-server.nix)
           # add any other flake overlays here.
 
           # when other people mess up their overlays by wrapping them with system,
@@ -113,6 +115,18 @@
         }@packageDef:
         let
           pluginsPkgs = inputs.plugins-nixpkgs.legacyPackages.${pkgs.system};
+          overridden-roslyn-ls = (
+            pkgs.roslyn-ls.overrideAttrs (oldAttrs: {
+              useDotnetFromEnv = false; # needed to make it run with different .NET host environment
+              # useAppHost = false;
+            })
+          );
+          custom-roslyn-command = (
+            pkgs.runCommand "roslyn" { } ''
+              mkdir -p $out/bin
+              ln -s ${overridden-roslyn-ls}/bin/Microsoft.CodeAnalysis.LanguageServer $out/bin/roslyn
+            ''
+          );
           sonarlint-ls = (
             pkgs.sonarlint-ls.overrideAttrs (oldAttrs: {
               installPhase = ''
@@ -137,6 +151,12 @@
           lspsAndRuntimeDeps = {
             tailwindcss = with pkgs; [
               tailwindcss-language-server
+            ];
+
+            dotnet = with pkgs; [
+              easy-dotnet-server
+              netcoredbg
+              custom-roslyn-command
             ];
 
             solidity = with pkgs; [
@@ -346,6 +366,35 @@
                   '';
               }
 
+            ];
+
+            dotnet = with pkgs.vimPlugins; [
+              {
+                plugin = roslyn-nvim.overrideAttrs (oldAttrs: {
+                  src = pkgs.fetchFromGitHub {
+                    owner = "seblyng";
+                    repo = "roslyn.nvim";
+                    rev = "3b5b6c687ecaeccbac7652673385511a3deba7bb";
+                    hash = "sha256-tGkEL9lOelLkB1VPVUAWPeRNiMntYRr0DN9iWrN1Csc=";
+                  };
+                });
+              }
+
+              {
+                plugin = easy-dotnet-nvim.overrideAttrs (oldAttrs: {
+                  src = pkgs.fetchFromGitHub {
+                    owner = "GustavEikaas";
+                    repo = "easy-dotnet.nvim";
+                    rev = "84be98bcf7bf0c6b867524de3b250c7112fc74a4";
+                    hash = "sha256-tBlydDRcE3flXud4kDP2N4/OzF67FRc00bN6l0CzMGk=";
+                  };
+                });
+
+                config.lua = # lua
+                  ''
+                    require('configs.easy-dotnet')
+                  '';
+              }
             ];
 
             ai =
@@ -728,6 +777,13 @@
           };
 
           optionalLuaAdditions = {
+            dotnet = [
+              # lua
+              ''
+                require('configs.nvim-dap.csharp')
+                vim.lsp.enable('roslyn')
+              ''
+            ];
 
             solidity = [
               # lua
@@ -1033,6 +1089,7 @@
             # and a set of categories that you want
             # (and other information to pass to lua)
             categories = {
+              dotnet = true;
               ai = true;
               astro = true;
               backend = true;
