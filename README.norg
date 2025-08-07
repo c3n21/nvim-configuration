@@ -7,6 +7,8 @@
    ~~~  use it inside another component 
    ~~~ try to use the code action to import it
    ~~~ error
+** Dotnet
+   Needs a nix shell nixpkgs#<framework version> to have it to work properly, otherwise EasyDotnet doesn't work
 
 * TODO
 - [ ] Check if the issues are caused by nixCats.

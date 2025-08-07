@@ -722,7 +722,6 @@
               # nvim-treesitter-parsers.go
               # nvim-treesitter-parsers.angular
               # nvim-treesitter-parsers.luadoc
-              # nvim-treesitter-parsers.norg
 
             ];
           };
@@ -1070,21 +1069,6 @@
               wrapRc = false;
               neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
               autoconfigure = "suffix";
-              hosts = {
-                neovide = {
-                  # Will create a `packagename-neovide` in your path that launches the
-                  # package named `packagename` in this case.
-                  enable = true;
-                  path = {
-                    value = "${pkgs.neovide}/bin/neovide";
-                    args = [
-                      "--add-flags"
-                      "--neovim-bin ${name}"
-                    ];
-                  };
-                };
-              };
-
             };
             # and a set of categories that you want
             # (and other information to pass to lua)
@@ -1103,7 +1087,7 @@
               nix = true;
               nlua = true;
               node = true;
-              note = true;
+              note = false;
               tailwindcss = true;
             };
           };
