@@ -181,6 +181,7 @@
               prettierd
               # for eslint-lsp
               vscode-langservers-extracted
+              vscode-js-debug
             ];
 
             nlua = with pkgs; [
@@ -773,6 +774,7 @@
             node = [
               # lua
               ''
+                require('configs.nvim-dap.js')
                 vim.lsp.enable('eslint')
               ''
 
