@@ -23,7 +23,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
-    plugins-nixpkgs.url = "github:nixos/nixpkgs/master";
+    nixpkgs-master.url = "github:nixos/nixpkgs/master";
     plugins-neorg-interim-ls.url = "github:benlubas/neorg-interim-ls";
     plugins-jq-playground-nvim = {
       url = "github:yochem/jq-playground.nvim";
@@ -114,12 +114,16 @@
           ...
         }@packageDef:
         let
-          pluginsPkgs = inputs.plugins-nixpkgs.legacyPackages.${pkgs.system};
+          pluginsPkgs = inputs.nixpkgs-master.legacyPackages.${pkgs.system};
           overridden-roslyn-ls = (
-            pkgs.roslyn-ls.overrideAttrs (oldAttrs: {
-              useDotnetFromEnv = false; # needed to make it run with different .NET host environment
-              # useAppHost = false;
-            })
+            pluginsPkgs.roslyn-ls
+
+            # pluginsPkgs.roslyn-ls.overrideAttrs (oldAttrs: {
+            #   dotnet-runtime = pluginsPkgs.dotnetCorePackages.sdk_9_0;
+            #   dotnet-sdk = pluginsPkgs.dotnetCorePackages.sdk_9_0;
+            #   # useDotnetFromEnv = false; # needed to make it run with different .NET host environment
+            #   # useAppHost = false;
+            # })
           );
           custom-roslyn-command = (
             pkgs.runCommand "roslyn" { } ''
@@ -728,213 +732,7 @@
 
       # see :help nixCats.flake.outputs.packageDefinitions
       packageDefinitions = {
-        # These are the names of your packages
-        # you can include as many as you wish.
-        vi =
-          { pkgs, name, ... }:
-          {
-            # they contain a settings set defined above
-            # see :help nixCats.flake.outputs.settings
-            settings = {
-              suffix-path = true;
-              suffix-LD = true;
-              wrapRc = true;
-              neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
-            };
-            # and a set of categories that you want
-            # (and other information to pass to lua)
-            categories = {
-              nlua = true;
-              nix = true;
-              general = true;
-              fzf-lua = true;
-              gitPlugins = true;
-              json = true;
-              # customPlugins = true;
-              # test = true;
-              # example = {
-              #   youCan = "add more than just booleans";
-              #   toThisSet = [
-              #     "and the contents of this categories set"
-              #     "will be accessible to your lua with"
-              #     "nixCats('path.to.value')"
-              #     "see :help nixCats"
-              #   ];
-              # };
-            };
-          };
-
-        ngo =
-          { pkgs, name, ... }:
-          {
-            # they contain a settings set defined above
-            # see :help nixCats.flake.outputs.settings
-            settings = {
-              suffix-path = true;
-              suffix-LD = true;
-              wrapRc = true;
-              neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
-            };
-            # and a set of categories that you want
-            # (and other information to pass to lua)
-            categories = {
-              ai = true;
-              general = true;
-              fzf-lua = true;
-              gitPlugins = true;
-              backend = true;
-              go = true;
-              # customPlugins = true;
-              # test = true;
-              # example = {
-              #   youCan = "add more than just booleans";
-              #   toThisSet = [
-              #     "and the contents of this categories set"
-              #     "will be accessible to your lua with"
-              #     "nixCats('path.to.value')"
-              #     "see :help nixCats"
-              #   ];
-              # };
-            };
-          };
-
-        nhh =
-          { pkgs, name, ... }:
-          {
-            # they contain a settings set defined above
-            # see :help nixCats.flake.outputs.settings
-            settings = {
-              suffix-path = true;
-              suffix-LD = true;
-              wrapRc = true;
-              neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
-            };
-            # and a set of categories that you want
-            # (and other information to pass to lua)
-            categories = {
-              general = true;
-              solidity = true;
-              fzf-lua = true;
-              gitPlugins = true;
-              node = true;
-              # customPlugins = true;
-              # test = true;
-              # example = {
-              #   youCan = "add more than just booleans";
-              #   toThisSet = [
-              #     "and the contents of this categories set"
-              #     "will be accessible to your lua with"
-              #     "nixCats('path.to.value')"
-              #     "see :help nixCats"
-              #   ];
-              # };
-            };
-          };
-
-        nsol =
-          { pkgs, name, ... }:
-          {
-            # they contain a settings set defined above
-            # see :help nixCats.flake.outputs.settings
-            settings = {
-              suffix-path = true;
-              suffix-LD = true;
-              wrapRc = true;
-              neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
-            };
-            # and a set of categories that you want
-            # (and other information to pass to lua)
-            categories = {
-              general = true;
-              solidity = true;
-              fzf-lua = true;
-              gitPlugins = true;
-              # customPlugins = true;
-              # test = true;
-              # example = {
-              #   youCan = "add more than just booleans";
-              #   toThisSet = [
-              #     "and the contents of this categories set"
-              #     "will be accessible to your lua with"
-              #     "nixCats('path.to.value')"
-              #     "see :help nixCats"
-              #   ];
-              # };
-            };
-          };
-
-        nno =
-          { pkgs, name, ... }:
-          {
-            # they contain a settings set defined above
-            # see :help nixCats.flake.outputs.settings
-            settings = {
-              suffix-path = true;
-              suffix-LD = true;
-              wrapRc = true;
-              neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
-            };
-            # and a set of categories that you want
-            # (and other information to pass to lua)
-            categories = {
-              general = true;
-              node = true;
-              fzf-lua = true;
-              gitPlugins = true;
-              json = true;
-              tailwindcss = true;
-              # customPlugins = true;
-              # test = true;
-              # example = {
-              #   youCan = "add more than just booleans";
-              #   toThisSet = [
-              #     "and the contents of this categories set"
-              #     "will be accessible to your lua with"
-              #     "nixCats('path.to.value')"
-              #     "see :help nixCats"
-              #   ];
-              # };
-            };
-          };
-
-        nastro =
-          { pkgs, name, ... }:
-          {
-            # they contain a settings set defined above
-            # see :help nixCats.flake.outputs.settings
-            settings = {
-              suffix-path = true;
-              suffix-LD = true;
-              wrapRc = true;
-              neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
-              autoconfigure = "suffix";
-            };
-            # and a set of categories that you want
-            # (and other information to pass to lua)
-            categories = {
-              ai = true;
-              tailwindcss = true;
-              astro = true;
-              general = true;
-              node = true;
-              fzf-lua = true;
-              gitPlugins = true;
-              json = true;
-              # customPlugins = true;
-              # test = true;
-              # example = {
-              #   youCan = "add more than just booleans";
-              #   toThisSet = [
-              #     "and the contents of this categories set"
-              #     "will be accessible to your lua with"
-              #     "nixCats('path.to.value')"
-              #     "see :help nixCats"
-              #   ];
-              # };
-            };
-          };
-
-        neo =
+        neocs =
           { pkgs, name, ... }:
           {
             # they contain a settings set defined above
@@ -968,7 +766,7 @@
             };
           };
 
-        nclang =
+        neo =
           { pkgs, name, ... }:
           {
             # they contain a settings set defined above
@@ -976,28 +774,30 @@
             settings = {
               suffix-path = true;
               suffix-LD = true;
-              wrapRc = true;
+              wrapRc = false;
               neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
+              autoconfigure = "suffix";
             };
             # and a set of categories that you want
             # (and other information to pass to lua)
             categories = {
-              general = true;
-              note = true;
-              fzf-lua = true;
-              gitPlugins = true;
+              # TODO: dotnet is broken on nixpkgs
+              # dotnet = true;
+              ai = true;
+              astro = true;
+              backend = true;
               clang = true;
-              # customPlugins = true;
-              # test = true;
-              # example = {
-              #   youCan = "add more than just booleans";
-              #   toThisSet = [
-              #     "and the contents of this categories set"
-              #     "will be accessible to your lua with"
-              #     "nixCats('path.to.value')"
-              #     "see :help nixCats"
-              #   ];
-              # };
+              fzf-lua = true;
+              general = true;
+              gitPlugins = true;
+              go = true;
+              dap = true;
+              json = true;
+              nix = true;
+              nlua = true;
+              node = true;
+              note = false;
+              tailwindcss = true;
             };
           };
 
@@ -1035,7 +835,7 @@
       };
       # In this section, the main thing you will need to do is change the default package name
       # to the name of the packageDefinitions entry you wish to use as the default.
-      defaultPackageName = "vi";
+      defaultPackageName = "neo";
     in
 
     # see :help nixCats.flake.outputs.exports
