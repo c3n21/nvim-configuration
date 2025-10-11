@@ -756,73 +756,7 @@
 
       # see :help nixCats.flake.outputs.packageDefinitions
       packageDefinitions = {
-        neocs =
-          { pkgs, name, ... }:
-          {
-            # they contain a settings set defined above
-            # see :help nixCats.flake.outputs.settings
-            settings = {
-              suffix-path = true;
-              suffix-LD = true;
-              wrapRc = false;
-              neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
-              autoconfigure = "suffix";
-            };
-            # and a set of categories that you want
-            # (and other information to pass to lua)
-            categories = {
-              dotnet = true;
-              ai = true;
-              astro = true;
-              backend = true;
-              clang = true;
-              fzf-lua = true;
-              general = true;
-              gitPlugins = true;
-              go = true;
-              dap = true;
-              json = true;
-              nix = true;
-              nlua = true;
-              node = true;
-              note = false;
-              tailwindcss = true;
-            };
-          };
-
         neo = import ./nix/nixCats/neo.nix;
-
-        note =
-          { pkgs, name, ... }:
-          {
-            # they contain a settings set defined above
-            # see :help nixCats.flake.outputs.settings
-            settings = {
-              suffix-path = true;
-              suffix-LD = true;
-              wrapRc = true;
-              neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
-            };
-            # and a set of categories that you want
-            # (and other information to pass to lua)
-            categories = {
-              general = true;
-              note = true;
-              fzf-lua = true;
-              gitPlugins = true;
-              # customPlugins = true;
-              # test = true;
-              # example = {
-              #   youCan = "add more than just booleans";
-              #   toThisSet = [
-              #     "and the contents of this categories set"
-              #     "will be accessible to your lua with"
-              #     "nixCats('path.to.value')"
-              #     "see :help nixCats"
-              #   ];
-              # };
-            };
-          };
       };
       # In this section, the main thing you will need to do is change the default package name
       # to the name of the packageDefinitions entry you wish to use as the default.
