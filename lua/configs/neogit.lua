@@ -8,6 +8,8 @@ local config = {
     disable_context_highlighting = false,
     -- Disables signs for sections/items/hunks
     disable_signs = false,
+    -- Offer to force push when branches diverge
+    prompt_force_push = true,
     -- Changes what mode the Commit Editor starts in. `true` will leave nvim in normal mode, `false` will change nvim to
     -- insert mode, and `"auto"` will change nvim to insert mode IF the commit message is empty, otherwise leaving it in
     -- normal mode.
@@ -20,29 +22,42 @@ local config = {
     },
     -- "ascii"   is the graph the git CLI generates
     -- "unicode" is the graph like https://github.com/rbong/vim-flog
-    graph_style = 'unicode',
-    -- Used to generate URL's for branch popup action "pull request".
+    -- "kitty"   is the graph like https://github.com/isakbm/gitgraph.nvim - use https://github.com/rbong/flog-symbols if you don't use Kitty
+    graph_style = 'ascii',
+    -- Show relative date by default. When set, use `strftime` to display dates
+    commit_date_format = nil,
+    log_date_format = nil,
+    -- Show message with spinning animation when a git command is running.
+    process_spinner = false,
+    -- Used to generate URL's for branch popup action "pull request", "open commit" and "open tree"
     git_services = {
-        ['github.com'] = 'https://github.com/${owner}/${repository}/compare/${branch_name}?expand=1',
-        ['bitbucket.org'] = 'https://bitbucket.org/${owner}/${repository}/pull-requests/new?source=${branch_name}&t=1',
-        ['gitlab.com'] = 'https://gitlab.com/${owner}/${repository}/merge_requests/new?merge_request[source_branch]=${branch_name}',
+        ['github.com'] = {
+            pull_request = 'https://github.com/${owner}/${repository}/compare/${branch_name}?expand=1',
+            commit = 'https://github.com/${owner}/${repository}/commit/${oid}',
+            tree = 'https://${host}/${owner}/${repository}/tree/${branch_name}',
+        },
+        ['bitbucket.org'] = {
+            pull_request = 'https://bitbucket.org/${owner}/${repository}/pull-requests/new?source=${branch_name}&t=1',
+            commit = 'https://bitbucket.org/${owner}/${repository}/commits/${oid}',
+            tree = 'https://bitbucket.org/${owner}/${repository}/branch/${branch_name}',
+        },
+        ['gitlab.com'] = {
+            pull_request = 'https://gitlab.com/${owner}/${repository}/merge_requests/new?merge_request[source_branch]=${branch_name}',
+            commit = 'https://gitlab.com/${owner}/${repository}/-/commit/${oid}',
+            tree = 'https://gitlab.com/${owner}/${repository}/-/tree/${branch_name}?ref_type=heads',
+        },
+        ['azure.com'] = {
+            pull_request = 'https://dev.azure.com/${owner}/_git/${repository}/pullrequestcreate?sourceRef=${branch_name}&targetRef=${target}',
+            commit = '',
+            tree = '',
+        },
     },
-    -- Allows a different telescope sorter. Defaults to 'fuzzy_with_index_bias'. The example below will use the native fzf
-    -- sorter instead. By default, this function returns `nil`.
-    telescope_sorter = function()
-        return require('telescope').extensions.fzf.native_fzf_sorter()
-    end,
     -- Persist the values of switches/options within and across sessions
     remember_settings = true,
     -- Scope persisted settings on a per-project basis
     use_per_project_settings = true,
     -- Table of settings to never persist. Uses format "Filetype--cli-value"
-    ignored_settings = {
-        'NeogitPushPopup--force-with-lease',
-        'NeogitPushPopup--force',
-        'NeogitPullPopup--rebase',
-        'NeogitCommitPopup--allow-empty',
-        'NeogitRevertPopup--no-edit',
+    ignored_settings = { -- 'NeogitPushPopup--force-with-lease', 'NeogitPushPopup--force', 'NeogitPullPopup--rebase', 'NeogitCommitPopup--allow-empty', 'NeogitRevertPopup--no-edit',
     },
     -- Configure highlight group features
     highlight = {
@@ -60,27 +75,78 @@ local config = {
     -- Flag description: https://git-scm.com/docs/git-branch#Documentation/git-branch.txt---sortltkeygt
     -- Sorting keys: https://git-scm.com/docs/git-for-each-ref#_options
     sort_branches = '-committerdate',
+    -- Value passed to the `--<commit_order>-order` flag of the `git log` command
+    -- Determines how commits are traversed and displayed in the log / graph:
+    --   "topo"         topological order (parents always before children, good for graphs, slower on large repos)
+    --   "date"         chronological order by commit date
+    --   "author-date"  chronological order by author date
+    --   ""             disable explicit ordering (fastest, recommended for very large repos)
+    commit_order = 'topo',
+    -- Default for new branch name prompts
+    initial_branch_name = '',
     -- Change the default way of opening neogit
     kind = 'floating',
-    -- Disable line numbers and relative line numbers
+    -- Floating window style
+    floating = {
+        relative = 'editor',
+        width = 0.8,
+        height = 0.7,
+        style = 'minimal',
+        border = 'rounded',
+    },
+    -- Disable line numbers
     disable_line_numbers = true,
+    -- Disable relative line numbers
+    disable_relative_line_numbers = true,
     -- The time after which an output console is shown for slow running commands
     console_timeout = 2000,
     -- Automatically show console if a command takes more than console_timeout milliseconds
     auto_show_console = true,
+    -- Automatically close the console if the process exits with a 0 (success) status
+    auto_close_console = true,
+    notification_icon = '󰊢',
     status = {
+        show_head_commit_hash = true,
         recent_commit_count = 10,
+        HEAD_padding = 10,
+        HEAD_folded = false,
+        mode_padding = 3,
+        mode_text = {
+            M = 'modified',
+            N = 'new file',
+            A = 'added',
+            D = 'deleted',
+            C = 'copied',
+            U = 'updated',
+            R = 'renamed',
+            DD = 'unmerged',
+            AU = 'unmerged',
+            UD = 'unmerged',
+            UA = 'unmerged',
+            DU = 'unmerged',
+            AA = 'unmerged',
+            UU = 'unmerged',
+            ['?'] = '',
+        },
     },
     commit_editor = {
         kind = 'tab',
+        show_staged_diff = true,
+        -- Accepted values:
+        -- "split" to show the staged diff below the commit editor
+        -- "vsplit" to show it to the right
+        -- "split_above" Like :top split
+        -- "vsplit_left" like :vsplit, but open to the left
+        -- "auto" "vsplit" if window would have 80 cols, otherwise "split"
+        staged_diff_split_kind = 'split',
+        spell_check = true,
     },
     commit_select_view = {
         kind = 'tab',
     },
     commit_view = {
         kind = 'vsplit',
-        -- verify_commit = os.execute('which gpg') == 0, -- Can be set to true or false, otherwise we try to find the binary
-        verify_commit = false, -- Can be set to true or false, otherwise we try to find the binary
+        verify_commit = vim.fn.executable('gpg') == 1, -- Can be set to true or false, otherwise we try to find the binary
     },
     log_view = {
         kind = 'tab',
@@ -94,14 +160,17 @@ local config = {
     merge_editor = {
         kind = 'auto',
     },
-    tag_editor = {
-        kind = 'auto',
-    },
     preview_buffer = {
-        kind = 'split',
+        kind = 'floating_console',
     },
     popup = {
         kind = 'split',
+    },
+    stash = {
+        kind = 'tab',
+    },
+    refs_view = {
+        kind = 'tab',
     },
     signs = {
         -- { CLOSED, OPENED }
@@ -113,7 +182,7 @@ local config = {
     integrations = {
         -- If enabled, use telescope for menu selection rather than vim.ui.select.
         -- Allows multi-select and some things that vim.ui.select doesn't.
-        telescope = true,
+        telescope = nil,
         -- Neogit only provides inline diffs. If you want a more traditional way to look at diffs, you can use `diffview`.
         -- The diffview integration enables the diff popup.
         --
@@ -123,7 +192,17 @@ local config = {
         -- If enabled, uses fzf-lua for menu selection. If the telescope integration
         -- is also selected then telescope is used instead
         -- Requires you to have `ibhagwan/fzf-lua` installed.
-        fzf_lua = false,
+        fzf_lua = true,
+
+        -- If enabled, uses mini.pick for menu selection. If the telescope integration
+        -- is also selected then telescope is used instead
+        -- Requires you to have `echasnovski/mini.pick` installed.
+        mini_pick = nil,
+
+        -- If enabled, uses snacks.picker for menu selection. If the telescope integration
+        -- is also selected then telescope is used instead
+        -- Requires you to have `folke/snacks.nvim` installed.
+        snacks = nil,
     },
     sections = {
         -- Reverting/Cherry Picking
@@ -177,6 +256,13 @@ local config = {
             ['q'] = 'Close',
             ['<c-c><c-c>'] = 'Submit',
             ['<c-c><c-k>'] = 'Abort',
+            ['<m-p>'] = 'PrevMessage',
+            ['<m-n>'] = 'NextMessage',
+            ['<m-r>'] = 'ResetMessage',
+        },
+        commit_editor_I = {
+            ['<c-c><c-c>'] = 'Submit',
+            ['<c-c><c-k>'] = 'Abort',
         },
         rebase_editor = {
             ['p'] = 'Pick',
@@ -193,6 +279,12 @@ local config = {
             ['gj'] = 'MoveDown',
             ['<c-c><c-c>'] = 'Submit',
             ['<c-c><c-k>'] = 'Abort',
+            ['[c'] = 'OpenOrScrollUp',
+            [']c'] = 'OpenOrScrollDown',
+        },
+        rebase_editor_I = {
+            ['<c-c><c-c>'] = 'Submit',
+            ['<c-c><c-k>'] = 'Abort',
         },
         finder = {
             ['<cr>'] = 'Select',
@@ -202,20 +294,32 @@ local config = {
             ['<c-p>'] = 'Previous',
             ['<down>'] = 'Next',
             ['<up>'] = 'Previous',
-            ['<tab>'] = 'MultiselectToggleNext',
-            ['<s-tab>'] = 'MultiselectTogglePrevious',
+            ['<tab>'] = 'InsertCompletion',
+            ['<c-y>'] = 'CopySelection',
+            ['<space>'] = 'MultiselectToggleNext',
+            ['<s-space>'] = 'MultiselectTogglePrevious',
             ['<c-j>'] = 'NOP',
+            ['<ScrollWheelDown>'] = 'ScrollWheelDown',
+            ['<ScrollWheelUp>'] = 'ScrollWheelUp',
+            ['<ScrollWheelLeft>'] = 'NOP',
+            ['<ScrollWheelRight>'] = 'NOP',
+            ['<LeftMouse>'] = 'MouseClick',
+            ['<2-LeftMouse>'] = 'NOP',
         },
         -- Setting any of these to `false` will disable the mapping.
         popup = {
             ['?'] = 'HelpPopup',
             ['A'] = 'CherryPickPopup',
-            ['D'] = 'DiffPopup',
+            ['d'] = 'DiffPopup',
             ['M'] = 'RemotePopup',
             ['P'] = 'PushPopup',
             ['X'] = 'ResetPopup',
             ['Z'] = 'StashPopup',
+            ['i'] = 'IgnorePopup',
+            ['t'] = 'TagPopup',
             ['b'] = 'BranchPopup',
+            ['B'] = 'BisectPopup',
+            ['w'] = 'WorktreePopup',
             ['c'] = 'CommitPopup',
             ['f'] = 'FetchPopup',
             ['l'] = 'LogPopup',
@@ -225,28 +329,43 @@ local config = {
             ['v'] = 'RevertPopup',
         },
         status = {
+            ['j'] = 'MoveDown',
+            ['k'] = 'MoveUp',
+            ['o'] = 'OpenTree',
             ['q'] = 'Close',
             ['I'] = 'InitRepo',
             ['1'] = 'Depth1',
             ['2'] = 'Depth2',
             ['3'] = 'Depth3',
             ['4'] = 'Depth4',
+            ['Q'] = 'Command',
             ['<tab>'] = 'Toggle',
+            ['za'] = 'Toggle',
+            ['zo'] = 'OpenFold',
             ['x'] = 'Discard',
             ['s'] = 'Stage',
             ['S'] = 'StageUnstaged',
             ['<c-s>'] = 'StageAll',
             ['u'] = 'Unstage',
+            ['K'] = 'Untrack',
             ['U'] = 'UnstageStaged',
+            ['y'] = 'ShowRefs',
             ['$'] = 'CommandHistory',
             ['Y'] = 'YankSelected',
             ['<c-r>'] = 'RefreshBuffer',
-            ['<enter>'] = 'GoToFile',
+            ['<cr>'] = 'GoToFile',
+            ['<s-cr>'] = 'PeekFile',
             ['<c-v>'] = 'VSplitOpen',
             ['<c-x>'] = 'SplitOpen',
             ['<c-t>'] = 'TabOpen',
             ['{'] = 'GoToPreviousHunkHeader',
             ['}'] = 'GoToNextHunkHeader',
+            ['[c'] = 'OpenOrScrollUp',
+            [']c'] = 'OpenOrScrollDown',
+            ['<c-k>'] = 'PeekUp',
+            ['<c-j>'] = 'PeekDown',
+            ['<c-n>'] = 'NextSection',
+            ['<c-p>'] = 'PreviousSection',
         },
     },
 }
