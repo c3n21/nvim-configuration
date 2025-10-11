@@ -281,12 +281,22 @@
               with pkgs.vimPlugins;
               [
                 {
-                  plugin = codecompanion-nvim;
+                  plugin = copilot-lua;
                   config.lua = # lua
                     ''
-                      require('configs.code-companion')
+                      require('configs.copilot')
                     '';
                 }
+
+                # Currently using Avante
+                # {
+                #   plugin = codecompanion-nvim;
+                #   config.lua = # lua
+                #     ''
+                #       require('configs.code-companion')
+                #     '';
+                # }
+
                 {
                   plugin = avante-nvim;
                   config.lua = # lua
@@ -333,6 +343,16 @@
                 plugin = lazydev-nvim;
                 config.lua = # lua
                   ''
+                    vim.lsp.config('lua_ls', {
+                        settings = {
+                            Lua = {
+                                diagnostics = {
+                                    globals = { 'nixCats' },
+                                },
+                            },
+                        },
+                    })
+
                     require('configs.lazydev')
                   '';
               }
@@ -433,14 +453,6 @@
                 config.lua = # lua
                   ''
                     vim.lsp.enable('jsonls')
-                  '';
-              }
-
-              {
-                plugin = copilot-lua;
-                config.lua = # lua
-                  ''
-                    require('configs.copilot')
                   '';
               }
 
@@ -677,6 +689,7 @@
                 vim.lsp.enable('tailwindcss')
               ''
             ];
+
             astro = [
               # lua
               ''
@@ -704,6 +717,13 @@
                 vim.lsp.enable('clangd')
               ''
 
+            ];
+
+            nlua = [
+              # lua
+              ''
+                vim.lsp.enable('lua_ls')
+              ''
             ];
 
             node = [

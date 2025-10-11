@@ -1,16 +1,23 @@
-local default_sources = {
-    'avante',
-    'copilot',
-    'lsp',
-    'path',
-    'snippets',
-    'buffer',
-}
+--- @type string[]
+local default_sources
 
--- TODO: refactor to nixCats
-local lua_source = vim.list_extend({
-    'lazydev',
-}, default_sources)
+if nixCats('ai') then
+    default_sources = {
+        'avante',
+        'copilot',
+        'lsp',
+        'path',
+        'snippets',
+        'buffer',
+    }
+else
+    default_sources = {
+        'lsp',
+        'path',
+        'snippets',
+        'buffer',
+    }
+end
 
 require('blink.cmp').setup({
     fuzzy = {
@@ -162,12 +169,10 @@ require('blink.cmp').setup({
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
-        default = function(ctx)
-            if vim.bo.filetype == 'lua' then
-                return lua_source
-            end
-            return default_sources
-        end,
+        default = default_sources,
+        per_filetype = {
+            lua = { inherit_defaults = true, 'lazydev' },
+        },
         providers = {
             avante = {
                 module = 'blink-cmp-avante',
