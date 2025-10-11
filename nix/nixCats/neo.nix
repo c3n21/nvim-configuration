@@ -5,7 +5,7 @@
   settings = {
     suffix-path = true;
     suffix-LD = true;
-    wrapRc = false;
+    wrapRc = true;
     # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
     neovim-unwrapped = pkgs.neovim-unwrapped;
     autoconfigure = "suffix";
