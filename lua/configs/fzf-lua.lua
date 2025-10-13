@@ -87,9 +87,8 @@ fzf_lua.setup({
             },
         },
         on_create = function()
-            -- called once upon creation of the fzf main window
-            -- can be used to add custom fzf-lua mappings, e.g:
-            --   vim.keymap.set("t", "<C-j>", "<Down>", { silent = true, buffer = true })
+            -- copy register content in fzf prompt
+            vim.keymap.set('t', '<C-r>', [['<C-\><C-N>"'.nr2char(getchar()).'pi']], { expr = true, buffer = true })
         end,
         -- called once _after_ the fzf interface is closed
         -- on_close = function() ... end
