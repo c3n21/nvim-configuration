@@ -162,7 +162,8 @@
             ];
 
             dotnet = with pkgs; [
-              easy-dotnet-server
+              # TODO: to fix
+              # easy-dotnet-server
               netcoredbg
               custom-roslyn-command
             ];
