@@ -13,8 +13,7 @@
   # and a set of categories that you want
   # (and other information to pass to lua)
   categories = {
-    # TODO: dotnet is broken on nixpkgs
-    # dotnet = true;
+    dotnet = true;
     ai = true;
     astro = true;
     backend = true;
