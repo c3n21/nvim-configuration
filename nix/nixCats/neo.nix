@@ -29,5 +29,6 @@
     node = true;
     note = false;
     tailwindcss = true;
+    java = true;
   };
 }

@@ -157,6 +157,10 @@
           # at RUN TIME for plugins. Will be available to PATH within neovim terminal
           # this includes LSPs
           lspsAndRuntimeDeps = {
+            java = with pkgs; [
+              jdt-language-server
+            ];
+
             tailwindcss = with pkgs; [
               tailwindcss-language-server
             ];
@@ -341,6 +345,17 @@
                     require('configs.nvim-dbee')
                   '';
               }
+            ];
+
+            java = with pkgs.vimPlugins; [
+              (nvim-jdtls.overrideAttrs {
+                src = pkgs.fetchFromGitHub {
+                  owner = "mfussenegger";
+                  repo = "nvim-jdtls";
+                  rev = "380ac148f989e1291aac002dc959ecc68c5243d0";
+                  hash = "sha256-GNSxiiZmPdcU+bNSpnEnoGJ3q//bujxrRD65/V//2U8=";
+                };
+              })
             ];
 
             nlua = with pkgs.vimPlugins; [
@@ -673,6 +688,31 @@
           };
 
           optionalLuaAdditions = {
+            java = [
+              # lua
+              ''
+                vim.lsp.config("jdtls", {
+                  settings = {
+                    java = {
+                      configuration = {
+                        -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
+                        -- And search for `interface RuntimeOption`
+                        -- The `name` is NOT arbitrary, but must match one of the elements from `enum ExecutionEnvironment` in the link above
+                        runtimes = {
+                          {
+                            name = "JavaSE-17",
+                            path = "${pkgs.openjdk17.outPath}/lib/openjdk",
+                          },
+                        }
+                      }
+                    }
+                  }
+                })
+                vim.lsp.enable("jdtls")
+              ''
+
+            ];
+
             dotnet = [
               # lua
               ''
