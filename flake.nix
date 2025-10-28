@@ -211,6 +211,7 @@
             ];
 
             node = with pkgs; [
+              typescript-go
               prettierd
               # for eslint-lsp
               vscode-langservers-extracted
@@ -772,6 +773,10 @@
             ];
 
             node = [
+              # lua
+              ''
+                vim.lsp.enable('tsgo')
+              ''
               # lua
               ''
                 require('configs.nvim-dap.js')
