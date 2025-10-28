@@ -13,8 +13,8 @@ local config = {
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
         javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
         astro = { 'prettierd', 'prettier', stop_after_first = true },
-        json = { 'prettierd', 'prettier', stop_after_first = true },
-        jsonc = { 'prettierd', 'prettier', stop_after_first = true },
+        json = { 'jq', 'prettierd', 'prettier', stop_after_first = true },
+        jsonc = { 'jq', 'prettierd', 'prettier', stop_after_first = true },
         dart = { 'dart_format' },
         vue = { 'prettierd', 'prettier', stop_after_first = true },
         graphql = { 'prettierd', 'prettier', stop_after_first = true },
@@ -24,6 +24,10 @@ local config = {
         sh = { 'shfmt' },
         bash = { 'shfmt' },
         norg = {},
+        xml = {
+            'xmlstarlet',
+            stop_after_first = true,
+        },
     },
     format_on_save = {
         -- These options will be passed to conform.format()

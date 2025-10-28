@@ -161,6 +161,10 @@
               jdt-language-server
             ];
 
+            xml = with pkgs; [
+              xmlstarlet
+            ];
+
             tailwindcss = with pkgs; [
               tailwindcss-language-server
             ];
