@@ -32,8 +32,7 @@ local config = {
     format_on_save = {
         -- These options will be passed to conform.format()
         timeout_ms = 500,
-        -- disable for this reason: https://github.com/neovim/neovim/issues/26520
-        lsp_fallback = false,
+        lsp_fallback = true,
     },
     -- Set the log level. Use `:ConformInfo` to see the location of the log file.
     log_level = vim.log.levels.DEBUG,
