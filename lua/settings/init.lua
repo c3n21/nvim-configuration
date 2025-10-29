@@ -96,23 +96,6 @@ vim.opt.diffopt = vim.opt.diffopt
         'linematch:60',
     }
 
-local wslenv = os.getenv('WSLENV')
-
-if wslenv ~= nil then
-    vim.g.clipboard = {
-        name = 'wsl-clip',
-        copy = {
-            ['*'] = 'clip.exe',
-            ['+'] = 'clip.exe',
-        },
-        paste = {
-            ['+'] = 'powershell.exe Get-Clipboard',
-            ['*'] = 'powershell.exe Get-Clipboard',
-        },
-        ['cache_enabled'] = 0,
-    }
-end
-
 --vim.opt.list = true -- invisible chars
 --vim.opt.listchars = {
 --  eol = nil,
