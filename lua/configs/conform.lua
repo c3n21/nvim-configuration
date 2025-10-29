@@ -13,8 +13,8 @@ local config = {
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
         javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
         astro = { 'prettierd', 'prettier', stop_after_first = true },
-        json = { 'prettierd', 'prettier', stop_after_first = true },
-        jsonc = { 'prettierd', 'prettier', stop_after_first = true },
+        json = { 'jq', 'prettierd', 'prettier', stop_after_first = true },
+        jsonc = { 'jq', 'prettierd', 'prettier', stop_after_first = true },
         dart = { 'dart_format' },
         vue = { 'prettierd', 'prettier', stop_after_first = true },
         graphql = { 'prettierd', 'prettier', stop_after_first = true },
@@ -24,12 +24,15 @@ local config = {
         sh = { 'shfmt' },
         bash = { 'shfmt' },
         norg = {},
+        xml = {
+            'xmlstarlet',
+            stop_after_first = true,
+        },
     },
     format_on_save = {
         -- These options will be passed to conform.format()
         timeout_ms = 500,
-        -- disable for this reason: https://github.com/neovim/neovim/issues/26520
-        lsp_fallback = false,
+        lsp_fallback = true,
     },
     -- Set the log level. Use `:ConformInfo` to see the location of the log file.
     log_level = vim.log.levels.DEBUG,
