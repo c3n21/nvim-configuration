@@ -118,7 +118,7 @@
           ...
         }@packageDef:
         let
-          pluginsPkgs = inputs.nixpkgs-master.legacyPackages.${pkgs.system};
+          pluginsPkgs = inputs.nixpkgs-master.legacyPackages.${pkgs.stdenv.hostPlatform.system};
           overridden-roslyn-ls = (
             pluginsPkgs.roslyn-ls
 
