@@ -723,7 +723,8 @@
               # lua
               ''
                 require('configs.nvim-dap.csharp')
-                vim.lsp.enable('roslyn')
+                require('configs.roslyn-nvim')
+                vim.lsp.enable('roslyn_ls')
               ''
             ];
 
