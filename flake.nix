@@ -129,12 +129,12 @@
             #   # useAppHost = false;
             # })
           );
-          custom-roslyn-command = (
-            pkgs.runCommand "roslyn" { } ''
-              mkdir -p $out/bin
-              ln -s ${overridden-roslyn-ls}/bin/Microsoft.CodeAnalysis.LanguageServer $out/bin/roslyn
-            ''
-          );
+          # custom-roslyn-command = (
+          #   pkgs.runCommand "roslyn" { } ''
+          #     mkdir -p $out/bin
+          #     ln -s ${overridden-roslyn-ls}/bin/Microsoft.CodeAnalysis.LanguageServer $out/bin/roslyn
+          #   ''
+          # );
           sonarlint-ls = (
             pkgs.sonarlint-ls.overrideAttrs (oldAttrs: {
               installPhase = ''
@@ -173,7 +173,8 @@
               # TODO: to fix
               # easy-dotnet-server
               netcoredbg
-              custom-roslyn-command
+              # custom-roslyn-command
+              roslyn-ls
             ];
 
             solidity = with pkgs; [
