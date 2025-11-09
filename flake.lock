@@ -258,6 +258,22 @@
         "type": "github"
       }
     },
+    "plugins-rest-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1759832524,
+        "narHash": "sha256-BeHFGi8QPNJZwDbW7mI7hrakQGfIolnOiYYxcr2jNLU=",
+        "owner": "rest-nvim",
+        "repo": "rest.nvim",
+        "rev": "5466d1e447fc4b038ef511a7a2c4c7cbb13da01a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rest-nvim",
+        "repo": "rest.nvim",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "neovim-nightly-overlay": "neovim-nightly-overlay",
@@ -266,7 +282,8 @@
         "nixpkgs-master": "nixpkgs-master",
         "plugins-jq-playground-nvim": "plugins-jq-playground-nvim",
         "plugins-mcphub-nvim": "plugins-mcphub-nvim",
-        "plugins-neorg-interim-ls": "plugins-neorg-interim-ls"
+        "plugins-neorg-interim-ls": "plugins-neorg-interim-ls",
+        "plugins-rest-nvim": "plugins-rest-nvim"
       }
     },
     "systems": {
