@@ -25,6 +25,10 @@
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     plugins-neorg-interim-ls.url = "github:benlubas/neorg-interim-ls";
+    plugins-rest-nvim = {
+      url = "github:rest-nvim/rest.nvim";
+      flake = false;
+    };
     plugins-jq-playground-nvim = {
       url = "github:yochem/jq-playground.nvim";
       flake = false;
@@ -129,12 +133,12 @@
             #   # useAppHost = false;
             # })
           );
-          custom-roslyn-command = (
-            pkgs.runCommand "roslyn" { } ''
-              mkdir -p $out/bin
-              ln -s ${overridden-roslyn-ls}/bin/Microsoft.CodeAnalysis.LanguageServer $out/bin/roslyn
-            ''
-          );
+          # custom-roslyn-command = (
+          #   pkgs.runCommand "roslyn" { } ''
+          #     mkdir -p $out/bin
+          #     ln -s ${overridden-roslyn-ls}/bin/Microsoft.CodeAnalysis.LanguageServer $out/bin/roslyn
+          #   ''
+          # );
           sonarlint-ls = (
             pkgs.sonarlint-ls.overrideAttrs (oldAttrs: {
               installPhase = ''
@@ -173,7 +177,8 @@
               # TODO: to fix
               # easy-dotnet-server
               netcoredbg
-              custom-roslyn-command
+              # custom-roslyn-command
+              roslyn-ls
             ];
 
             solidity = with pkgs; [
@@ -333,24 +338,41 @@
               jq-playground-nvim
             ];
 
-            backend = with pkgs.vimPlugins; [
-              {
-                plugin = (
-                  pluginsPkgs.vimPlugins.nvim-dbee.overrideAttrs {
-                    src = pkgs.fetchFromGitHub {
-                      owner = "c3n21";
-                      repo = "nvim-dbee";
-                      rev = "1420cfc85ee1b8c73664249a741692d851bffe7f";
-                      hash = "sha256-Vbw/+YJq0l/0tHWCN6K2V9J0byh7jGvScPdSPDDE7O0=";
-                    };
-                  }
-                );
-                config.lua = # lua
-                  ''
-                    require('configs.nvim-dbee')
-                  '';
-              }
-            ];
+            backend =
+
+              # needed for rest.nvim
+              (with pkgs.vimPlugins; [
+                nvim-treesitter-parsers.http
+              ])
+
+              ++ [
+                {
+                  plugin = pluginsPkgs.vimPlugins.rest-nvim;
+                  config.lua = # lua
+                    ''
+                      require('configs.rest-nvim')
+                    '';
+                }
+
+              ]
+              ++ [
+                {
+                  plugin = (
+                    pluginsPkgs.vimPlugins.nvim-dbee.overrideAttrs {
+                      src = pkgs.fetchFromGitHub {
+                        owner = "c3n21";
+                        repo = "nvim-dbee";
+                        rev = "1420cfc85ee1b8c73664249a741692d851bffe7f";
+                        hash = "sha256-Vbw/+YJq0l/0tHWCN6K2V9J0byh7jGvScPdSPDDE7O0=";
+                      };
+                    }
+                  );
+                  config.lua = # lua
+                    ''
+                      require('configs.nvim-dbee')
+                    '';
+                }
+              ];
 
             java = with pkgs.vimPlugins; [
               (nvim-jdtls.overrideAttrs {
@@ -689,7 +711,11 @@
           };
           # populates $LUA_PATH and $LUA_CPATH
           extraLuaPackages = {
-            test = [ (_: [ ]) ];
+            # backend = [
+            #   (lp: [
+            #     lp.rest-nvim
+            #   ])
+            # ];
           };
 
           optionalLuaAdditions = {
@@ -722,7 +748,8 @@
               # lua
               ''
                 require('configs.nvim-dap.csharp')
-                vim.lsp.enable('roslyn')
+                require('configs.roslyn-nvim')
+                vim.lsp.enable('roslyn_ls')
               ''
             ];
 
