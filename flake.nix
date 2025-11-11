@@ -25,10 +25,6 @@
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     plugins-neorg-interim-ls.url = "github:benlubas/neorg-interim-ls";
-    plugins-rest-nvim = {
-      url = "github:rest-nvim/rest.nvim";
-      flake = false;
-    };
     plugins-jq-playground-nvim = {
       url = "github:yochem/jq-playground.nvim";
       flake = false;
