@@ -126,13 +126,21 @@
           #     ln -s ${overridden-roslyn-ls}/bin/Microsoft.CodeAnalysis.LanguageServer $out/bin/roslyn
           #   ''
           # );
+          # TODO: remove once PR gets merged
           sonarlint-ls = (
             pkgs.sonarlint-ls.overrideAttrs (oldAttrs: {
               installPhase = ''
-                ${oldAttrs.installPhase}
+                runHook preInstall
+
+                mkdir -p $out/{bin,share/plugins}
+                install -Dm644 target/sonarlint-language-server-*.jar $out/share/sonarlint-ls.jar
+                install -Dm644 target/plugins/* $out/share/plugins
 
                 makeWrapper ${oldAttrs.mvnJdk.outPath}/bin/java $out/bin/sonarlint-ls \
-                  --add-flags "-jar $out/share/sonarlint-ls.jar"
+                  --add-flags "-jar $out/share/sonarlint-ls.jar" \
+                  --add-flags "-analyzers $(find $out/share/plugins/ -type f -name '*.jar' | sort | tr '\n' ' ')"
+
+                runHook postInstall
               '';
             })
           );
@@ -188,7 +196,9 @@
             general = with pkgs; [
               inotify-tools
               typos-lsp
-              #TODO: I want to put it under a subcategory
+              # TODO: for sonarlint
+              nodejs-slim_24
+              # TODO: I want to put it under a subcategory
               sonarlint-ls
               # for jsonls
               vscode-langservers-extracted
