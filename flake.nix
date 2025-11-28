@@ -455,12 +455,20 @@
                 }
 
                 {
-                  plugin = neogit;
+                  plugin = fugit2-nvim;
                   config.lua = # lua
                     ''
-                      require('configs.neogit')
+                      require('configs.fugit2')
                     '';
                 }
+
+                # {
+                #   plugin = neogit;
+                #   config.lua = # lua
+                #     ''
+                #       require('configs.neogit')
+                #     '';
+                # }
 
                 vim-fugitive
                 diffview-nvim

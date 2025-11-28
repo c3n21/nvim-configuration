@@ -50,6 +50,8 @@ local mappings_enum = {
     ['LeaderDefinition'] = '<leader>gd',
     ['LeaderTypeDefinition'] = '<leader>gD',
     ['Hover'] = 'K',
+    -- [ Git UI inside NeoVim, not the TUI client
+    ['GitUI'] = '<leader>ng',
 }
 
 vim.keymap.set({ 'x' }, '<M-K>', ':m-2 <CR>gv=gv', map_opts)

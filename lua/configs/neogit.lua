@@ -1,5 +1,3 @@
-vim.keymap.set({ 'n' }, '<leader>ng', ':Neogit <CR>', { noremap = true, silent = true })
-
 ---@type NeogitConfig
 local config = {
     -- Hides the hints at the top of the status buffer
@@ -371,3 +369,5 @@ local config = {
 }
 
 require('neogit').setup(config)
+
+vim.keymap.set({ 'n' }, require('mappings')['GitUI'], ':Neogit <CR>', { noremap = true, silent = true })
