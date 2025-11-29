@@ -1,3 +1,4 @@
+-- not sourced for now
 local actions = require('diffview.actions')
 
 require('diffview').setup({

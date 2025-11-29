@@ -13,31 +13,11 @@
   # and a set of categories that you want
   # (and other information to pass to lua)
   categories = {
-    ai = true;
-    astro = true;
-    backend = true;
-    clang = true;
-    dap = true;
-    dotnet = true;
-    fzf-lua = true;
-    general = true;
-    # gitPlugins = true;
+    filemanager.oil = true;
     gitPlugins = {
       client.fugit2 = true;
       gutter.gitsigns = true;
       misc = true;
     };
-    filemanager = {
-      oil = true;
-    };
-    go = true;
-    java = true;
-    json = true;
-    nix = true;
-    nlua = true;
-    node = true;
-    note = false;
-    tailwindcss = true;
-    xml = true;
   };
 }
