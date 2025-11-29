@@ -119,16 +119,7 @@
         }@packageDef:
         let
           pluginsPkgs = inputs.nixpkgs-master.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-          overridden-roslyn-ls = (
-            pluginsPkgs.roslyn-ls
-
-            # pluginsPkgs.roslyn-ls.overrideAttrs (oldAttrs: {
-            #   dotnet-runtime = pluginsPkgs.dotnetCorePackages.sdk_9_0;
-            #   dotnet-sdk = pluginsPkgs.dotnetCorePackages.sdk_9_0;
-            #   # useDotnetFromEnv = false; # needed to make it run with different .NET host environment
-            #   # useAppHost = false;
-            # })
-          );
+          vimPlugins = pluginsPkgs.vimPlugins;
           # custom-roslyn-command = (
           #   pkgs.runCommand "roslyn" { } ''
           #     mkdir -p $out/bin
@@ -441,38 +432,56 @@
               nvim-treesitter-parsers.typescript
             ];
 
-            gitPlugins =
-              with pkgs.neovimPlugins;
-              [
-              ]
-              ++ (with pkgs.vimPlugins; [
-                {
-                  plugin = gitsigns-nvim;
-                  config.lua = # lua
-                    ''
-                      require('configs.gitsigns')
-                    '';
-                }
+            gitPlugins = {
+              gutter = {
+                gitsigns = [
+                  {
+                    plugin = vimPlugins.gitsigns-nvim;
+                    config.lua = # lua
+                      ''
+                        require('configs.gitsigns')
+                      '';
+                  }
+                ];
+              };
 
-                {
-                  plugin = fugit2-nvim;
-                  config.lua = # lua
-                    ''
-                      require('configs.fugit2')
-                    '';
-                }
+              client = {
+                neogit = [
+                  {
+                    plugin = pkgs.vimPlugins.neogit;
+                    config.lua = # lua
+                      ''
+                        require('configs.neogit')
+                      '';
+                  }
+                ];
 
-                # {
-                #   plugin = neogit;
-                #   config.lua = # lua
-                #     ''
-                #       require('configs.neogit')
-                #     '';
-                # }
+                fugit2 = (
+                  with vimPlugins;
+                  [
+                    {
+                      plugin = fugit2-nvim.overrideAttrs {
+                        runtimeDeps = [ pluginsPkgs.libgit2 ];
+                        dependencies = [
+                          nui-nvim
+                          nvim-web-devicons
+                          plenary-nvim
+                        ];
+                      };
+                      config.lua = # lua
+                        ''
+                          require('configs.fugit2')
+                        '';
+                    }
+                  ]
+                );
+              };
 
+              misc = with vimPlugins; [
                 vim-fugitive
                 diffview-nvim
-              ]);
+              ];
+            };
 
             fzf-lua = with pkgs.vimPlugins; [
               {
@@ -483,6 +492,18 @@
                   '';
               }
             ];
+
+            filemanager = {
+              oil = [
+                {
+                  plugin = vimPlugins.oil-nvim;
+                  config.lua = # lua
+                    ''
+                      require('configs.oil')
+                    '';
+                }
+              ];
+            };
 
             general = with pkgs.vimPlugins; [
 
@@ -520,14 +541,6 @@
                 config.lua = # lua
                   ''
                     require('configs.vim-illuminate')
-                  '';
-              }
-
-              {
-                plugin = oil-nvim;
-                config.lua = # lua
-                  ''
-                    require('configs.oil')
                   '';
               }
 
@@ -838,6 +851,7 @@
       # see :help nixCats.flake.outputs.packageDefinitions
       packageDefinitions = {
         neo = import ./nix/nixCats/neo.nix;
+        fugit2 = import ./nix/nixCats/fugit2.nix;
       };
       # In this section, the main thing you will need to do is change the default package name
       # to the name of the packageDefinitions entry you wish to use as the default.
