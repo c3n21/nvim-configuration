@@ -18,12 +18,7 @@ local sonarlint = {
         ['typescript:S106'] = { level = 'on' },
         ['typescript:S107'] = { level = 'on', parameters = { maximumFunctionParameters = 7 } },
     },
-    clientNodePath = clientNodePath,
 }
-
--- TODO: configure this inside nixCats
-local sonarlint_path = vim.fn.exepath('sonarlint-ls')
-local analizers_base_path = vim.fs.joinpath(vim.fn.fnamemodify(sonarlint_path, ':h:h'), 'share/plugins/*')
 
 require('sonarlint').setup({
     server = {
@@ -32,21 +27,21 @@ require('sonarlint').setup({
         },
         capabilities = capabilities,
         cmd = {
-            sonarlint_path,
+            'sonarlint-ls',
             '-stdio',
-            '-analyzers',
-            unpack(vim.fn.glob(analizers_base_path, true, true)),
         },
         settings = {
             sonarlint = sonarlint,
         },
     },
     filetypes = {
-        -- Tested and working
+        'cs',
         'python',
         'cpp',
         'typescriptreact',
         'typescript',
+        'javascript',
+
         -- Requires nvim-jdtls, otherwise an error message will be printed
         'java',
     },
