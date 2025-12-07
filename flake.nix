@@ -21,9 +21,8 @@
   description = "A Lua-natic's neovim flake, with extra cats! nixCats!";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/master";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
-    nixpkgs-master.url = "github:nixos/nixpkgs/master";
     plugins-neorg-interim-ls.url = "github:benlubas/neorg-interim-ls";
     plugins-jq-playground-nvim = {
       url = "github:yochem/jq-playground.nvim";
@@ -118,8 +117,7 @@
           ...
         }@packageDef:
         let
-          pluginsPkgs = inputs.nixpkgs-master.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-          vimPlugins = pluginsPkgs.vimPlugins;
+          vimPlugins = pkgs.vimPlugins;
           # custom-roslyn-command = (
           #   pkgs.runCommand "roslyn" { } ''
           #     mkdir -p $out/bin
@@ -138,19 +136,19 @@
           # at RUN TIME for plugins. Will be available to PATH within neovim terminal
           # this includes LSPs
           lspsAndRuntimeDeps = {
-            java = with pluginsPkgs; [
+            java = with pkgs; [
               jdt-language-server
             ];
 
-            xml = with pluginsPkgs; [
+            xml = with pkgs; [
               xmlstarlet
             ];
 
-            tailwindcss = with pluginsPkgs; [
+            tailwindcss = with pkgs; [
               tailwindcss-language-server
             ];
 
-            dotnet = with pluginsPkgs; [
+            dotnet = with pkgs; [
               # TODO: to fix
               # easy-dotnet-server
               netcoredbg
@@ -158,24 +156,24 @@
               roslyn-ls
             ];
 
-            solidity = with pluginsPkgs; [
+            solidity = with pkgs; [
               solc
             ];
 
-            astro = with pluginsPkgs; [
+            astro = with pkgs; [
               astro-language-server
             ];
 
-            json = with pluginsPkgs; [
+            json = with pkgs; [
               # TODO put it as runtimeDep for jq-playground
               jq
             ];
 
-            clang = with pluginsPkgs; [
+            clang = with pkgs; [
               clang-tools
             ];
 
-            general = with pluginsPkgs; [
+            general = with pkgs; [
               inotify-tools
               typos-lsp
               # TODO: for sonarlint
@@ -187,18 +185,18 @@
               yaml-language-server
             ];
 
-            go = with pluginsPkgs; [
+            go = with pkgs; [
               gopls
               go
               delve
             ];
 
-            nix = with pluginsPkgs; [
+            nix = with pkgs; [
               nixd
               nixfmt-rfc-style
             ];
 
-            node = with pluginsPkgs; [
+            node = with pkgs; [
               typescript-go
               prettierd
               # for eslint-lsp
@@ -206,7 +204,7 @@
               vscode-js-debug
             ];
 
-            nlua = with pluginsPkgs; [
+            nlua = with pkgs; [
               lua-language-server
               stylua
               selene
@@ -217,7 +215,7 @@
           startupPlugins = {
 
             # TODO: lazy load
-            dap = with pluginsPkgs.vimPlugins; [
+            dap = with pkgs.vimPlugins; [
               {
                 plugin = nvim-dap;
                 config.lua = # lua
@@ -228,7 +226,7 @@
 
             ];
 
-            go = with pluginsPkgs.vimPlugins; [
+            go = with pkgs.vimPlugins; [
               {
                 plugin = nvim-dap-go;
                 config.lua = # lua
@@ -246,7 +244,7 @@
 
             ];
 
-            dotnet = with pluginsPkgs.vimPlugins; [
+            dotnet = with pkgs.vimPlugins; [
               {
                 plugin = roslyn-nvim.overrideAttrs (oldAttrs: {
                   src = pkgs.fetchFromGitHub {
@@ -276,7 +274,7 @@
             ];
 
             ai =
-              with pluginsPkgs.vimPlugins;
+              with pkgs.vimPlugins;
               [
                 {
                   plugin = copilot-lua;
@@ -296,7 +294,15 @@
                 # }
 
                 {
-                  plugin = avante-nvim;
+                  plugin = avante-nvim.overrideAttrs {
+
+                    dependencies = with vimPlugins; [
+                      img-clip-nvim
+                      nui-nvim
+                      nvim-treesitter
+                      plenary-nvim
+                    ];
+                  };
                   config.lua = # lua
                     ''
                       require('configs.avante')
@@ -320,13 +326,13 @@
             backend =
 
               # needed for rest.nvim
-              (with pluginsPkgs.vimPlugins; [
+              (with pkgs.vimPlugins; [
                 nvim-treesitter-parsers.http
               ])
 
               ++ [
                 {
-                  plugin = pluginsPkgs.vimPlugins.rest-nvim;
+                  plugin = pkgs.vimPlugins.rest-nvim;
                   config.lua = # lua
                     ''
                       require('configs.rest-nvim')
@@ -337,7 +343,7 @@
               ++ [
                 {
                   plugin = (
-                    pluginsPkgs.vimPlugins.nvim-dbee.overrideAttrs {
+                    pkgs.vimPlugins.nvim-dbee.overrideAttrs {
                       src = pkgs.fetchFromGitHub {
                         owner = "c3n21";
                         repo = "nvim-dbee";
@@ -353,7 +359,7 @@
                 }
               ];
 
-            java = with pluginsPkgs.vimPlugins; [
+            java = with pkgs.vimPlugins; [
               (nvim-jdtls.overrideAttrs {
                 src = pkgs.fetchFromGitHub {
                   owner = "mfussenegger";
@@ -364,7 +370,7 @@
               })
             ];
 
-            nlua = with pluginsPkgs.vimPlugins; [
+            nlua = with pkgs.vimPlugins; [
               {
                 plugin = lazydev-nvim;
                 config.lua = # lua
@@ -385,12 +391,12 @@
               nvim-treesitter-parsers.lua
             ];
 
-            solidity = with pluginsPkgs.vimPlugins; [
+            solidity = with pkgs.vimPlugins; [
               solidity
             ];
 
             note =
-              with pluginsPkgs.vimPlugins;
+              with pkgs.vimPlugins;
               [
 
                 {
@@ -401,18 +407,18 @@
                     '';
                 }
               ]
-              ++ (with pluginsPkgs.neovimPlugins; [
+              ++ (with pkgs.neovimPlugins; [
                 neorg-interim-ls
               ]);
 
-            astro = with pluginsPkgs.vimPlugins; [
+            astro = with pkgs.vimPlugins; [
               nvim-treesitter-parsers.astro
             ];
 
-            node = with pluginsPkgs.vimPlugins; [
+            node = with pkgs.vimPlugins; [
               {
 
-                plugin = pluginsPkgs.vimPlugins.nvim-vtsls;
+                plugin = pkgs.vimPlugins.nvim-vtsls;
 
                 config.lua = # lua
                   ''
@@ -453,7 +459,7 @@
                   [
                     {
                       plugin = fugit2-nvim.overrideAttrs {
-                        runtimeDeps = [ pluginsPkgs.libgit2 ];
+                        runtimeDeps = [ pkgs.libgit2 ];
                         dependencies = [
                           nui-nvim
                           nvim-web-devicons
@@ -475,7 +481,7 @@
               ];
             };
 
-            fzf-lua = with pluginsPkgs.vimPlugins; [
+            fzf-lua = with pkgs.vimPlugins; [
               {
                 plugin = fzf-lua;
                 config.lua = # lua
@@ -497,7 +503,7 @@
               ];
             };
 
-            general = with pluginsPkgs.vimPlugins; [
+            general = with pkgs.vimPlugins; [
 
               {
                 plugin = otter-nvim;
@@ -557,7 +563,7 @@
                   '';
               }
               {
-                plugin = pluginsPkgs.vimPlugins.sonarlint-nvim;
+                plugin = pkgs.vimPlugins.sonarlint-nvim;
                 config.lua = # lua
                   ''
                     require('configs.sonarlint-nvim')
@@ -677,14 +683,14 @@
           # not loaded automatically at startup.
           # use with packadd and an autocommand in config to achieve lazy loading
           optionalPlugins = {
-            gitPlugins = with pluginsPkgs.neovimPlugins; [ ];
-            general = with pluginsPkgs.vimPlugins; [ ];
+            gitPlugins = with pkgs.neovimPlugins; [ ];
+            general = with pkgs.vimPlugins; [ ];
           };
 
           # shared libraries to be added to LD_LIBRARY_PATH
           # variable available to nvim runtime
           sharedLibraries = {
-            general = with pluginsPkgs; [
+            general = with pkgs; [
               # libgit2
             ];
           };

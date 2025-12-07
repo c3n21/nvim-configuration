@@ -158,34 +158,18 @@
         "url": "https://github.com/NixOS/nixpkgs/archive/eb9ceca17df2ea50a250b6b27f7bf6ab0186f198.tar.gz"
       }
     },
-    "nixpkgs-master": {
+    "nixpkgs_2": {
       "locked": {
-        "lastModified": 1764672323,
-        "narHash": "sha256-YVsUj2LmMK/sAs1v18N1n9zJNhOkqwOZTgU8lFgmJa8=",
+        "lastModified": 1765109763,
+        "narHash": "sha256-MHKIna6CwTVRMDxm844XkDz+EL8QzJY52LIceNyrYW4=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "b4526f6f1cd839e97ef0bf767cea08cef1baec76",
+        "rev": "e7325040f51552c16efd3dce7463aaf0922e4754",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
         "ref": "master",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_2": {
-      "locked": {
-        "lastModified": 1764611609,
-        "narHash": "sha256-yU9BNcP0oadUKupw0UKmO9BKDOVIg9NStdJosEbXf8U=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "8c29968b3a942f2903f90797f9623737c215737c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -263,7 +247,6 @@
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs_2",
-        "nixpkgs-master": "nixpkgs-master",
         "plugins-jq-playground-nvim": "plugins-jq-playground-nvim",
         "plugins-mcphub-nvim": "plugins-mcphub-nvim",
         "plugins-neorg-interim-ls": "plugins-neorg-interim-ls"
