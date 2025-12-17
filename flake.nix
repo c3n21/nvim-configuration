@@ -118,12 +118,6 @@
         }@packageDef:
         let
           vimPlugins = pkgs.vimPlugins;
-          # custom-roslyn-command = (
-          #   pkgs.runCommand "roslyn" { } ''
-          #     mkdir -p $out/bin
-          #     ln -s ${overridden-roslyn-ls}/bin/Microsoft.CodeAnalysis.LanguageServer $out/bin/roslyn
-          #   ''
-          # );
         in
         {
           # to define and use a new category, simply add a new list to a set here,
@@ -360,14 +354,7 @@
               ];
 
             java = with pkgs.vimPlugins; [
-              (nvim-jdtls.overrideAttrs {
-                src = pkgs.fetchFromGitHub {
-                  owner = "mfussenegger";
-                  repo = "nvim-jdtls";
-                  rev = "380ac148f989e1291aac002dc959ecc68c5243d0";
-                  hash = "sha256-GNSxiiZmPdcU+bNSpnEnoGJ3q//bujxrRD65/V//2U8=";
-                };
-              })
+              nvim-jdtls
             ];
 
             nlua = with pkgs.vimPlugins; [
