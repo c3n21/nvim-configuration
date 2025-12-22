@@ -245,7 +245,7 @@
                     owner = "seblyng";
                     repo = "roslyn.nvim";
                     rev = "4deb46ce892c279d3183661342c93aa2ec9716c6";
-                    hash = "sha256-tGkEL9lOelLkB1VPVUAWPeRNiMntYRr0DN9iWrN1Csc=";
+                    hash = "sha256-HyFCP8dyQ8Ak/kheO7uykuhxbI2tL2lAIb7aXVq+vJY=";
                   };
                 });
               }
