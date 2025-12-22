@@ -576,7 +576,9 @@
               }
 
               {
-                plugin = nvim-lspconfig;
+                plugin = nvim-lspconfig.overrideAttrs {
+                  rev = "d20d83b3f24f5884da73a9fc92fdc47e778b8d0d";
+                };
                 config.lua = # lua
                   ''
                     require('configs.nvim-lspconfig')
