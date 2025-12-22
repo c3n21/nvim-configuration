@@ -244,7 +244,7 @@
                   src = pkgs.fetchFromGitHub {
                     owner = "seblyng";
                     repo = "roslyn.nvim";
-                    rev = "3b5b6c687ecaeccbac7652673385511a3deba7bb";
+                    rev = "4deb46ce892c279d3183661342c93aa2ec9716c6";
                     hash = "sha256-tGkEL9lOelLkB1VPVUAWPeRNiMntYRr0DN9iWrN1Csc=";
                   };
                 });
@@ -336,16 +336,7 @@
               ]
               ++ [
                 {
-                  plugin = (
-                    pkgs.vimPlugins.nvim-dbee.overrideAttrs {
-                      src = pkgs.fetchFromGitHub {
-                        owner = "c3n21";
-                        repo = "nvim-dbee";
-                        rev = "1420cfc85ee1b8c73664249a741692d851bffe7f";
-                        hash = "sha256-Vbw/+YJq0l/0tHWCN6K2V9J0byh7jGvScPdSPDDE7O0=";
-                      };
-                    }
-                  );
+                  plugin = pkgs.vimPlugins.nvim-dbee;
                   config.lua = # lua
                     ''
                       require('configs.nvim-dbee')
@@ -751,7 +742,8 @@
               ''
                 require('configs.nvim-dap.csharp')
                 require('configs.roslyn-nvim')
-                vim.lsp.enable('roslyn_ls')
+                -- roslyn-nvim plugin handles lsp start
+                -- vim.lsp.enable('roslyn_ls')
               ''
             ];
 
