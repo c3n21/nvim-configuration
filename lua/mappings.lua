@@ -7,7 +7,7 @@ local map_opts = { noremap = true, silent = true }
 ---@param rhs string|function
 ---@param opts? vim.keymap.set.Opts
 local function set(mode, lhs, rhs, opts)
-    vim.keymap.set(mode, lhs, rhs, vim.tbl_extend('keep', opts, map_opts))
+    vim.keymap.set(mode, lhs, rhs, vim.tbl_extend('keep', opts or {}, map_opts))
 end
 
 ---@enum GlobalMappings
@@ -17,14 +17,6 @@ local mappings_enum = {
     ['COpen'] = '<M-q>',
     ['CPrev'] = '[q',
     ['CodeActions'] = 'gra',
-    ['DiagnosticErrorNext'] = '<leader>]e',
-    ['DiagnosticErrorPrev'] = '<leader>[e',
-    ['DiagnosticInfoNext'] = '<leader>]i',
-    ['DiagnosticInfoPrev'] = '<leader>[i',
-    ['DiagnosticNext'] = '<leader>]d',
-    ['DiagnosticPrev'] = '<leader>[d',
-    ['DiagnosticWarningNext'] = '<leader>]w',
-    ['DiagnosticWarningPrev'] = '<leader>[w',
     ['DocumentSymbol'] = 'gO',
     ['WorkspaceSymbol'] = '<leader>wgO',
     ['FindFiles'] = '<leader>ff',
@@ -41,8 +33,6 @@ local mappings_enum = {
     ['LPrev'] = '[l',
     ['LspReferences'] = 'grr',
     ['Ls'] = '<leader>ls',
-    ['OpenDiagnosticLoclist'] = '<leader>l',
-    ['OpenFloatDiagnostic'] = '<leader><leader>d',
     ['Rename'] = 'grn',
     ['SignatureHelp'] = 'H',
     ['SourceInit'] = '<leader><leader>i',
@@ -130,35 +120,51 @@ end
 --     end,
 -- })
 
-vim.keymap.set('n', mappings_enum['DiagnosticPrev'], vim.diagnostic.goto_prev, {
-    desc = 'Go to previous diagnostic',
-})
-vim.keymap.set('n', mappings_enum['DiagnosticNext'], vim.diagnostic.goto_next, {
-    desc = 'Go to next diagnostic',
-})
-vim.keymap.set({ 'n' }, mappings_enum['OpenFloatDiagnostic'], vim.diagnostic.open_float, map_opts, {
-    desc = 'Open float diagnostic',
-})
-set({ 'n' }, mappings_enum['DiagnosticInfoPrev'], function()
-    vim.diagnostic.goto_prev({ wrap = false, severity = { max = vim.diagnostic.severity.INFO } })
-end, {
-    desc = 'Go to previous info diagnostic',
-})
-set({ 'n' }, mappings_enum['DiagnosticInfoNext'], function()
-    vim.diagnostic.goto_next({ wrap = false, severity = { max = vim.diagnostic.severity.INFO } })
-end, map_opts)
-set({ 'n' }, mappings_enum['DiagnosticWarningPrev'], function()
-    vim.diagnostic.goto_prev({ wrap = false, severity = vim.diagnostic.severity.WARN })
-end, map_opts)
-set({ 'n' }, mappings_enum['DiagnosticWarningNext'], function()
-    vim.diagnostic.goto_next({ wrap = false, severity = vim.diagnostic.severity.WARN })
-end, map_opts)
-set({ 'n' }, mappings_enum['DiagnosticErrorPrev'], function()
-    vim.diagnostic.goto_prev({ wrap = false, severity = vim.diagnostic.severity.ERROR })
-end, map_opts)
-set({ 'n' }, mappings_enum['DiagnosticErrorNext'], function()
-    vim.diagnostic.goto_next({ wrap = false, severity = vim.diagnostic.severity.ERROR })
-end, map_opts)
-set({ 'n' }, mappings_enum['OpenDiagnosticLoclist'], vim.diagnostic.setloclist, map_opts)
+do
+    local mode = 'n'
+    local prev = -1
+    local next = 1
+
+    ---@enum DiagnosticMappings
+    local diagnostic_mappings = {
+        [vim.diagnostic.severity.INFO] = {
+            [-1] = '<leader>[d',
+            [1] = '<leader>]d',
+        },
+        [vim.diagnostic.severity.WARN] = {
+            [-1] = '<leader>[w',
+            [1] = '<leader>]w',
+        },
+        [vim.diagnostic.severity.ERROR] = {
+            [-1] = '<leader>[e',
+            [1] = '<leader>]e',
+        },
+    }
+
+    local function setDiagnostics(lhs, jumpOpts)
+        set(mode, lhs, function()
+            vim.diagnostic.jump(jumpOpts)
+        end)
+    end
+
+    for severity, mappings in pairs(diagnostic_mappings) do
+        local prevJumpOpts = {
+            count = prev,
+            float = true,
+            wrap = false,
+            severity = severity,
+        }
+
+        local nextJumpOpts = {
+            count = next,
+            float = true,
+            wrap = false,
+            severity = severity,
+        }
+
+        setDiagnostics(mappings[prev], prevJumpOpts)
+        setDiagnostics(mappings[next], nextJumpOpts)
+    end
+end
 
 return mappings_enum
