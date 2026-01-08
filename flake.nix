@@ -187,7 +187,7 @@
 
             nix = with pkgs; [
               nixd
-              nixfmt-rfc-style
+              nixfmt
             ];
 
             node = with pkgs; [
