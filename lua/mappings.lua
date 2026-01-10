@@ -68,58 +68,7 @@ for _, breakpoint in ipairs({ ',', '.', '[', ']', '!', '?' }) do
     vim.keymap.set({ 'i' }, breakpoint, breakpoint .. '<c-g>u', map_opts)
 end
 
--- Use LspAttach autocommand to only map the following keys
--- after the language server attaches to the current buffer
--- vim.api.nvim_create_autocmd('LspAttach', {
---     group = vim.api.nvim_create_augroup('UserLspConfig', {}),
---     callback = function(ev)
---         -- Enable completion triggered by <c-x><c-o>
---         vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
-
---         -- Buffer local mappings.
---         -- See `:help vim.lsp.*` for documentation on any of the below functions
---         local opts = { buffer = ev.buf }
---         -- vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
---         -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
---         -- vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
---         -- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
---         -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
---         -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
---         -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
---         -- vim.keymap.set('n', '<space>wl', function()
---         --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
---         -- end, opts)
---         -- vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
---         -- vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
---         -- vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
---         -- vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-
---         local builtin = require('telescope.builtin')
-
---         -- vim.keymap.set({ 'n' }, 'gr', builtin.lsp_references, map_opts)
---         vim.keymap.set({ 'n' }, '<leader>ldd', builtin.diagnostics, opts)
---         --TODO: use these again
---         --[[ vim.keymap.set({ 'n' }, '<leader>ld', builtin.lsp_document_symbols, opts) ]]
---         --[[ vim.keymap.set({ 'n' }, '<leader>lw', builtin.lsp_workspace_symbols, opts) ]]
-
---         -- LSP
---         vim.keymap.set({ 'n' }, 'gD', builtin.lsp_type_definitions, opts)
---         -- Check hover plugin
---         vim.keymap.set({ 'n' }, 'K', vim.lsp.buf.hover, opts)
---         vim.keymap.set({ 'n' }, 'gi', builtin.lsp_implementations, opts)
---         vim.keymap.set({ 'n' }, 'gd', vim.lsp.buf.declaration, opts)
---         vim.keymap.set(
---             { 'n' },
---             mappings_enum['GoToDefinitionTab'],
---             '<cmd>tab split | lua vim.lsp.buf.definition()<CR> ',
---             opts
---         )
---         --[[ vim.keymap.set({ 'n' }, '<leader>rn', vim.lsp.buf.rename, opts) ]]
---         vim.keymap.set({ 'n' }, '<leader>lw', vim.lsp.buf.workspace_symbol, opts)
---         vim.keymap.set({ 'n' }, '<leader>ld', vim.lsp.buf.document_symbol, opts)
---     end,
--- })
-
+--- Set diagnostic keymap
 do
     local mode = 'n'
     local prev = -1
