@@ -12,10 +12,6 @@ end
 
 ---@enum GlobalMappings
 local mappings_enum = {
-    ['CClose'] = '<leader>qq',
-    ['CNext'] = ']q',
-    ['COpen'] = '<M-q>',
-    ['CPrev'] = '[q',
     ['CodeActions'] = 'gra',
     ['DocumentSymbol'] = 'gO',
     ['WorkspaceSymbol'] = '<leader>wgO',
@@ -27,10 +23,6 @@ local mappings_enum = {
     ['Grep'] = '<leader>gg',
     ['LiveGrep'] = '<leader>gl',
     ['Implementation'] = 'gri',
-    ['LClose'] = '<leader>lq',
-    ['LNext'] = ']l',
-    ['LOpen'] = '<M-l>',
-    ['LPrev'] = '[l',
     ['LspReferences'] = 'grr',
     ['Ls'] = '<leader>ls',
     ['Rename'] = 'grn',
@@ -49,19 +41,6 @@ vim.keymap.set({ 'n' }, '<M-K>', ':<C-u>m-2<CR>==', map_opts)
 vim.keymap.set({ 'n' }, '<M-J>', ':<C-u>m-2<CR>==', map_opts)
 vim.keymap.set({ 'x' }, '<M-J>', ":m'>+<CR>gv=gv", map_opts)
 vim.keymap.set({ 'n' }, '<M-J>', ':<C-u>m+<CR>==', map_opts)
-vim.keymap.set({ 'n' }, mappings_enum['LClose'], ':lclose<CR>', map_opts)
-vim.keymap.set({ 'n' }, mappings_enum['LNext'], ':lnext<CR>', map_opts)
-vim.keymap.set({ 'n' }, mappings_enum['LPrev'], ':lprev<CR>', map_opts)
-vim.keymap.set({ 'n' }, mappings_enum['CClose'], ':cclose<CR>', map_opts)
-vim.keymap.set({ 'n' }, mappings_enum['CNext'], ':cnext <CR>', map_opts)
-vim.keymap.set({ 'n' }, mappings_enum['CPrev'], ':cprevious <CR>', map_opts)
--- vim.keymap.set({ 'n' }, mappings_enum['SourceInit'], ':luafile ' .. os.getenv('MYVIMRC') .. '<CR>', map_opts)
-set({ 'n' }, mappings_enum['COpen'], ':copen<CR>', {
-    desc = 'Open quickfix list',
-})
-set({ 'n' }, mappings_enum['LOpen'], ':lopen<CR>', {
-    desc = 'Open location list',
-})
 vim.keymap.set({ 't' }, '<ESC><ESC>', '<C-\\><C-n>', map_opts)
 
 for _, breakpoint in ipairs({ ',', '.', '[', ']', '!', '?' }) do
