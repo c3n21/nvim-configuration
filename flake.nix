@@ -118,6 +118,8 @@
         }@packageDef:
         let
           vimPlugins = pkgs.vimPlugins;
+
+          vscode-java-test = pkgs.vscode-extensions.vscjava.vscode-java-test;
         in
         {
           # to define and use a new category, simply add a new list to a set here,
@@ -131,7 +133,20 @@
           # this includes LSPs
           lspsAndRuntimeDeps = {
             java = with pkgs; [
-              jdt-language-server
+              # Pinning this version as is the latest working with vscode-java-test 0.43.1
+              (jdt-language-server.overrideAttrs {
+                version = "1.51.0";
+                src = pkgs.fetchurl {
+                  url = "https://www.eclipse.org/downloads/download.php?file=/jdtls/milestones/1.51.0/jdt-language-server-1.51.0-202510022025.tar.gz";
+                  hash = "sha256-ilk3IReIG/W9wCIPIlRHKEa4gTfAWPNEsAp9QUJ3RaE=";
+
+                };
+              }
+
+              )
+              vscode-java-test
+              javaPackages.compiler.openjdk21
+              gradle
             ];
 
             xml = with pkgs; [
@@ -718,6 +733,9 @@
               # lua
               ''
                 vim.lsp.config("jdtls", {
+                  init_options = {
+                    bundles = vim.fn.glob("${vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server/*.jar", true, true),
+                  },
                   settings = {
                     java = {
                       configuration = {
@@ -730,7 +748,18 @@
                             path = "${pkgs.openjdk17.outPath}/lib/openjdk",
                           },
                         }
-                      }
+                      },
+                      import = {
+                        gradle = {
+                          enabled = false,
+                          offline = {
+                            enabled = true,
+                          },
+                          wrapper = {
+                            enabled = false,  -- 🔴 this is the key
+                          },
+                        },
+                      },
                     }
                   }
                 })
