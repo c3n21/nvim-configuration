@@ -509,7 +509,7 @@
 
               nvim-treesitter.withAllGrammars
 
-              sleuth
+              vim-sleuth
 
               {
                 plugin = SchemaStore-nvim;
