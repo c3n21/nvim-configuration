@@ -509,7 +509,7 @@
 
               nvim-treesitter.withAllGrammars
 
-              sleuth
+              vim-sleuth
 
               {
                 plugin = SchemaStore-nvim;
@@ -900,7 +900,7 @@
             name = defaultPackageName;
             packages = [ defaultPackage ];
             inputsFrom = [ ];
-            shellHook = '''';
+            shellHook = "";
           };
         };
 
