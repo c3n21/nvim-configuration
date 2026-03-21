@@ -625,7 +625,17 @@
                   '';
               }
 
-              nvim-ts-context-commentstring
+              (nvim-ts-context-commentstring.overrideAttrs {
+                src = pkgs.fetchFromGitHub {
+                  owner = "faergeek";
+                  repo = "nvim-ts-context-commentstring";
+                  rev = "0e8937ba5a50120309eb63ea6b60387112d52115";
+                  hash = "sha256-W213Sr6o7AV0NlsoI00MShkwINn1CP0hhQGZ7ootvPE=";
+                };
+
+              }
+
+              )
 
               {
                 plugin = nvim-web-devicons;
