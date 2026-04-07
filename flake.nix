@@ -627,10 +627,10 @@
 
               (nvim-ts-context-commentstring.overrideAttrs {
                 src = pkgs.fetchFromGitHub {
-                  owner = "faergeek";
+                  owner = "joosepalviste";
                   repo = "nvim-ts-context-commentstring";
-                  rev = "0e8937ba5a50120309eb63ea6b60387112d52115";
-                  hash = "sha256-W213Sr6o7AV0NlsoI00MShkwINn1CP0hhQGZ7ootvPE=";
+                  rev = "6141a40173c6efa98242dc951ed4b6f892c97027";
+                  hash = "sha256-UsfhWgOJ+SpqyA8D6Pckq5w1n+qVjK51K0rXYQvjqMw=";
                 };
 
               }
