@@ -606,13 +606,6 @@
                   '';
               }
 
-              {
-                plugin = nvim-treesitter;
-                config.lua = # lua
-                  ''
-                    require('configs.nvim-treesitter')
-                  '';
-              }
               nvim-treesitter-textobjects
 
               {

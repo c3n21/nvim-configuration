@@ -83,3 +83,23 @@ require('vim._core.ui2').enable({
         },
     },
 })
+
+-- Treesitter
+vim.g.query_lint_on = { 'InsertLeave', 'TextChanged' }
+
+vim.api.nvim_create_autocmd('FileType', {
+    callback = function(args)
+        local buf = args.buf
+        local ft = vim.bo[buf].filetype
+
+        if ft == '' then
+            return
+        end
+        vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+        vim.wo[0][0].foldmethod = 'expr'
+        -- The assumption is that vim.treesitter.start already disables the default
+        -- syntax engine. In case this is going to be changed decomment the following line:
+        -- vim.o.syntax = 'off'
+        pcall(vim.treesitter.start, buf)
+    end,
+})
