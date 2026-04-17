@@ -36,7 +36,7 @@
     nix = true;
     nlua = true;
     node = true;
-    note = false;
+    note = true;
     tailwindcss = true;
     xml = true;
   };
