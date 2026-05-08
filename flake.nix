@@ -132,6 +132,11 @@
           # at RUN TIME for plugins. Will be available to PATH within neovim terminal
           # this includes LSPs
           lspsAndRuntimeDeps = {
+            python = with pkgs; [
+              ruff
+              basedpyright
+            ];
+
             java = with pkgs; [
               # Pinning this version as is the latest working with vscode-java-test 0.43.1
               (jdt-language-server.overrideAttrs {
@@ -816,6 +821,13 @@
               # lua
               ''
                 vim.lsp.enable('lua_ls')
+              ''
+            ];
+
+            python = [
+              # lua
+              ''
+                vim.lsp.enable('basedpyright')
               ''
             ];
 

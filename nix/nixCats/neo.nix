@@ -37,6 +37,7 @@
     nlua = true;
     node = true;
     note = true;
+    python = true;
     tailwindcss = true;
     xml = true;
   };
