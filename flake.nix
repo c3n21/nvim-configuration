@@ -542,7 +542,10 @@
 
               {
                 plugin = dropbar-nvim;
-                # config.lua = builtins.readFile ./nixCats;
+                config.lua = # lua
+                  ''
+                    -- require('configs.dropbar')
+                  '';
               }
 
               {
