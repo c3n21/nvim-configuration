@@ -504,6 +504,14 @@
             general = with pkgs.vimPlugins; [
 
               {
+                plugin = nvim-treesitter-context;
+                config.lua = # lua
+                  ''
+                    require('configs.nvim-treesitter-context')
+                  '';
+              }
+
+              {
                 plugin = otter-nvim;
                 config.lua = # lua
                   ''
@@ -540,13 +548,13 @@
                   '';
               }
 
-              {
-                plugin = dropbar-nvim;
-                config.lua = # lua
-                  ''
-                    -- require('configs.dropbar')
-                  '';
-              }
+              # {
+              #   plugin = dropbar-nvim;
+              #   config.lua = # lua
+              #     ''
+              #       -- require('configs.dropbar')
+              #     '';
+              # }
 
               {
                 plugin = lualine-nvim;
