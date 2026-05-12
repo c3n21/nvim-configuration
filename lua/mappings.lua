@@ -17,6 +17,7 @@ local mappings_enum = {
     ['WorkspaceSymbol'] = '<leader>wgO',
     ['FindFiles'] = '<leader>ff',
     ['FindGitFiles'] = '<leader>gf',
+    ['GitStatus'] = '<leader>gs',
     ['Format'] = '==',
     ['FuzzyFinder'] = '<M-/>',
     ['GoToDefinitionTab'] = '<C-w><C-]>',

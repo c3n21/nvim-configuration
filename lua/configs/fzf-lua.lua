@@ -115,6 +115,15 @@ vim.keymap.set(
 
 vim.keymap.set(
     { 'n' },
+    mappings_enum['GitStatus'],
+    fzf_lua.git_status,
+    make_opts({
+        desc = 'Find files',
+    })
+)
+
+vim.keymap.set(
+    { 'n' },
     mappings_enum['DocumentSymbol'],
     fzf_lua.lsp_document_symbols,
     make_opts({
