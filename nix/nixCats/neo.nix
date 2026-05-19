@@ -40,5 +40,6 @@
     python = true;
     tailwindcss = true;
     xml = true;
+    yaml = true;
   };
 }

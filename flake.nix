@@ -183,6 +183,11 @@
               jq
             ];
 
+            yaml = with pkgs; [
+              yaml-language-server
+              yamlfmt
+            ];
+
             clang = with pkgs; [
               clang-tools
             ];
@@ -789,6 +794,13 @@
               # lua
               ''
                 vim.lsp.enable('solc')
+              ''
+            ];
+
+            yaml = [
+              # lua
+              ''
+                vim.lsp.enable('yamlls')
               ''
             ];
 
