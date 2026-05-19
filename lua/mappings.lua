@@ -14,6 +14,9 @@ end
 local mappings_enum = {
     ['CodeActions'] = 'gra',
     ['DocumentSymbol'] = 'gO',
+    ['DiffViewToggle'] = '<leader>dvv',
+    ['DiffViewFileHistoryToggle'] = '<leader>dvh',
+    ['DiffViewCurrentFileHistoryToggle'] = '<leader>dvf',
     ['WorkspaceSymbol'] = '<leader>wgO',
     ['FindFiles'] = '<leader>ff',
     ['FindGitFiles'] = '<leader>gf',

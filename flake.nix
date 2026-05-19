@@ -480,7 +480,13 @@
 
               misc = with vimPlugins; [
                 vim-fugitive
-                diffview-nvim
+                {
+                  plugin = diffview-nvim;
+                  config.lua = # lua
+                    ''
+                      require('configs.diffview')
+                    '';
+                }
               ];
             };
 
