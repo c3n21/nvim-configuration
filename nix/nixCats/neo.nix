@@ -30,7 +30,8 @@
     filemanager = {
       oil = true;
     };
-    go = true;
+    # TODO: disabling for temporary build errors
+    go = false;
     java = true;
     json = true;
     nix = true;
