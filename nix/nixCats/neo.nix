@@ -13,7 +13,7 @@
   # and a set of categories that you want
   # (and other information to pass to lua)
   categories = {
-    ai = true;
+    ai = false;
     astro = true;
     backend = true;
     clang = true;
