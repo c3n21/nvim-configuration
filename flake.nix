@@ -643,8 +643,6 @@
                   '';
               }
 
-              nvim-ts-context-commentstring
-
               {
                 plugin = nvim-web-devicons;
                 config.lua = # lua
@@ -658,14 +656,6 @@
                 config.lua = # lua
                   ''
                     require('configs.nvim-autopairs')
-                  '';
-              }
-
-              {
-                plugin = comment-nvim;
-                config.lua = # lua
-                  ''
-                    require('configs.comment')
                   '';
               }
 
