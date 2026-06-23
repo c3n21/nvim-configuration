@@ -32,6 +32,7 @@
     };
     # TODO: disabling for temporary build errors
     go = false;
+    haskell = true;
     java = true;
     json = true;
     nix = true;

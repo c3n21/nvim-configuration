@@ -210,6 +210,15 @@
               delve
             ];
 
+            haskell = with pkgs; [
+              (haskell-language-server.override {
+                supportedGhcVersions = [
+                  "912"
+                ];
+              })
+
+            ];
+
             nix = with pkgs; [
               nixd
               nixfmt
@@ -737,6 +746,14 @@
           };
 
           optionalLuaAdditions = {
+
+            haskell = [
+              # lua
+              ''
+                vim.lsp.enable("hls")
+              ''
+            ];
+
             java = [
               # lua
               ''
@@ -852,9 +869,9 @@
 
             node = [
               # lua
-              ''
-                vim.lsp.enable('tsgo')
-              ''
+              # ''
+              #   vim.lsp.enable('tsgo')
+              # ''
               # lua
               ''
                 require('configs.nvim-dap.js')
