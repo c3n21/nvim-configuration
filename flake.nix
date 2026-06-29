@@ -137,6 +137,10 @@
               basedpyright
             ];
 
+            note = with pkgs; [
+              imagemagick
+              luajitPackages.magick
+            ];
             java = with pkgs; [
               # Pinning this version as is the latest working with vscode-java-test 0.43.1
               (jdt-language-server.overrideAttrs {
@@ -410,12 +414,25 @@
             note =
               with pkgs.vimPlugins;
               [
-
                 {
                   plugin = neorg;
                   config.lua = # lua
                     ''
                       require('configs.neorg')
+                    '';
+                }
+                {
+                  plugin = markview-nvim;
+                  config.lua = # lua
+                    ''
+                      -- require('configs.neorg')
+                    '';
+                }
+                {
+                  plugin = image-nvim;
+                  config.lua = # lua
+                    ''
+                      require('configs.image')
                     '';
                 }
               ]
