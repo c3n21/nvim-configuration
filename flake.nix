@@ -34,8 +34,16 @@
       flake = false;
     };
 
+    # Enable only when need to pin neovim commit hash
+    # neovim-src = {
+    #   url = "github:neovim/neovim/35cbf4fbddc5b095bc21fe23fd62f091355e40b0";
+    #   flake = false;
+    # };
+
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
+      # Decomment only if neovim-src input is enabled
+      # inputs.neovim-src.follows = "neovim-src";
     };
 
     # see :help nixCats.flake.inputs
@@ -518,7 +526,13 @@
 
             fzf-lua = with pkgs.vimPlugins; [
               {
-                plugin = fzf-lua;
+                plugin = fzf-lua.overrideAttrs ({
+
+                  src = pkgs.fetchzip {
+                    url = "https://github.com/ibhagwan/fzf-lua/archive/39da6060d53659acf3ec118200bc48721b29b8fd.zip";
+                    sha256 = "sha256-UrbBoteXY8QrXGaG3JqUj86+8Bwph0FbBNOnXdrDwGc=";
+                  };
+                });
                 config.lua = # lua
                   ''
                     require('configs.fzf-lua')
@@ -947,7 +961,7 @@
         # this will make a package out of each of the packageDefinitions defined above
         # and set the default package to the one passed in here.
         packages = (utils.mkAllWithDefault defaultPackage) // {
-          neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${system}.neovim;
+          # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${system}.neovim;
         };
 
         # choose your package for devShell
