@@ -21,8 +21,10 @@ vim.schedule(function()
 end)
 
 fzf_lua.setup({
-    'default',
-    'hide',
+    {
+        'default',
+        'hide',
+    },
     winopts = {
         -- split = "belowright new",-- open in a split instead?
         -- "belowright new"  : split below
