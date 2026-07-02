@@ -25,6 +25,9 @@ fzf_lua.setup({
         'default',
         'hide',
     },
+    defaults = {
+        formatter = 'path.filename_first',
+    },
     winopts = {
         -- split = "belowright new",-- open in a split instead?
         -- "belowright new"  : split below
