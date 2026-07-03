@@ -103,3 +103,16 @@ vim.api.nvim_create_autocmd('FileType', {
         pcall(vim.treesitter.start, buf)
     end,
 })
+
+vim.api.nvim_create_user_command('Terminal', function(opts)
+    vim.cmd({
+        cmd = 'terminal',
+        args = opts.fargs,
+    })
+
+    vim.wo.number = true
+    vim.wo.relativenumber = true
+end, {
+    nargs = '*',
+    complete = 'shellcmd',
+})
