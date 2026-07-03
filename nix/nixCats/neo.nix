@@ -13,7 +13,7 @@
   # and a set of categories that you want
   # (and other information to pass to lua)
   categories = {
-    ai = true;
+    ai = false;
     astro = true;
     backend = true;
     clang = true;
@@ -30,14 +30,18 @@
     filemanager = {
       oil = true;
     };
-    go = true;
+    # TODO: disabling for temporary build errors
+    go = false;
+    haskell = true;
     java = true;
     json = true;
     nix = true;
     nlua = true;
     node = true;
-    note = false;
+    note = true;
+    python = true;
     tailwindcss = true;
     xml = true;
+    yaml = true;
   };
 }

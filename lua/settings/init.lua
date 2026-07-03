@@ -127,6 +127,7 @@ vim.opt.fileencoding = 'utf-8'
 vim.opt.wrap = true
 
 vim.termguicolors = true
+vim.o.termguicolors = true
 
 vim.opt.showmatch = true
 vim.opt.mouse = 'v'

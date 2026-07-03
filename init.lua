@@ -28,7 +28,7 @@ vim.lsp.config('*', {
 
             vim.api.nvim_create_autocmd('LspDetach', {
                 group = vim.api.nvim_create_augroup('lsp-detach', { clear = true }),
-                callback = function(event2)
+                callback = function()
                     vim.lsp.buf.clear_references()
                     vim.api.nvim_clear_autocmds({ group = 'lsp-highlight', buffer = bufnr })
                 end,
@@ -44,7 +44,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     desc = 'Highlight when yanking (copying) text',
     group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
     callback = function()
-        vim.hl.on_yank()
+        vim.hl.hl_op()
     end,
 })
 
@@ -57,4 +57,62 @@ vim.api.nvim_create_autocmd('InsertEnter', {
     callback = function()
         vim.lsp.inlay_hint.enable(false)
     end,
+})
+
+-- UI2
+require('vim._core.ui2').enable({
+    enable = true, -- Whether to enable or disable the UI.
+    msg = { -- Options related to the message module.
+        ---@type 'cmd'|'msg' Default message target, either in the
+        ---cmdline or in a separate ephemeral message window.
+        ---@type string|table<string, 'cmd'|'msg'|'pager'> Default message target
+        ---or table mapping |ui-messages| kinds and triggers to a target.
+        targets = 'cmd',
+        cmd = { -- Options related to messages in the cmdline window.
+            height = 0.5, -- Maximum height while expanded for messages beyond 'cmdheight'.
+        },
+        dialog = { -- Options related to dialog window.
+            height = 0.5, -- Maximum height.
+        },
+        msg = { -- Options related to msg window.
+            height = 0.5, -- Maximum height.
+            timeout = 4000, -- Time a message is visible in the message window.
+        },
+        pager = { -- Options related to message window.
+            height = 1, -- Maximum height.
+        },
+    },
+})
+
+-- Treesitter
+vim.g.query_lint_on = { 'InsertLeave', 'TextChanged' }
+
+vim.api.nvim_create_autocmd('FileType', {
+    callback = function(args)
+        local buf = args.buf
+        local ft = vim.bo[buf].filetype
+
+        if ft == '' then
+            return
+        end
+        vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+        vim.wo[0][0].foldmethod = 'expr'
+        -- The assumption is that vim.treesitter.start already disables the default
+        -- syntax engine. In case this is going to be changed decomment the following line:
+        -- vim.o.syntax = 'off'
+        pcall(vim.treesitter.start, buf)
+    end,
+})
+
+vim.api.nvim_create_user_command('Terminal', function(opts)
+    vim.cmd({
+        cmd = 'terminal',
+        args = opts.fargs,
+    })
+
+    vim.wo.number = true
+    vim.wo.relativenumber = true
+end, {
+    nargs = '*',
+    complete = 'shellcmd',
 })

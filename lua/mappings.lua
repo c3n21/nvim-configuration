@@ -14,9 +14,13 @@ end
 local mappings_enum = {
     ['CodeActions'] = 'gra',
     ['DocumentSymbol'] = 'gO',
+    ['DiffViewToggle'] = '<leader>dvv',
+    ['DiffViewFileHistoryToggle'] = '<leader>dvh',
+    ['DiffViewCurrentFileHistoryToggle'] = '<leader>dvf',
     ['WorkspaceSymbol'] = '<leader>wgO',
     ['FindFiles'] = '<leader>ff',
     ['FindGitFiles'] = '<leader>gf',
+    ['GitStatus'] = '<leader>gs',
     ['Format'] = '==',
     ['FuzzyFinder'] = '<M-/>',
     ['GoToDefinitionTab'] = '<C-w><C-]>',
@@ -43,6 +47,8 @@ vim.keymap.set({ 'x' }, '<M-J>', ":m'>+<CR>gv=gv", map_opts)
 vim.keymap.set({ 'n' }, '<M-J>', ':<C-u>m+<CR>==', map_opts)
 vim.keymap.set({ 't' }, '<ESC><ESC>', '<C-\\><C-n>', map_opts)
 
+vim.keymap.set({ 'n' }, '<leader>bd', ':bd <CR>', map_opts)
+
 for _, breakpoint in ipairs({ ',', '.', '[', ']', '!', '?' }) do
     vim.keymap.set({ 'i' }, breakpoint, breakpoint .. '<c-g>u', map_opts)
 end
@@ -55,9 +61,14 @@ do
 
     ---@enum DiagnosticMappings
     local diagnostic_mappings = {
+        [vim.diagnostic.severity.HINT] = {
+            [-1] = '<leader>[h',
+            [1] = '<leader>]h',
+        },
+
         [vim.diagnostic.severity.INFO] = {
-            [-1] = '<leader>[d',
-            [1] = '<leader>]d',
+            [-1] = '<leader>[i',
+            [1] = '<leader>]i',
         },
         [vim.diagnostic.severity.WARN] = {
             [-1] = '<leader>[w',

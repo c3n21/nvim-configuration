@@ -1,7 +1,9 @@
 -- not sourced for now
 local actions = require('diffview.actions')
+local mappings = require('mappings')
 
-require('diffview').setup({
+local diffview = require('diffview')
+diffview.setup({
     diff_binaries = false, -- Show diffs for binaries
     enhanced_diff_hl = false, -- See ':h diffview-config-enhanced_diff_hl'
     git_cmd = { 'git' }, -- The git executable followed by default args.
@@ -136,3 +138,38 @@ require('diffview').setup({
         },
     },
 })
+
+local lib = require('diffview.lib')
+
+vim.keymap.set({ 'n' }, mappings['DiffViewToggle'], function()
+    local view = lib.get_current_view()
+
+    if view then
+        view:close()
+        return
+    end
+
+    vim.cmd('DiffviewOpen')
+end)
+
+vim.keymap.set({ 'n' }, mappings['DiffViewFileHistoryToggle'], function()
+    local view = lib.get_current_view()
+
+    if view then
+        view:close()
+        return
+    end
+
+    vim.cmd('DiffviewFileHistory')
+end)
+
+vim.keymap.set({ 'n' }, mappings['DiffViewCurrentFileHistoryToggle'], function()
+    local view = lib.get_current_view()
+
+    if view then
+        view:close()
+        return
+    end
+
+    vim.cmd('DiffviewFileHistory %')
+end)

@@ -34,8 +34,16 @@
       flake = false;
     };
 
+    # Enable only when need to pin neovim commit hash
+    # neovim-src = {
+    #   url = "github:neovim/neovim/35cbf4fbddc5b095bc21fe23fd62f091355e40b0";
+    #   flake = false;
+    # };
+
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
+      # Decomment only if neovim-src input is enabled
+      # inputs.neovim-src.follows = "neovim-src";
     };
 
     # see :help nixCats.flake.inputs
@@ -68,7 +76,7 @@
       # will not apply to module imports
       # as that will have your system values
       extra_pkg_config = {
-        # allowUnfree = true;
+        allowUnfree = true;
       };
       # management of the system variable is one of the harder parts of using flakes.
 
@@ -132,6 +140,15 @@
           # at RUN TIME for plugins. Will be available to PATH within neovim terminal
           # this includes LSPs
           lspsAndRuntimeDeps = {
+            python = with pkgs; [
+              ruff
+              basedpyright
+            ];
+
+            note = with pkgs; [
+              imagemagick
+              luajitPackages.magick
+            ];
             java = with pkgs; [
               # Pinning this version as is the latest working with vscode-java-test 0.43.1
               (jdt-language-server.overrideAttrs {
@@ -178,6 +195,11 @@
               jq
             ];
 
+            yaml = with pkgs; [
+              yaml-language-server
+              yamlfmt
+            ];
+
             clang = with pkgs; [
               clang-tools
             ];
@@ -198,6 +220,15 @@
               gopls
               go
               delve
+            ];
+
+            haskell = with pkgs; [
+              (haskell-language-server.override {
+                supportedGhcVersions = [
+                  "912"
+                ];
+              })
+
             ];
 
             nix = with pkgs; [
@@ -391,12 +422,25 @@
             note =
               with pkgs.vimPlugins;
               [
-
                 {
                   plugin = neorg;
                   config.lua = # lua
                     ''
                       require('configs.neorg')
+                    '';
+                }
+                {
+                  plugin = markview-nvim;
+                  config.lua = # lua
+                    ''
+                      -- require('configs.neorg')
+                    '';
+                }
+                {
+                  plugin = image-nvim;
+                  config.lua = # lua
+                    ''
+                      require('configs.image')
                     '';
                 }
               ]
@@ -470,13 +514,26 @@
 
               misc = with vimPlugins; [
                 vim-fugitive
-                diffview-nvim
+                {
+                  plugin = diffview-nvim;
+                  config.lua = # lua
+                    ''
+                      require('configs.diffview')
+                    '';
+                }
               ];
             };
 
             fzf-lua = with pkgs.vimPlugins; [
               {
-                plugin = fzf-lua;
+                plugin = fzf-lua.overrideAttrs {
+
+                  src = pkgs.fetchzip {
+                    url = "https://github.com/ibhagwan/fzf-lua/archive/39da6060d53659acf3ec118200bc48721b29b8fd.zip";
+                    sha256 = "sha256-UrbBoteXY8QrXGaG3JqUj86+8Bwph0FbBNOnXdrDwGc=";
+                  };
+                };
+                # plugin = fzf-lua;
                 config.lua = # lua
                   ''
                     require('configs.fzf-lua')
@@ -497,6 +554,14 @@
             };
 
             general = with pkgs.vimPlugins; [
+
+              {
+                plugin = nvim-treesitter-context;
+                config.lua = # lua
+                  ''
+                    require('configs.nvim-treesitter-context')
+                  '';
+              }
 
               {
                 plugin = otter-nvim;
@@ -535,10 +600,13 @@
                   '';
               }
 
-              {
-                plugin = dropbar-nvim;
-                # config.lua = builtins.readFile ./nixCats;
-              }
+              # {
+              #   plugin = dropbar-nvim;
+              #   config.lua = # lua
+              #     ''
+              #       -- require('configs.dropbar')
+              #     '';
+              # }
 
               {
                 plugin = lualine-nvim;
@@ -591,9 +659,7 @@
               }
 
               {
-                plugin = nvim-lspconfig.overrideAttrs {
-                  rev = "d20d83b3f24f5884da73a9fc92fdc47e778b8d0d";
-                };
+                plugin = nvim-lspconfig;
                 config.lua = # lua
                   ''
                     require('configs.nvim-lspconfig')
@@ -608,13 +674,6 @@
                   '';
               }
 
-              {
-                plugin = nvim-treesitter;
-                config.lua = # lua
-                  ''
-                    require('configs.nvim-treesitter')
-                  '';
-              }
               nvim-treesitter-textobjects
 
               {
@@ -624,8 +683,6 @@
                     require('configs.nvim-ts-autotag')
                   '';
               }
-
-              nvim-ts-context-commentstring
 
               {
                 plugin = nvim-web-devicons;
@@ -640,14 +697,6 @@
                 config.lua = # lua
                   ''
                     require('configs.nvim-autopairs')
-                  '';
-              }
-
-              {
-                plugin = comment-nvim;
-                config.lua = # lua
-                  ''
-                    require('configs.comment')
                   '';
               }
 
@@ -729,6 +778,14 @@
           };
 
           optionalLuaAdditions = {
+
+            haskell = [
+              # lua
+              ''
+                vim.lsp.enable("hls")
+              ''
+            ];
+
             java = [
               # lua
               ''
@@ -785,6 +842,13 @@
               ''
             ];
 
+            yaml = [
+              # lua
+              ''
+                vim.lsp.enable('yamlls')
+              ''
+            ];
+
             tailwindcss = [
               # lua
               ''
@@ -828,11 +892,18 @@
               ''
             ];
 
-            node = [
+            python = [
               # lua
               ''
-                vim.lsp.enable('tsgo')
+                vim.lsp.enable('basedpyright')
               ''
+            ];
+
+            node = [
+              # lua
+              # ''
+              #   vim.lsp.enable('tsgo')
+              # ''
               # lua
               ''
                 require('configs.nvim-dap.js')
@@ -891,7 +962,7 @@
         # this will make a package out of each of the packageDefinitions defined above
         # and set the default package to the one passed in here.
         packages = (utils.mkAllWithDefault defaultPackage) // {
-          neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${system}.neovim;
+          # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${system}.neovim;
         };
 
         # choose your package for devShell

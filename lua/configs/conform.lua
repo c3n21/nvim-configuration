@@ -24,16 +24,19 @@ local config = {
         sh = { 'shfmt' },
         bash = { 'shfmt' },
         norg = {},
+        yaml = { 'yamlfmt' },
         xml = {
             'xmlstarlet',
             stop_after_first = true,
         },
     },
-    format_on_save = {
+    default_format_opts = {
         -- These options will be passed to conform.format()
+        async = true,
         timeout_ms = 500,
-        lsp_fallback = true,
+        lsp_format = 'never',
     },
+    format_on_save = {},
     -- Set the log level. Use `:ConformInfo` to see the location of the log file.
     log_level = vim.log.levels.DEBUG,
     -- Conform will notify you when a formatter errors
@@ -71,9 +74,7 @@ local conform = require('conform')
 conform.setup(config)
 vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 vim.keymap.set({ 'n' }, '<leader>gq', function()
-    conform.format({
-        async = true,
-    })
+    conform.format()
 end, {
     desc = 'Format file',
 })

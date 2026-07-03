@@ -21,8 +21,13 @@ vim.schedule(function()
 end)
 
 fzf_lua.setup({
-    'default',
-    'hide',
+    {
+        'default',
+        'hide',
+    },
+    defaults = {
+        formatter = 'path.filename_first',
+    },
     winopts = {
         -- split = "belowright new",-- open in a split instead?
         -- "belowright new"  : split below
@@ -108,6 +113,15 @@ vim.keymap.set(
     { 'n' },
     mappings_enum['FindFiles'],
     fzf_lua.files,
+    make_opts({
+        desc = 'Find files',
+    })
+)
+
+vim.keymap.set(
+    { 'n' },
+    mappings_enum['GitStatus'],
+    fzf_lua.git_status,
     make_opts({
         desc = 'Find files',
     })
