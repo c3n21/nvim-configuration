@@ -47,6 +47,8 @@ vim.keymap.set({ 'x' }, '<M-J>', ":m'>+<CR>gv=gv", map_opts)
 vim.keymap.set({ 'n' }, '<M-J>', ':<C-u>m+<CR>==', map_opts)
 vim.keymap.set({ 't' }, '<ESC><ESC>', '<C-\\><C-n>', map_opts)
 
+vim.keymap.set({ 'n' }, '<leader>bd', ':bd <CR>', map_opts)
+
 for _, breakpoint in ipairs({ ',', '.', '[', ']', '!', '?' }) do
     vim.keymap.set({ 'i' }, breakpoint, breakpoint .. '<c-g>u', map_opts)
 end
