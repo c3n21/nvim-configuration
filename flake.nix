@@ -526,13 +526,14 @@
 
             fzf-lua = with pkgs.vimPlugins; [
               {
-                plugin = fzf-lua.overrideAttrs ({
+                plugin = fzf-lua.overrideAttrs {
 
                   src = pkgs.fetchzip {
                     url = "https://github.com/ibhagwan/fzf-lua/archive/39da6060d53659acf3ec118200bc48721b29b8fd.zip";
                     sha256 = "sha256-UrbBoteXY8QrXGaG3JqUj86+8Bwph0FbBNOnXdrDwGc=";
                   };
-                });
+                };
+                # plugin = fzf-lua;
                 config.lua = # lua
                   ''
                     require('configs.fzf-lua')
