@@ -61,9 +61,14 @@ do
 
     ---@enum DiagnosticMappings
     local diagnostic_mappings = {
+        [vim.diagnostic.severity.HINT] = {
+            [-1] = '<leader>[h',
+            [1] = '<leader>]h',
+        },
+
         [vim.diagnostic.severity.INFO] = {
-            [-1] = '<leader>[d',
-            [1] = '<leader>]d',
+            [-1] = '<leader>[i',
+            [1] = '<leader>]i',
         },
         [vim.diagnostic.severity.WARN] = {
             [-1] = '<leader>[w',
