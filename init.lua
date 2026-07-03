@@ -28,7 +28,7 @@ vim.lsp.config('*', {
 
             vim.api.nvim_create_autocmd('LspDetach', {
                 group = vim.api.nvim_create_augroup('lsp-detach', { clear = true }),
-                callback = function(event2)
+                callback = function()
                     vim.lsp.buf.clear_references()
                     vim.api.nvim_clear_autocmds({ group = 'lsp-highlight', buffer = bufnr })
                 end,
@@ -44,7 +44,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     desc = 'Highlight when yanking (copying) text',
     group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
     callback = function()
-        vim.hl.on_yank()
+        vim.hl.hl_op()
     end,
 })
 
