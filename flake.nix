@@ -931,7 +931,7 @@
       packageDefinitions = {
         neo = import ./nix/nixCats/neo.nix;
         fugit2 = import ./nix/nixCats/fugit2.nix;
-        neorg = import ./nix/nixCats/neorg.nix;
+        note = import ./nix/nixCats/note.nix;
       };
       # In this section, the main thing you will need to do is change the default package name
       # to the name of the packageDefinitions entry you wish to use as the default.
