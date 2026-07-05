@@ -955,31 +955,8 @@
         # The one used to build neovim is resolved inside the builder
         # and is passed to our categoryDefinitions and packageDefinitions
         pkgs = import nixpkgs { inherit system; };
-      in
-      {
-        # these outputs will be wrapped with ${system} by utils.eachSystem
+        neovim-nightly = inputs.neovim-nightly-overlay.packages.${system}.neovim;
 
-        # this will make a package out of each of the packageDefinitions defined above
-        # and set the default package to the one passed in here.
-        packages = (utils.mkAllWithDefault defaultPackage) // {
-          # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${system}.neovim;
-        };
-
-        # choose your package for devShell
-        # and add whatever else you want in it.
-        devShells = {
-          default = pkgs.mkShell {
-            name = defaultPackageName;
-            packages = [ defaultPackage ];
-            inputsFrom = [ ];
-            shellHook = "";
-          };
-        };
-
-      }
-    )
-    // (
-      let
         # we also export a nixos module to allow reconfiguration from configuration.nix
         nixosModule = utils.mkNixosModules {
           moduleNamespace = [ defaultPackageName ];
@@ -1006,16 +983,44 @@
             nixpkgs
             ;
         };
+
+        nixCatsOverlays = utils.makeOverlays luaPath {
+          inherit nixpkgs dependencyOverlays extra_pkg_config;
+        } categoryDefinitions packageDefinitions defaultPackageName;
+
+        overlays = nixCatsOverlays // {
+          neovim-nightly = final: prev: {
+            inherit neovim-nightly;
+          };
+        };
+
       in
       {
+        # these outputs will be wrapped with ${system} by utils.eachSystem
+
+        # this will make a package out of each of the packageDefinitions defined above
+        # and set the default package to the one passed in here.
+        packages = (utils.mkAllWithDefault defaultPackage) // {
+          inherit neovim-nightly;
+        };
+
+        # choose your package for devShell
+        # and add whatever else you want in it.
+        devShells = {
+          default = pkgs.mkShell {
+            name = defaultPackageName;
+            packages = [ defaultPackage ];
+            inputsFrom = [ ];
+            shellHook = "";
+          };
+        };
 
         # these outputs will be NOT wrapped with ${system}
 
         # this will make an overlay out of each of the packageDefinitions defined above
         # and set the default overlay to the one named here.
-        overlays = utils.makeOverlays luaPath {
-          inherit nixpkgs dependencyOverlays extra_pkg_config;
-        } categoryDefinitions packageDefinitions defaultPackageName;
+        # overlays = overlays;
+        overlays = overlays;
 
         nixosModules.default = nixosModule;
         homeModules.default = homeModule;
