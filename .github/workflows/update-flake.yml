@@ -2,10 +2,8 @@ name: Update flake inputs
 on:
   workflow_dispatch:
   schedule:
-    # Daily at 06:00 UTC
-    - cron: "17 6 * * *"
-    # Testing, to be removed
-    - cron: "*/30 * * * *"
+    # Daily at 00:17 UTC
+    - cron: "17 2 * * *"
 permissions:
   contents: write
   pull-requests: write
