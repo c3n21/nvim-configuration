@@ -453,15 +453,6 @@
             ];
 
             node = with pkgs.vimPlugins; [
-              {
-
-                plugin = pkgs.vimPlugins.nvim-vtsls;
-
-                config.lua = # lua
-                  ''
-                    vim.lsp.enable('vtsls')
-                  '';
-              }
               nvim-treesitter-parsers.jsdoc
               nvim-treesitter-parsers.tsx
               nvim-treesitter-parsers.typescript
@@ -901,9 +892,9 @@
 
             node = [
               # lua
-              # ''
-              #   vim.lsp.enable('tsgo')
-              # ''
+              ''
+                vim.lsp.enable('tsgo')
+              ''
               # lua
               ''
                 require('configs.nvim-dap.js')
