@@ -893,6 +893,11 @@
             node = [
               # lua
               ''
+                vim.lsp.enable('biome')
+              ''
+
+              # lua
+              ''
                 vim.lsp.enable('tsgo')
               ''
               # lua
