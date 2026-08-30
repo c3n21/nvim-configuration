@@ -59,30 +59,28 @@ vim.api.nvim_create_autocmd('InsertEnter', {
     end,
 })
 
--- UI2
-require('vim._core.ui2').enable({
-    enable = true, -- Whether to enable or disable the UI.
-    msg = { -- Options related to the message module.
-        ---@type 'cmd'|'msg' Default message target, either in the
-        ---cmdline or in a separate ephemeral message window.
-        ---@type string|table<string, 'cmd'|'msg'|'pager'> Default message target
-        ---or table mapping |ui-messages| kinds and triggers to a target.
-        targets = 'cmd',
-        cmd = { -- Options related to messages in the cmdline window.
-            height = 0.5, -- Maximum height while expanded for messages beyond 'cmdheight'.
+vim.opt.messagesopt = 'hit-enter,timeout:500,history:500,progress:c'
+
+local ok, result = pcall(function()
+    -- UI2
+    require('vim._core.ui2').enable({
+        enable = true, -- Whether to enable or disable the UI.
+        msg = { -- Options related to the message module.
+            ---@type 'cmd'|'msg' Default message target, either in the
+            ---cmdline or in a separate ephemeral message window.
+            ---@type string|table<string, 'cmd'|'msg'|'pager'> Default message target
+            ---or table mapping |ui-messages| kinds and triggers to a target.
+            targets = 'cmd',
+            pager = { -- Options related to message window.
+                height = 1, -- Maximum height.
+            },
         },
-        dialog = { -- Options related to dialog window.
-            height = 0.5, -- Maximum height.
-        },
-        msg = { -- Options related to msg window.
-            height = 0.5, -- Maximum height.
-            timeout = 4000, -- Time a message is visible in the message window.
-        },
-        pager = { -- Options related to message window.
-            height = 1, -- Maximum height.
-        },
-    },
-})
+    })
+end)
+
+if not ok then
+    vim.print(result)
+end
 
 -- Treesitter
 vim.g.query_lint_on = { 'InsertLeave', 'TextChanged' }
