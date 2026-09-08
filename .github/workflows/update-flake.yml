@@ -62,19 +62,27 @@ jobs:
       - name: Build all exposed packages
         if: steps.changes.outputs.changed == 'true'
         run: |
-          mapfile -t packages < <(
+          if ! package_lines="$(
             nix eval --json .#packages.x86_64-linux --apply builtins.attrNames \
               | jq -r '.[] | ".#" + .'
-          )
+          )"; then
+            echo "Failed to evaluate packages.x86_64-linux"
+            exit 1
+          fi
+          mapfile -t packages < <(printf '%s' "$package_lines")
 
           if [ "${#packages[@]}" -eq 0 ]; then
             echo "No packages exposed for x86_64-linux"
             exit 1
           fi
 
-          mapfile -t outputs < <(
+          if ! output_lines="$(
             nix build --no-link --print-out-paths "${packages[@]}"
-          )
+          )"; then
+            echo "Failed to build packages.x86_64-linux"
+            exit 1
+          fi
+          mapfile -t outputs < <(printf '%s' "$output_lines")
 
           if [ "${#outputs[@]}" -eq 0 ]; then
             echo "Build returned no output paths"
@@ -108,7 +116,19 @@ jobs:
           git switch -c "$BRANCH_NAME"
           git add flake.lock
           git commit -m "$PR_TITLE"
-          git push --force-with-lease origin "$BRANCH_NAME"
+
+          remote_oid=""
+          if remote_line=$(git ls-remote --exit-code --heads origin "refs/heads/$BRANCH_NAME"); then
+            read -r remote_oid _ <<< "$remote_line"
+          else
+            status=$?
+            if [ "$status" -ne 2 ]; then
+              exit "$status"
+            fi
+          fi
+          git push \
+            --force-with-lease="refs/heads/$BRANCH_NAME:$remote_oid" \
+            origin "HEAD:refs/heads/$BRANCH_NAME"
 
           pr_number=$(gh pr list \
             --base "$BASE_BRANCH" \
