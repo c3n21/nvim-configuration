@@ -296,21 +296,21 @@
                 });
               }
 
-              {
-                plugin = easy-dotnet-nvim.overrideAttrs (oldAttrs: {
-                  src = pkgs.fetchFromGitHub {
-                    owner = "GustavEikaas";
-                    repo = "easy-dotnet.nvim";
-                    rev = "84be98bcf7bf0c6b867524de3b250c7112fc74a4";
-                    hash = "sha256-tBlydDRcE3flXud4kDP2N4/OzF67FRc00bN6l0CzMGk=";
-                  };
-                });
-
-                config.lua = # lua
-                  ''
-                    require('configs.easy-dotnet')
-                  '';
-              }
+              # {
+              #   plugin = easy-dotnet-nvim.overrideAttrs (oldAttrs: {
+              #     src = pkgs.fetchFromGitHub {
+              #       owner = "GustavEikaas";
+              #       repo = "easy-dotnet.nvim";
+              #       rev = "84be98bcf7bf0c6b867524de3b250c7112fc74a4";
+              #       hash = "sha256-tBlydDRcE3flXud4kDP2N4/OzF67FRc00bN6l0CzMGk=";
+              #     };
+              #   });
+              #
+              #   config.lua = # lua
+              #     ''
+              #       require('configs.easy-dotnet')
+              #     '';
+              # }
             ];
 
             ai =
