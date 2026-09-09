@@ -54,7 +54,6 @@ jobs:
           cache: ${{ env.ATTIC_CACHE }}
           token: ${{ secrets.ATTIC_TOKEN }}
           inputs-from: .
-          skip-push: true
 
       - name: Verify Attic availability
         if: steps.changes.outputs.changed == 'true'
