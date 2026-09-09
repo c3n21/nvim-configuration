@@ -95,7 +95,7 @@ jobs:
       - name: Publish all package closures to Attic
         if: steps.changes.outputs.changed == 'true'
         run: >-
-          attic push --ignore-upstream-cache-filter "$ATTIC_CACHE" --stdin
+          attic push "$ATTIC_CACHE" --stdin
           < "$RUNNER_TEMP/nix-output-paths"
 
       - name: Open pull request
@@ -108,7 +108,7 @@ jobs:
           PR_BODY: |
             Automated flake input update.
 
-            This PR was opened only after successfully building every package exposed under `packages.x86_64-linux` and publishing every resulting closure to the homelab Attic cache.
+            This PR was opened only after successfully building every package exposed under `packages.x86_64-linux`; locally built paths were published to the homelab Attic cache, while upstream-cached dependencies remain available from their source caches.
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
