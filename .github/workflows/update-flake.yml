@@ -54,12 +54,20 @@ jobs:
           cache: ${{ env.ATTIC_CACHE }}
           token: ${{ secrets.ATTIC_TOKEN }}
           inputs-from: .
+          skip-push: true
 
       - name: Verify Attic availability
         if: steps.changes.outputs.changed == 'true'
         run: attic cache info "$ATTIC_CACHE" >/dev/null
 
+      - name: Record initial Nix store paths
+        if: steps.changes.outputs.changed == 'true'
+        run: >-
+          nix path-info --all --json --json-format 2
+          > "$RUNNER_TEMP/nix-store-before.json"
+
       - name: Build all exposed packages
+        id: build
         if: steps.changes.outputs.changed == 'true'
         run: |
           if ! package_lines="$(
@@ -92,13 +100,32 @@ jobs:
           printf '%s\n' "${outputs[@]}" > "$RUNNER_TEMP/nix-output-paths"
           printf 'published-output=%s\n' "${outputs[@]}"
 
-      - name: Publish all package closures to Attic
-        if: steps.changes.outputs.changed == 'true'
-        run: >-
-          attic push "$ATTIC_CACHE" --stdin
-          < "$RUNNER_TEMP/nix-output-paths"
+      - name: Publish newly realized paths after failed build
+        if: failure() && steps.changes.outputs.changed == 'true' && steps.build.outcome == 'failure'
+        continue-on-error: true
+        run: |
+          nix path-info --all --json --json-format 2 \
+            > "$RUNNER_TEMP/nix-store-after.json"
+          jq -r --slurpfile before "$RUNNER_TEMP/nix-store-before.json" '
+            .storeDir as $storeDir
+            | ((.info | keys) - ($before[0].info | keys))[]
+            | "\($storeDir)/\(.)"
+          ' "$RUNNER_TEMP/nix-store-after.json" \
+            > "$RUNNER_TEMP/nix-new-paths"
 
-      - name: Open pull request
+          if [ -s "$RUNNER_TEMP/nix-new-paths" ]; then
+            attic push "$ATTIC_CACHE" --stdin \
+              < "$RUNNER_TEMP/nix-new-paths"
+          else
+            echo "No new Nix store paths to publish"
+          fi
+
+      - name: Install GitHub CLI
+        if: steps.changes.outputs.changed == 'true'
+        run: nix profile add --inputs-from . nixpkgs#gh
+
+      - name: Create or update draft pull request
+        id: pull_request
         if: steps.changes.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
@@ -108,7 +135,7 @@ jobs:
           PR_BODY: |
             Automated flake input update.
 
-            This PR was opened only after successfully building every package exposed under `packages.x86_64-linux`; locally built paths were published to the homelab Attic cache, while upstream-cached dependencies remain available from their source caches.
+            All packages exposed under `packages.x86_64-linux` built successfully. Publication of the locally built paths to the homelab Attic cache is pending; upstream-cached dependencies remain available from their source caches.
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -133,15 +160,72 @@ jobs:
           pr_number=$(gh pr list \
             --base "$BASE_BRANCH" \
             --head "$BRANCH_NAME" \
+            --state open \
             --json number \
             --jq '.[0].number // empty')
 
           if [ -n "$pr_number" ]; then
             gh pr edit "$pr_number" --title "$PR_TITLE" --body "$PR_BODY"
+            is_draft=$(gh pr view "$pr_number" --json isDraft --jq '.isDraft')
+            if [ "$is_draft" != "true" ]; then
+              gh pr ready "$pr_number" --undo
+            fi
           else
-            gh pr create \
+            pr_url=$(gh pr create \
               --base "$BASE_BRANCH" \
               --head "$BRANCH_NAME" \
               --title "$PR_TITLE" \
-              --body "$PR_BODY"
+              --body "$PR_BODY" \
+              --draft)
+            pr_number=${pr_url##*/}
+          fi
+
+          case "$pr_number" in
+            ''|*[!0-9]*)
+              echo "Unable to determine pull request number: $pr_number" >&2
+              exit 1
+              ;;
+          esac
+          echo "number=$pr_number" >> "$GITHUB_OUTPUT"
+
+      - name: Publish all package closures to Attic
+        id: publish
+        if: steps.changes.outputs.changed == 'true'
+        run: >-
+          attic push "$ATTIC_CACHE" --stdin
+          < "$RUNNER_TEMP/nix-output-paths"
+
+      - name: Record cache publication failure on pull request
+        if: failure() && steps.pull_request.outcome == 'success' && steps.publish.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ steps.pull_request.outputs.number }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          failure_body=$(cat <<EOF
+          Automated flake input update.
+
+          All packages exposed under \`packages.x86_64-linux\` built successfully, but publication to the homelab Attic cache failed. See the [workflow run]($RUN_URL). This PR remains draft pending successful cache publication.
+          EOF
+          )
+          gh pr edit "$PR_NUMBER" --body "$failure_body"
+          is_draft=$(gh pr view "$PR_NUMBER" --json isDraft --jq '.isDraft')
+          if [ "$is_draft" != "true" ]; then
+            gh pr ready "$PR_NUMBER" --undo
+          fi
+
+      - name: Finalize pull request
+        if: steps.publish.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ steps.pull_request.outputs.number }}
+          PR_BODY: |
+            Automated flake input update.
+
+            All packages exposed under `packages.x86_64-linux` built successfully. Locally built paths were published to the homelab Attic cache, while upstream-cached dependencies remain available from their source caches.
+        run: |
+          gh pr edit "$PR_NUMBER" --body "$PR_BODY"
+          is_draft=$(gh pr view "$PR_NUMBER" --json isDraft --jq '.isDraft')
+          if [ "$is_draft" = "true" ]; then
+            gh pr ready "$PR_NUMBER"
           fi
