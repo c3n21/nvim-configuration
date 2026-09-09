@@ -237,7 +237,7 @@
             ];
 
             node = with pkgs; [
-              typescript-go
+              typescript
               prettierd
               # for eslint-lsp
               vscode-langservers-extracted
