@@ -1,35 +1,35 @@
 local dap = require('dap')
 
-local function rebuild_project(co, path)
-    local spinner = require('easy-dotnet.ui-modules.spinner').new()
-    spinner:start_spinner('Building')
-    vim.fn.jobstart(string.format('dotnet build %s', path), {
-        on_exit = function(_, return_code)
-            if return_code == 0 then
-                spinner:stop_spinner('Built successfully')
-            else
-                spinner:stop_spinner('Build failed with exit code ' .. return_code, vim.log.levels.ERROR)
-                error('Build failed')
-            end
-            coroutine.resume(co)
-        end,
-    })
-    coroutine.yield()
-end
+-- local function rebuild_project(co, path)
+--     local spinner = require('easy-dotnet.ui-modules.spinner').new()
+--     spinner:start_spinner('Building')
+--     vim.fn.jobstart(string.format('dotnet build %s', path), {
+--         on_exit = function(_, return_code)
+--             if return_code == 0 then
+--                 spinner:stop_spinner('Built successfully')
+--             else
+--                 spinner:stop_spinner('Build failed with exit code ' .. return_code, vim.log.levels.ERROR)
+--                 error('Build failed')
+--             end
+--             coroutine.resume(co)
+--         end,
+--     })
+--     coroutine.yield()
+-- end
 
 -- .NET specific setup using `easy-dotnet`
-require('easy-dotnet.netcoredbg').register_dap_variables_viewer() -- special variables viewer specific for .NET
-local dotnet = require('easy-dotnet')
-local debug_dll = nil
+-- require('easy-dotnet.netcoredbg').register_dap_variables_viewer() -- special variables viewer specific for .NET
+-- local dotnet = require('easy-dotnet')
+-- local debug_dll = nil
 
-local function ensure_dll()
-    if debug_dll ~= nil then
-        return debug_dll
-    end
-    local dll = dotnet.get_debug_dll(true)
-    debug_dll = dll
-    return dll
-end
+-- local function ensure_dll()
+--     if debug_dll ~= nil then
+--         return debug_dll
+--     end
+--     local dll = dotnet.get_debug_dll(true)
+--     debug_dll = dll
+--     return dll
+-- end
 
 for _, value in ipairs({ 'cs', 'fsharp' }) do
     dap.configurations[value] = {

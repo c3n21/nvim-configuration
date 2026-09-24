@@ -306,6 +306,7 @@
               #     };
               #   });
               #
+
               #   config.lua = # lua
               #     ''
               #       require('configs.easy-dotnet')
@@ -316,13 +317,13 @@
             ai =
               with pkgs.vimPlugins;
               [
-                {
-                  plugin = copilot-lua;
-                  config.lua = # lua
-                    ''
-                      require('configs.copilot')
-                    '';
-                }
+                # {
+                #   plugin = copilot-lua;
+                #   config.lua = # lua
+                #     ''
+                #       require('configs.copilot')
+                #     '';
+                # }
 
                 # Currently using Avante
                 # {
@@ -333,29 +334,29 @@
                 #     '';
                 # }
 
-                {
-                  plugin = avante-nvim.overrideAttrs {
+                # {
+                #   plugin = avante-nvim.overrideAttrs {
 
-                    dependencies = with vimPlugins; [
-                      img-clip-nvim
-                      nui-nvim
-                      nvim-treesitter
-                      plenary-nvim
-                    ];
-                  };
-                  config.lua = # lua
-                    ''
-                      require('configs.avante')
-                    '';
-                }
+                #     dependencies = with vimPlugins; [
+                #       img-clip-nvim
+                #       nui-nvim
+                #       nvim-treesitter
+                #       plenary-nvim
+                #     ];
+                #   };
+                #   config.lua = # lua
+                #     ''
+                #       require('configs.avante')
+                #     '';
+                # }
 
-                {
+                # {
 
-                  plugin = blink-cmp-avante;
-                }
+                #   plugin = blink-cmp-avante;
+                # }
               ]
               ++ (with pkgs.neovimPlugins; [
-                mcphub-nvim
+                # mcphub-nvim
               ]);
 
             # TODO: lazy load maybe?

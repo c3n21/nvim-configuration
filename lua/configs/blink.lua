@@ -3,8 +3,8 @@ local default_sources
 
 if nixCats('ai') then
     default_sources = {
-        'avante',
-        'copilot',
+        -- 'avante',
+        -- 'copilot',
         'lsp',
         'path',
         'snippets',
