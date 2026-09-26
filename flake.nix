@@ -899,7 +899,7 @@
 
               # lua
               ''
-                vim.lsp.enable('tsgo')
+                vim.lsp.enable('tsc')
               ''
               # lua
               ''
